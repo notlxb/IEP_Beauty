@@ -22,6 +22,8 @@ import userManagement from './views/nav4/userManagement.vue'
 import dataManagement from './views/nav4/dataManagement.vue'
 import subjectManagement from './views/nav4/subjectManagement.vue'
 import courseEvaluation from './views/nav2/courses/courseEvaluation.vue'
+import evaluationAnalysis from './views/nav2/courses/evaluationAnalysis.vue'
+import analysisEdit from './views/nav2/courses/analysisEdit.vue'
 import iepMeeting from './views/nav2/IEP/iep_meeting.vue'
 import iepMeetingEdit from './views/nav2/IEP/iepmeeting_edit.vue'
 import iepMeetingCreate from './views/nav2/IEP/iepmeeting_create.vue'
@@ -41,8 +43,6 @@ import groupSubject from './views/nav3/groupSubject.vue'
 import groupSubjectEdit from './views/nav3/groupSubjectEdit.vue'
 import groupSubjectTea from './views/nav3/groupSubjectTea.vue'
 import groupSubjectTeaEdit from './views/nav3/groupSubjectTeaEdit.vue'
-import studyReport from './views/nav3/studyReport/studyReport.vue'
-import studyReportEdit from './views/nav3/studyReport/studyReportEdit.vue'
 import learningReport from './views/nav3/learningReport.vue'
 import learningReportEdit from './views/nav3/learningReportEdit.vue'
 import research from './views/nav1/research.vue'
@@ -155,6 +155,19 @@ let routes = [
                 authority: [1, 1, 1, 1, 1],
             },
             {
+                path: '/analysisEdit',
+                component: analysisEdit,
+                name: '分析编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/evaluationAnalysis',
+                component: evaluationAnalysis,
+                name: '评量分析',
+                authority: [1, 1, 1, 1, 1],
+            },
+            {
                 path: '/iepMeeting',
                 component: iepMeeting,
                 name: 'IEP会议',
@@ -194,8 +207,8 @@ let routes = [
                     //{path: '/user', component: user, name: '列表'},
                 ],
             },*/
-            {path: '/teaTheme', component: teaTheme, name: '教学主题', authority: [1, 1, 1, 1, 1]},
-            {path: '/teaThemeEdit', component: teaThemeEdit, name: '教学主题编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {path: '/teaTheme', component: teaTheme, name: '长短期目标', authority: [1, 1, 1, 1, 1]},
+            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden:true},
             {path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
             {path: '/indSubject', component: indSubject, name: '个训学科计划', authority: [1, 1, 1, 1, 1]},
             {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
