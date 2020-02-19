@@ -13,7 +13,7 @@
         </el-input>
       </div>
       <div v-show="show1">
-        <el-table :data="tables" ref="tablesection" @select="handlesection" align="left" stripe>
+        <el-table v-loading="loading" :data="tables" ref="tablesection" @select="handlesection" align="left" stripe>
           <!--      <el-table-column type="index" align="center"></el-table-column>-->
           <!--      <el-table-column label="多选">-->
           <!--        <template slot-scope="s">-->
@@ -179,8 +179,9 @@
         project_value:'',
         project_label:'',
         table_select_courses:[],
-        tidata1:[]
+        tidata1:[],
 
+        loading:true,
       }
     },
     computed:{
@@ -430,16 +431,16 @@
       },
 
       //更新课程信息
-      updateCourse(){
+      async updateCourse(){
 
 
-        this.$http.post('/api/stu/queCourse', {
+        await  this.$http.post('/api/stu/queCourse', {
         }, {}).then((response) => {
           this.$store.dispatch("setcourse", response.bodyText);
           // console.log(this.$store.state.course);
         });
 
-        this.$http.post('/api/stu/queStuCourse', {
+        await this.$http.post('/api/stu/queStuCourse', {
         }, {}).then((response) => {
           this.$store.dispatch("setstucourses", null);
           this.$store.dispatch("setstucourseslist", null);
@@ -486,6 +487,8 @@
           this.total = this.$store.state.stucourseslist.length;
           this.currentChangePage(this.currentPage1);
         });
+
+        this.loading = false;
       },
 
 

@@ -16,7 +16,7 @@
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <el-table :data="tables" align="left" stripe>
+      <el-table v-loading="loading" :data="tables" align="left" stripe>
         <el-table-column prop="student_id" label="学号"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
         <el-table-column prop="Sex" label="性别"></el-table-column>
@@ -88,6 +88,8 @@
                 currentPage1:1,
                 tempList:[],
                 tableData:[],
+
+              loading:true,
             }
         },
         computed:{
@@ -117,20 +119,22 @@
         },
         methods:{
             //页面刷新
-            updatestuNNS(){
-                this.$http.post('/api/stu/querySch',{
+            async updatestuNNS(){
+                await this.$http.post('/api/stu/querySch',{
                 },{}).then((response) => {
                     this.$store.dispatch("setschooltables", response.bodyText);
                     // console.log(this.$store.state.schooltables);
                 });
 
-                this.$http.post('/api/stu/queStuNNS',{
+                await this.$http.post('/api/stu/queStuNNS',{
                 },{}).then((response) => {
                     this.$store.dispatch("setstuNNS", response.bodyText);
                     this.total = this.$store.state.stuNNS.length;
                     this.currentChangePage(this.currentPage1);
                     console.log(this.tempList)
                 });
+
+                this.loading = false;
             },
 
             //获取学校选项

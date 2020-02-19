@@ -13,7 +13,7 @@
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <el-table :data=this.tempList align="left" stripe>
+      <el-table v-loading="loading" :data=this.tempList align="left" stripe>
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="schoolYear" label="学年"></el-table-column>
         <el-table-column prop="term" label="学期"></el-table-column>
@@ -79,6 +79,8 @@
                 delID:'',
 
                 search:'',
+
+              loading:true,
             }
         },
         computed:{
@@ -107,14 +109,16 @@
         },
         methods:{
             //更新集体学科计划信息
-            updateTrainingSP(){
-                this.$http.post('/api/stu/queTrainingSbjPlan', {
+            async updateTrainingSP(){
+                await this.$http.post('/api/stu/queTrainingSbjPlan', {
                 }, {}).then((response) => {
                     console.log(response);
                     this.$store.dispatch("setTrainingSPlist", response.bodyText);
                     this.total = this.$store.state.trainingSPlist.length;
                     this.currentChangePage(this.currentPage1);
                 });
+
+                this.loading = false;
             },
 
             //删除信息

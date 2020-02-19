@@ -13,7 +13,7 @@
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <el-table :data="tables" align="left" stripe>
+      <el-table v-loading="loading" :data="tables" align="left" stripe>
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column
             prop="class"
@@ -102,6 +102,8 @@
                 dialogVisible:false,
 
                 search:'',
+
+              loading:true,
             }
         },
         computed:{
@@ -134,8 +136,8 @@
                 return row[property] === value;
             },
             //更新集体学科计划信息
-            updateGroupSI(){
-                this.$http.post('/api/stu/queGroupSbjIns', {
+            async updateGroupSI(){
+                await this.$http.post('/api/stu/queGroupSbjIns', {
                 }, {}).then((response) => {
                     console.log(response)
                     this.$store.dispatch("setGroupSIlist", response.bodyText);
@@ -184,10 +186,7 @@
                     }
                     this.currentChangePage(this.currentPage1);
                 });
-
-
-
-
+                this.loading = false;
             },
 
             //删除信息
