@@ -1,5 +1,12 @@
 <template>
     <section>
+        <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+            <el-form :inline="true"align="left" >
+                <el-form-item>
+                    <el-button type="primary" icon="el-icon-plus"  @click.native="to_edit(0,0)" v-if="false">新建学生报表</el-button>
+                </el-form-item><br>
+            </el-form>
+        </el-col>
         <div class="table">
             <div class="search-Box">
                 <el-input   placeholder="请输入需要查找的关键字" class="search"  v-model="search">

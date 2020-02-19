@@ -47,12 +47,12 @@
                     //开发版本
                     language_url: '/static/tinymce/langs/zh_CN.js',
                     //服务器版本
-                    //language_url: '/group3/static/tinymce/langs/zh_CN.js',
+                    //language_url: '/integration/static/tinymce/langs/zh_CN.js',
                     language: 'zh_CN',
                     //开发版本
                     skin_url: '/static/tinymce/skins/ui/oxide',
                     //服务器版本
-                    //skin_url: '/group3/static/tinymce/skins/ui/oxide',
+                    //skin_url: '/integration/static/tinymce/skins/ui/oxide',
                     height: 200,
                     plugins: this.plugins,
                     toolbar: this.toolbar,
