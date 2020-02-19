@@ -9,7 +9,7 @@
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <el-table :data="tables" align="left" stripe>
+      <el-table v-loading="loading" :data="tables" align="left" stripe>
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="schoolYear" label="学年"></el-table-column>
         <el-table-column prop="term" label="学期"></el-table-column>
@@ -75,6 +75,8 @@
                 delID:'',
 
                 search:'',
+
+              loading:true,
             }
         },
         computed:{
@@ -103,7 +105,7 @@
         },
         methods:{
             //更新集体学科计划信息
-            updateGroupSP(){
+            async updateGroupSP(){
                 this.$http.post('/api/stu/queGroupSbjPlan', {
                 }, {}).then((response) => {
                     console.log(response);
@@ -111,6 +113,8 @@
                     this.total = this.$store.state.groupSPlist.length;
                     this.currentChangePage(this.currentPage1);
                 });
+
+                this.loading = false;
             },
 
             //删除信息

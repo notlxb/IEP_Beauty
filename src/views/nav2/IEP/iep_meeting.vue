@@ -12,7 +12,7 @@
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <el-table :data="tables" align="left" stripe>
+      <el-table v-loading="loading" :data="tables" align="left" stripe>
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="schoolYear" label="学年"></el-table-column>
         <el-table-column prop="term" label="学期"></el-table-column>
@@ -80,6 +80,8 @@
                 total:0,
                 pageSize:10,
                 currentPage1:1,
+
+              loading:true,
             }
         },
         computed:{
@@ -123,14 +125,15 @@
             },
 
             //更新iep会议信息
-            updateIepMeeting(){
-                this.$http.post('/api/stu/queIepMeeting', {
+            async updateIepMeeting(){
+                await this.$http.post('/api/stu/queIepMeeting', {
                 }, {}).then((response) => {
                     this.$store.dispatch("setiepmeetinglist", response.bodyText);
                     // console.log(this.$store.state.course);
                     this.total = this.$store.state.iepmeetinglist.length;
                     this.currentChangePage(this.currentPage1);
                 });
+                this.loading = false;
             },
 
 

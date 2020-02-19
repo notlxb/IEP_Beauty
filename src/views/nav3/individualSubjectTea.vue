@@ -13,7 +13,7 @@
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <el-table :data="tables" align="left" stripe>
+      <el-table v-loading="loading" :data="tables" align="left" stripe>
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column
             prop="subject"
@@ -102,6 +102,8 @@
                 delID:'',
 
                 search:'',
+
+              loading:true,
             }
         },
         computed:{
@@ -152,8 +154,8 @@
                 this.dialogVisible = false;
             },
             //更新集体学科计划信息
-            updateTrainingSI(){
-                this.$http.post('/api/stu/queTrainingSbjIns', {
+            async updateTrainingSI(){
+                await this.$http.post('/api/stu/queTrainingSbjIns', {
                 }, {}).then((response) => {
                     console.log(response)
                     this.$store.dispatch("setTrainingSIlist", response.bodyText);
@@ -204,6 +206,8 @@
 
                     this.currentChangePage(this.currentPage1);
                 });
+
+                this.loading = false;
             },
 
 
