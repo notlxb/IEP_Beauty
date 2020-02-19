@@ -109,7 +109,7 @@
         methods:{
             //跳转至课程评量界面
             to_edit(id, isEdit){
-                this.$http.post('http://47.110.134.247/api/stu/queFullIepMeeting',{
+                this.$http.post('/api/stu/queFullIepMeeting',{
                     id:id
                 },{}).then((response) => {
                     this.$store.dispatch("setiepmeeting", response.bodyText);
@@ -124,7 +124,7 @@
 
             //更新iep会议信息
             updateIepMeeting(){
-                this.$http.post('http://47.110.134.247/api/stu/queIepMeeting', {
+                this.$http.post('/api/stu/queIepMeeting', {
                 }, {}).then((response) => {
                     this.$store.dispatch("setiepmeetinglist", response.bodyText);
                     // console.log(this.$store.state.course);
@@ -140,12 +140,12 @@
 
             //删除会议信息
             delMeeting() {
-                this.$http.post('http://47.110.134.247/api/stu/delIepMeeting',{
+                this.$http.post('/api/stu/delIepMeeting',{
                     id:this.delID
                 },{}).then((response) => {
                     console.log('ok');
                 });
-                this.$http.post('http://47.110.134.247/api/stu/queIepMeeting',{
+                this.$http.post('/api/stu/queIepMeeting',{
                 },{}).then((response) => {
                     this.$store.dispatch("setiepmeetinglist", response.bodyText);
                     this.currentChangePage(this.currentPage1);

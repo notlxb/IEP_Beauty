@@ -108,7 +108,7 @@
         methods:{
             //更新集体学科计划信息
             updateTrainingSP(){
-                this.$http.post('http://47.110.134.247/api/stu/queTrainingSbjPlan', {
+                this.$http.post('/api/stu/queTrainingSbjPlan', {
                 }, {}).then((response) => {
                     console.log(response);
                     this.$store.dispatch("setTrainingSPlist", response.bodyText);
@@ -127,7 +127,7 @@
                 this.dialogVisible = false;
             },
             delInfo(id) {
-                this.$http.post('http://47.110.134.247/api/stu/delTrainingSbjPl',{
+                this.$http.post('/api/stu/delTrainingSbjPl',{
                     id:id
                 },{}).then((response) => {
                     console.log('ok');
@@ -139,7 +139,7 @@
             //跳转至个训学科计划编辑界面
             to_edit(id,isEdit){
                 if (isEdit === 1 || isEdit === 2) {
-                    this.$http.post('http://47.110.134.247/api/stu/queFullTrainingSbjPl', {
+                    this.$http.post('/api/stu/queFullTrainingSbjPl', {
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setTrainingSP", response.bodyText);

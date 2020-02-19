@@ -92,7 +92,7 @@
                 config:{
                     language:'zh-cn',
                     ckfinder: {
-                        uploadUrl: 'http://47.110.134.247/api/stu/picture_IEP'
+                        uploadUrl: '/api/stu/picture_IEP'
                     },
                 },
             }
@@ -128,7 +128,7 @@
                 var stuID = this.stuID;
                 var creator = this.creator;
                 var summary = this.summary;
-                this.$http.post('http://47.110.134.247/api/stu/upIepMeeting',{
+                this.$http.post('/api/stu/upIepMeeting',{
                     schoolYear:schoolYear,
                     term:term,
                     stuName:stuName,

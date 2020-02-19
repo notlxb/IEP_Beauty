@@ -118,19 +118,19 @@
                     this.HomeBasicInfo[this.formData2.domains2[i].key].description = this.formData2.domains2[i].value;
                     this.ATI[this.formData2.domains2[i].key].description = this.formData2.domains2[i].value;
                 }
-                this.$http.post('http://47.110.134.247/api/stu/HBIini', {
+                this.$http.post('/api/stu/HBIini', {
                     HBI: this.HomeBasicInfo,
                     HBIID: this.$store.state.stuinfo[0].student_id
                 }, {}).then((response) => {
                 });
-                this.$http.post('http://47.110.134.247/api/stu/ATIini', {
+                this.$http.post('/api/stu/ATIini', {
                     ATI: this.ATI,
                     ATIID: this.$store.state.stuinfo[0].student_id
                 }, {}).then((response) => {
                 });
                 console.log(this.HomeBasicInfo);
 
-                this.$http.post('http://47.110.134.247/api/stu/queryStuinfo', {
+                this.$http.post('/api/stu/queryStuinfo', {
                     AStuID: this.$store.state.stuinfo[0].student_id
                 }, {}).then((response) => {
                     this.$store.dispatch("setstuinfo", response.bodyText);

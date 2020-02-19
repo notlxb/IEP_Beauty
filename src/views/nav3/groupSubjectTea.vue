@@ -135,7 +135,7 @@
             },
             //更新集体学科计划信息
             updateGroupSI(){
-                this.$http.post('http://47.110.134.247/api/stu/queGroupSbjIns', {
+                this.$http.post('/api/stu/queGroupSbjIns', {
                 }, {}).then((response) => {
                     console.log(response)
                     this.$store.dispatch("setGroupSIlist", response.bodyText);
@@ -200,7 +200,7 @@
                 this.dialogVisible = false;
             },
             delInfo(id) {
-                this.$http.post('http://47.110.134.247/api/stu/delGroupSbjIns',{
+                this.$http.post('/api/stu/delGroupSbjIns',{
                     id:id
                 },{}).then((response) => {
                     console.log('ok');
@@ -212,7 +212,7 @@
             //跳转至个训学科计划编辑界面
             to_edit(id,isEdit){
                 if (isEdit == 1 || isEdit == 2) {
-                    this.$http.post('http://47.110.134.247/api/stu/queFullGroupSbjIns', {
+                    this.$http.post('/api/stu/queFullGroupSbjIns', {
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setGroupSI", response.bodyText);

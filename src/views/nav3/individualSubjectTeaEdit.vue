@@ -160,7 +160,7 @@
                 // config:{
                 //   language:'zh-cn',
                 //   ckfinder: {
-                //     uploadUrl: 'http://47.110.134.247/api/stu/picture_GeXunJX'
+                //     uploadUrl: '/api/stu/picture_GeXunJX'
                 //   },
                 // },
             }
@@ -178,7 +178,7 @@
                 this.disabled = false;
                 this.tmdisabled = false;
                 this.createDate = this.getDate();
-                this.$http.post('http://47.110.134.247/api/stu/queSchoolTeachers', {
+                this.$http.post('/api/stu/queSchoolTeachers', {
                     school:"苏州工业园区仁爱学校"
                 },{}).then((response) => {
                     console.log(response);
@@ -204,7 +204,7 @@
                 this.section = this.$store.state.trainingSI[0].section;
                 this.topic = this.$store.state.trainingSI[0].topic;
                 this.content = JSON.parse(this.$store.state.trainingSI[0].content).content;
-                this.$http.post('http://47.110.134.247/api/stu/queSchoolTeachers', {
+                this.$http.post('/api/stu/queSchoolTeachers', {
                     school:"苏州工业园区仁爱学校"
                 },{}).then((response) => {
                     console.log(response);
@@ -218,7 +218,7 @@
 
             queryClass(){
                 this.stuOptions = [];
-                this.$http.post('http://47.110.134.247/api/stu/queryClass', {
+                this.$http.post('/api/stu/queryClass', {
                     class_id: this.tclass,
                 }, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
@@ -232,7 +232,7 @@
 
             queryClasstable(){
                 this.class_options = [];
-                this.$http.post('http://47.110.134.247/api/stu/queClasstable', {
+                this.$http.post('/api/stu/queClasstable', {
                     schoolName: "苏州工业园区仁爱学校",
                 }, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
@@ -246,7 +246,7 @@
 
             querySubject(){
                 this.subject_options = [];
-                this.$http.post('http://47.110.134.247/api/stu/queSubject', {}, {}).then((response) => {
+                this.$http.post('/api/stu/queSubject', {}, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
                         var opt = {};
                         opt.value = response.body[i].subjectName;
@@ -259,7 +259,7 @@
             gx_submit(){
                 var c = {content:this.content};
                 if(this.$route.query.isEdit == 1) {
-                    this.$http.post('http://47.110.134.247/api/stu/upTrainingSbjIns',{
+                    this.$http.post('/api/stu/upTrainingSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
                         class:this.tclass,
@@ -278,7 +278,7 @@
                     console.log('success!');
                     this.$router.replace({path:'/indSubject'});
                 }else {
-                    this.$http.post('http://47.110.134.247/api/stu/addTrainingSbjIns',{
+                    this.$http.post('/api/stu/addTrainingSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
                         class:this.tclass,

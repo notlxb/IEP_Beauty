@@ -493,7 +493,7 @@
               if ((Courses[i].evaluation[j].领域==this.evaluation.领域)&&(Courses[i].evaluation[j].次领域==this.evaluation.次领域)&&(Courses[i].evaluation[j].项目==this.evaluation.项目)) {
                 Courses[i].evaluation[j] = this.evaluation;
                 Courses[i].evaDate = this.evaDate;
-                this.$http.post('http://47.110.134.247/api/stu/upStuCourse', {
+                this.$http.post('/api/stu/upStuCourse', {
                   Course:Courses,
                   stuID:this.$store.state.stuinfo[0].student_id
                 }, {}).then((response) => {
@@ -512,7 +512,7 @@
           }
         }
 
-        this.$http.post('http://47.110.134.247/api/stu/upStuCourse', {
+        this.$http.post('/api/stu/upStuCourse', {
           Course:Courses,
           stuID:this.$store.state.stuinfo[0].student_id
         }, {}).then((response) => {

@@ -150,7 +150,7 @@
                 config:{
                     language:'zh-cn',
                     ckfinder: {
-                        uploadUrl: 'http://47.110.134.247/api/stu/picture_JiTiJX'
+                        uploadUrl: '/api/stu/picture_JiTiJX'
                     },
                 },
             }
@@ -167,7 +167,7 @@
             }else {
                 this.disabled = false;
                 this.tmdisabled = false;
-                this.$http.post('http://47.110.134.247/api/stu/queSchoolTeachers', {
+                this.$http.post('/api/stu/queSchoolTeachers', {
                     school:"苏州工业园区仁爱学校"
                 },{}).then((response) => {
                     console.log(response);
@@ -192,7 +192,7 @@
                 this.section = this.$store.state.groupSI[0].section;
                 this.topic = this.$store.state.groupSI[0].topic;
                 this.content = JSON.parse(this.$store.state.groupSI[0].content).content;
-                this.$http.post('http://47.110.134.247/api/stu/queSchoolTeachers', {
+                this.$http.post('/api/stu/queSchoolTeachers', {
                     school:"苏州工业园区仁爱学校"
                 },{}).then((response) => {
                     console.log(response);
@@ -206,7 +206,7 @@
 
             queryClasstable(){
                 this.class_options = [];
-                this.$http.post('http://47.110.134.247/api/stu/queClasstable', {
+                this.$http.post('/api/stu/queClasstable', {
                     schoolName: "苏州工业园区仁爱学校",
                 }, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
@@ -220,7 +220,7 @@
 
             querySubject(){
                 this.subject_options = [];
-                this.$http.post('http://47.110.134.247/api/stu/queSubject', {}, {}).then((response) => {
+                this.$http.post('/api/stu/queSubject', {}, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
                         var opt = {};
                         opt.value = response.body[i].subjectName;
@@ -233,7 +233,7 @@
             jt_submit(){
                 var c = {content:this.content};
                 if(this.$route.query.isEdit == 1) {
-                    this.$http.post('http://47.110.134.247/api/stu/upGroupSbjIns',{
+                    this.$http.post('/api/stu/upGroupSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
                         class:this.tclass,
@@ -251,7 +251,7 @@
                     console.log('success!');
                     this.$router.replace({path:'/groupSubjectTea'});
                 }else {
-                    this.$http.post('http://47.110.134.247/api/stu/addGroupSbjIns',{
+                    this.$http.post('/api/stu/addGroupSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
                         class:this.tclass,

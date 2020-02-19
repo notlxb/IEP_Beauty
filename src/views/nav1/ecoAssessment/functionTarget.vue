@@ -78,7 +78,7 @@
                 config:{
                     language:'zh-cn',
                     ckfinder: {
-                        uploadUrl: 'http://47.110.134.247/api/stu/picture_ZhuanXiang'
+                        uploadUrl: '/api/stu/picture_ZhuanXiang'
                     },
                 },
             };
@@ -178,18 +178,18 @@
                     this.Evaluation[this.formData3.domains3[i].key].age = this.formData3.domains3[i].age;
                     this.ATI[this.formData3.domains3[i].key].age = this.formData3.domains3[i].age;
                 }
-                this.$http.post('http://47.110.134.247/api/stu/Eini',{
+                this.$http.post('/api/stu/Eini',{
                     E:this.Evaluation,
                     EID:this.$store.state.stuinfo[0].student_id
                 },{}).then((response) => {});
-                this.$http.post('http://47.110.134.247/api/stu/ATIini',{
+                this.$http.post('/api/stu/ATIini',{
                     ATI:this.ATI,
                     ATIID:this.$store.state.stuinfo[0].student_id
                 },{}).then((response) => {});
                 console.log(JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo));
 
 
-                this.$http.post('http://47.110.134.247/api/stu/queryStuinfo',{
+                this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:this.$store.state.stuinfo[0].student_id
                 },{}).then((response) => {
                     this.$store.dispatch("setstuinfo", response.bodyText);

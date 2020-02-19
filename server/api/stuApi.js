@@ -99,7 +99,7 @@ router.post('/picture_ZhuanXiang', ZhuanXiang, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_ZhuanXiang/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_ZhuanXiang/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -121,7 +121,7 @@ router.post('/picture_ZhenDuan', ZhenDuan, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_ZhenDuan/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_ZhenDuan/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -143,7 +143,7 @@ router.post('/picture_JiTiJX', JiTiJX, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_JiTiJX/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_JiTiJX/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -165,7 +165,7 @@ router.post('/picture_JiTiJH', JiTiJH, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_JiTiJH/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_JiTiJH/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -187,7 +187,7 @@ router.post('/picture_GeXunJX', GeXunJX, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_GeXunJX/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_GeXunJX/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -209,7 +209,7 @@ router.post('/picture_GeXunJH', GeXunJH, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_GeXunJH/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_GeXunJH/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -231,7 +231,7 @@ router.post('/picture_JXZhuTi', JXZhuTi, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_JXZhuTi/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_JXZhuTi/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -253,7 +253,7 @@ router.post('/picture_IEP', IEPm, (req, res) => {
   let fileName = files.name;
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
-      let fangStr = `http://47.110.134.247/group3/uploadPic/uploadPic_IEP/${fileName}`;
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_IEP/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr

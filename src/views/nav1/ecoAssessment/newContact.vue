@@ -118,13 +118,13 @@
         methods:{
             //页面刷新
             updatestuNNS(){
-                this.$http.post('http://47.110.134.247/api/stu/querySch',{
+                this.$http.post('/api/stu/querySch',{
                 },{}).then((response) => {
                     this.$store.dispatch("setschooltables", response.bodyText);
                     // console.log(this.$store.state.schooltables);
                 });
 
-                this.$http.post('http://47.110.134.247/api/stu/queStuNNS',{
+                this.$http.post('/api/stu/queStuNNS',{
                 },{}).then((response) => {
                     this.$store.dispatch("setstuNNS", response.bodyText);
                     this.total = this.$store.state.stuNNS.length;
@@ -140,12 +140,12 @@
 
             //删除学生信息
             delStuinfo(id) {
-                this.$http.post('http://47.110.134.247/api/stu/delStu',{
+                this.$http.post('/api/stu/delStu',{
                     dStuID:id
                 },{}).then((response) => {
                     console.log('ok');
                 });
-                this.$http.post('http://47.110.134.247/api/stu/queStuNNS',{
+                this.$http.post('/api/stu/queStuNNS',{
                 },{}).then((response) => {
                     this.$store.dispatch("setstuNNS", response.bodyText);
                     this.currentChangePage(this.currentPage1);
@@ -157,7 +157,7 @@
 
             //查询指定学生所有信息
             findStuinfo(AStuID, isEdit) {
-                this.$http.post('http://47.110.134.247/api/stu/queryStuinfo',{
+                this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:AStuID
                 },{}).then((response) => {
                     console.log(JSON.parse(response.bodyText)[0].IsTargetInitialized);
@@ -165,14 +165,14 @@
                         this.addTarget('医学诊断', AStuID);
                         this.addTarget('家庭基础信息（家长自评）', AStuID);
                         this.addTarget('专项评估', AStuID);
-                        this.$http.post('http://47.110.134.247/api/stu/setIni1',{
+                        this.$http.post('/api/stu/setIni1',{
                             StuID:AStuID
                         },{}).then((response) => {});
-                        this.$http.post('http://47.110.134.247/api/stu/ATIini',{
+                        this.$http.post('/api/stu/ATIini',{
                             ATI:this.allTargetIni,
                             ATIID:AStuID
                         },{}).then((response) => {
-                            this.$http.post('http://47.110.134.247/api/stu/queryStuinfo',{
+                            this.$http.post('/api/stu/queryStuinfo',{
                                 AStuID:AStuID
                             },{}).then((response) => {
                                 this.$store.dispatch("setstuinfo", response.bodyText);
@@ -182,7 +182,7 @@
                         });
                     }
                     else {
-                        this.$http.post('http://47.110.134.247/api/stu/queryStuinfo',{
+                        this.$http.post('/api/stu/queryStuinfo',{
                             AStuID:AStuID
                         },{}).then((response) => {
                             this.$store.dispatch("setstuinfo", response.bodyText);
@@ -212,21 +212,21 @@
                 switch (targetName) {
                     case '医学诊断':
                         var ini = {诊断证书:null, 残疾证:null};
-                        this.$http.post('http://47.110.134.247/api/stu/MDini',{
+                        this.$http.post('/api/stu/MDini',{
                             MD:ini,
                             MDID:AStuID
                         },{}).then((response) => {});
                         break;
 
                     case '家庭基础信息（家长自评）':
-                        this.$http.post('http://47.110.134.247/api/stu/HBIini',{
+                        this.$http.post('/api/stu/HBIini',{
                             HBI:this.targetIni,
                             HBIID:AStuID
                         },{}).then((response) => {});
                         break;
 
                     case '专项评估':
-                        this.$http.post('http://47.110.134.247/api/stu/Eini',{
+                        this.$http.post('/api/stu/Eini',{
                             E:this.targetIni,
                             EID:AStuID
                         },{}).then((response) => {});
