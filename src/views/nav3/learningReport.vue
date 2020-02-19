@@ -106,7 +106,7 @@
         methods:{
             //更新学习报表信息
             updateLR(){
-                this.$http.post('http://47.110.134.247/api/stu/queLearningReports', {
+                this.$http.post('/api/stu/queLearningReports', {
                 }, {}).then((response) => {
                     console.log(response);
                     this.$store.dispatch("setLReportslist", response.bodyText);
@@ -125,7 +125,7 @@
                 this.dialogVisible = false;
             },
             delInfo(id) {
-                this.$http.post('http://47.110.134.247/api/stu/delLearningReports',{
+                this.$http.post('/api/stu/delLearningReports',{
                     id:id
                 },{}).then((response) => {
                     console.log('ok');
@@ -137,7 +137,7 @@
             //跳转至学习报表编辑界面
             to_edit(id, isEdit){
                 if (isEdit == 1 || isEdit == 2) {
-                    this.$http.post('http://47.110.134.247/api/stu/queFullLR', {
+                    this.$http.post('/api/stu/queFullLR', {
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setLReports", response.bodyText);

@@ -54,7 +54,7 @@
                 config:{
                     language:'zh-cn',
                     ckfinder: {
-                        uploadUrl: 'http://47.110.134.247/api/stu/picture_ZhenDuan'
+                        uploadUrl: '/api/stu/picture_ZhenDuan'
                     },
                 },
             };
@@ -147,18 +147,18 @@
                 //   this.ATI[this.formData.domains[i].key].description = this.formData.domains[i].value;
                 // }
                 var MD = {诊断证书:this.ZDZS, 残疾证:this.CJZ};
-                this.$http.post('http://47.110.134.247/api/stu/MDini',{
+                this.$http.post('/api/stu/MDini',{
                     MD:MD,
                     MDID:this.$store.state.stuinfo[0].student_id
                 },{}).then((response) => {});
-                this.$http.post('http://47.110.134.247/api/stu/ATIini',{
+                this.$http.post('/api/stu/ATIini',{
                     ATI:this.ATI,
                     ATIID:this.$store.state.stuinfo[0].student_id
                 },{}).then((response) => {});
                 console.log(this.MedicalDiagnosis);
 
 
-                this.$http.post('http://47.110.134.247/api/stu/queryStuinfo',{
+                this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:this.$store.state.stuinfo[0].student_id
                 },{}).then((response) => {
                     this.$store.dispatch("setstuinfo", response.bodyText);

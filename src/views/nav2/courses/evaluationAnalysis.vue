@@ -244,7 +244,7 @@
                 }
                 let school_year_repeat = [];
                 for (let i = 0; i < shuzu.length; i++) {
-                    await this.$http.post('http://47.110.134.247/api/stu/queryStuinfo', {
+                    await this.$http.post('/api/stu/queryStuinfo', {
                         AStuID: shuzu[i]
                     }, {}).then((response) => {
                         this.$store.dispatch("setstuinfo", response.bodyText);
@@ -356,7 +356,7 @@
 
             //跳转至课程评量界面
             to_edit(stuID,schoolYear,term){
-                this.$http.post('http://47.110.134.247/api/stu/queryStuinfo',{
+                this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:stuID
                 },{}).then((response) => {
                     this.$store.dispatch("setstuinfo", response.bodyText);
@@ -366,11 +366,11 @@
 
             //根据schedule表中的学生课表信息为对应学生设置课程评量
             async setStuCE(){
-                var Schedule = await this.$http.post('http://47.110.134.247/api/stu/queSchedule', {}, {});
+                var Schedule = await this.$http.post('/api/stu/queSchedule', {}, {});
                 for (var i = 0; i < Schedule.body.length; i++){
                     var c = Schedule.body[i];
                     // console.log(c);x
-                    var Stu = await this.$http.post('http://47.110.134.247/api/stu/queryStuinfo', {AStuID:c.student_id}, {});
+                    var Stu = await this.$http.post('/api/stu/queryStuinfo', {AStuID:c.student_id}, {});
                     // console.log("******************");
                     // console.log(i);
                     //console.log(Stu);
@@ -398,7 +398,7 @@
                             e.evaluation = [];
                             courses.push(e);
                             console.log(courses);
-                            this.$http.post('http://47.110.134.247/api/stu/upStuCourse', {
+                            this.$http.post('/api/stu/upStuCourse', {
                                 Course: courses,
                                 stuID: Stu.body[0].student_id
                             }, {})
@@ -421,7 +421,7 @@
                         e.evaluation = [];
                         courses.push(e);
                         console.log(courses);
-                        this.$http.post('http://47.110.134.247/api/stu/upStuCourse', {
+                        this.$http.post('/api/stu/upStuCourse', {
                             Course:courses,
                             stuID:Stu.body[0].student_id
                         }, {})
@@ -433,13 +433,13 @@
             updateCourse(){
 
 
-                this.$http.post('http://47.110.134.247/api/stu/queCourse', {
+                this.$http.post('/api/stu/queCourse', {
                 }, {}).then((response) => {
                     this.$store.dispatch("setcourse", response.bodyText);
                     // console.log(this.$store.state.course);
                 });
 
-                this.$http.post('http://47.110.134.247/api/stu/queStuCourse', {
+                this.$http.post('/api/stu/queStuCourse', {
                 }, {}).then((response) => {
                     this.$store.dispatch("setstucourses", null);
                     this.$store.dispatch("setstucourseslist", null);

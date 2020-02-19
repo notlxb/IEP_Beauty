@@ -213,6 +213,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.stuNNS.push(obj[key]);
       }
+      state.stuNNS.reverse();
     },
 
     setstuinfo(state, name) {
@@ -266,6 +267,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.iepmeetinglist.push(obj[key]);
       }
+      state.iepmeetinglist.reverse();
     },
 
 
@@ -282,6 +284,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.groupSPlist.push(obj[key]);
       }
+      state.groupSPlist.reverse();
     },
 
     setTrainingSP(state, name){
@@ -297,6 +300,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.trainingSPlist.push(obj[key]);
       }
+      state.trainingSPlist.reverse();
     },
 
     setTeachingTheme(state, name){
@@ -312,6 +316,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.teachingThemeList.push(obj[key]);
       }
+      state.teachingThemeList.reverse();
     },
 
 
@@ -328,6 +333,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.groupSIlist.push(obj[key]);
       }
+      state.groupSIlist.reverse();
     },
 
 
@@ -344,6 +350,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.trainingSIlist.push(obj[key]);
       }
+      state.trainingSIlist.reverse();
     },
 
     setLReports(state, name){
@@ -359,6 +366,7 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.LReportslist.push(obj[key]);
       }
+      state.LReportslist.reverse();
     },
 
   }

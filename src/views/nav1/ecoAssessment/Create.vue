@@ -396,7 +396,7 @@
             },
             queryClasstable(){
                 this.class_options = [];
-                this.$http.post('http://47.110.134.247/api/stu/queClasstable', {
+                this.$http.post('/api/stu/queClasstable', {
                     schoolName: "苏州工业园区仁爱学校",
                 }, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
@@ -510,7 +510,7 @@
                 var WorkChance5_jobDescription = this.getstu.WorkChance5_jobDescription;
                 var WorkChance5_transport = this.getstu.WorkChance5_transport;
                 var RelProject = {相关专业需求:this.getstu.RelProject};
-                this.$http.post('http://47.110.134.247/api/stu/addStu',{
+                this.$http.post('/api/stu/addStu',{
                     sStuID:StuID,
                     sClass:StuClass,
                     sName:Name,
@@ -622,7 +622,7 @@
                 console.log(file.url);
             },
             uploadFile() {
-                this.$http.post('http://47.110.134.247/api/stu/picture_IEP');
+                this.$http.post('/api/stu/picture_IEP');
             },
             changeFMVisible(f){
                 switch (f) {

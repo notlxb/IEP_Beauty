@@ -106,7 +106,7 @@
         methods:{
             //更新集体学科计划信息
             updateTeachingTheme(){
-                this.$http.post('http://47.110.134.247/api/stu/queTeachingTheme', {
+                this.$http.post('/api/stu/queTeachingTheme', {
                 }, {}).then((response) => {
                     console.log(response)
                     this.$store.dispatch("setTeachingThemeList", response.bodyText);
@@ -126,7 +126,7 @@
                 this.dialogVisible = false;
             },
             delInfo(id) {
-                this.$http.post('http://47.110.134.247/api/stu/delTeachingTheme',{
+                this.$http.post('/api/stu/delTeachingTheme',{
                     id:id
                 },{}).then((response) => {
                     console.log('ok');
@@ -138,7 +138,7 @@
             //跳转至集体学科计划编辑界面
             to_edit(id,isEdit){
                 if (isEdit == 1 || isEdit == 2) {
-                    this.$http.post('http://47.110.134.247/api/stu/queFullTeachingTheme', {
+                    this.$http.post('/api/stu/queFullTeachingTheme', {
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setTeachingTheme", response.bodyText);

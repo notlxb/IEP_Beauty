@@ -478,7 +478,7 @@
         config:{
           language:'zh-cn',
           ckfinder: {
-            uploadUrl: 'http://47.110.134.247/api/stu/picture_JXZhuTi'
+            uploadUrl: '/api/stu/picture_JXZhuTi'
           },
         },
       }
@@ -529,7 +529,7 @@
 
       queryClasstable(){
         this.class_options = [];
-        this.$http.post('http://47.110.134.247/api/stu/queClasstable', {
+        this.$http.post('/api/stu/queClasstable', {
           schoolName: "苏州工业园区仁爱学校",
         }, {}).then((response) => {
           for (var i = 0; i < response.body.length; i++){
@@ -559,7 +559,7 @@
           znd:this.znd, shd:this.shd, zhd:this.zhd, zlhd:this.zlhd, khfs:this.khfs
         };
         if(this.$route.query.isEdit == 0) {
-          await this.$http.post('http://47.110.134.247/api/stu/addTeachingTheme', {
+          await this.$http.post('/api/stu/addTeachingTheme', {
             course:this.course,
             theme:this.theme,
             schoolYear:this.schoolYear,
@@ -577,7 +577,7 @@
           });
           this.editLearningReports();
         }else {
-          await this.$http.post('http://47.110.134.247/api/stu/upTeachingTheme', {
+          await this.$http.post('/api/stu/upTeachingTheme', {
             course:this.course,
             theme:this.theme,
             schoolYear:this.schoolYear,
@@ -615,7 +615,7 @@
             }
           }
           var flag = 'inexistent';
-          await this.$http.post('http://47.110.134.247/api/stu/queExistLR',{
+          await this.$http.post('/api/stu/queExistLR',{
             schoolYear:this.schoolYear,
             term:this.term,
             tclass:this.tclass,
@@ -661,7 +661,7 @@
           if (flag == 'LR_exist' || flag == 'subject_exist' || flag == 'month_exist'){
             console.log(newLR.stuName+':'+flag);
             flag = 'inexistent';
-            await this.$http.post('http://47.110.134.247/api/stu/upLearningReports',{
+            await this.$http.post('/api/stu/upLearningReports',{
               schoolYear:newLR.schoolYear,
               term:newLR.term,
               class:newLR.tclass,
@@ -683,7 +683,7 @@
             newLR.months.push({month:this.month, details:[se]});
             console.log(newLR.stuName+':'+flag);
 
-            await this.$http.post('http://47.110.134.247/api/stu/addLearningReports',{
+            await this.$http.post('/api/stu/addLearningReports',{
               schoolYear:newLR.schoolYear,
               term:newLR.term,
               class:newLR.tclass,
@@ -716,7 +716,7 @@
       },
 
       async editStus(week, group) {
-        await this.$http.post('http://47.110.134.247/api/stu/queryClass', {
+        await this.$http.post('/api/stu/queryClass', {
           class_id: this.tclass,
         }, {}).then((response) => {
           for (var i = 0; i < response.body.length; i++){
@@ -756,7 +756,7 @@
       async addGroup(index){
         this.index = index;
         var tableData = [];
-        await this.$http.post('http://47.110.134.247/api/stu/queClassGSP', {
+        await this.$http.post('/api/stu/queClassGSP', {
           class_id:this.tclass,
           term:this.term
         }, {}).then((response) => {
@@ -889,7 +889,7 @@
       },
 
       queryTeacher(){
-        this.$http.post('http://47.110.134.247/api/stu/queSchoolTeachers', {
+        this.$http.post('/api/stu/queSchoolTeachers', {
           school:"苏州工业园区仁爱学校"
         },{}).then((response) => {
           //console.log(response);

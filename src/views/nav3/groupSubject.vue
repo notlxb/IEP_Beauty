@@ -104,7 +104,7 @@
         methods:{
             //更新集体学科计划信息
             updateGroupSP(){
-                this.$http.post('http://47.110.134.247/api/stu/queGroupSbjPlan', {
+                this.$http.post('/api/stu/queGroupSbjPlan', {
                 }, {}).then((response) => {
                     console.log(response);
                     this.$store.dispatch("setgroupSPlist", response.bodyText);
@@ -123,7 +123,7 @@
                 this.dialogVisible = false;
             },
             delInfo(id) {
-                this.$http.post('http://47.110.134.247/api/stu/delGroupSbjPl',{
+                this.$http.post('/api/stu/delGroupSbjPl',{
                     id:id
                 },{}).then((response) => {
                     console.log('ok');
@@ -136,7 +136,7 @@
             to_edit(id,isEdit){
 
                 if (isEdit === 1 || isEdit === 2) {
-                    this.$http.post('http://47.110.134.247/api/stu/queFullGroupSbjPl', {
+                    this.$http.post('/api/stu/queFullGroupSbjPl', {
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setgroupSP", response.bodyText);

@@ -374,7 +374,7 @@
                         var show_type  = node.level;
                         console.log(show_type)
                         if (show_type == 0){
-                            await that.$http.post('http://47.110.134.247/api/stu/queSS_ST', {
+                            await that.$http.post('/api/stu/queSS_ST', {
                                 show_type:0,
                                 producerID:1
                             }, {}).then((response) => {
@@ -382,7 +382,7 @@
                                 node_info = response.body;
                             })
                         }else {
-                            await that.$http.post('http://47.110.134.247/api/stu/queSS', {
+                            await that.$http.post('/api/stu/queSS', {
                                 show_type:show_type,
                                 father:node.data.id,
                                 producerID:1
@@ -437,7 +437,7 @@
                 config:{
                     language:'zh-cn',
                     ckfinder: {
-                        uploadUrl: 'http://47.110.134.247/api/stu/picture_JiTiJH'
+                        uploadUrl: '/api/stu/picture_JiTiJH'
                     },
                 },
             }
@@ -454,7 +454,7 @@
                 this.disabled = false;
                 this.createDate = this.getDate();
                 this.updateDate = this.getDate();
-                this.$http.post('http://47.110.134.247/api/stu/queSchoolTeachers', {
+                this.$http.post('/api/stu/queSchoolTeachers', {
                     school:"苏州工业园区仁爱学校"
                 },{}).then((response) => {
                     console.log(response);
@@ -492,7 +492,7 @@
 
                 this.teachingProgress = JSON.parse(this.$store.state.groupSP[0].teachingProgress).content;
 
-                this.$http.post('http://47.110.134.247/api/stu/queSchoolTeachers', {
+                this.$http.post('/api/stu/queSchoolTeachers', {
                     school:"苏州工业园区仁爱学校"
                 },{}).then((response) => {
                     console.log(response);
@@ -506,7 +506,7 @@
 
             queryClasstable(){
                 this.class_options = [];
-                this.$http.post('http://47.110.134.247/api/stu/queClasstable', {
+                this.$http.post('/api/stu/queClasstable', {
                     schoolName: "苏州工业园区仁爱学校",
                 }, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
@@ -520,7 +520,7 @@
 
             querySubject(){
                 this.subject_options = [];
-                this.$http.post('http://47.110.134.247/api/stu/queSubject', {}, {}).then((response) => {
+                this.$http.post('/api/stu/queSubject', {}, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
                         var opt = {};
                         opt.value = response.body[i].subjectName;
@@ -539,7 +539,7 @@
                     content:this.teachingProgress
                 };
                 if(this.$route.query.isEdit == 0) {
-                    this.$http.post('http://47.110.134.247/api/stu/addGroupSbjPl', {
+                    this.$http.post('/api/stu/addGroupSbjPl', {
                         schoolYear: this.schoolYear,
                         term: this.term,
                         class: this.tclass,
@@ -554,7 +554,7 @@
                         this.$router.replace({path: '/groupSubject'});
                     });
                 }else {
-                    this.$http.post('http://47.110.134.247/api/stu/upGroupSbjPl', {
+                    this.$http.post('/api/stu/upGroupSbjPl', {
                         schoolYear: this.schoolYear,
                         term: this.term,
                         class: this.tclass,
@@ -610,7 +610,7 @@
                 this.dialogFormVisible = true;
             },
             addTT1(){
-                this.$http.post('http://47.110.134.247/api/stu/queryClass', {
+                this.$http.post('/api/stu/queryClass', {
                     class_id: this.tclass,
                 }, {}).then((response) => {
                     //console.log(response);
