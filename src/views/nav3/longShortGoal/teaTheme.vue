@@ -3,7 +3,7 @@
     <el-col :span="24" class="toolbar" style="padding-bottom: 0;">
       <el-form :inline="true"align="left" >
         <el-form-item>
-          <el-button type="danger" icon="el-icon-plus"  @click.native="to_edit(0,0)">新建主题</el-button>
+          <el-button type="danger" icon="el-icon-plus"  @click.native="to_edit(0,0)">新建目标</el-button>
         </el-form-item><br>
       </el-form>
     </el-col>

@@ -207,17 +207,23 @@ let routes = [
                     //{path: '/user', component: user, name: '列表'},
                 ],
             },*/
-            {path: '/teaTheme', component: teaTheme, name: '长短期目标', authority: [1, 1, 1, 1, 1]},
-            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden:true},
-            //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
-            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
-            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
-            {path: '/indSubject', component: indSubject, name: '个训学科计划', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectEdit', component: indSubjectEdit, name: '个训学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
             {path: '/groupSubject', component: groupSubject, name: '集体学科计划', authority: [1, 1, 1, 1, 1]},
             {path: '/groupSubjectEdit', component: groupSubjectEdit, name: '集体学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            {path: '/indSubject', component: indSubject, name: '个训学科计划', authority: [1, 1, 1, 1, 1]},
+            {path: '/indSubjectEdit', component: indSubjectEdit, name: '个训学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            {path: '/teaTheme', component: teaTheme, name: '长短期目标', authority: [1, 1, 1, 1, 1]},
+            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
+
+            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学', authority: [1, 1, 1, 1, 1]},
+            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
+            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
             {path: '/learningReport', component: learningReport, name: '学习报表', authority: [1, 1, 1, 1, 1]},
             {path: '/learningReportEdit', component: learningReportEdit, name: '学习报表编辑', authority: [1, 1, 1, 1, 1], hidden:true},
         ]
