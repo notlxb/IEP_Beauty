@@ -11,6 +11,8 @@ import VueRouter from 'vue-router'
 import store from './components/tools/store';
 import VueResource from 'vue-resource';
 
+import wordExport from './vendor/jquery.wordexport'
+
 import Vuex from 'vuex'
 //import NProgress from 'nprogress'
 //import 'nprogress/nprogress.css'
@@ -28,7 +30,7 @@ Vue.use(ElementUI, { size: 'small', zIndex: 3000 });
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VueResource);
-
+Vue.use(wordExport)
 //NProgress.configure({ showSpinner: false });
 
 const router = new VueRouter({

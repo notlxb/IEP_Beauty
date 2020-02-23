@@ -102,12 +102,34 @@
         <el-form :inline="true" align="center">
             <el-form-item>
                 <el-button type="primary" @click="goBack()">返回</el-button>
+                <el-button type="primary" @click="test()" >导出预览</el-button>
             </el-form-item>
         </el-form>
+        <div id="file" v-show="false">
+            <div>
+                <p align="center" >学习报表</p>
+                <p style="padding-left:300px;display: inline">学年：{{this.schoolYear}}学年</p>
+                <p style="padding-left:100px;display: inline">学期：{{this.term}}</p>
+                <p style="padding-left:100px;display: inline">月份：{{this.month}}月</p>
+                <p>班级：{{this.tclass}}</p>
+                <p>学生姓名：{{this.stuName}}</p>
+            </div>
+            <div>
+                <table border="1" width="1000px" id="tb">
+
+                </table>
+
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
+    import FileSaver from "file-saver";
+    import $ from "jquery";
+    import wordExport from "../../vendor/jquery.wordexport"
+
     export default {
         name: "learningReportEdit",
         data(){
@@ -162,6 +184,25 @@
                         teachingAim:'333'
                     }]
                 }],
+                tableData: [{
+                    subject_field: '12987122',
+                    week: '王小虎',
+                    tea_theme: '234',
+                    tea_target: '3.2',
+                    tar_eval: 10
+                },{
+                    subject_field: '12987122',
+                    week: '王小虎',
+                    tea_theme: '234',
+                    tea_target: '3.2',
+                    tar_eval: 10
+                },{
+                    subject_field: '12987122',
+                    week: '王小虎',
+                    tea_theme: '234',
+                    tea_target: '3.2',
+                    tar_eval: 10
+                }]
             }
         },
 
@@ -201,7 +242,59 @@
             goBack(){
                 this.$router.replace({path: '/learningReport'});
             },
-        }
+            test(){
+                let tableData = "<tr>";
+                let str = ['学科领域','周次','教学主题','教学目标','目标评鉴'];
+                for(let i = 0;i < 5;i++) {
+                    tableData += "<td>" + str[i] + "</td>";
+                }
+                tableData += "</tr>";
+                let lrtable = this.LRTable;
+                for(let i = 0;i < lrtable.length;i++) {
+                    let count = lrtable[i].table.length;
+                    if(count === 1) count = 0;
+                    if (count !== 0) {
+                        for(let j = 0; j < lrtable[i].table.length; j++) {
+                            tableData += "<tr>";
+                            if (j === 0) {
+                                tableData +=  "<td rowspan=" + count + ">" + lrtable[i].subject + "</td>";
+                            }
+                            tableData +=  "<td>" + lrtable[i].table[j].week + "</td>";
+                            tableData +=  "<td>" + lrtable[i].table[j].teachingTheme + "</td>";
+                            tableData +=  "<td>" + lrtable[i].table[j].teachingAim + "</td>";
+                            if (j === 0) {
+                                tableData += "<th rowspan=" + count + ">" + lrtable[i].evaluation + "</th>";
+                            }
+                            tableData += "</tr>";
+                        }
+                    }
+                }
+                $("#tb").html(tableData);
+                let rules = "table{" +
+                    "	border-collapse:collapse;" +
+                    "	margin:0 auto;" +
+                    "	text-align:center;" +
+                    "	width: 90%;" +
+                    "}" +
+                    "table td,table th{" +
+                    "   text-align:center;" +
+                    "   border:1px solid #cad9ea;" +
+                    "   color:#666;" +
+                    "	height:25pt;" +
+                    "	flex:1;" +
+                    "}" +
+                    "table thead th{" +
+                    "	background-color:#C00000;" +
+                    "	color:#fff;" +
+                    " 	flex:1" +
+                    "}" +
+                    "table tr{" +
+                    "	background:#fff;" +
+                    "}";
+                $("#file").wordExport(this.stuName+this.schoolYear+"学年-"+this.month+"月份"+"学习报表",rules);
+            },
+            }
+
     }
 </script>
 
@@ -226,4 +319,73 @@
     .box-card {
         margin-top: 10px;
     }
+    table{
+        border-collapse:collapse;
+        margin:0 auto;
+        text-align:center;
+        width: 90%;
+    }
+    table td,table th{
+        text-align:center;
+        border:1px solid #cad9ea;
+        color:#666;
+        height:30px;
+        line-height: 30px;
+        flex:1;
+    }
+    table thead th{
+        background-color:#C00000;
+        color:#fff;
+        flex:1
+    }
+    table tr{
+        background:#fff;
+    }
 </style>
+
+<!--<template>-->
+<!--    <div>-->
+<!--    <div id="file" v-show="false">-->
+<!--        <el-table :data="tableData" border>-->
+<!--            <el-table-column prop="data" label="日期" align="center"></el-table-column>-->
+<!--            <el-table-column prop="name" label="日期" align="center"></el-table-column>-->
+<!--            <el-table-column prop="address" label="地址" align="center"></el-table-column>-->
+<!--        </el-table>-->
+<!--    </div>-->
+<!--        <el-button type="primary" @click="download">开始导出</el-button>-->
+<!--    </div>-->
+<!--</template>-->
+
+<!--<script>-->
+<!--    import FileSaver from "file-saver";-->
+<!--    import $ from "jquery";-->
+<!--    import wordExport from "../../vendor/jquery.wordexport";-->
+<!--    export default {-->
+<!--        data() {-->
+<!--            return {-->
+<!--                tableData:[-->
+<!--                    {-->
+<!--                        data:"2016-5-02",-->
+<!--                        name:"wangxiansheng",-->
+<!--                        address:"sdwedw"-->
+<!--                    },-->
+<!--                    {-->
+<!--                        data:"2016-5-02",-->
+<!--                        name:"wangxiansheng",-->
+<!--                        address:"sdwedw"-->
+<!--                    },-->
+<!--                    {-->
+<!--                        data:"2016-5-02",-->
+<!--                        name:"wangxiansheng",-->
+<!--                        address:"sdwedw"-->
+<!--                    }-->
+<!--                ]-->
+<!--            };-->
+<!--        },-->
+<!--        methods:{-->
+<!--            download(){-->
+<!--                $("#file").wordExport('表格');-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
