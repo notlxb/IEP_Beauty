@@ -1247,7 +1247,7 @@ router.post('/addLearningReports',(req, res) => {
   var sql = $sql.stu.addLearningReports;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, params.teacher, JSON.stringify(params.months)], function (err, result) {
+  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, JSON.stringify(params.months)], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -1262,7 +1262,7 @@ router.post('/upLearningReports',(req, res) => {
   var sql = $sql.stu.upLearningReports;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, params.teacher, JSON.stringify(params.months), params.id], function (err, result) {
+  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, JSON.stringify(params.months), params.id], function (err, result) {
     if (err) {
       console.log(err);
     }

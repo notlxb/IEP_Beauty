@@ -151,58 +151,8 @@
                 month:'',
                 term:'',
                 schoolYear:'',
-                LRTable:[{
-                        subject:'生活数学',
-                        evaluation:'认识新班级，知道名字',
-                        table:[{
-                            week:'1',
-                            teachingTheme:'学校生活——期初评估',
-                            teachingAim:'复习10以内加减法，评估20以内加减法的接受情况'
-                        },{
-                            week:'2',
-                            teachingTheme:'学校生活——我的新班级',
-                            teachingAim:'20以内进位加法的笔算'
-                        },{
-                            week:'3',
-                            teachingTheme:'学校生活——我的好朋友',
-                            teachingAim:'20以内进位加法的笔算'
-                        }]
-                },{
-                    subject:'生活语文',
-                    evaluation:'不理解好朋友的意义，但是对“朋友”有一定的反应',
-                    table:[{
-                        week:'1',
-                        teachingTheme:'学校生活1',
-                        teachingAim:'111'
-                    },{
-                        week:'2',
-                        teachingTheme:'学校生活2',
-                        teachingAim:'222'
-                    },{
-                        week:'3',
-                        teachingTheme:'学校生活3',
-                        teachingAim:'333'
-                    }]
-                }],
-                tableData: [{
-                    subject_field: '12987122',
-                    week: '王小虎',
-                    tea_theme: '234',
-                    tea_target: '3.2',
-                    tar_eval: 10
-                },{
-                    subject_field: '12987122',
-                    week: '王小虎',
-                    tea_theme: '234',
-                    tea_target: '3.2',
-                    tar_eval: 10
-                },{
-                    subject_field: '12987122',
-                    week: '王小虎',
-                    tea_theme: '234',
-                    tea_target: '3.2',
-                    tar_eval: 10
-                }]
+                LRTable:[],
+                tableData: []
             }
         },
 
