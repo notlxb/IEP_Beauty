@@ -10,7 +10,14 @@
       <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
         <el-form :inline="true"  align="left" >
           <el-form-item label="课程">
-            <el-input align="left" :disabled="disabled1" v-model="course"></el-input>
+            <el-select align="left" v-model="course" placeholder="请选择" :disabled="disabled1">
+              <el-option
+                      v-for="item in subject_options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item label="主题名称" v-if="false">
             <el-input align="left" :disabled="disabled" v-model="theme"></el-input>
@@ -462,6 +469,7 @@
         ],
         class_options:[],
         teacher_options:[],
+        subject_options:[],
         term_options: [{value: '上学期', label: '上学期'},
           {value: '下学期', label: '下学期'}],
         schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
@@ -497,6 +505,7 @@
         this.disabled1 = false;
         this.queryClasstable();
         this.queryTeacher();
+        this.querySubject();
       }
     },
     methods:{
@@ -673,7 +682,7 @@
               console.log(response);
             });
             continue;
-          }else if (flag = 'inexistent') {
+          }else if (flag == 'inexistent') {
             newLR.schoolYear = this.schoolYear;
             newLR.term = this.term;
             newLR.tclass = this.tclass;
@@ -897,6 +906,18 @@
             this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
           }
         });
+      },
+
+      querySubject(){
+        this.subject_options = [];
+        this.$http.post('/api/stu/queSubject', {}, {}).then((response) => {
+          for (var i = 0; i < response.body.length; i++){
+            var opt = {};
+            opt.value = response.body[i].subjectName;
+            opt.label = response.body[i].subjectName;
+            this.subject_options.push(opt);
+          }
+        })
       },
     }
   }

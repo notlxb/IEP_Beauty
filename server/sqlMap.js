@@ -21,7 +21,7 @@ var sqlMap = {
     addTeachingTheme:'insert into teachingtheme(course, theme, schoolYear, term, month, mainTeacher, aidTeacher, class, timeArrange, teachingAim, details, teachingProcess) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
     addGroupSbjIns:'insert into groupsubjectinstruction(schoolYear, term, class, subject, teacher, createDate, week, section, topic, content) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
     addTrainingSbjIns:'insert into trainingsubjectinstruction(schoolYear, term, class, stuName, subject, teacher, createDate, week, section, topic, content) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
-    addLearningReports:'insert into learningreports(schoolYear, term, class, stuName, stuInfo, teacher, months) values(?, ?, ?, ?, ?, ?, ?)',
+    addLearningReports:'insert into learningreports(schoolYear, term, class, stuName, stuInfo, months) values(?, ?, ?, ?, ?, ?)',
 
     //删
     delStu: 'update t_studentinfo set Deleted = 1 where student_id = ?',
@@ -44,7 +44,7 @@ var sqlMap = {
     upTeachingTheme:'update teachingtheme set course=?, theme=?, schoolYear=?, term=?, month=?, mainTeacher=?, aidTeacher=?, class=?, timeArrange=?, teachingAim=?, details=?, teachingProcess=? where id = ? and isDel = 0', 
     upGroupSbjIns:'update groupsubjectinstruction set schoolYear=?, term=?, class=?, subject=?, teacher=?, createDate=?, week=?, section=?, topic=?, content=? where id = ? and isDel = 0', 
     upTrainingSbjIns:'update trainingsubjectinstruction set schoolYear=?, term=?, class=?, stuName=?, subject=?, teacher=?, createDate=?, week=?, section=?, topic=?, content=? where id = ? and isDel = 0', 
-    upLearningReports:'update learningreports set schoolYear=?, term=?, class=?, stuName=?, stuInfo=?, teacher=?, months=? where id = ? and isDel = 0',
+    upLearningReports:'update learningreports set schoolYear=?, term=?, class=?, stuName=?, stuInfo=?, months=? where id = ? and isDel = 0',
 
     //查
     queSch: 'select * from school_target where target_status = 1', 
@@ -65,7 +65,7 @@ var sqlMap = {
     queTrainingSbjPlan:'select id, schoolYear, term, class, stuName, subject, teacher, createDate, updateDate from trainingsubjectplan where isDel = 0', 
     queFullTrainingSbjPl:'select * from trainingsubjectplan where isDel = 0 and id = ?',
     queFullTSP4LR:'select teachingPlan from trainingsubjectplan where schoolYear = ? and term = ? and class = ? and stuName = ? and isDel = 0',
-    queTeachingTheme:'select id, schoolYear, term, class, course, theme, mainTeacher from teachingtheme where isDel = 0', 
+    queTeachingTheme:'select * from teachingtheme where isDel = 0',
     queFullTeachingTheme:'select * from teachingtheme where isDel = 0 and id = ?', 
     queGroupSbjIns:'select id, class, subject, topic, teacher, week, section from groupsubjectinstruction where isDel = 0', 
     queFullGroupSbjIns:'select * from groupsubjectinstruction where id = ? and isDel = 0', 
@@ -74,7 +74,7 @@ var sqlMap = {
     queSchedule:'select * from schedule',
     queLearningReports:'select id, schoolYear, term, class, stuName from learningreports where isDel = 0',
     queFullLR:'select * from learningreports where id = ? and isDel = 0',
-    queExistLR:'select * from learningreports where schoolYear = ? and term = ? and class = ? and stuInfo = ? and teacher = ? and isDel = 0',
+    queExistLR:'select * from learningreports where schoolYear = ? and term = ? and class = ? and stuInfo = ? and isDel = 0',
     queSchoolTeachers:'select id, userName from userstable where schools = ? and `default` = 1',
     queSubject:'select id, subjectName from subjecttable where `default` = 1',
     queClasstable:'select * from classtable where schoolName = ? and `default` = 1',
