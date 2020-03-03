@@ -151,8 +151,10 @@
                 month:'',
                 term:'',
                 schoolYear:'',
+
                 LRTable:[],
                 tableData: []
+
             }
         },
 
