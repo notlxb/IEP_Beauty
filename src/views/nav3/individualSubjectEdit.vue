@@ -305,7 +305,7 @@
                                     id:node_info[id].id,
                                     value: node_info[id].label,
                                     label: node_info[id++].label,
-                                    leaf: show_type >= 4
+                                    leaf: show_type >= 5
                                 }));
                             // 通过调用resolve将子节点数据返回，通知组件数据加载完成
                             resolve(nodes);
@@ -358,7 +358,7 @@
                 this.schoolYear=this.$store.state.trainingSP[0].schoolYear;
                 this.term=this.$store.state.trainingSP[0].term;
                 this.tclass=this.$store.state.trainingSP[0].class;
-                this.stuName=this.$store.state.trainingSP[0].stuName;
+                this.stuName=this.$store.state.trainingSP[0].student_info;
                 this.subject=this.$store.state.trainingSP[0].subject;
                 this.teacher=this.$store.state.trainingSP[0].teacher;
                 this.createDate=this.$store.state.trainingSP[0].createDate;
@@ -430,7 +430,8 @@
                         schoolYear: this.schoolYear,
                         term: this.term,
                         class: this.tclass,
-                        stuName:this.stuName,
+                        stuName:this.stuName.split("_")[1],
+                        student_info:this.stuName,
                         subject: this.subject,
                         teacher: this.teacher,
                         createDate: this.createDate,
@@ -446,7 +447,8 @@
                         schoolYear: this.schoolYear,
                         term: this.term,
                         class: this.tclass,
-                        stuName:this.stuName,
+                        stuName:this.stuName.split("_")[1],
+                        student_info:this.stuName,
                         subject: this.subject,
                         teacher: this.teacher,
                         createDate: this.createDate,
@@ -492,8 +494,8 @@
                 }, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
                         var opt = {};
-                        opt.value = response.body[i].name;
-                        opt.label = opt.value;
+                        opt.value = response.body[i].student_id + '_' + response.body[i].name;
+                        opt.label = response.body[i].student_id + '_' + response.body[i].name;
                         this.stuOptions.push(opt);
                     }
                 })
@@ -509,7 +511,7 @@
             },
             dialogConfirm(){
                 for (var i = 0; i < this.jxmb_opts.length; i++){
-                    this.tableData.push({ss:this.jxmb_opts[i][4], des:''});
+                    this.tableData.push({ss:this.jxmb_opts[i][5], des:''});
                 }
                 this.dialogFormVisible = false;
                 this.jxmb_opts = [];

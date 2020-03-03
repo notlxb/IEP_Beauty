@@ -17,11 +17,11 @@
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="schoolYear" label="学年"></el-table-column>
         <el-table-column prop="term" label="学期"></el-table-column>
+        <el-table-column prop="stuName" label="学生"></el-table-column>
         <el-table-column prop="class" label="班级"></el-table-column>
         <el-table-column prop="subject" label="学科"></el-table-column>
         <el-table-column prop="teacher" label="任教老师"></el-table-column>
         <el-table-column prop="createDate" label="制定日期"></el-table-column>
-        <el-table-column prop="updateDate" label="更新日期"></el-table-column>
         <el-table-column label="维护">
           <template slot-scope="scope">
             <el-dropdown>

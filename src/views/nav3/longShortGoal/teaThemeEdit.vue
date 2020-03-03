@@ -53,7 +53,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="执教老师（主）">
-            <el-select v-model="mainTeacher" placeholder="请选择" :disabled="disabled">
+            <el-select v-model="mainTeacher" placeholder="请选择" :disabled="disabled1">
               <el-option
                       v-for="item in teacher_options"
                       :key="item.value"
@@ -747,17 +747,53 @@
         this.jxmb[index].title = '第'+this.jxmb[index].w+'周';
       },
 
-      addTeachingAim(){
+      //添加教学主题
+      async addTeachingAim(){
         var week;
-        if (this.teachingAim.length == 0) {
-          this.teachingAim.push({des: '', w: 1});
-          this.jxmb.push({w: 1, title: '第1周', table:[]});
+        var tableData = [];
+
+        //查询对应的集体学科计划
+        await this.$http.post('/api/stu/queClassGSP', {
+            schoolYear:this.schoolYear,
+            subject:this.course,
+            class_id:this.tclass,
+            term:this.term,
+            teacher:this.mainTeacher
+        }, {}).then((response) => {
+            for (var i = 0; i < response.body.length; i++){
+                var jx = JSON.parse(JSON.parse(response.body[i].teachingPlan).jxmb.content);
+                for (var j = 0; j < jx.length; j++){
+                    tableData.push(jx[j])
+                }
+            }
+        });
+        //查询对应的个训学科计划
+        await this.$http.post('/api/stu/queClassTSP', {
+            schoolYear:this.schoolYear,
+            subject:this.course,
+            class_id:this.tclass,
+            term:this.term,
+            teacher:this.mainTeacher
+        }, {}).then((response) => {
+            for (var i = 0; i < response.body.length; i++) {
+                var students_info = [];
+                students_info.push(response.body[i].student_info);
+                tableData.push({students:response.body[i].stuName, students_info:students_info, group:'个训',table:[]});
+            }
+        });
+
+        week = this.teachingAim.length + 1;
+        var table = [];
+        for (var i = 0; i < tableData.length; i++){
+            var table_st = [];
+            for (var j = 0; j < tableData[i].students_info.length; j++){
+                table_st.push({st:tableData[i].students_info[j],des:''});
+            }
+            table.push({students:tableData[i].students, students_info:tableData[i].students_info, group:tableData[i].group, table:table_st});
         }
-        else {
-          week = this.teachingAim.length + 1;
-          this.teachingAim.push({des:'', w:week});
-          this.jxmb.push({w: week, title:'第'+week+'周', table:[]});
-        }
+        this.teachingAim.push({des:'', w:week});
+        this.jxmb.push({w: week, title:'第'+week+'周', table:table});
+
 
         console.log(this.jxmb);
       },
@@ -766,8 +802,11 @@
         this.index = index;
         var tableData = [];
         await this.$http.post('/api/stu/queClassGSP', {
+          schoolYear:this.schoolYear,
+          subject:this.course,
           class_id:this.tclass,
-          term:this.term
+          term:this.term,
+          teacher:this.mainTeacher
         }, {}).then((response) => {
           for (var i = 0; i < response.body.length; i++){
             var jx = JSON.parse(JSON.parse(response.body[i].teachingPlan).jxmb.content);
@@ -776,11 +815,32 @@
             }
           }
         });
+          //查询对应的个训学科计划
+          await this.$http.post('/api/stu/queClassTSP', {
+              schoolYear:this.schoolYear,
+              subject:this.course,
+              class_id:this.tclass,
+              term:this.term,
+              teacher:this.mainTeacher
+          }, {}).then((response) => {
+              for (var i = 0; i < response.body.length; i++) {
+                  var students_info = [];
+                  students_info.push(response.body[i].student_info);
+                  tableData.push({students:response.body[i].stuName, students_info:students_info, group:'个训',table:[]});
+              }
+          });
 
         this.groupOpts = [];
 
-        for (var i = 0; i < tableData.length; i++)
-          this.groupOpts.push({value:tableData[i].group, label:tableData[i].group+'('+tableData[i].students+')', key:tableData[i].group, table:tableData[i]})
+        for (var i = 0; i < tableData.length; i++) {
+            var c = tableData[i].group + '(' + tableData[i].students + ')';
+            this.groupOpts.push({
+                value: c,
+                label: c,
+                key: c,
+                table: tableData[i]
+            })
+        }
 
         //console.log(this.groupOpts)
         this.dialogFormVisible = true;
