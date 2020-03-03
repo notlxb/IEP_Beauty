@@ -314,9 +314,9 @@
       </tbody>
     </table>
 
-    <!--    <vue-ckeditor :readonly="disabled" v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"-->
-    <!--                  :config='config'></vue-ckeditor>-->
-    <tinymce-editor v-if="this.judge1" ref="editor" v-model="teachingProgress" :disabled="disabled"></tinymce-editor>
+    <vue-ckeditor :readonly="disabled" v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"
+                  :config='config'></vue-ckeditor>
+
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
@@ -328,13 +328,12 @@
 
 <script>
     import VueCkeditor from 'vue-ckeditor5'
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-    import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
-    import TinymceEditor from '@/components/tools/tinymce/tinymce-editor'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
 
     export default {
         name: "jitxuekejihua_edit",
-        components:{'vue-ckeditor': VueCkeditor.component,TinymceEditor},
+        components:{'vue-ckeditor': VueCkeditor.component},
         data(){
             let that = this;
             return{
@@ -352,7 +351,7 @@
                 zycs:'',   zycs_bz:'',
                 jxmb_bz:'',
 
-                teachingProgress:'',
+                teachingProgress:'<h1>点击以编辑内容</h1>',
                 form:{
                     group: '',
                     students: [],

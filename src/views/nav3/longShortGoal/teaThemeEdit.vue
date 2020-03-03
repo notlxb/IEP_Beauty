@@ -143,8 +143,8 @@
     </el-container>
     <el-divider></el-divider>
     <div>
-      <el-button  type="primary"  @click="push1()" >详情</el-button>
-      <el-button  type="primary"  @click="push2()" >教学流程</el-button>
+      <el-button  type="primary"  @click="push1()" v-if="false">详情</el-button>
+      <el-button  type="primary"  @click="push2()" v-if="false">教学流程</el-button>
       <el-divider></el-divider>
     </div>
 
