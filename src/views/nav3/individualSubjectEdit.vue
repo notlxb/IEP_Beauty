@@ -358,7 +358,7 @@
                 this.schoolYear=this.$store.state.trainingSP[0].schoolYear;
                 this.term=this.$store.state.trainingSP[0].term;
                 this.tclass=this.$store.state.trainingSP[0].class;
-                this.stuName=this.$store.state.trainingSP[0].stuName;
+                this.stuName=this.$store.state.trainingSP[0].student_info;
                 this.subject=this.$store.state.trainingSP[0].subject;
                 this.teacher=this.$store.state.trainingSP[0].teacher;
                 this.createDate=this.$store.state.trainingSP[0].createDate;

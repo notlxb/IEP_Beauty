@@ -17,7 +17,7 @@ var sqlMap = {
     addATI:'update t_studentinfo set AllTargetInfo = ? where student_id = ? and Deleted = 0',
     addIepMeeting:'insert into iepmeeting(schoolYear, term, stuName, stuID, creator, date, summary) values (?, ?, ?, ?, ?, ?, ?)', 
     addGroupSbjPl:'insert into groupsubjectplan(schoolYear, term, class, subject, teacher, createDate, updateDate, teachingPlan, teachingProgress) values(?, ?, ?, ?, ?, ?, ?, ?, ?)', 
-    addTrainingSbjPl:'insert into trainingsubjectplan(schoolYear, term, class, stuName, student_info, subject, teacher, createDate, updateDate, teachingPlan, teachingProgress) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    addTrainingSbjPl:'insert into trainingsubjectplan(schoolYear, term, class, stuName, student_info, subject, teacher, createDate, updateDate, teachingPlan, teachingProgress) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
     addTeachingTheme:'insert into teachingtheme(course, theme, schoolYear, term, month, mainTeacher, aidTeacher, class, timeArrange, teachingAim, details, teachingProcess) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
     addGroupSbjIns:'insert into groupsubjectinstruction(schoolYear, term, class, subject, teacher, createDate, week, section, topic, content) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
     addTrainingSbjIns:'insert into trainingsubjectinstruction(schoolYear, term, class, stuName, subject, teacher, createDate, week, section, topic, content) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
