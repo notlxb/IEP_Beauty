@@ -1,7 +1,7 @@
 <template>
   <section>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/indSubject' }">个训学科计划</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/indSubject', query:{currentPage:this.$route.query.currentPage} }">个训学科计划</el-breadcrumb-item>
       <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -211,17 +211,14 @@
       </tbody>
     </table>
 
-    <!--    <vue-ckeditor v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"-->
-    <!--                  :config='config' :readonly="disabled"></vue-ckeditor>-->
-    <tinymce-editor v-if="this.judge1"
-                    ref="editor"
-                    v-model="teachingProgress"
-                    :disabled="disabled">
-    </tinymce-editor>
+      <vue-ckeditor v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"
+                    :config='config' :readonly="disabled"></vue-ckeditor>
+
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click="trainingSP_submit()">提交</el-button>
+        <el-button type="danger" @click="trainingSP_submit()" :disabled="disabled">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -229,13 +226,12 @@
 
 <script>
     import VueCkeditor from 'vue-ckeditor5'
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-    import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
-    import TinymceEditor from '@/components/tools/tinymce/tinymce-editor'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
 
     export default {
         name: "jitxuekejihua_edit",
-        components:{'vue-ckeditor': VueCkeditor.component, TinymceEditor},
+        components:{'vue-ckeditor': VueCkeditor.component},
         data(){
             let that = this;
             return{
@@ -254,7 +250,7 @@
                 jxznd:'',  jxznd_bz:'',
                 zycs:'',   zycs_bz:'',
 
-                teachingProgress:'',
+                teachingProgress:'<h1>点击以编辑内容</h1>',
 
 
                 term_options: [{value: '上学期', label: '上学期'},
@@ -417,6 +413,10 @@
                 })
             },
 
+            go_back(){
+              this.$router.replace({path:'/indSubject', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             trainingSP_submit(){
                 var teachingPlan = {
                     jcfx:{content:this.jcfx, remark:this.jcfx_bz}, xsqkfx:{content:this.xsqkfx, remark:this.xsqkfx_bz},
@@ -440,7 +440,7 @@
                         teachingProgress: teachingProgress,
                     }, {}).then((response) => {
                         console.log(response);
-                        this.$router.replace({path: '/indSubject'});
+                        this.$router.replace({path: '/indSubject', query:{currentPage: this.$route.query.currentPage}});
                     });
                 }else {
                     this.$http.post('/api/stu/upTrainingSbjPl', {
@@ -458,7 +458,7 @@
                         id: this.$store.state.trainingSP[0].id,
                     }, {}).then((response) => {
                         console.log(response);
-                        this.$router.replace({path: '/indSubject'});
+                        this.$router.replace({path: '/indSubject', query:{currentPage: this.$route.query.currentPage}});
                     })
                 }
             },

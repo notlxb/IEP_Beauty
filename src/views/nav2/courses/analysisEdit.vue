@@ -3,7 +3,7 @@
         <el-container>
             <!--      <div>{{this.$store.state.stuinfo[0].Courses}}</div>-->
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/evaluationAnalysis' }">评量分析</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/evaluationAnalysis', query:{currentPage:this.$route.query.currentPage} }">评量分析</el-breadcrumb-item>
                 <el-breadcrumb-item>编辑</el-breadcrumb-item>
                 <el-breadcrumb-item></el-breadcrumb-item>
             </el-breadcrumb>
@@ -82,10 +82,14 @@
                     </el-select>
                 </el-form-item>
             </el-form>
-
             <div >
                 <columnarchart ref="tdata" />
             </div>
+            <el-form :inline="true" align="center">
+                <el-form-item>
+                    <el-button type="danger" @click.native="go_back()">返回</el-button>
+                </el-form-item>
+            </el-form>
         </div>
     </section>
 </template>
@@ -421,6 +425,10 @@
                     else if(this.$store.state.course[i].id == this.project_value)
                         this.project_label = this.$store.state.course[i].label;
                 }
+            },
+
+            go_back(){
+                this.$router.replace({path:'/evaluationAnalysis', query:{currentPage: this.$route.query.currentPage}});
             },
 
             eval_submit(){

@@ -134,12 +134,10 @@
 </template>
 
 <script>/* eslint-disable */
-
 let id;//这里的id相当于定义了一个全局变量，用于插入结点
 import axios from 'axios'
 export default {
     data () {
-
         return {
             //设置别名
             /*
@@ -200,7 +198,6 @@ export default {
     components: {},
 
     methods: {//方法home，所有方法在这里 未来读写分离，好处便于维护和方法公用
-
         append1 (data){//实现一个添加功能 append1它是一个方法名  叫什么无所谓
             console.log("start");
             console.log(data);
@@ -435,7 +432,6 @@ export default {
                         </span>
                         </span>);
                     }
-
                 }
                 else if(data.grade!=-1){
                     if(localStorage.getItem('Permission')[1]=='1'){
@@ -459,7 +455,6 @@ export default {
                         </span>
                     );
                     }
-
                 }
                 else if(data.showType==4){
                     if(localStorage.getItem('Permission')[0]=='1'&&localStorage.getItem('Permission')[1]=='1'&&localStorage.getItem('Permission')[2]=='1'){
@@ -546,7 +541,6 @@ export default {
                         </span>
                         </span>);
                     }
-
                 }
                 else if(data.showType==1){
                     if(localStorage.getItem('Permission')[0]=='1'&&localStorage.getItem('Permission')[1]=='1'&&localStorage.getItem('Permission')[2]=='1'){
@@ -633,7 +627,6 @@ export default {
                         </span>
                         </span>);
                     }
-
                 }
                 else if(data.showType==2){
                     if(localStorage.getItem('Permission')[0]=='1'&&localStorage.getItem('Permission')[1]=='1'&&localStorage.getItem('Permission')[2]=='1'){
@@ -720,7 +713,6 @@ export default {
                         </span>
                         </span>);
                     }
-
                 }
                 else{
                     if(localStorage.getItem('Permission')[0]=='1'&&localStorage.getItem('Permission')[1]=='1'&&localStorage.getItem('Permission')[2]=='1'){
@@ -839,7 +831,6 @@ export default {
             //点击确定打印输入框数据
             var j=this.newChild.label1;
             var k=this.newChild.showType;
-
             var params = new URLSearchParams();
             params.append('label',this.newChild.label1);
             params.append('id', this.newChild.id);

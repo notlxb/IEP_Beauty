@@ -2,7 +2,7 @@
   <div >
     <el-container>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/iepMeeting' }">IEP会议</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/iepMeeting', query:{currentPage:this.$route.query.currentPage} }">IEP会议</el-breadcrumb-item>
         <el-breadcrumb-item>编辑会议</el-breadcrumb-item>
         <el-breadcrumb-item></el-breadcrumb-item>
       </el-breadcrumb>
@@ -53,7 +53,8 @@
     </div>
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
-      <el-button type="danger" @click="meeting_submit()">提交</el-button>
+      <el-button type="danger" @click="meeting_submit()" :disabled="disabled">提交</el-button>
+      <el-button type="danger" @click.native="go_back()">返回</el-button>
     </el-form>
   </div>
 
@@ -61,8 +62,8 @@
 
 <script>
     import VueCkeditor from 'vue-ckeditor5'
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-    import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
     export default {
         components:{'vue-ckeditor': VueCkeditor.component},
         data(){
@@ -120,6 +121,10 @@
                 this.summary = this.$store.state.iepmeeting[0].summary;
             },
 
+            go_back(){
+              this.$router.replace({path:'/iepMeeting', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             meeting_submit() {
                 var date = this.date;
                 var schoolYear = this.schoolYear;
@@ -141,7 +146,7 @@
                     console.log(response);
                 })
                 console.log('success!');
-                this.$router.replace({path:'/iepMeeting'});
+                this.$router.replace({path:'/iepMeeting', query:{currentPage: this.$route.query.currentPage}});
             },
         }
     }

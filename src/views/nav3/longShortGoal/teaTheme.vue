@@ -44,9 +44,8 @@
           @current-change="handleCurrentChange1"
           :current-page="this.currentPage1"
           :page-size= "this.pageSize"
-          :page-sizes="[2, 5, 10, 20]"
           :total = "this.total"
-          layout="total, sizes, prev, pager, next, jumper">
+          layout="total, prev, pager, next, jumper">
       </el-pagination>
     </div>
     <el-dialog
@@ -113,6 +112,8 @@
                     console.log(response)
                     this.$store.dispatch("setTeachingThemeList", response.bodyText);
                     this.total = this.$store.state.teachingThemeList.length;
+                    if(this.$route.query.currentPage != undefined)
+                      this.currentPage1 = parseInt(this.$route.query.currentPage);
                     this.currentChangePage(this.currentPage1);
                 });
 
@@ -146,11 +147,11 @@
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setTeachingTheme", response.bodyText);
-                        this.$router.push({path: '/teaThemeEdit', query: {isEdit: isEdit},});
+                        this.$router.push({path: '/teaThemeEdit', query: {isEdit: isEdit, currentPage: this.currentPage1},});
                     })
                 }
                 else {
-                    this.$router.push({path: '/teaThemeEdit', query: {isEdit: isEdit},});
+                    this.$router.push({path: '/teaThemeEdit', query: {isEdit: isEdit, currentPage: this.currentPage1},});
                 }
             },
 
