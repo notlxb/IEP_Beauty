@@ -1,7 +1,7 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <section>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/newcontact' }">生态评量</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/newcontact', query:{currentPage:this.$route.query.currentPage} }">生态评量</el-breadcrumb-item>
       <el-breadcrumb-item>学生基本信息</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -262,6 +262,7 @@
     </el-form>
     <el-form :inline="true" align="center">
       <el-button type="danger" v-on:click="addStu">添加</el-button>
+      <el-button type="danger" @click.native="go_back()">返回</el-button>
     </el-form>
   </section>
 
@@ -407,6 +408,11 @@
                     }
                 })
             },
+
+            go_back(){
+              this.$router.replace({path:'/newContact', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             addStu() {
                 if (this.getstu.StuID.length == 0){
                     this.$message({
@@ -603,7 +609,7 @@
                     console.log(response);
                 })
                 console.log('submit!');
-                this.$router.replace({path:'/NewContact'},{},{});
+                this.$router.replace({path:'/NewContact', query:{currentPage: this.$route.query.currentPage}});
             },
 
 

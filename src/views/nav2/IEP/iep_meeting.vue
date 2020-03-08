@@ -42,9 +42,8 @@
           @current-change="handleCurrentChange1"
           :current-page="this.currentPage1"
           :page-size= "this.pageSize"
-          :page-sizes="[2, 5, 10, 20]"
           :total = "this.total"
-          layout="total, sizes, prev, pager, next, jumper">
+          layout="total, prev, pager, next, jumper">
       </el-pagination>
     </div>
     <el-dialog
@@ -115,13 +114,13 @@
                     id:id
                 },{}).then((response) => {
                     this.$store.dispatch("setiepmeeting", response.bodyText);
-                    this.$router.push({path:'/iepmeetingEdit', query:{isEdit:isEdit},})
+                    this.$router.push({path:'/iepmeetingEdit', query:{isEdit:isEdit, currentPage: this.currentPage1},})
                 });
             },
 
             //跳转到新建会议页面
             jmp2create(){
-                this.$router.replace({path:'/iepMeetingCreate'});
+                this.$router.replace({path:'/iepMeetingCreate', query:{currentPage: this.currentPage1}});
             },
 
             //更新iep会议信息
@@ -131,6 +130,8 @@
                     this.$store.dispatch("setiepmeetinglist", response.bodyText);
                     // console.log(this.$store.state.course);
                     this.total = this.$store.state.iepmeetinglist.length;
+                    if(this.$route.query.currentPage != undefined)
+                      this.currentPage1 = parseInt(this.$route.query.currentPage);
                     this.currentChangePage(this.currentPage1);
                 });
                 this.loading = false;

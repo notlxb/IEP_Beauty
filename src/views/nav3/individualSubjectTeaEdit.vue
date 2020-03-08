@@ -2,7 +2,7 @@
   <section>
     <el-container>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/indSubjectTea'}">个训学科教学</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/indSubjectTea', query:{currentPage:this.$route.query.currentPage}}">个训学科教学</el-breadcrumb-item>
         <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       </el-breadcrumb>
     </el-container>
@@ -103,7 +103,8 @@
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click.native="gx_submit()">提交</el-button>
+        <el-button type="danger" @click.native="gx_submit()" :disabled="disabled">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -254,9 +255,13 @@
                 })
             },
 
-            gx_submit(){
+          go_back(){
+            this.$router.replace({path:'/indSubjectTea', query:{currentPage: this.$route.query.currentPage}});
+          },
+
+          gx_submit(){
                 var c = {content:this.content};
-                if(this.$route.query.isEdit == 1) {
+                if(this.$route.query.isEdit == 1 || this.$route.query.isEdit == 2) {
                     this.$http.post('/api/stu/upTrainingSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
@@ -274,7 +279,7 @@
                         console.log(response);
                     })
                     console.log('success!');
-                    this.$router.replace({path:'/indSubject'});
+                    this.$router.replace({path:'/indSubjectTea', query:{currentPage: this.$route.query.currentPage}});
                 }else {
                     this.$http.post('/api/stu/addTrainingSbjIns',{
                         schoolYear:this.schoolYear,
@@ -292,7 +297,7 @@
                         console.log(response);
                     });
                     console.log('success!');
-                    this.$router.replace({path:'/indSubject'});
+                    this.$router.replace({path:'/indSubjectTea', query:{currentPage: this.$route.query.currentPage}});
                 }
             },
 

@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="20202.23将数据表格导出为word格式">
-      <change afterPath="$PROJECT_DIR$/src/vendor/FileSaver.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vendor/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vendor/jquery.wordexport.js" afterDir="false" />
+    <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubject.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubject.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/learningReport.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/learningReport.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,68 +41,32 @@
       <executable />
     </execution>
   </component>
-
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="59" />
-              <folding>
-                <element signature="e#2222#2261#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="335" column="8" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="59" />
-              <folding>
-                <element signature="e#13341#13380#0" expanded="true" />
-                <element signature="e#14518#16436#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="251" column="41" selection-start-line="251" selection-start-column="41" selection-end-line="251" selection-end-column="41" />
-              <folding>
-                <element signature="e#8228#8267#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="104" column="59" lean-forward="true" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
-              <folding>
-                <element signature="e#3911#3950#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="101" column="19" lean-forward="true" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+            <state relative-caret-position="-160">
+              <caret line="223" column="37" selection-start-line="223" selection-start-column="36" selection-end-line="223" selection-end-column="37" />
               <folding>
-                <element signature="e#4455#4494#0" expanded="true" />
+                <element signature="n#style#0;n#el-col#0;n#el-container#1;n#section#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,7 +74,6 @@
       </file>
     </leaf>
   </component>
-
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -106,42 +82,42 @@
       </list>
     </option>
   </component>
-
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>queryTeacher</find>
-      <find>addGroup</find>
-      <find>tableData</find>
-      <find>教学主题</find>
-      <find>addTeachingAim</find>
-      <find>添加组</find>
-      <find>dialogConfirm</find>
-      <find>个训</find>
-      <find>集体学科计划</find>
-      <find>添加目标</find>
-      <find>jxmb_opts</find>
-      <find>4</find>
-      <find>执教老师</find>
-      <find>queryClass</find>
-      <find>addTrainingSbjPl</find>
-      <find>substring</find>
-      <find>upTrainingSbjPl</find>
-      <find>queClassGSP</find>
+      <find>jt_submit</find>
+      <find>updateGroupSI</find>
+      <find>gx_submit</find>
+      <find>groupSubjectTea</find>
+      <find>groupSP_submit</find>
+      <find>返回</find>
+      <find>teachingTheme_submit</find>
+      <find>currentPage1</find>
+      <find>pageSize</find>
+      <find>currentSize</find>
+      <find>this.pageSize</find>
+      <find>currentSize:this.pageSize</find>
+      <find>currentChangePage</find>
+      <find>handleSizeChange1</find>
+      <find>this.$route.query.currentPage</find>
+      <find>disabled</find>
+      <find>eval_submit</find>
+      <find>path:</find>
+      <find>newContact</find>
+      <find>家庭成员</find>
+      <find>addStu</find>
+      <find>uploadFile</find>
+      <find>updateStuinfo</find>
+      <find>submitForm3</find>
+      <find>go_back</find>
+      <find>submitForm</find>
+      <find>submitForm2</find>
+      <find>name</find>
+      <find>updateTrainingSI</find>
       <find>stuOptions</find>
-      <find>insert into train</find>
-      <find>editorData</find>
-      <find>editor</find>
-      <find>editors1</find>
-      <find>summary</find>
-      <find>edt</find>
-      <find>onClick</find>
-      <find>教学流程</find>
-      <find>teachingProgress</find>
-      <find>ckeditor5-build-classic</find>
-      <find>content</find>
     </findStrings>
     <replaceStrings>
       <replace>ckeditor5-build-balloon-block</replace>
+      <replace>this.$route.query.currentPage, currentSize:this.$route.query.currentSize</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -151,25 +127,41 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/components/tools/tinymce/tinymce-editor.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/learningReport.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/individualSubject.vue" />
         <option value="$PROJECT_DIR$/server/api/stuApi.js" />
         <option value="$PROJECT_DIR$/server/db.js" />
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
         <option value="$PROJECT_DIR$/src/components/tools/ckeditor/index.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/studyReport/studyReport.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/groupSubject.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/individualSubject.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/learningReport.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue" />
       </list>
     </option>
   </component>
-
   <component name="JsBowerSettings">
     <node-interpreter value="project" />
     <bower-package value="" />
@@ -181,12 +173,11 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="951" />
-    <option name="y" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1048" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1939" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectId" id="1Y1rjDoRaPyfkqip3YkzBjTRuXp" />
   <component name="ProjectView">
@@ -220,14 +211,6 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="nav3" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav3" type="462c0819:PsiDirectoryNode" />
-              <item name="longShortGoal" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -235,7 +218,6 @@
       <pane id="Scope" />
     </panes>
   </component>
-
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -287,7 +269,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -308,14 +300,14 @@
       <envs />
       <method v="2" />
     </configuration>
-
     <list>
       <item itemvalue="npm.start" />
       <item itemvalue="npm.dev" />
+      <item itemvalue="npm.build" />
     </list>
-
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -371,20 +363,20 @@
       <workItem from="1582351743665" duration="3219000" />
       <workItem from="1582422734703" duration="24270000" />
       <workItem from="1582456873478" duration="418000" />
-
       <workItem from="1583063501182" duration="2000" />
       <workItem from="1583069098573" duration="4979000" />
       <workItem from="1583140797820" duration="2322000" />
       <workItem from="1583209637816" duration="9339000" />
       <workItem from="1583220549376" duration="1017000" />
-      <workItem from="1583236211797" duration="10259000" />
+      <workItem from="1583236211797" duration="11937000" />
+      <workItem from="1583308834015" duration="15273000" />
+      <workItem from="1583673399961" duration="504000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28798000" />
+    <option name="totallyTimeSpent" value="46253000" />
   </component>
-
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -394,11 +386,11 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.21782842" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.20442359" />
       <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
       <window_info id="Structure" order="2" sideWeight="0.5053192" side_tool="true" weight="0.19936457" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -408,15 +400,15 @@
       <window_info id="UI Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49960285" visible="true" weight="0.2719547" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" weight="0.26770538" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.23796034" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50039715" side_tool="true" weight="0.39893618" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49932975" visible="true" weight="0.23796034" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.2719547" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.32857144" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
@@ -426,7 +418,7 @@
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
@@ -464,7 +456,6 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout-to-restore>
   </component>
-
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -474,21 +465,18 @@
         <entry key="MAIN">
           <value>
             <State>
-
               <option name="RECENTLY_FILTERED_USER_GROUPS">
                 <collection />
               </option>
               <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
                 <collection />
               </option>
-
               <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -503,72 +491,16 @@
         </entry>
       </map>
     </option>
-
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="20202.23将数据表格导出为word格式" />
     <option name="LAST_COMMIT_MESSAGE" value="20202.23将数据表格导出为word格式" />
-
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReport.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="147" column="35" lean-forward="true" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="143" column="35" lean-forward="true" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#5024#5059#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubject.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/tools/tinymce/tinymce-editor.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="54" column="75" selection-start-line="54" selection-start-column="75" selection-end-line="54" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2090">
-          <caret line="110" column="64" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="64" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -596,13 +528,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-build-classic/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-684" />
@@ -614,24 +540,6 @@
           <caret lean-forward="true" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="64" column="51" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <element signature="e#650#696#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -650,65 +558,236 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="141" column="15" lean-forward="true" selection-start-line="141" selection-start-column="15" selection-end-line="141" selection-end-column="15" />
+        <state relative-caret-position="304">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue">
+    <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="104" column="59" lean-forward="true" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
+        <state relative-caret-position="228">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
           <folding>
-            <element signature="e#3911#3950#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#650#696#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="251" column="41" selection-start-line="251" selection-start-column="41" selection-end-line="251" selection-end-column="41" />
+        <state relative-caret-position="76">
+          <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/studyReport/studyReport.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="41" selection-start-line="40" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="153" column="18" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3819">
+          <caret line="3" column="100" selection-start-line="3" selection-start-column="71" selection-end-line="3" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
           <folding>
-            <element signature="e#8228#8267#0" expanded="true" />
+            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="122" column="105" lean-forward="true" selection-start-line="122" selection-start-column="105" selection-end-line="122" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="105" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="53" lean-forward="true" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
+          <folding>
+            <element signature="e#2375#2414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="488" column="62" lean-forward="true" selection-start-line="488" selection-start-column="62" selection-end-line="488" selection-end-column="62" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="486" column="10" selection-start-line="486" selection-start-column="10" selection-end-line="488" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-677">
+          <caret line="472" column="6" selection-start-line="472" selection-start-column="6" selection-end-line="474" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="428" lean-forward="true" selection-start-line="428" selection-end-line="428" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="29" column="61" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8321">
+          <caret line="163" column="70" selection-start-line="163" selection-start-column="60" selection-end-line="163" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="262" column="56" selection-start-line="262" selection-start-column="43" selection-end-line="262" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="114" column="12" lean-forward="true" selection-start-line="114" selection-start-column="12" selection-end-line="116" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="201" column="112" lean-forward="true" selection-start-line="201" selection-start-column="60" selection-end-line="201" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-950">
+          <caret line="165" column="42" lean-forward="true" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="203" selection-start-line="203" selection-end-line="203" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="205" column="18" selection-start-line="205" selection-start-column="18" selection-end-line="207" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubject.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1026">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1976">
+          <caret line="67" column="33" selection-start-line="66" selection-start-column="31" selection-end-line="67" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubject.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="844">
+          <caret line="147" column="125" lean-forward="true" selection-start-line="147" selection-start-column="68" selection-end-line="147" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReport.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="116" column="45" lean-forward="true" selection-start-line="116" selection-start-column="45" selection-end-line="116" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="155" column="29" lean-forward="true" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="335" column="8" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="59" />
-          <folding>
-            <element signature="e#13341#13380#0" expanded="true" />
-            <element signature="e#14518#16436#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="59" />
-          <folding>
-            <element signature="e#2222#2261#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="285">
+          <caret line="557" column="119" selection-start-line="557" selection-start-column="67" selection-end-line="557" selection-end-column="119" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="101" column="19" lean-forward="true" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+        <state relative-caret-position="-160">
+          <caret line="223" column="37" selection-start-line="223" selection-start-column="36" selection-end-line="223" selection-end-column="37" />
           <folding>
-            <element signature="e#4455#4494#0" expanded="true" />
+            <element signature="n#style#0;n#el-col#0;n#el-container#1;n#section#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-
   </component>
   <component name="masterDetails">
     <states>

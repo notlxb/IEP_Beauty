@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/learningReport' }">学习报表</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/learningReport', query:{currentPage:this.$route.query.currentPage} }">学习报表</el-breadcrumb-item>
             <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
@@ -101,8 +101,8 @@
 
         <el-form :inline="true" align="center">
             <el-form-item>
-                <el-button type="primary" @click="goBack()">返回</el-button>
-                <el-button type="primary" @click="test()" >导出预览</el-button>
+                <el-button type="danger" @click="goBack()">返回</el-button>
+                <el-button type="danger" @click="test()" >导出预览</el-button>
             </el-form-item>
         </el-form>
         <div id="file" v-show="false">
@@ -192,7 +192,7 @@
                         this.month_options.push({value:JSON.parse(this.$store.state.LReports[0].months)[i].month, label:JSON.parse(this.$store.state.LReports[0].months)[i].month});
             },
             goBack(){
-                this.$router.replace({path: '/learningReport'});
+                this.$router.replace({path: '/learningReport', query:{currentPage: this.$route.query.currentPage}});
             },
             test(){
                 let tableData = "<tr>";

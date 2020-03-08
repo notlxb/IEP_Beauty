@@ -1,7 +1,7 @@
 <template>
   <section>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/groupSubject' }">集体学科计划</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/groupSubject', query:{currentPage:this.$route.query.currentPage} }">集体学科计划</el-breadcrumb-item>
       <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -320,7 +320,8 @@
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click="groupSP_submit()">提交</el-button>
+        <el-button type="danger" @click="groupSP_submit()" :disabled="disabled">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -529,6 +530,10 @@
                 })
             },
 
+            go_back(){
+              this.$router.replace({path:'/groupSubject', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             groupSP_submit(){
                 var teachingPlan = {
                     jcfx:{content:this.jcfx, remark:this.jcfx_bz}, xsqkfx:{content:this.xsqkfx, remark:this.xsqkfx_bz},
@@ -550,7 +555,7 @@
                         teachingProgress: teachingProgress,
                     }, {}).then((response) => {
                         console.log(response);
-                        this.$router.replace({path: '/groupSubject'});
+                        this.$router.replace({path: '/groupSubject', query:{currentPage: this.$route.query.currentPage}});
                     });
                 }else {
                     this.$http.post('/api/stu/upGroupSbjPl', {
@@ -566,7 +571,7 @@
                         id: this.$store.state.groupSP[0].id,
                     }, {}).then((response) => {
                         console.log(response);
-                        this.$router.replace({path: '/groupSubject'});
+                        this.$router.replace({path: '/groupSubject', query:{currentPage: this.$route.query.currentPage}});
                     })
                 }
             },

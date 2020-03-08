@@ -1,10 +1,10 @@
 <template>
   <section id="t3">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/newContact' }">生态评量</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit},}">学生信息</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{isEdit:this.$route.query.isEdit},}">医学诊断</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit},}">家庭基础信息（家长自评）</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/newContact', query:{currentPage:this.$route.query.currentPage} }">生态评量</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">学生信息</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">医学诊断</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家庭基础信息（家长自评）</el-breadcrumb-item>
       <el-breadcrumb-item>专项评估</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -26,6 +26,7 @@
       </el-form-item>
       <el-form-item class="submit-btn">
         <el-button type="danger" @click="submitForm3">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
         <el-button type="danger" @click="drawChart">雷达图</el-button>
         <!--        <el-button @click="addDomain31">新增一项</el-button>-->
       </el-form-item>
@@ -170,6 +171,11 @@
                     }
                 }
             },
+
+          go_back(){
+            this.$router.replace({path:'/checkNEdit', query:{currentPage: this.$route.query.currentPage}});
+          },
+
             /*提交保存*/
             submitForm3() {
                 for (var i = 0; i < this.formData3.domains3.length; i++){
@@ -193,7 +199,7 @@
                     AStuID:this.$store.state.stuinfo[0].student_id
                 },{}).then((response) => {
                     this.$store.dispatch("setstuinfo", response.bodyText);
-                    this.$router.replace({path:'/checkNEdit'})
+                    this.$router.replace({path:'/checkNEdit', query:{currentPage: this.$route.query.currentPage}})
                 });
             },
 

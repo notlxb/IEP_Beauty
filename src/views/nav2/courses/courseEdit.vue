@@ -3,7 +3,7 @@
     <el-container>
       <!--      <div>{{this.$store.state.stuinfo[0].Courses}}</div>-->
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/courseEvaluation' }">课程评量</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/courseEvaluation', query:{currentPage:this.$route.query.currentPage} }">课程评量</el-breadcrumb-item>
         <el-breadcrumb-item>填写课程评量</el-breadcrumb-item>
         <el-breadcrumb-item></el-breadcrumb-item>
       </el-breadcrumb>
@@ -127,7 +127,12 @@
           </el-radio-group>
         </el-form-item>
       </el-form>
-      <el-button type="danger" @click="eval_submit()">修改提交</el-button>
+      <el-form :inline="true" align="center">
+        <el-form-item>
+          <el-button type="danger" @click="eval_submit()">修改提交</el-button>
+          <el-button type="danger" @click.native="go_back()">返回</el-button>
+        </el-form-item>
+      </el-form>
     </div>
   </section>
 </template>
@@ -465,6 +470,10 @@
         }
       },
 
+      go_back(){
+        this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}});
+      },
+
       eval_submit(){
         for (var i = 0; i < this.radio_title.length; i++){
           for (var j = 0; j < this.radioes[i].length; j++){
@@ -497,7 +506,7 @@
                   Course:Courses,
                   stuID:this.$store.state.stuinfo[0].student_id
                 }, {}).then((response) => {
-                  this.$router.push('/courseEvaluation')
+                  this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}})
                 });
                 return;
               }
@@ -516,7 +525,7 @@
           Course:Courses,
           stuID:this.$store.state.stuinfo[0].student_id
         }, {}).then((response) => {
-          this.$router.push('/courseEvaluation')
+          this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}})
         });
       }
 

@@ -2,7 +2,7 @@
   <div id="iep_meeting">
     <el-container>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/iepMeeting' }">IEP会议</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/iepMeeting', query:{currentPage:this.$route.query.currentPage} }">IEP会议</el-breadcrumb-item>
         <el-breadcrumb-item>新建会议</el-breadcrumb-item>
         <el-breadcrumb-item></el-breadcrumb-item>
       </el-breadcrumb>
@@ -54,6 +54,7 @@
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-button type="danger" @click="meeting_add()">添加</el-button>
+      <el-button type="danger" @click.native="go_back()">返回</el-button>
     </el-form>
   </div>
 
@@ -101,6 +102,10 @@
         },
 
         methods:{
+            go_back(){
+              this.$router.replace({path:'/iepMeeting', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             meeting_add() {
                 var date = this.date;
                 var schoolYear = this.schoolYear;
@@ -121,7 +126,7 @@
                     console.log(response);
                 });
                 console.log('success!');
-                this.$router.replace({path:'/iepMeeting'});
+                this.$router.replace({path:'/iepMeeting', query:{currentPage: this.$route.query.currentPage}});
             },
             onClick(){},
         }

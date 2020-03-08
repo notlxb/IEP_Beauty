@@ -73,9 +73,8 @@
             @current-change="handleCurrentChange1"
             :current-page="this.currentPage1"
             :page-size= "this.pageSize"
-            :page-sizes="[2, 5, 10, 20]"
             :total = "this.total"
-            layout="total, sizes, prev, pager, next, jumper">
+            layout="total, prev, pager, next, jumper">
           </el-pagination>
         </div>
       </div>
@@ -361,7 +360,7 @@
           AStuID:stuID
         },{}).then((response) => {
           this.$store.dispatch("setstuinfo", response.bodyText);
-          this.$router.push({path:'/courseEdit',query:{schoolYear:schoolYear, term:term}})
+          this.$router.push({path:'/courseEdit',query:{schoolYear:schoolYear, term:term, currentPage: this.currentPage1}})
         });
       },
 
@@ -485,6 +484,8 @@
             this.course_name.push({text:courseName_a[i],value:courseName_a[i]});
           }
           this.total = this.$store.state.stucourseslist.length;
+          if(this.$route.query.currentPage != undefined)
+            this.currentPage1 = parseInt(this.$route.query.currentPage);
           this.currentChangePage(this.currentPage1);
         });
 

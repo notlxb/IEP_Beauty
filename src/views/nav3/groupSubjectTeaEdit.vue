@@ -2,7 +2,7 @@
   <section>
     <el-container>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/groupSubjectTea' }">集体学科教学</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/groupSubjectTea', query:{currentPage:this.$route.query.currentPage}}">集体学科教学</el-breadcrumb-item>
         <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       </el-breadcrumb>
     </el-container>
@@ -90,7 +90,8 @@
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click.native="jt_submit()">提交</el-button>
+        <el-button type="danger" @click.native="jt_submit()" :disabled="disabled">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -225,9 +226,13 @@
                 })
             },
 
+            go_back(){
+              this.$router.replace({path:'/groupSubjectTea', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             jt_submit(){
                 var c = {content:this.content};
-                if(this.$route.query.isEdit == 1) {
+                if(this.$route.query.isEdit == 1 || this.$route.query.isEdit == 2) {
                     this.$http.post('/api/stu/upGroupSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
@@ -244,7 +249,7 @@
                         console.log(response);
                     })
                     console.log('success!');
-                    this.$router.replace({path:'/groupSubjectTea'});
+                    this.$router.replace({path:'/groupSubjectTea', query:{currentPage: this.$route.query.currentPage}});
                 }else {
                     this.$http.post('/api/stu/addGroupSbjIns',{
                         schoolYear:this.schoolYear,
