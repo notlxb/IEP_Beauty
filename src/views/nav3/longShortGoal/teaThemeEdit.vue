@@ -409,8 +409,8 @@
 
 <script>
   import VueCkeditor from 'vue-ckeditor5'
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-  import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
+  import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+  import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
   export default {
     name: "jiaoxuezhuti_edit",
     components:{'vue-ckeditor': VueCkeditor.component},

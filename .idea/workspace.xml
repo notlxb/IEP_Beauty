@@ -2,32 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/views/nav4/courseManagement.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubject.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubject.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/learningReport.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/learningReport.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,12 +42,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue">
+        <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-160">
-              <caret line="223" column="37" selection-start-line="223" selection-start-column="36" selection-end-line="223" selection-end-column="37" />
+            <state relative-caret-position="232">
+              <caret line="416" column="11" lean-forward="true" selection-start-line="416" selection-start-column="11" selection-end-line="416" selection-end-column="11" />
               <folding>
-                <element signature="n#style#0;n#el-col#0;n#el-container#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#15806#15845#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,14 +58,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jt_submit</find>
       <find>updateGroupSI</find>
       <find>gx_submit</find>
       <find>groupSubjectTea</find>
@@ -114,6 +94,7 @@
       <find>name</find>
       <find>updateTrainingSI</find>
       <find>stuOptions</find>
+      <find>@ckeditor/ckeditor5-build-classic</find>
     </findStrings>
     <replaceStrings>
       <replace>ckeditor5-build-balloon-block</replace>
@@ -132,13 +113,11 @@
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
         <option value="$PROJECT_DIR$/src/components/tools/ckeditor/index.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/studyReport/studyReport.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/groupSubject.vue" />
@@ -155,10 +134,14 @@
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/views/nav4/courseManagement.vue" />
+        <option value="$PROJECT_DIR$/src/routes.js" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" />
       </list>
     </option>
   </component>
@@ -173,7 +156,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1939" />
@@ -196,6 +179,11 @@
             <path>
               <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
               <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -210,6 +198,21 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="nav3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="nav3" type="462c0819:PsiDirectoryNode" />
+              <item name="longShortGoal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="nav4" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -269,7 +272,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -370,12 +373,12 @@
       <workItem from="1583220549376" duration="1017000" />
       <workItem from="1583236211797" duration="11937000" />
       <workItem from="1583308834015" duration="15273000" />
-      <workItem from="1583673399961" duration="504000" />
+      <workItem from="1583673399961" duration="3433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46253000" />
+    <option name="totallyTimeSpent" value="49182000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -387,10 +390,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.20442359" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.20442359" />
       <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
       <window_info id="Structure" order="2" sideWeight="0.5053192" side_tool="true" weight="0.19936457" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -400,14 +402,14 @@
       <window_info id="UI Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" weight="0.26770538" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.26770538" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49932975" visible="true" weight="0.23796034" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49932975" weight="0.23796034" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.2719547" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.32857144" />
@@ -544,24 +546,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/api/stuApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
           <caret line="910" column="31" selection-start-line="910" selection-start-column="31" selection-end-line="910" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -597,34 +585,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3819">
-          <caret line="3" column="100" selection-start-line="3" selection-start-column="71" selection-end-line="3" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="122" column="105" lean-forward="true" selection-start-line="122" selection-start-column="105" selection-end-line="122" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="105" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="105" />
         </state>
       </provider>
     </entry>
@@ -648,13 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="486" column="10" selection-start-line="486" selection-start-column="10" selection-end-line="488" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-677">
@@ -666,58 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="428" lean-forward="true" selection-start-line="428" selection-end-line="428" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="29" column="61" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8321">
-          <caret line="163" column="70" selection-start-line="163" selection-start-column="60" selection-end-line="163" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="262" column="56" selection-start-line="262" selection-start-column="43" selection-end-line="262" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="114" column="12" lean-forward="true" selection-start-line="114" selection-start-column="12" selection-end-line="116" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="201" column="112" lean-forward="true" selection-start-line="201" selection-start-column="60" selection-end-line="201" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-950">
-          <caret line="165" column="42" lean-forward="true" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="203" selection-start-line="203" selection-end-line="203" />
         </state>
       </provider>
     </entry>
@@ -745,29 +650,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubject.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="147" column="125" lean-forward="true" selection-start-line="147" selection-start-column="68" selection-end-line="147" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReport.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="116" column="45" lean-forward="true" selection-start-line="116" selection-start-column="45" selection-end-line="116" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="155" column="29" lean-forward="true" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -780,10 +666,146 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="223" column="37" selection-start-line="223" selection-start-column="36" selection-end-line="223" selection-end-column="37" />
+        <state relative-caret-position="296">
+          <caret line="247" column="55" selection-start-line="247" selection-start-column="55" selection-end-line="247" selection-end-column="55" />
           <folding>
             <element signature="n#style#0;n#el-col#0;n#el-container#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="441" column="56" lean-forward="true" selection-start-line="441" selection-start-column="56" selection-end-line="441" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vue-ckeditor5/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-362">
+          <caret line="155" column="29" lean-forward="true" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubject.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="147" column="125" selection-start-line="147" selection-start-column="68" selection-end-line="147" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="65" column="51" lean-forward="true" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav4/courseManagement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14801">
+          <caret line="779" column="77" selection-start-line="779" selection-start-column="77" selection-end-line="779" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="22" column="64" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="169" column="58" selection-start-line="169" selection-start-column="58" selection-end-line="169" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="253" column="19" lean-forward="true" selection-start-line="253" selection-start-column="19" selection-end-line="253" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="114" column="12" selection-start-line="114" selection-start-column="12" selection-end-line="116" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="191" column="50" lean-forward="true" selection-start-line="191" selection-start-column="50" selection-end-line="191" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="31" column="43" lean-forward="true" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="416" column="11" lean-forward="true" selection-start-line="416" selection-start-column="11" selection-end-line="416" selection-end-column="11" />
+          <folding>
+            <element signature="e#15806#15845#0" expanded="true" />
           </folding>
         </state>
       </provider>

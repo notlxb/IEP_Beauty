@@ -20,6 +20,7 @@ import courseEdit from './views/nav2/courses/courseEdit.vue'
 import schoolManagement from './views/nav4/schoolManagement.vue'
 import userManagement from './views/nav4/userManagement.vue'
 import dataManagement from './views/nav4/dataManagement.vue'
+import courseManagement from './views/nav4/courseManagement.vue'
 import subjectManagement from './views/nav4/subjectManagement.vue'
 import courseEvaluation from './views/nav2/courses/courseEvaluation.vue'
 import evaluationAnalysis from './views/nav2/courses/evaluationAnalysis.vue'
@@ -240,6 +241,7 @@ let routes = [
             {path: '/userManagement', component: userManagement, name: '用户管理', authority: [1, 1, 1, 1, 0],},
             {path: '/dataManagement', component: dataManagement, name: '指标管理', authority: [1, 1, 1, 1, 0],},
             {path: '/subjectManagement', component: subjectManagement, name: '课标管理', authority: [1, 1, 1, 1, 0],},
+            {path: '/courseManagement', component: courseManagement, name: '课程设置', authority: [1, 1, 1, 1, 0],},
 
         ]
     },
