@@ -1,136 +1,136 @@
 <template>
-    <section>
-        <div class="custom-tree-container">
-            <div class="block">
+  <section>
+    <div class="custom-tree-container">
+      <div class="block">
 
-                <el-tree :data="list" :props="defaultProps" @node-click="handleNodeClick" :expand-on-click-node="false" :render-content="renderContent"></el-tree>
+        <el-tree :data="list" :props="defaultProps" @node-click="handleNodeClick" :expand-on-click-node="false" :render-content="renderContent"></el-tree>
 
-                <el-dialog title="新增菜单" :visible.sync="dialogFormVisible">
-                    <el-form v-model="newChild">
-                        <el-form-item label="类型" :label-width="formLabelWidth" >
-                            <el-input v-model="input1":disabled="true" placeholder="领域"></el-input>
-                        </el-form-item>
-                        <el-form-item label="名称" :label-width="formLabelWidth" >
-                            <el-input v-model="newChild.label1" placeholder="请输入指标(父节点名称)"></el-input>
-                        </el-form-item>
-                    </el-form>
-                    <div slot="footer" class="dialog-footer">
-                        <el-button @click="dialogFormVisible = false">取 消</el-button>
-                        <el-button type="danger" @click="toSave(),dialogFormVisible=false">确 定</el-button>
-                    </div>
-                </el-dialog>
+        <el-dialog title="新增菜单" :visible.sync="dialogFormVisible">
+          <el-form v-model="newChild">
+            <el-form-item label="类型" :label-width="formLabelWidth" >
+              <el-input v-model="input1":disabled="true" placeholder="领域"></el-input>
+            </el-form-item>
+            <el-form-item label="名称" :label-width="formLabelWidth" >
+              <el-input v-model="newChild.label1" placeholder="请输入指标(父节点名称)"></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="danger" @click="toSave(),dialogFormVisible=false">确 定</el-button>
+          </div>
+        </el-dialog>
 
-                <el-dialog title="增加菜单" :visible.sync="dialogFormVisible_insert" >
-                    <el-form v-model="newChild">
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==0">
-                            <el-input v-model="input2":disabled="true" placeholder="学科"></el-input>
-                        </el-form-item>
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==1">
-                            <el-input v-model="input3":disabled="true" placeholder="学段"></el-input>
-                        </el-form-item>
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==2">
-                            <el-input v-model="input4":disabled="true" placeholder="长期目标"></el-input>
-                        </el-form-item>
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==3">
-                            <el-input v-model="input5":disabled="true" placeholder="短期目标"></el-input>
-                        </el-form-item>
+        <el-dialog title="增加菜单" :visible.sync="dialogFormVisible_insert" >
+          <el-form v-model="newChild">
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==0">
+              <el-input v-model="input2":disabled="true" placeholder="学科"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==1">
+              <el-input v-model="input3":disabled="true" placeholder="学段"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==2">
+              <el-input v-model="input4":disabled="true" placeholder="长期目标"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==3">
+              <el-input v-model="input5":disabled="true" placeholder="短期目标"></el-input>
+            </el-form-item>
 
-                        <el-form-item label="名称" :label-width="formLabelWidth" v-if="newChild.showType!=4">
-                            <el-input v-model="newChild.label1" placeholder="请输入指标"></el-input>
-                        </el-form-item>
-                    </el-form>
-                    <div slot="footer" class="dialog-footer" v-if="newChild.showType!=4">
-                        <el-button @click="dialogFormVisible_insert = false">取 消</el-button>
-                        <el-button type="danger" @click="toSave2(),dialogFormVisible_insert=false" >确 定</el-button>
-                    </div>
-                </el-dialog>
-
-
-                <el-dialog title="增加选项菜单" :visible.sync="dialogFormVisible_insert2" >
-                    <el-form v-model="newChild">
-                        <el-form-item label="充实级(3分)" :label-width="formLabelWidth" v-if="newChild.showType==4">
-                            <el-input v-model="newChild.label2" placeholder="请输入指标"></el-input>
-                        </el-form-item>
-                        <el-form-item label="标准级(2分)" :label-width="formLabelWidth" v-if="newChild.showType==4">
-                            <el-input v-model="newChild.label3" placeholder="请输入指标"></el-input>
-                        </el-form-item>
-                        <el-form-item label="起码级(1分) " :label-width="formLabelWidth" v-if="newChild.showType==4">
-                            <el-input v-model="newChild.label4" placeholder="请输入指标"></el-input>
-                        </el-form-item>
-                        <el-form-item label="补救级(0分)" :label-width="formLabelWidth" v-if="newChild.showType==4">
-                            <el-input v-model="newChild.label5" placeholder="请输入指标"></el-input>
-                        </el-form-item>
-                    </el-form>
-                    <div slot="footer" class="dialog-footer" v-if="newChild.showType==4">
-                        <el-button @click="dialogFormVisible_insert2 = false">取 消</el-button>
-                        <el-button type="danger" @click="toSave3(),dialogFormVisible_insert2=false" >确 定</el-button>
-                    </div>
-                </el-dialog>
-
-                <!--这是修改-->
-                <el-dialog title="修改菜单" :visible.sync="dialogFormVisible_update">
-                    <el-form v-model="newChild">
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==0">
-                            <el-input v-model="input1":disabled="true" placeholder="领域"></el-input>
-                        </el-form-item>
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==1">
-                            <el-input v-model="input2":disabled="true" placeholder="学科"></el-input>
-                        </el-form-item>
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==2">
-                            <el-input v-model="input3":disabled="true" placeholder="学段"></el-input>
-                        </el-form-item>
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==3">
-                            <el-input v-model="input4":disabled="true" placeholder="长期目标"></el-input>
-                        </el-form-item>
-                        <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==4">
-                            <el-input v-model="input5":disabled="true" placeholder="短期目标"></el-input>
-                        </el-form-item>
-                        <el-form-item label="名称" :label-width="formLabelWidth" v-if="newChild.showType!=5">
-                            <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
-                        </el-form-item>
-                        <el-form-item label="充实级(3分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==3">
-                            <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
-                        </el-form-item>
-                        <el-form-item label="标准级(2分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==2">
-                            <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
-                        </el-form-item>
-                        <el-form-item label="起码级(1分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==1">
-                            <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
-                        </el-form-item>
-                        <el-form-item label="补救级(0分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==0">
-                            <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
-                        </el-form-item>
-
-                    </el-form>
-                    <div slot="footer" class="dialog-footer">
-                        <el-button @click="dialogFormVisible_update = false">取 消</el-button>
-                        <el-button type="danger" @click="toUpdate(),dialogFormVisible_update=false">确 定</el-button>
-                    </div>
-                </el-dialog>
-
-                <el-dialog title="删除菜单" :visible.sync="dialogFormVisible_delete">
-                    <el-form v-model="newChild">
-                        <el-form-item label="删除的名称为："  :label-width="formLabelWidth" >
-                            <el-input v-model="newChild.label" placeholder="请用分号间隔" >{{newChild.label}}</el-input>
-                        </el-form-item>
-                    </el-form>
-                    <div slot="footer" class="dialog-footer">
-                        <el-button @click="dialogFormVisible_delete = false">取 消</el-button>
-                        <el-button type="danger" @click="toDelete(),dialogFormVisible_delete=false">确 定</el-button>
-                    </div>
-                </el-dialog>
+            <el-form-item label="名称" :label-width="formLabelWidth" v-if="newChild.showType!=4">
+              <el-input v-model="newChild.label1" placeholder="请输入指标"></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer" v-if="newChild.showType!=4">
+            <el-button @click="dialogFormVisible_insert = false">取 消</el-button>
+            <el-button type="danger" @click="toSave2(),dialogFormVisible_insert=false" >确 定</el-button>
+          </div>
+        </el-dialog>
 
 
+        <el-dialog title="增加选项菜单" :visible.sync="dialogFormVisible_insert2" >
+          <el-form v-model="newChild">
+            <el-form-item label="充实级(3分)" :label-width="formLabelWidth" v-if="newChild.showType==4">
+              <el-input v-model="newChild.label2" placeholder="请输入指标"></el-input>
+            </el-form-item>
+            <el-form-item label="标准级(2分)" :label-width="formLabelWidth" v-if="newChild.showType==4">
+              <el-input v-model="newChild.label3" placeholder="请输入指标"></el-input>
+            </el-form-item>
+            <el-form-item label="起码级(1分) " :label-width="formLabelWidth" v-if="newChild.showType==4">
+              <el-input v-model="newChild.label4" placeholder="请输入指标"></el-input>
+            </el-form-item>
+            <el-form-item label="补救级(0分)" :label-width="formLabelWidth" v-if="newChild.showType==4">
+              <el-input v-model="newChild.label5" placeholder="请输入指标"></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer" v-if="newChild.showType==4">
+            <el-button @click="dialogFormVisible_insert2 = false">取 消</el-button>
+            <el-button type="danger" @click="toSave3(),dialogFormVisible_insert2=false" >确 定</el-button>
+          </div>
+        </el-dialog>
 
-                <el-button type="danger" @click="append1()" v-if="sysPermission=='1'" class="button-bottom">新建领域</el-button>
+        <!--这是修改-->
+        <el-dialog title="修改菜单" :visible.sync="dialogFormVisible_update">
+          <el-form v-model="newChild">
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==0">
+              <el-input v-model="input1":disabled="true" placeholder="领域"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==1">
+              <el-input v-model="input2":disabled="true" placeholder="学科"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==2">
+              <el-input v-model="input3":disabled="true" placeholder="学段"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==3">
+              <el-input v-model="input4":disabled="true" placeholder="长期目标"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" :label-width="formLabelWidth" v-if="newChild.showType==4">
+              <el-input v-model="input5":disabled="true" placeholder="短期目标"></el-input>
+            </el-form-item>
+            <el-form-item label="名称" :label-width="formLabelWidth" v-if="newChild.showType!=5">
+              <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
+            </el-form-item>
+            <el-form-item label="充实级(3分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==3">
+              <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
+            </el-form-item>
+            <el-form-item label="标准级(2分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==2">
+              <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
+            </el-form-item>
+            <el-form-item label="起码级(1分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==1">
+              <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
+            </el-form-item>
+            <el-form-item label="补救级(0分)" :label-width="formLabelWidth" v-if="newChild.showType==5&&newChild.grade==0">
+              <el-input v-model="newChild.label" placeholder="请输入指标(父节点名称)">{{newChild.label}}</el-input>
+            </el-form-item>
+
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible_update = false">取 消</el-button>
+            <el-button type="danger" @click="toUpdate(),dialogFormVisible_update=false">确 定</el-button>
+          </div>
+        </el-dialog>
+
+        <el-dialog title="删除菜单" :visible.sync="dialogFormVisible_delete">
+          <el-form v-model="newChild">
+            <el-form-item label="删除的名称为："  :label-width="formLabelWidth" >
+              <el-input v-model="newChild.label" placeholder="请用分号间隔" >{{newChild.label}}</el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible_delete = false">取 消</el-button>
+            <el-button type="danger" @click="toDelete(),dialogFormVisible_delete=false">确 定</el-button>
+          </div>
+        </el-dialog>
 
 
 
-                <el-main>
-                </el-main>
-            </div>
-        </div>
-    </section>
+        <el-button type="danger" @click="append1()" v-if="sysPermission=='1'" class="button-bottom">新建领域</el-button>
+
+
+
+        <el-main>
+        </el-main>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>/* eslint-disable */
@@ -194,7 +194,9 @@ export default {
             data1: JSON.parse(JSON.stringify(data2))*/
         }
     },
+
     components: {},
+
     methods: {//方法home，所有方法在这里 未来读写分离，好处便于维护和方法公用
         append1 (data){//实现一个添加功能 append1它是一个方法名  叫什么无所谓
             console.log("start");
@@ -233,14 +235,19 @@ export default {
             this.dialogFormVisible_delete = true;
         },
         remove (node, data) {
+
             this.$set(data, 'disabled', true)
+
         },
+
         recover (data) {
             this.getData()
         },
+
         getCheckedNodes() {
             console.log("chosenList is:");
             console.log(this.$refs.tree.getCheckedNodes());
+
         },
         getCheckedKeys() {
             console.log(this.$refs.tree.getCheckedKeys());
@@ -248,8 +255,10 @@ export default {
         setCheckedNodes() {
             this.$refs.tree.setCheckedNodes([{
                 id: 5,
+
             }, {
                 id: 9,
+
             }]);
         },
         setCheckedKeys() {
@@ -790,8 +799,10 @@ export default {
                         </span>
                         </span>);
                     }
+
                 }
             }
+
         },
         getData: function() {///methods中的一个方法 获取后端数据  实现前端渲染
             //这是一个ajax的post请求  res是response的简化参数名 叫什么无所谓  代表的是response
@@ -954,15 +965,17 @@ export default {
 </script>
 
 <style>
-    .custom-tree-node {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 14px; /*字号*/
-        padding-right: 8px; /*右侧宽度*/
-    }
-    .button-bottom{
-        margin: 1% 2% 2% 2.5%;
-    }
+  .custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px; /*字号*/
+    padding-right: 8px; /*右侧宽度*/
+  }
+
+  .button-bottom{
+    margin: 1% 2% 2% 2.5%;
+  }
+
 </style>
