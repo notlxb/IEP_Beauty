@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/stuApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/stuApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/sqlMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sqlMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="418" lean-forward="true" selection-start-line="418" selection-end-line="418" />
+            <state relative-caret-position="286">
+              <caret line="307" column="42" selection-start-line="307" selection-start-column="42" selection-end-line="307" selection-end-column="42" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
@@ -405,12 +400,12 @@
       <workItem from="1583209637816" duration="9339000" />
       <workItem from="1583220549376" duration="1017000" />
       <workItem from="1583675066461" duration="689000" />
-      <workItem from="1583746595738" duration="18089000" />
+      <workItem from="1583746595738" duration="19728000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39755000" />
+    <option name="totallyTimeSpent" value="41394000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -423,7 +418,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.20710456" />
       <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
@@ -797,8 +791,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="418" lean-forward="true" selection-start-line="418" selection-end-line="418" />
+        <state relative-caret-position="286">
+          <caret line="307" column="42" selection-start-line="307" selection-start-column="42" selection-end-line="307" selection-end-column="42" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />

@@ -280,6 +280,7 @@
         this.dialogVisible = true;
       },
       async dialogConfirm(){
+        var id = 1;
         var Courses;
         await this.$http.post('/api/stu/queryStuinfo',{
           AStuID:this.form.stu_id
@@ -297,7 +298,16 @@
             return;
           }
 
+        if (Courses.length > 0) {
+          id = parseInt(Courses[Courses.length-1].id) + 1;
+          for (var i = 0; i < Courses.length; i++)
+            if (id == parseInt(Courses[i].id)) {
+              id++;
+              i = -1;
+            }
+        }
         Courses.push({
+          id:id,
           term:this.form.term,
           class:this.form.stu_class,
           stuID:this.form.stu_id, evaDate:'',
