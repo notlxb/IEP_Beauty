@@ -53,6 +53,7 @@ var sqlMap = {
     queStuinfo: 'SELECT * FROM t_studentinfo WHERE student_id = ? AND Deleted = 0',
     queClass:'select student_id,name from t_studentinfo where class_id = ? and Deleted = 0',
     queCourse:'SELECT * FROM coursemanagement WHERE delete_status = 0',
+    queCourseCategeories:'SELECT * FROM coursemanagement WHERE show_type = 0 AND father = 0 AND delete_status = 0 AND producerId = ?',
     queSS:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ? and father = ? and producerID = ?',
     queSS_ST:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ? and producerID = ?',
     queName: 'select student_id, name, sex from t_studentinfo where name = ? and Deleted = 0',
