@@ -17,11 +17,11 @@
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="schoolYear" label="学年"></el-table-column>
         <el-table-column prop="term" label="学期"></el-table-column>
+        <el-table-column prop="stuName" label="学生"></el-table-column>
         <el-table-column prop="class" label="班级"></el-table-column>
         <el-table-column prop="subject" label="学科"></el-table-column>
         <el-table-column prop="teacher" label="任教老师"></el-table-column>
         <el-table-column prop="createDate" label="制定日期"></el-table-column>
-        <el-table-column prop="updateDate" label="更新日期"></el-table-column>
         <el-table-column label="维护">
           <template slot-scope="scope">
             <el-dropdown>
@@ -45,9 +45,8 @@
           @current-change="handleCurrentChange1"
           :current-page="this.currentPage1"
           :page-size= "this.pageSize"
-          :page-sizes="[2, 5, 10, 20]"
           :total = "this.total"
-          layout="total, sizes, prev, pager, next, jumper">
+          layout="total, prev, pager, next, jumper">
       </el-pagination>
     </div>
     <el-dialog
@@ -115,6 +114,8 @@
                     console.log(response);
                     this.$store.dispatch("setTrainingSPlist", response.bodyText);
                     this.total = this.$store.state.trainingSPlist.length;
+                    if(this.$route.query.currentPage != undefined)
+                      this.currentPage1 = parseInt(this.$route.query.currentPage);
                     this.currentChangePage(this.currentPage1);
                 });
 
@@ -147,11 +148,11 @@
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setTrainingSP", response.bodyText);
-                        this.$router.push({path: '/indSubjectEdit', query: {isEdit: isEdit},});
+                        this.$router.push({path: '/indSubjectEdit', query: {isEdit: isEdit, currentPage: this.currentPage1},});
                     })
                 }
                 else {
-                    this.$router.push({path: '/indSubjectEdit', query: {isEdit: isEdit},});
+                    this.$router.push({path: '/indSubjectEdit', query: {isEdit: isEdit, currentPage: this.currentPage1},});
                 }
             },
 

@@ -4,22 +4,15 @@
     <!--列表-->
     <div class="table">
       <div style="display: inline-block;margin-bottom: 1%">
-        <el-button  type="danger" v-show="show3" @click="Tocompare()" >评量对比</el-button>
-        <el-button  type="danger" v-show="show4" @click="cancel_com()" >取消对比</el-button>
+        <el-button  type="danger" @click="addStuCE()" >新增评量</el-button>
       </div>
       <div class="search-Box" style="display: inline-block;">
         <el-input  style="width: 320%"  placeholder="请输入需要查找的关键字" class="search"  v-model="search">
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <div v-show="show1">
+      <div>
         <el-table v-loading="loading" :data="tables" ref="tablesection" @select="handlesection" align="left" stripe>
-          <!--      <el-table-column type="index" align="center"></el-table-column>-->
-          <!--      <el-table-column label="多选">-->
-          <!--        <template slot-scope="s">-->
-          <!--          <el-checkbox @change="getStuid(s.row.stuID)"></el-checkbox>-->
-          <!--        </template>-->
-          <!--      </el-table-column>-->
           <el-table-column type="selection" label="选择" align="center"></el-table-column>
           <el-table-column
             :filters = this.schYear
@@ -73,89 +66,84 @@
             @current-change="handleCurrentChange1"
             :current-page="this.currentPage1"
             :page-size= "this.pageSize"
-            :page-sizes="[2, 5, 10, 20]"
             :total = "this.total"
-            layout="total, sizes, prev, pager, next, jumper">
+            layout="total, prev, pager, next, jumper">
           </el-pagination>
         </div>
       </div>
-
     </div>
-    <div v-show="show2">
-      <el-form>
-        <el-form-item  ref="school_year" label="年 度">
-          <el-select   v-model="sch_year" placeholder="请选择"  @change = "choose_fields()" >
-            <el-option v-for="item in school_year"
-                       :label="item.label"
-                       :key="item.value"
-                       :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item><br>
-        <el-form-item  ref="field1" label="领 域">
-          <el-select v-model="field_value" placeholder="请选择" @change="second_traverse()" >
-            <el-option v-for="item in field1"
-                       :label="item.label"
-                       :key="item.value"
-                       :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item><br>
-        <el-form-item label="次领域">
-          <el-select v-model="se_field_value" placeholder="请选择" @change="project_traverse()" >
-            <el-option v-for="item in second_field"
-                       :label="item.label"
-                       :key="item.value"
-                       :value="item.value" @click="this.change(item.value)">
-            </el-option>
-          </el-select>
-        </el-form-item><br>
-        <el-form-item  label="项 目">
-          <el-select  v-model="project_value"   placeholder="请选择" @change="get_data_draw()">
-            <el-option v-for="item in project"
-                       :label="item.label"
-                       :key="item.value"
-                       :value="item.value" @click="this.change(item.value)">
+
+    <el-dialog title="新增课程评量" :visible.sync="dialogVisible">
+      <el-form :model="form">
+        <el-form-item label="学年" label-width="15%">
+          <el-select v-model="form.schoolYear" placeholder="请选择学年" width="50%">
+            <el-option
+                    v-for="item in form.schoolYear_options"
+                    :key="item.key"
+                    :label="item.label"
+                    :value="item.value">
             </el-option>
           </el-select>
         </el-form-item>
-
+        <el-form-item label="学期" label-width="15%">
+          <el-select v-model="form.term" placeholder="请选择学期">
+            <el-option
+                    v-for="item in form.term_options"
+                    :key="item.key"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="课程大类" label-width="15%">
+          <el-select v-model="form.course_category" placeholder="请选择课程大类">
+            <el-option
+                    v-for="item in form.COURSE_options"
+                    :key="item.key"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="班级" label-width="15%">
+          <el-select v-model="form.stu_class" @change="queStudents()" placeholder="请选择班级">
+            <el-option
+                    v-for="item in form.class_options"
+                    :key="item.key"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="学生" label-width="15%">
+          <el-select v-model="form.stu_id" @change="" placeholder="请选择学生" @change="selectStuName">
+            <el-option
+                    v-for="item in form.student_options"
+                    :key="item.key"
+                    :label="item.label"
+                    :value="item.value">
+              <span style="float: left">{{ item.label }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+            </el-option>
+          </el-select>
+        </el-form-item>
       </el-form>
-      <div >
-        <columnarchart ref="tdata" />
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogConfirm()">确 定</el-button>
       </div>
-    </div>
-
+    </el-dialog>
   </section>
 </template>
 
 
 <script>
-  import columnarchart from '@/components/tools/echarts/columnar-chart'
   export default {
-    components: {
-      columnarchart
-    },
     data() {
       return {
-        //filters1:[{text:'2016/2017',value:'2016/2017'},{text:'2018/2019',value:'2018/2019'}],
         schYear:[],
         class_a:[],
         course_name:[],
-        show1:true,
-        show2:false,
-        show3:true,
-        show4:false,
-        options: [
-          {
-            value: '选项1',
-            label: '2019-2020'
-          },
-          {
-            value: '选项2',
-            label: '2018-2019'
-          },
-        ],
         value:'',
         tempList:[],
         total:0,
@@ -164,22 +152,25 @@
 
         search:'',
         tablesection:[],
+
+        form:{
+          schoolYear_options:[],
+          COURSE_options:[],
+          class_options:[],
+          student_options:[],
+          term_options:[
+            {value: '上学期', label: '上学期'},
+            {value: '下学期', label: '下学期'}
+          ],
+
+          schoolYear:'',
+          course_category:'',
+          stu_class:'',
+          stu_id:'',
+          stu_name:'',
+          term:'',
+        },
         dialogVisible:false,
-
-
-        school_year:[],
-        sch_year:'',
-        field1: [],
-        field_value:'',
-        field_label:'',
-        second_field:[],
-        se_field_value:'',
-        se_field_label:'',
-        project:[],
-        project_value:'',
-        project_label:'',
-        table_select_courses:[],
-        tidata1:[],
 
         loading:true,
       }
@@ -207,152 +198,71 @@
     },
 
     async mounted(){
-      await  this.setStuCE();
+      await this.optionsInit();
       this.updateCourse()
     },
     methods:{
+      //初始化选项
+      async optionsInit(){
+        this.form.schoolYear_options = [];
+        this.form.COURSE_options = [];
+        this.form.class_options = [];
+
+        //初始化学年选项
+        var date = new Date();
+        var year = date.getFullYear();
+        this.form.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)})
+        this.form.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
+        for (var i = 2; i < 7; i++){
+          this.form.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+        }
+
+        //初始化课程大类选项
+        await this.$http.post('/api/stu/queCourseCategeories',{
+          producerId:1
+        },{}).then((response) => {
+          for (var i = 0; i < response.body.length; i++)
+            this.form.COURSE_options.push({key:i, value:response.body[i].label, label:response.body[i].label});
+        });
+
+        //初始化班级选项
+        await this.$http.post('/api/stu/queClasstable', {
+          schoolName: "苏州工业园区仁爱学校",
+        }, {}).then((response) => {
+          for (var i = 0; i < response.body.length; i++){
+            this.form.class_options.push({key:i, value:response.body[i].className, label:response.body[i].className});
+          }
+        })
+
+      },
+      //获取班级学生名单
+      async queStudents(){
+        this.form.student_options = [];
+        this.form.stu_id = '';
+        await this.$http.post('/api/stu/queryClass',{
+          class_id:this.form.stu_class
+        },{}).then((response) => {
+          console.log(response)
+          for (var i = 0; i < response.body.length; i++)
+            this.form.student_options.push({key:i, label:response.body[i].name, value:response.body[i].student_id});
+        })
+      },
+
+      selectStuName(id){
+        let stu = {};
+        stu = this.form.student_options.find((item)=>{
+          return item.value === id;
+        });
+        this.form.stu_name = stu.label;
+      },
 
       filterHandler(value,row,column){
         const property = column['property'];
         return row[property] === value;
       },
 
-      getStuid(stuID){
-        console.log(stuID);
-      },
-
-
       handlesection(val){
         this.tablesection = val;
-      },
-      cancel_com(){
-        this.show1 = true;
-        this.show2 = false;
-        this.show3 = true;
-        this.show4 = false;
-      },
-
-      async Tocompare() {
-
-        this.show1 = false;
-        this.show2 = true;
-        this.show3 = false;
-        this.show4 = true;
-        var shuzu = [];
-        this.table_select_courses = [];
-        for (let i = 0; i < this.tablesection.length; i++) {
-          shuzu.push(this.tablesection[i].stuID);
-        }
-        let school_year_repeat = [];
-        for (let i = 0; i < shuzu.length; i++) {
-          await this.$http.post('/api/stu/queryStuinfo', {
-            AStuID: shuzu[i]
-          }, {}).then((response) => {
-            this.$store.dispatch("setstuinfo", response.bodyText);
-          });
-          let stu_info = JSON.parse(this.$store.state.stuinfo[0].Courses);
-          this.table_select_courses.push(stu_info);
-          for (let k = 0; k < stu_info.length; k++) {
-            school_year_repeat.push(stu_info[k].schoolYear + "--" + stu_info[k].term);
-          }
-        }
-        let school_year_not_repeat = school_year_repeat.filter(function (ele, index, self) {
-          return self.indexOf(ele) == index;
-        });
-        for (let i = 0; i < school_year_not_repeat.length; i++) {
-          this.school_year.push({label: school_year_not_repeat[i], value: i});
-        }
-        console.log(this.table_select_courses);
-        this.field1_traverse();
-      },
-      field1_traverse(){
-        for(var i=0; i<this.$store.state.course.length;i++) {
-          if(this.$store.state.course[i].show_type=='1') {
-            this.field1.push({label:this.$store.state.course[i].label,value:this.$store.state.course[i].id});
-          }
-        }
-      },
-      second_traverse(){
-        this.termTarget={};
-        this.second_field=[];
-        this.se_field_value='';
-        for (var i = 0; i < this.$store.state.course.length; i++) {
-          if (this.$store.state.course[i].father == this.field_value) {
-            this.second_field.push({
-              label: this.$store.state.course[i].label,
-              value: this.$store.state.course[i].id
-            });
-          }
-        }
-      },
-      project_traverse(){
-        this.termTarget={};
-        this.project=[];
-        this.project_value='';
-        this.radio_title=[];
-        this.radioes=[];
-        for(var i =0 ;i<this.$store.state.course.length;i++)
-        {
-          if(this.$store.state.course[i].father== this.se_field_value)
-          {
-            this.project.push({
-              label:this.$store.state.course[i].label,
-              value:this.$store.state.course[i].id});
-          }
-        }
-      },
-      get_data_draw(){
-        var school_year_term = (this.school_year[this.sch_year].label).split("--");
-        for(let i = 0;i < this.$store.state.course.length;i++){
-          if(this.$store.state.course[i].id == this.field_value){
-            var first_field = this.$store.state.course[i].label;
-          }else if (this.$store.state.course[i].id == this.se_field_value){
-            var second_field = this.$store.state.course[i].label;
-          }else if(this.$store.state.course[i].id == this.project_value){
-            var third_project = this.$store.state.course[i].label;
-            break;
-          }
-        }
-        var check = 0;
-        var score_all = [];
-        for(let ij = 0;ij < this.table_select_courses.length;ij++) {
-          let stu_info = this.table_select_courses[ij];
-          console.log(stu_info);
-          for (var i = 0; i < stu_info.length; i++) {
-            if ((stu_info[i].schoolYear === school_year_term[0]) && (stu_info[i].term === school_year_term[1])) {
-              let evalu = stu_info[i].evaluation;
-              let stu_n = stu_info[i].stuName;
-              console.log(evalu);
-              console.log(stu_n);
-              console.log(evalu.length);
-              for (let j = 0; j < evalu.length; j++) {
-                console.log(j);
-                if ((evalu[j].领域 === first_field) && (evalu[j].次领域 === second_field) && (evalu[j].项目 === third_project)) {
-                  var information = evalu[j].长期目标;
-                  var title = [];
-                  var score = [];
-                  for (let k in information) {
-                    title.push(information[k].title);
-                    score.push(information[k].score);
-                  }
-                  score_all.push({
-                    barGap: 0,
-                    name: stu_n,
-                    type: 'bar',
-                    barWidth: 16,
-                    data: score,
-                  });
-                }
-              }
-            }
-          }
-        }
-        this.tidata1.push(score_all);
-        this.tidata1.push(title);
-        this.tidata1.push(third_project);
-        this.$nextTick(function () {
-          this.$refs.tdata.drawLine(this.tidata1);
-        });
       },
 
       //跳转至课程评量界面
@@ -361,79 +271,66 @@
           AStuID:stuID
         },{}).then((response) => {
           this.$store.dispatch("setstuinfo", response.bodyText);
-          this.$router.push({path:'/courseEdit',query:{schoolYear:schoolYear, term:term}})
+          this.$router.push({path:'/courseEdit',query:{schoolYear:schoolYear, term:term, currentPage: this.currentPage1}})
         });
       },
 
-      //根据schedule表中的学生课表信息为对应学生设置课程评量
-      async setStuCE(){
-        var Schedule = await this.$http.post('/api/stu/queSchedule', {}, {});
-        for (var i = 0; i < Schedule.body.length; i++){
-          var c = Schedule.body[i];
-          // console.log(c);x
-          var Stu = await this.$http.post('/api/stu/queryStuinfo', {AStuID:c.student_id}, {});
-          // console.log("******************");
-          // console.log(i);
-          //console.log(Stu);
-          if (Stu.body.length == 0)
-            continue;
-          else if (Stu.body[0].Courses != null) {
-            var isExist = false;
-            for (var j = 0; j < JSON.parse(Stu.body[0].Courses).length; j++) {
-              if (JSON.parse(Stu.body[0].Courses)[j].id == c.id) isExist = true;
-            }
-            if(!isExist){
-              var courses = JSON.parse(Stu.body[0].Courses);
-              var e = {};
-              e.id = c.id.toString();
-              e.schoolYear = c.year;
-              if (c.semester == 1)
-                e.term = "上学期";
-              else
-                e.term = "下学期";
-              e.class = Stu.body[0].class_id;
-              e.courseName = "义务教育课程标准";
-              e.stuName = Stu.body[0].name;
-              e.evaDate = "";
-              e.stuID = Stu.body[0].student_id;
-              e.evaluation = [];
-              courses.push(e);
-              console.log(courses);
-              this.$http.post('/api/stu/upStuCourse', {
-                Course: courses,
-                stuID: Stu.body[0].student_id
-              }, {})
-            }
+      //新增课程评量
+      async addStuCE(){
+        this.dialogVisible = true;
+      },
+      async dialogConfirm(){
+        var id = 1;
+        var Courses;
+        await this.$http.post('/api/stu/queryStuinfo',{
+          AStuID:this.form.stu_id
+        },{}).then((response) => {
+          if (response.body[0].Courses != null)
+            Courses = JSON.parse(response.body[0].Courses)
+          else
+            Courses = [];
+        });
+
+        for (var i = 0; i < Courses.length; i++)
+          if (Courses[i].term == this.form.term && Courses[i].class == this.form.stu_class && Courses[i].stuID == this.form.stu_id && Courses[i].courseName == this.form.course_category && Courses[i].schoolYear == this.form.schoolYear) {
+            this.$message.error('该课程评量已存在！');
+            this.dialogVisible = false;
+            return;
           }
-          else {
-            var courses = [];
-            var e = {};
-            e.id = c.id.toString();
-            e.schoolYear = c.year;
-            if (c.semester == 1)
-              e.term = "上学期";
-            else
-              e.term = "下学期";
-            e.class = Stu.body[0].class_id;
-            e.courseName = "义务教育课程标准";
-            e.stuName = Stu.body[0].name;
-            e.evaDate = "";
-            e.stuID = Stu.body[0].student_id;
-            e.evaluation = [];
-            courses.push(e);
-            console.log(courses);
-            this.$http.post('/api/stu/upStuCourse', {
-              Course:courses,
-              stuID:Stu.body[0].student_id
-            }, {})
-          }
+
+        if (Courses.length > 0) {
+          id = parseInt(Courses[Courses.length-1].id) + 1;
+          for (var i = 0; i < Courses.length; i++)
+            if (id == parseInt(Courses[i].id)) {
+              id++;
+              i = -1;
+            }
         }
+        Courses.push({
+          id:id,
+          term:this.form.term,
+          class:this.form.stu_class,
+          stuID:this.form.stu_id, evaDate:'',
+          stuName:this.form.stu_name,
+          courseName:this.form.course_category,
+          evaluation:[],
+          appraisal:[],
+          schoolYear:this.form.schoolYear
+        });
+        await this.$http.post('/api/stu/upStuCourse',{
+          Course:Courses,
+          stuID:this.form.stu_id
+        },{}).then((response) => {
+          if (response.status == 200)
+            this.to_edit(this.form.stu_id, this.form.schoolYear, this.form.term);
+          else
+            this.$message.error('错误！');
+        });
+        this.dialogVisible = false;
       },
 
       //更新课程信息
       async updateCourse(){
-
-
         await  this.$http.post('/api/stu/queCourse', {
         }, {}).then((response) => {
           this.$store.dispatch("setcourse", response.bodyText);
@@ -485,18 +382,13 @@
             this.course_name.push({text:courseName_a[i],value:courseName_a[i]});
           }
           this.total = this.$store.state.stucourseslist.length;
+          if(this.$route.query.currentPage != undefined)
+            this.currentPage1 = parseInt(this.$route.query.currentPage);
           this.currentChangePage(this.currentPage1);
         });
 
         this.loading = false;
       },
-
-
-
-
-
-
-
 
 
 

@@ -2,11 +2,11 @@
   <section id="t2">
 
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/newContact' }">生态评量</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit},}">学生信息</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{isEdit:this.$route.query.isEdit},}">医学诊断</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/newContact', query:{currentPage:this.$route.query.currentPage} }">生态评量</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage },}">学生信息</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">医学诊断</el-breadcrumb-item>
       <el-breadcrumb-item>家庭基础信息（家长自评）</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit},}">专项评估</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
@@ -20,6 +20,7 @@
       </el-form-item>
       <el-form-item class="submit-btn">
         <el-button type="danger" @click="submitForm2()">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
 
@@ -111,6 +112,9 @@
                 }
             },
 
+            go_back(){
+              this.$router.replace({path:'/checkNEdit', query:{currentPage: this.$route.query.currentPage}});
+            },
 
             /*提交表单*/
             submitForm2() {
@@ -134,7 +138,7 @@
                     AStuID: this.$store.state.stuinfo[0].student_id
                 }, {}).then((response) => {
                     this.$store.dispatch("setstuinfo", response.bodyText);
-                    this.$router.replace({path: '/checkNEdit'})
+                    this.$router.replace({path: '/checkNEdit', query:{currentPage: this.$route.query.currentPage}})
                 });
             },
 

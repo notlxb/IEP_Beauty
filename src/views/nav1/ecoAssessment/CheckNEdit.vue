@@ -1,11 +1,11 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <section id="data1">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/newContact' }">生态评量</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/newContact' , query:{currentPage:this.$route.query.currentPage}}">生态评量</el-breadcrumb-item>
       <el-breadcrumb-item>学生信息</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget'}">医学诊断</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget'}">家庭基础信息（家长自评）</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget'}">专项评估</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{currentPage:this.$route.query.currentPage}}">医学诊断</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{currentPage:this.$route.query.currentPage}}">家庭基础信息（家长自评）</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{currentPage:this.$route.query.currentPage}}">专项评估</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider content-position="center"><strong>学生基本信息</strong></el-divider>
@@ -261,6 +261,7 @@
     </el-form>
     <el-form :inline="true" align="center">
       <el-button type="danger" v-on:click="updateStuinfo">确认修改</el-button>
+      <el-button type="danger" @click.native="go_back()">返回</el-button>
     </el-form>
   </section>
 
@@ -539,6 +540,11 @@
                     })
                 }
             },
+
+            go_back(){
+              this.$router.replace({path:'/newContact', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             updateStuinfo() {
                 var StuID = this.getstu.StuID;
                 var StuClass = this.getstu.Class;
@@ -726,7 +732,7 @@
                 },{}).then((response) => {
                     this.$store.dispatch("setstuNNS", response.bodyText);
                     console.log(this.$store.state.stuNNS);
-                    this.$router.replace({path:'/newContact'})
+                    this.$router.replace({path:'/newContact', query:{currentPage: this.$route.query.currentPage}})
                 });
             },
 

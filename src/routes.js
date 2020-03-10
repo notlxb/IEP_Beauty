@@ -20,6 +20,7 @@ import courseEdit from './views/nav2/courses/courseEdit.vue'
 import schoolManagement from './views/nav4/schoolManagement.vue'
 import userManagement from './views/nav4/userManagement.vue'
 import dataManagement from './views/nav4/dataManagement.vue'
+import courseManagement from './views/nav4/courseManagement.vue'
 import subjectManagement from './views/nav4/subjectManagement.vue'
 import courseEvaluation from './views/nav2/courses/courseEvaluation.vue'
 import evaluationAnalysis from './views/nav2/courses/evaluationAnalysis.vue'
@@ -207,17 +208,23 @@ let routes = [
                     //{path: '/user', component: user, name: '列表'},
                 ],
             },*/
-            {path: '/teaTheme', component: teaTheme, name: '长短期目标', authority: [1, 1, 1, 1, 1]},
-            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden:true},
-            //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
-            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
-            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
-            {path: '/indSubject', component: indSubject, name: '个训学科计划', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectEdit', component: indSubjectEdit, name: '个训学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
             {path: '/groupSubject', component: groupSubject, name: '集体学科计划', authority: [1, 1, 1, 1, 1]},
             {path: '/groupSubjectEdit', component: groupSubjectEdit, name: '集体学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            {path: '/indSubject', component: indSubject, name: '个训学科计划', authority: [1, 1, 1, 1, 1]},
+            {path: '/indSubjectEdit', component: indSubjectEdit, name: '个训学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            {path: '/teaTheme', component: teaTheme, name: '长短期目标', authority: [1, 1, 1, 1, 1]},
+            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
+
+            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学', authority: [1, 1, 1, 1, 1]},
+            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
+            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
+            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+
             {path: '/learningReport', component: learningReport, name: '学习报表', authority: [1, 1, 1, 1, 1]},
             {path: '/learningReportEdit', component: learningReportEdit, name: '学习报表编辑', authority: [1, 1, 1, 1, 1], hidden:true},
         ]
@@ -234,6 +241,7 @@ let routes = [
             {path: '/userManagement', component: userManagement, name: '用户管理', authority: [1, 1, 1, 1, 0],},
             {path: '/dataManagement', component: dataManagement, name: '指标管理', authority: [1, 1, 1, 1, 0],},
             {path: '/subjectManagement', component: subjectManagement, name: '课标管理', authority: [1, 1, 1, 1, 0],},
+            {path: '/courseManagement', component: courseManagement, name: '课程设置', authority: [1, 1, 1, 1, 0],},
 
         ]
     },
