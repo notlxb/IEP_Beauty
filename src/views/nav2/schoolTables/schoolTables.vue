@@ -50,7 +50,7 @@
           <el-form-item label="按班级查询">
             <el-select v-model="classes" placeholder="下拉选择班级">
               <el-option
-                  v-for="item in allClasses"
+                  v-for="item in this.allClasses"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value">
@@ -134,12 +134,13 @@ import axios from 'axios/index'
 export default {
     data() {
         const allStudents = [];
-
+        const allClasses = [];
+        this.getClass();
         /*this.mockTest()*///在渲染页面是初始时得到需要展示在前端的后端数据
         //因为初始时不需要数据展示，查询后得到数据 所以不需要渲染页面时获取数据
-
         return {
             allStudents,
+            allClasses,
             activeColor: '#F56C6C', //单选框填充颜色
             searchMethod: '-1', //单选框默认选择值
             search: '',
@@ -147,28 +148,29 @@ export default {
             SId: '',
             classes: '',
             totalCount: 0,
-            allClasses: [
-                {value: '仁（1）班', label: '仁（1）班'},
-                {value: '仁（2）班', label: '仁（2）班'},
-                {value: '义（1）班', label: '义（1）班'},
-                {value: '义（2）班', label: '义（2）班'},
-                {value: '义（3）班', label: '义（3）班'},
-                {value: '义（4）班', label: '义（4）班'},
-                {value: '礼（1）班', label: '礼（1）班'},
-                {value: '礼（2）班', label: '礼（2）班'},
-                {value: '礼（3）班', label: '礼（3）班'},
-                {value: '礼（4）班', label: '礼（4）班'},
-                {value: '智（1）班', label: '智（1）班'},
-                {value: '智（2）班', label: '智（2）班'},
-                {value: '智（3）班', label: '智（3）班'},
-                {value: '智（4）班', label: '智（4）班'},
-                {value: '信（1）班', label: '信（1）班'},
-                {value: '信（2）班', label: '信（2）班'},
-                {value: '暖星班（送教）', label: '暖星班（送教）'},
-                {value: '入学评估', label: '入学评估'},
-                {value: '毕业班级1', label: '毕业班级1'},
-            ],
-            presentStudents: []
+            // allClasses: [
+            //     {value: '仁（1）班', label: '仁（1）班'},
+            //     {value: '仁（2）班', label: '仁（2）班'},
+            //     {value: '义（1）班', label: '义（1）班'},
+            //     {value: '义（2）班', label: '义（2）班'},
+            //     {value: '义（3）班', label: '义（3）班'},
+            //     {value: '义（4）班', label: '义（4）班'},
+            //     {value: '礼（1）班', label: '礼（1）班'},
+            //     {value: '礼（2）班', label: '礼（2）班'},
+            //     {value: '礼（3）班', label: '礼（3）班'},
+            //     {value: '礼（4）班', label: '礼（4）班'},
+            //     {value: '智（1）班', label: '智（1）班'},
+            //     {value: '智（2）班', label: '智（2）班'},
+            //     {value: '智（3）班', label: '智（3）班'},
+            //     {value: '智（4）班', label: '智（4）班'},
+            //     {value: '信（1）班', label: '信（1）班'},
+            //     {value: '信（2）班', label: '信（2）班'},
+            //     {value: '暖星班（送教）', label: '暖星班（送教）'},
+            //     {value: '入学评估', label: '入学评估'},
+            //     {value: '毕业班级1', label: '毕业班级1'},
+            // ],
+
+            presentStudents: [],
         }
     },
 
@@ -337,9 +339,27 @@ export default {
                 path: '/test_dir',
                 name: 'test_dir',
             })
-        }
+        },
 
-    }
+        getClass() {///methods中的一个方法 获取后端数据  实现前端渲染
+            //这是一个ajax的post请求  res是response的简化参数名 叫什么无所谓  代表的是response
+            axios.post("http://47.110.134.247/group1_b/sysAdmin/resource/classData").then((res) => {
+                const result = res.data.data;
+                console.log(result);//返回的参数 res.data才是后端返回的
+                for (let i = 0; i < result.length; i++) {
+                    this.allClasses.push({
+                        value: result[i].className,
+                        label: result[i].className
+                    });
+                }
+                console.log(this.allClasses);
+                // this.list=res.data.data
+            }).catch((err) => {
+                console.log(err)
+            })
+
+        },
+    },
 }
 </script>
 

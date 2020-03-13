@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/classManagement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/classManagement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,50 +41,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="54" column="65" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api/stuApi.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="622" column="26" lean-forward="true" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
+        <entry file="file://$PROJECT_DIR$/src/views/Home.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="307" column="42" selection-start-line="307" selection-start-column="42" selection-end-line="307" selection-end-column="42" />
+            <state relative-caret-position="7194">
+              <caret line="366" column="23" lean-forward="true" selection-start-line="366" selection-start-column="23" selection-end-line="366" selection-end-column="23" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#5734#5752#0" />
-                <element signature="e#8015#8033#0" />
-                <element signature="e#8818#8836#0" />
-                <element signature="e#4361#4455#0" />
-                <element signature="e#15007#17957#0" />
-                <element signature="e#18025#18132#0" />
-                <element signature="e#18184#18319#0" />
-                <element signature="e#18375#18752#0" />
+                <element signature="n#style#0;n#i#0;n#div#0;n#el-col#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-menu#0;n#aside#0;n#el-col#1;n#el-row#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#8744#10900#0" />
+                <element signature="e#13326#13600#0" />
               </folding>
             </state>
           </provider>
@@ -96,36 +68,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>choose_fields</find>
-      <find>choose_sec_fields</find>
-      <find>choose_pro</find>
-      <find>getdata</find>
-      <find>columnarchart</find>
-      <find>show</find>
-      <find>field1</find>
-      <find>field_value</find>
-      <find>field_label</find>
-      <find>project</find>
-      <find>choose_sch_year</find>
-      <find>changedata</find>
-      <find>stu_id_index</find>
-      <find>school_year</find>
-      <find>sch_year</find>
-      <find>cho_fields</find>
-      <find>term_location</find>
-      <find>sec_fields</find>
-      <find>choose_project</find>
-      <find>projects</find>
-      <find>tidata1</find>
-      <find>tdata</find>
-      <find>fields</find>
-      <find>stu_id</find>
       <find>id</find>
       <find>课程评量</find>
       <find>queCourse</find>
       <find>setStuCE</find>
       <find>handlesection</find>
       <find>getStuAppraisal</find>
+      <find>学生</find>
+      <find>ico</find>
+      <find>i</find>
+      <find>icon</find>
+      <find>baocun</find>
+      <find>保存</find>
+      <find>coursesNames</find>
+      <find>list</find>
+      <find>subjectName</find>
+      <find>options</find>
+      <find>for</find>
+      <find>small</find>
+      <find>medi</find>
+      <find>mediu</find>
+      <find>courses</find>
+      <find>getOptio</find>
+      <find>get</find>
+      <find>47.11</find>
+      <find>presentStudents</find>
+      <find>getData</find>
+      <find>班级</find>
+      <find>allClass</find>
+      <find>allStudent</find>
+      <find>allClasses</find>
     </findStrings>
     <replaceStrings>
       <replace>ckeditor5-build-balloon-block</replace>
@@ -141,7 +113,6 @@
         <option value="$PROJECT_DIR$/src/components/tools/tinymce/tinymce-editor.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" />
-        <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/views/nav4/courseManagement.vue" />
         <option value="$PROJECT_DIR$/server/db.js" />
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" />
@@ -150,6 +121,13 @@
         <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" />
+        <option value="$PROJECT_DIR$/src/routes.js" />
+        <option value="$PROJECT_DIR$/src/views/Home.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/classManagement.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" />
       </list>
     </option>
   </component>
@@ -165,8 +143,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
+    <option name="x" value="-9" />
+    <option name="width" value="978" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectId" id="1Y1rjDoRaPyfkqip3YkzBjTRuXp" />
@@ -175,78 +153,59 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="nav1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav1" type="462c0819:PsiDirectoryNode" />
-              <item name="ecoAssessment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="nav2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="nav2" type="462c0819:PsiDirectoryNode" />
-              <item name="courses" type="462c0819:PsiDirectoryNode" />
+              <item name="schoolTables" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav3" type="462c0819:PsiDirectoryNode" />
+              <item name="nav4" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -401,11 +360,12 @@
       <workItem from="1583220549376" duration="1017000" />
       <workItem from="1583675066461" duration="689000" />
       <workItem from="1583746595738" duration="19728000" />
+      <workItem from="1584086980159" duration="4785000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41394000" />
+    <option name="totallyTimeSpent" value="46179000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -417,9 +377,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.20710456" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.21842733" />
       <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
       <window_info id="Structure" order="2" sideWeight="0.5053192" side_tool="true" weight="0.19936457" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -429,14 +389,14 @@
       <window_info id="UI Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.23087819" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" weight="0.18739635" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24645892" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.68822557" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.23087819" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.32857144" />
@@ -664,25 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="243" column="80" selection-start-line="243" selection-start-column="80" selection-end-line="243" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#342#389#0" expanded="true" />
-            <element signature="e#446#486#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav4/dataManagement.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="402" column="3" lean-forward="true" selection-start-line="402" selection-start-column="3" selection-end-line="402" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav4/schoolManagement.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -758,20 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/stuApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="622" column="26" lean-forward="true" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="54" column="65" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-99">
@@ -782,29 +709,144 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="307" column="42" selection-start-line="307" selection-start-column="42" selection-end-line="307" selection-end-column="42" />
+          <caret line="265" column="8" selection-start-line="265" selection-start-column="8" selection-end-line="265" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#5734#5752#0" />
-            <element signature="e#8015#8033#0" />
-            <element signature="e#8818#8836#0" />
-            <element signature="e#4361#4455#0" />
-            <element signature="e#15007#17957#0" />
-            <element signature="e#18025#18132#0" />
-            <element signature="e#18184#18319#0" />
-            <element signature="e#18375#18752#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="236" column="28" lean-forward="true" selection-start-line="236" selection-start-column="28" selection-end-line="236" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#342#389#0" expanded="true" />
+            <element signature="e#446#486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/stuApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="637" column="26" selection-start-line="637" selection-start-column="21" selection-end-line="637" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="54" column="65" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1562">
+          <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/Main.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav4/dataManagement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1595">
+          <caret line="399" column="16" lean-forward="true" selection-start-line="399" selection-start-column="16" selection-end-line="399" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav4/subjectManagement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/data.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2816" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="253" column="27" lean-forward="true" selection-start-line="253" selection-start-column="27" selection-end-line="253" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2486">
+          <caret line="305" column="37" selection-start-line="305" selection-start-column="37" selection-end-line="305" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#0;n#div#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#7403#8320#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="208" column="8" lean-forward="true" selection-start-line="208" selection-start-column="8" selection-end-line="230" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#6620#7525#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/classManagement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="239" column="8" selection-start-line="239" selection-start-column="8" selection-end-line="239" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="348" column="57" selection-start-line="348" selection-start-column="57" selection-end-line="348" selection-end-column="57" />
+          <folding>
+            <element signature="e#4819#4835#0" />
+            <element signature="e#5920#6249#0" />
+            <element signature="e#6274#7531#0" />
+            <element signature="e#7555#8293#0" />
+            <element signature="e#8320#9242#0" />
+            <element signature="e#9571#9957#0" />
+            <element signature="e#9991#10320#0" />
+            <element signature="e#10354#10597#0" />
+            <element signature="e#10630#10875#0" />
+            <element signature="e#10911#10958#0" />
+            <element signature="e#11007#11121#0" />
+            <element signature="e#11144#11478#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/Home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7194">
+          <caret line="366" column="23" lean-forward="true" selection-start-line="366" selection-start-column="23" selection-end-line="366" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#el-col#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-menu#0;n#aside#0;n#el-col#1;n#el-row#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#8744#10900#0" />
+            <element signature="e#13326#13600#0" />
           </folding>
         </state>
       </provider>
