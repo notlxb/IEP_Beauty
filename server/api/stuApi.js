@@ -603,6 +603,21 @@ router.post('/queSchedule',(req, res) => {
   })
 });
 
+//获取课程大类选项
+router.post('/queCourseCategeories',(req, res) => {
+  var sql = $sql.stu.queCourseCategeories;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.producerId], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
 //获取课程信息
 router.post('/queCourse',(req, res) => {
   var sql = $sql.stu.queCourse;
