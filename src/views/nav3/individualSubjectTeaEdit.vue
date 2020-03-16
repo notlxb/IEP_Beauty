@@ -2,7 +2,7 @@
   <section>
     <el-container>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/indSubjectTea'}">个训学科教学</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/indSubjectTea', query:{currentPage:this.$route.query.currentPage}}">个训学科教学</el-breadcrumb-item>
         <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       </el-breadcrumb>
     </el-container>
@@ -96,28 +96,27 @@
       </el-col>
     </el-container>
     <el-divider></el-divider>
-    <div>
-      <!--      <vue-ckeditor type="classic"  v-model="content" :editors="editors1"-->
-      <!--                    :config='config' :readonly="disabled"></vue-ckeditor>-->
-      <tinymce-editor ref="editor" v-model="content" :disabled="tmdisabled"></tinymce-editor>
-    </div>
+
+    <vue-ckeditor type="classic"  v-model="content" :editors="editors1"
+                  :config='config' :readonly="tmdisabled"></vue-ckeditor>
+
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click.native="gx_submit()">提交</el-button>
+        <el-button type="danger" @click.native="gx_submit()" :disabled="disabled">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
 </template>
 
 <script>
-    // import VueCkeditor from 'vue-ckeditor5'
-    // import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-    // import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
-    import TinymceEditor from '@/components/tools/tinymce/tinymce-editor'
+    import VueCkeditor from 'vue-ckeditor5'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
     export default {
         name: "gexunxuekejiaoxue_edit",
-        components:{TinymceEditor},
+        components:{'vue-ckeditor': VueCkeditor.component},
         data(){
             let that = this;
             return{
@@ -131,7 +130,7 @@
                 week:'',
                 section:'',
                 topic:'',
-                content:'',
+                content:'<h1>点击以编辑内容</h1>',
 
                 term_options: [{value: '上学期', label: '上学期'},
                     {value: '下学期', label: '下学期'}],
@@ -154,15 +153,15 @@
 
 
 
-                // editors1: {
-                //   classic: ClassicEditor,
-                // },
-                // config:{
-                //   language:'zh-cn',
-                //   ckfinder: {
-                //     uploadUrl: '/api/stu/picture_GeXunJX'
-                //   },
-                // },
+                editors1: {
+                  classic: ClassicEditor,
+                },
+                config:{
+                  language:'zh-cn',
+                  ckfinder: {
+                    uploadUrl: '/api/stu/picture_GeXunJX'
+                  },
+                },
             }
         },
         mounted(){
@@ -256,9 +255,13 @@
                 })
             },
 
-            gx_submit(){
+          go_back(){
+            this.$router.replace({path:'/indSubjectTea', query:{currentPage: this.$route.query.currentPage}});
+          },
+
+          gx_submit(){
                 var c = {content:this.content};
-                if(this.$route.query.isEdit == 1) {
+                if(this.$route.query.isEdit == 1 || this.$route.query.isEdit == 2) {
                     this.$http.post('/api/stu/upTrainingSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
@@ -276,7 +279,7 @@
                         console.log(response);
                     })
                     console.log('success!');
-                    this.$router.replace({path:'/indSubject'});
+                    this.$router.replace({path:'/indSubjectTea', query:{currentPage: this.$route.query.currentPage}});
                 }else {
                     this.$http.post('/api/stu/addTrainingSbjIns',{
                         schoolYear:this.schoolYear,
@@ -294,7 +297,7 @@
                         console.log(response);
                     });
                     console.log('success!');
-                    this.$router.replace({path:'/indSubject'});
+                    this.$router.replace({path:'/indSubjectTea', query:{currentPage: this.$route.query.currentPage}});
                 }
             },
 

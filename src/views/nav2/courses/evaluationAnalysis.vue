@@ -73,9 +73,8 @@
                             @current-change="handleCurrentChange1"
                             :current-page="this.currentPage1"
                             :page-size= "this.pageSize"
-                            :page-sizes="[2, 5, 10, 20]"
                             :total = "this.total"
-                            layout="total, sizes, prev, pager, next, jumper">
+                            layout="total, prev, pager, next, jumper">
                     </el-pagination>
                 </div>
             </div>
@@ -207,7 +206,6 @@
         },
 
         async mounted(){
-            await  this.setStuCE();
             this.updateCourse()
         },
         methods:{
@@ -727,73 +725,8 @@
                     AStuID:stuID
                 },{}).then((response) => {
                     this.$store.dispatch("setstuinfo", response.bodyText);
-                    this.$router.push({path:'/analysisEdit',query:{schoolYear:schoolYear, term:term}})
+                    this.$router.push({path:'/analysisEdit',query:{schoolYear:schoolYear, term:term, currentPage: this.currentPage1}})
                 });
-            },
-
-            //根据schedule表中的学生课表信息为对应学生设置课程评量
-            async setStuCE(){
-                var Schedule = await this.$http.post('/api/stu/queSchedule', {}, {});
-                for (var i = 0; i < Schedule.body.length; i++){
-                    var c = Schedule.body[i];
-                    // console.log(c);x
-                    var Stu = await this.$http.post('/api/stu/queryStuinfo', {AStuID:c.student_id}, {});
-                    // console.log("******************");
-                    // console.log(i);
-                    //console.log(Stu);
-                    if (Stu.body.length == 0)
-                        continue;
-                    else if (Stu.body[0].Courses != null) {
-                        var isExist = false;
-                        for (var j = 0; j < JSON.parse(Stu.body[0].Courses).length; j++) {
-                            if (JSON.parse(Stu.body[0].Courses)[j].id == c.id) isExist = true;
-                        }
-                        if(!isExist){
-                            var courses = JSON.parse(Stu.body[0].Courses);
-                            var e = {};
-                            e.id = c.id.toString();
-                            e.schoolYear = c.year;
-                            if (c.semester == 1)
-                                e.term = "上学期";
-                            else
-                                e.term = "下学期";
-                            e.class = Stu.body[0].class_id;
-                            e.courseName = "义务教育课程标准";
-                            e.stuName = Stu.body[0].name;
-                            e.evaDate = "";
-                            e.stuID = Stu.body[0].student_id;
-                            e.evaluation = [];
-                            courses.push(e);
-                            console.log(courses);
-                            this.$http.post('/api/stu/upStuCourse', {
-                                Course: courses,
-                                stuID: Stu.body[0].student_id
-                            }, {})
-                        }
-                    }
-                    else {
-                        var courses = [];
-                        var e = {};
-                        e.id = c.id.toString();
-                        e.schoolYear = c.year;
-                        if (c.semester == 1)
-                            e.term = "上学期";
-                        else
-                            e.term = "下学期";
-                        e.class = Stu.body[0].class_id;
-                        e.courseName = "义务教育课程标准";
-                        e.stuName = Stu.body[0].name;
-                        e.evaDate = "";
-                        e.stuID = Stu.body[0].student_id;
-                        e.evaluation = [];
-                        courses.push(e);
-                        console.log(courses);
-                        this.$http.post('/api/stu/upStuCourse', {
-                            Course:courses,
-                            stuID:Stu.body[0].student_id
-                        }, {})
-                    }
-                }
             },
 
             //更新课程信息
@@ -851,6 +784,8 @@
                         this.course_name.push({text:courseName_a[i],value:courseName_a[i]});
                     }
                     this.total = this.$store.state.stucourseslist.length;
+                    if(this.$route.query.currentPage != undefined)
+                        this.currentPage1 = parseInt(this.$route.query.currentPage);
                     this.currentChangePage(this.currentPage1);
                 });
 

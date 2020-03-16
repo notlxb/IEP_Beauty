@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/learningReport' }">学习报表</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/learningReport', query:{currentPage:this.$route.query.currentPage} }">学习报表</el-breadcrumb-item>
             <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>
@@ -101,8 +101,8 @@
 
         <el-form :inline="true" align="center">
             <el-form-item>
-                <el-button type="primary" @click="goBack()">返回</el-button>
-                <el-button type="primary" @click="test()" >导出预览</el-button>
+                <el-button type="danger" @click="goBack()">返回</el-button>
+                <el-button type="danger" @click="test()" >导出预览</el-button>
             </el-form-item>
         </el-form>
         <div id="file" v-show="false">
@@ -151,58 +151,10 @@
                 month:'',
                 term:'',
                 schoolYear:'',
-                LRTable:[{
-                        subject:'生活数学',
-                        evaluation:'认识新班级，知道名字',
-                        table:[{
-                            week:'1',
-                            teachingTheme:'学校生活——期初评估',
-                            teachingAim:'复习10以内加减法，评估20以内加减法的接受情况'
-                        },{
-                            week:'2',
-                            teachingTheme:'学校生活——我的新班级',
-                            teachingAim:'20以内进位加法的笔算'
-                        },{
-                            week:'3',
-                            teachingTheme:'学校生活——我的好朋友',
-                            teachingAim:'20以内进位加法的笔算'
-                        }]
-                },{
-                    subject:'生活语文',
-                    evaluation:'不理解好朋友的意义，但是对“朋友”有一定的反应',
-                    table:[{
-                        week:'1',
-                        teachingTheme:'学校生活1',
-                        teachingAim:'111'
-                    },{
-                        week:'2',
-                        teachingTheme:'学校生活2',
-                        teachingAim:'222'
-                    },{
-                        week:'3',
-                        teachingTheme:'学校生活3',
-                        teachingAim:'333'
-                    }]
-                }],
-                tableData: [{
-                    subject_field: '12987122',
-                    week: '王小虎',
-                    tea_theme: '234',
-                    tea_target: '3.2',
-                    tar_eval: 10
-                },{
-                    subject_field: '12987122',
-                    week: '王小虎',
-                    tea_theme: '234',
-                    tea_target: '3.2',
-                    tar_eval: 10
-                },{
-                    subject_field: '12987122',
-                    week: '王小虎',
-                    tea_theme: '234',
-                    tea_target: '3.2',
-                    tar_eval: 10
-                }]
+
+                LRTable:[],
+                tableData: []
+
             }
         },
 
@@ -240,7 +192,7 @@
                         this.month_options.push({value:JSON.parse(this.$store.state.LReports[0].months)[i].month, label:JSON.parse(this.$store.state.LReports[0].months)[i].month});
             },
             goBack(){
-                this.$router.replace({path: '/learningReport'});
+                this.$router.replace({path: '/learningReport', query:{currentPage: this.$route.query.currentPage}});
             },
             test(){
                 let tableData = "<tr>";

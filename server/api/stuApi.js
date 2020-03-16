@@ -603,6 +603,21 @@ router.post('/queSchedule',(req, res) => {
   })
 });
 
+//获取课程大类选项
+router.post('/queCourseCategeories',(req, res) => {
+  var sql = $sql.stu.queCourseCategeories;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.producerId], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
 //获取课程信息
 router.post('/queCourse',(req, res) => {
   var sql = $sql.stu.queCourse;
@@ -896,7 +911,7 @@ router.post('/addTrainingSbjPl',(req, res) => {
   var sql = $sql.stu.addTrainingSbjPl;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.schoolYear,params.term,params.class,params.stuName,params.subject,params.teacher,params.createDate,params.updateDate,JSON.stringify(params.teachingPlan),JSON.stringify(params.teachingProgress)], function (err, result) {
+  conn.query(sql, [params.schoolYear,params.term,params.class,params.stuName,params.student_info,params.subject,params.teacher,params.createDate,params.updateDate,JSON.stringify(params.teachingPlan),JSON.stringify(params.teachingProgress)], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -911,7 +926,7 @@ router.post('/upTrainingSbjPl',(req, res) => {
   var sql = $sql.stu.upTrainingSbjPl;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.schoolYear,params.term,params.class,params.stuName,params.subject,params.teacher,params.createDate,params.updateDate,JSON.stringify(params.teachingPlan),JSON.stringify(params.teachingProgress),params.id], function (err, result) {
+  conn.query(sql, [params.schoolYear,params.term,params.class,params.stuName,params.student_info,params.subject,params.teacher,params.createDate,params.updateDate,JSON.stringify(params.teachingPlan),JSON.stringify(params.teachingProgress),params.id], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -945,7 +960,22 @@ router.post('/queClassGSP',(req, res) => {
   var sql = $sql.stu.queClassGSP;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.class_id, params.term], function (err, result) {
+  conn.query(sql, [params.schoolYear, params.subject, params.class_id, params.term, params.teacher], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
+//获取对应班级的个训学科计划
+router.post('/queClassTSP',(req, res) => {
+  var sql = $sql.stu.queClassTSP;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.schoolYear, params.subject, params.class_id, params.term, params.teacher], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -1247,7 +1277,7 @@ router.post('/addLearningReports',(req, res) => {
   var sql = $sql.stu.addLearningReports;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, params.teacher, JSON.stringify(params.months)], function (err, result) {
+  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, JSON.stringify(params.months)], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -1262,7 +1292,7 @@ router.post('/upLearningReports',(req, res) => {
   var sql = $sql.stu.upLearningReports;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, params.teacher, JSON.stringify(params.months), params.id], function (err, result) {
+  conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName, params.stuInfo, JSON.stringify(params.months), params.id], function (err, result) {
     if (err) {
       console.log(err);
     }

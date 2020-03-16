@@ -1,7 +1,7 @@
 <template>
   <section>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/teaTheme' }">长短期目标</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/teaTheme', query:{currentPage:this.$route.query.currentPage} }">长短期目标</el-breadcrumb-item>
       <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -10,7 +10,14 @@
       <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
         <el-form :inline="true"  align="left" >
           <el-form-item label="课程">
-            <el-input align="left" :disabled="disabled1" v-model="course"></el-input>
+            <el-select align="left" v-model="course" placeholder="请选择" :disabled="disabled1">
+              <el-option
+                      v-for="item in subject_options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item label="主题名称" v-if="false">
             <el-input align="left" :disabled="disabled" v-model="theme"></el-input>
@@ -46,7 +53,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="执教老师（主）">
-            <el-select v-model="mainTeacher" placeholder="请选择" :disabled="disabled">
+            <el-select v-model="mainTeacher" placeholder="请选择" :disabled="disabled1">
               <el-option
                       v-for="item in teacher_options"
                       :key="item.value"
@@ -136,8 +143,8 @@
     </el-container>
     <el-divider></el-divider>
     <div>
-      <el-button  type="primary"  @click="push1()" >详情</el-button>
-      <el-button  type="primary"  @click="push2()" >教学流程</el-button>
+      <el-button  type="primary"  @click="push1()" v-if="false">详情</el-button>
+      <el-button  type="primary"  @click="push2()" v-if="false">教学流程</el-button>
       <el-divider></el-divider>
     </div>
 
@@ -393,7 +400,8 @@
 
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click="teachingTheme_submit()">提交</el-button>
+        <el-button type="danger" :disabled="disabled" @click="teachingTheme_submit()">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -401,8 +409,8 @@
 
 <script>
   import VueCkeditor from 'vue-ckeditor5'
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-  import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
+  import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+  import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
   export default {
     name: "jiaoxuezhuti_edit",
     components:{'vue-ckeditor': VueCkeditor.component},
@@ -462,6 +470,7 @@
         ],
         class_options:[],
         teacher_options:[],
+        subject_options:[],
         term_options: [{value: '上学期', label: '上学期'},
           {value: '下学期', label: '下学期'}],
         schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
@@ -497,6 +506,7 @@
         this.disabled1 = false;
         this.queryClasstable();
         this.queryTeacher();
+        this.querySubject();
       }
     },
     methods:{
@@ -539,6 +549,10 @@
             this.class_options.push(opt);
           }
         })
+      },
+
+      go_back(){
+        this.$router.replace({path:'/teaTheme', query:{currentPage: this.$route.query.currentPage}});
       },
 
       async teachingTheme_submit(){
@@ -596,7 +610,7 @@
           })
           this.editLearningReports();
         }
-        this.$router.replace({path: '/teaTheme'});
+        this.$router.replace({path: '/teaTheme', query:{currentPage: this.$route.query.currentPage}});
       },
 
       async editLearningReports(){
@@ -673,7 +687,7 @@
               console.log(response);
             });
             continue;
-          }else if (flag = 'inexistent') {
+          }else if (flag == 'inexistent') {
             newLR.schoolYear = this.schoolYear;
             newLR.term = this.term;
             newLR.tclass = this.tclass;
@@ -738,17 +752,53 @@
         this.jxmb[index].title = '第'+this.jxmb[index].w+'周';
       },
 
-      addTeachingAim(){
+      //添加教学主题
+      async addTeachingAim(){
         var week;
-        if (this.teachingAim.length == 0) {
-          this.teachingAim.push({des: '', w: 1});
-          this.jxmb.push({w: 1, title: '第1周', table:[]});
+        var tableData = [];
+
+        //查询对应的集体学科计划
+        await this.$http.post('/api/stu/queClassGSP', {
+            schoolYear:this.schoolYear,
+            subject:this.course,
+            class_id:this.tclass,
+            term:this.term,
+            teacher:this.mainTeacher
+        }, {}).then((response) => {
+            for (var i = 0; i < response.body.length; i++){
+                var jx = JSON.parse(JSON.parse(response.body[i].teachingPlan).jxmb.content);
+                for (var j = 0; j < jx.length; j++){
+                    tableData.push(jx[j])
+                }
+            }
+        });
+        //查询对应的个训学科计划
+        await this.$http.post('/api/stu/queClassTSP', {
+            schoolYear:this.schoolYear,
+            subject:this.course,
+            class_id:this.tclass,
+            term:this.term,
+            teacher:this.mainTeacher
+        }, {}).then((response) => {
+            for (var i = 0; i < response.body.length; i++) {
+                var students_info = [];
+                students_info.push(response.body[i].student_info);
+                tableData.push({students:response.body[i].stuName, students_info:students_info, group:'个训',table:[]});
+            }
+        });
+
+        week = this.teachingAim.length + 1;
+        var table = [];
+        for (var i = 0; i < tableData.length; i++){
+            var table_st = [];
+            for (var j = 0; j < tableData[i].students_info.length; j++){
+                table_st.push({st:tableData[i].students_info[j],des:''});
+            }
+            table.push({students:tableData[i].students, students_info:tableData[i].students_info, group:tableData[i].group, table:table_st});
         }
-        else {
-          week = this.teachingAim.length + 1;
-          this.teachingAim.push({des:'', w:week});
-          this.jxmb.push({w: week, title:'第'+week+'周', table:[]});
-        }
+        this.teachingAim.push({des:'', w:week});
+        this.jxmb.push({w: week, title:'第'+week+'周', table:table});
+
 
         console.log(this.jxmb);
       },
@@ -757,8 +807,11 @@
         this.index = index;
         var tableData = [];
         await this.$http.post('/api/stu/queClassGSP', {
+          schoolYear:this.schoolYear,
+          subject:this.course,
           class_id:this.tclass,
-          term:this.term
+          term:this.term,
+          teacher:this.mainTeacher
         }, {}).then((response) => {
           for (var i = 0; i < response.body.length; i++){
             var jx = JSON.parse(JSON.parse(response.body[i].teachingPlan).jxmb.content);
@@ -767,11 +820,32 @@
             }
           }
         });
+          //查询对应的个训学科计划
+          await this.$http.post('/api/stu/queClassTSP', {
+              schoolYear:this.schoolYear,
+              subject:this.course,
+              class_id:this.tclass,
+              term:this.term,
+              teacher:this.mainTeacher
+          }, {}).then((response) => {
+              for (var i = 0; i < response.body.length; i++) {
+                  var students_info = [];
+                  students_info.push(response.body[i].student_info);
+                  tableData.push({students:response.body[i].stuName, students_info:students_info, group:'个训',table:[]});
+              }
+          });
 
         this.groupOpts = [];
 
-        for (var i = 0; i < tableData.length; i++)
-          this.groupOpts.push({value:tableData[i].group, label:tableData[i].group+'('+tableData[i].students+')', key:tableData[i].group, table:tableData[i]})
+        for (var i = 0; i < tableData.length; i++) {
+            var c = tableData[i].group + '(' + tableData[i].students + ')';
+            this.groupOpts.push({
+                value: c,
+                label: c,
+                key: c,
+                table: tableData[i]
+            })
+        }
 
         //console.log(this.groupOpts)
         this.dialogFormVisible = true;
@@ -897,6 +971,18 @@
             this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
           }
         });
+      },
+
+      querySubject(){
+        this.subject_options = [];
+        this.$http.post('/api/stu/queSubject', {}, {}).then((response) => {
+          for (var i = 0; i < response.body.length; i++){
+            var opt = {};
+            opt.value = response.body[i].subjectName;
+            opt.label = response.body[i].subjectName;
+            this.subject_options.push(opt);
+          }
+        })
       },
     }
   }

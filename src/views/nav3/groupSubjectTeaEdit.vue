@@ -2,7 +2,7 @@
   <section>
     <el-container>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/groupSubjectTea' }">集体学科教学</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/groupSubjectTea', query:{currentPage:this.$route.query.currentPage}}">集体学科教学</el-breadcrumb-item>
         <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       </el-breadcrumb>
     </el-container>
@@ -84,17 +84,14 @@
     </el-container>
     <el-divider></el-divider>
     <div>
-      <!--      <vue-ckeditor type="classic"  v-model="content" :editors="editors1"-->
-      <!--                    :config='config' :readonly="disabled"></vue-ckeditor>-->
-      <tinymce-editor ref="editor"
-                      v-model="content"
-                      :disabled="tmdisabled">
-      </tinymce-editor>
+            <vue-ckeditor type="classic"  v-model="content" :editors="editors1"
+                          :config='config' :readonly="tmdisabled"></vue-ckeditor>
     </div>
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click.native="jt_submit()">提交</el-button>
+        <el-button type="danger" @click.native="jt_submit()" :disabled="disabled">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -102,12 +99,11 @@
 
 <script>
     import VueCkeditor from 'vue-ckeditor5'
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-    import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
-    import TinymceEditor from '@/components/tools/tinymce/tinymce-editor'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
     export default {
         name: "jitixuekejiaoxue_edit",
-        components:{'vue-ckeditor': VueCkeditor.component,TinymceEditor},
+        components:{'vue-ckeditor': VueCkeditor.component},
         data(){
             let that = this;
             return{
@@ -120,7 +116,7 @@
                 week:'',
                 section:'',
                 topic:'',
-                content:'',
+                content:'<h1>点击以编辑内容</h1>',
 
 
                 term_options: [{value: '上学期', label: '上学期'},
@@ -230,9 +226,13 @@
                 })
             },
 
+            go_back(){
+              this.$router.replace({path:'/groupSubjectTea', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             jt_submit(){
                 var c = {content:this.content};
-                if(this.$route.query.isEdit == 1) {
+                if(this.$route.query.isEdit == 1 || this.$route.query.isEdit == 2) {
                     this.$http.post('/api/stu/upGroupSbjIns',{
                         schoolYear:this.schoolYear,
                         term:this.term,
@@ -249,7 +249,7 @@
                         console.log(response);
                     })
                     console.log('success!');
-                    this.$router.replace({path:'/groupSubjectTea'});
+                    this.$router.replace({path:'/groupSubjectTea', query:{currentPage: this.$route.query.currentPage}});
                 }else {
                     this.$http.post('/api/stu/addGroupSbjIns',{
                         schoolYear:this.schoolYear,

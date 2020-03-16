@@ -43,9 +43,8 @@
           @current-change="handleCurrentChange1"
           :current-page="this.currentPage1"
           :page-size= "this.pageSize"
-          :page-sizes="[5, 10, 15, 20]"
           :total = "this.total"
-          layout="total, sizes, prev, pager, next, jumper">
+          layout="total, prev, pager, next, jumper">
       </el-pagination>
     </div>
     <el-dialog
@@ -130,6 +129,8 @@
                 },{}).then((response) => {
                     this.$store.dispatch("setstuNNS", response.bodyText);
                     this.total = this.$store.state.stuNNS.length;
+                    if(this.$route.query.currentPage != undefined)
+                      this.currentPage1 = parseInt(this.$route.query.currentPage);
                     this.currentChangePage(this.currentPage1);
                     console.log(this.tempList)
                 });
@@ -139,7 +140,7 @@
 
             //获取学校选项
             jmp2create() {
-                this.$router.replace({path:'/createAssess'});
+                this.$router.replace({path:'/createAssess', query: {currentPage: this.currentPage1}});
             },
 
             //删除学生信息
@@ -181,7 +182,7 @@
                             },{}).then((response) => {
                                 this.$store.dispatch("setstuinfo", response.bodyText);
                                 console.log(this.$store.state.stuinfo[0]);
-                                this.$router.replace({path:'/checkNEdit', query:{isEdit:isEdit},})
+                                this.$router.push({path:'/checkNEdit', query:{isEdit:isEdit, currentPage: this.currentPage1},})
                             });
                         });
                     }
@@ -191,7 +192,7 @@
                         },{}).then((response) => {
                             this.$store.dispatch("setstuinfo", response.bodyText);
                             console.log(this.$store.state.stuinfo[0]);
-                            this.$router.replace({path:'/checkNEdit'})
+                            this.$router.push({path:'/checkNEdit', query:{currentPage: this.currentPage1}})
                         });
                     }
                 });

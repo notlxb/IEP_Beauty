@@ -64,9 +64,8 @@
           @current-change="handleCurrentChange1"
           :current-page="this.currentPage1"
           :page-size= "this.pageSize"
-          :page-sizes="[2, 5, 10, 20]"
           :total = "this.total"
-          layout="total, sizes, prev, pager, next, jumper">
+          layout="total, prev, pager, next, jumper">
       </el-pagination>
     </div>
     <el-dialog
@@ -184,6 +183,8 @@
                     for(let i = 0;i < teacher_ac.length;i++){
                         this.teacher_a.push({text:teacher_ac[i],value:teacher_ac[i]});
                     }
+                    if(this.$route.query.currentPage != undefined)
+                      this.currentPage1 = parseInt(this.$route.query.currentPage);
                     this.currentChangePage(this.currentPage1);
                 });
                 this.loading = false;
@@ -215,11 +216,11 @@
                         id: id
                     }, {}).then((response) => {
                         this.$store.dispatch("setGroupSI", response.bodyText);
-                        this.$router.push({path: '/groupSubjectTeaEdit', query: {isEdit: isEdit},});
+                        this.$router.push({path: '/groupSubjectTeaEdit', query: {isEdit: isEdit, currentPage: this.currentPage1}});
                     })
                 }
                 else {
-                    this.$router.push({path: '/groupSubjectTeaEdit', query: {isEdit: isEdit},});
+                    this.$router.push({path: '/groupSubjectTeaEdit', query: {isEdit: isEdit, currentPage: this.currentPage1}});
                 }
             },
 

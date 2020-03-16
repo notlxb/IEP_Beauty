@@ -1,7 +1,7 @@
 <template>
   <section>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/indSubject' }">个训学科计划</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/indSubject', query:{currentPage:this.$route.query.currentPage} }">个训学科计划</el-breadcrumb-item>
       <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -211,17 +211,14 @@
       </tbody>
     </table>
 
-    <!--    <vue-ckeditor v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"-->
-    <!--                  :config='config' :readonly="disabled"></vue-ckeditor>-->
-    <tinymce-editor v-if="this.judge1"
-                    ref="editor"
-                    v-model="teachingProgress"
-                    :disabled="disabled">
-    </tinymce-editor>
+      <vue-ckeditor v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"
+                    :config='config' :readonly="disabled"></vue-ckeditor>
+
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-form-item>
-        <el-button type="danger" @click="trainingSP_submit()">提交</el-button>
+        <el-button type="danger" @click="trainingSP_submit()" :disabled="disabled">提交</el-button>
+        <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -229,13 +226,12 @@
 
 <script>
     import VueCkeditor from 'vue-ckeditor5'
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-    import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
-    import TinymceEditor from '@/components/tools/tinymce/tinymce-editor'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
 
     export default {
         name: "jitxuekejihua_edit",
-        components:{'vue-ckeditor': VueCkeditor.component, TinymceEditor},
+        components:{'vue-ckeditor': VueCkeditor.component},
         data(){
             let that = this;
             return{
@@ -254,7 +250,7 @@
                 jxznd:'',  jxznd_bz:'',
                 zycs:'',   zycs_bz:'',
 
-                teachingProgress:'',
+                teachingProgress:'<h1>点击以编辑内容</h1>',
 
 
                 term_options: [{value: '上学期', label: '上学期'},
@@ -305,7 +301,7 @@
                                     id:node_info[id].id,
                                     value: node_info[id].label,
                                     label: node_info[id++].label,
-                                    leaf: show_type >= 4
+                                    leaf: show_type >= 5
                                 }));
                             // 通过调用resolve将子节点数据返回，通知组件数据加载完成
                             resolve(nodes);
@@ -358,7 +354,7 @@
                 this.schoolYear=this.$store.state.trainingSP[0].schoolYear;
                 this.term=this.$store.state.trainingSP[0].term;
                 this.tclass=this.$store.state.trainingSP[0].class;
-                this.stuName=this.$store.state.trainingSP[0].stuName;
+                this.stuName=this.$store.state.trainingSP[0].student_info;
                 this.subject=this.$store.state.trainingSP[0].subject;
                 this.teacher=this.$store.state.trainingSP[0].teacher;
                 this.createDate=this.$store.state.trainingSP[0].createDate;
@@ -417,6 +413,10 @@
                 })
             },
 
+            go_back(){
+              this.$router.replace({path:'/indSubject', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             trainingSP_submit(){
                 var teachingPlan = {
                     jcfx:{content:this.jcfx, remark:this.jcfx_bz}, xsqkfx:{content:this.xsqkfx, remark:this.xsqkfx_bz},
@@ -430,7 +430,8 @@
                         schoolYear: this.schoolYear,
                         term: this.term,
                         class: this.tclass,
-                        stuName:this.stuName,
+                        stuName:this.stuName.split("_")[1],
+                        student_info:this.stuName,
                         subject: this.subject,
                         teacher: this.teacher,
                         createDate: this.createDate,
@@ -439,14 +440,15 @@
                         teachingProgress: teachingProgress,
                     }, {}).then((response) => {
                         console.log(response);
-                        this.$router.replace({path: '/indSubject'});
+                        this.$router.replace({path: '/indSubject', query:{currentPage: this.$route.query.currentPage}});
                     });
                 }else {
                     this.$http.post('/api/stu/upTrainingSbjPl', {
                         schoolYear: this.schoolYear,
                         term: this.term,
                         class: this.tclass,
-                        stuName:this.stuName,
+                        stuName:this.stuName.split("_")[1],
+                        student_info:this.stuName,
                         subject: this.subject,
                         teacher: this.teacher,
                         createDate: this.createDate,
@@ -456,7 +458,7 @@
                         id: this.$store.state.trainingSP[0].id,
                     }, {}).then((response) => {
                         console.log(response);
-                        this.$router.replace({path: '/indSubject'});
+                        this.$router.replace({path: '/indSubject', query:{currentPage: this.$route.query.currentPage}});
                     })
                 }
             },
@@ -492,8 +494,8 @@
                 }, {}).then((response) => {
                     for (var i = 0; i < response.body.length; i++){
                         var opt = {};
-                        opt.value = response.body[i].name;
-                        opt.label = opt.value;
+                        opt.value = response.body[i].student_id + '_' + response.body[i].name;
+                        opt.label = response.body[i].student_id + '_' + response.body[i].name;
                         this.stuOptions.push(opt);
                     }
                 })
@@ -509,7 +511,7 @@
             },
             dialogConfirm(){
                 for (var i = 0; i < this.jxmb_opts.length; i++){
-                    this.tableData.push({ss:this.jxmb_opts[i][4], des:''});
+                    this.tableData.push({ss:this.jxmb_opts[i][5], des:''});
                 }
                 this.dialogFormVisible = false;
                 this.jxmb_opts = [];

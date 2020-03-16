@@ -2,7 +2,7 @@
   <div id="iep_meeting">
     <el-container>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/iepMeeting' }">IEP会议</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/iepMeeting', query:{currentPage:this.$route.query.currentPage} }">IEP会议</el-breadcrumb-item>
         <el-breadcrumb-item>新建会议</el-breadcrumb-item>
         <el-breadcrumb-item></el-breadcrumb-item>
       </el-breadcrumb>
@@ -50,14 +50,11 @@
 
     <vue-ckeditor type="classic"  v-model="summary" :editors="editors1"
                   :config='config'></vue-ckeditor>
-<!--    <tinymce-editor ref="editor"-->
-<!--                    v-model="summary"-->
-<!--                    :disabled="disabled"-->
-<!--                    @onClick="onClick">-->
-<!--    </tinymce-editor>-->
+
     <el-divider></el-divider>
     <el-form :inline="true" align="center">
       <el-button type="danger" @click="meeting_add()">添加</el-button>
+      <el-button type="danger" @click.native="go_back()">返回</el-button>
     </el-form>
   </div>
 
@@ -65,14 +62,12 @@
 
 <script>
     import VueCkeditor from 'vue-ckeditor5'
-    //import TinymceEditor from '@/components/tools/tinymce/tinymce-editor'
-    import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-    import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
 
     export default {
         name:"iep_meeting",
         components:{'vue-ckeditor': VueCkeditor.component},
-        //components:{TinymceEditor},
         data(){
             return{
                 date:'',
@@ -81,7 +76,7 @@
                 stuName:'',
                 stuID:'',
                 creator:'',
-                summary:'123',
+                summary:'<h1>点击以编辑内容</h1>',
                 term_options: [{value: '上学期', label: '上学期'},
                     {value: '下学期', label: '下学期'}],
                 schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
@@ -107,6 +102,10 @@
         },
 
         methods:{
+            go_back(){
+              this.$router.replace({path:'/iepMeeting', query:{currentPage: this.$route.query.currentPage}});
+            },
+
             meeting_add() {
                 var date = this.date;
                 var schoolYear = this.schoolYear;
@@ -127,7 +126,7 @@
                     console.log(response);
                 });
                 console.log('success!');
-                this.$router.replace({path:'/iepMeeting'});
+                this.$router.replace({path:'/iepMeeting', query:{currentPage: this.$route.query.currentPage}});
             },
             onClick(){},
         }
