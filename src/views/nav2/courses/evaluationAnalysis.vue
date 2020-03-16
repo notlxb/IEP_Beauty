@@ -7,7 +7,7 @@
                 <el-button  type="danger" v-show="show3" @click="Tocompare()" >评量对比</el-button>
                 <el-button  type="danger" v-show="show4" @click="cancel_com()" >取消对比</el-button>
             </div>
-            <div class="search-Box" style="display: inline-block;">
+            <div v-show="show1" class="search-Box" style="display: inline-block;">
                 <el-input  style="width: 320%"  placeholder="请输入需要查找的关键字" class="search"  v-model="search">
                     <template slot="prepend">模糊搜索</template>
                 </el-input>
@@ -121,7 +121,7 @@
                 </el-form-item>
 
             </el-form>
-            <div >
+            <div>
                 <columnarchart ref="tdata" />
             </div>
         </div>
@@ -166,7 +166,6 @@
                 tablesection:[],
                 dialogVisible:false,
 
-
                 school_year:[],
                 sch_year:'',
                 field1: [],
@@ -179,6 +178,7 @@
                 project_value:'',
                 project_label:'',
                 table_select_courses:[],
+                table_slect_courses_y:[],
                 tidata1:[],
 
                 loading:true,
@@ -230,10 +230,25 @@
                 this.show2 = false;
                 this.show3 = true;
                 this.show4 = false;
+                this.table_select_courses = [];
+                this.table_slect_courses_y = [];
+                this.school_year=[];
+                this.sch_year='';
+                this.field1 = [];
+                this.field_value = '';
+                this.field_label = '';
+                this.second_field = [];
+                this.se_field_value = '';
+                this.se_field_label = '';
+                this.project = [];
+                this.project_value = '';
+                this.project_label = '';
+                this.tidata1= [];
+                this.$nextTick(function () {
+                    this.$refs.tdata.drawLine(this.tidata1);
+                });
             },
-
             async Tocompare() {
-
                 this.show1 = false;
                 this.show2 = true;
                 this.show3 = false;
@@ -243,8 +258,9 @@
                 for (let i = 0; i < this.tablesection.length; i++) {
                     shuzu.push(this.tablesection[i].stuID);
                 }
-                let school_year_repeat = [];
+                let school_year_repeat_save = [];
                 for (let i = 0; i < shuzu.length; i++) {
+                    let school_year_repeat = [];
                     await this.$http.post('/api/stu/queryStuinfo', {
                         AStuID: shuzu[i]
                     }, {}).then((response) => {
@@ -255,104 +271,454 @@
                     for (let k = 0; k < stu_info.length; k++) {
                         school_year_repeat.push(stu_info[k].schoolYear + "--" + stu_info[k].term);
                     }
-                }
-                let school_year_not_repeat = school_year_repeat.filter(function (ele, index, self) {
-                    return self.indexOf(ele) == index;
-                });
-                for (let i = 0; i < school_year_not_repeat.length; i++) {
-                    this.school_year.push({label: school_year_not_repeat[i], value: i});
-                }
-                console.log(this.table_select_courses);
-                this.field1_traverse();
-            },
-            field1_traverse(){
-                for(var i=0; i<this.$store.state.course.length;i++) {
-                    if(this.$store.state.course[i].show_type=='1') {
-                        this.field1.push({label:this.$store.state.course[i].label,value:this.$store.state.course[i].id});
-                    }
-                }
-            },
-            second_traverse(){
-                this.termTarget={};
-                this.second_field=[];
-                this.se_field_value='';
-                for (var i = 0; i < this.$store.state.course.length; i++) {
-                    if (this.$store.state.course[i].father == this.field_value) {
-                        this.second_field.push({
-                            label: this.$store.state.course[i].label,
-                            value: this.$store.state.course[i].id
+                    if( i == 0){
+                        school_year_repeat_save = school_year_repeat;
+                    }else{
+                        school_year_repeat =  school_year_repeat.concat(school_year_repeat_save);
+                        school_year_repeat_save = school_year_repeat.filter(function (ele, index, self) {
+                            return self.indexOf(ele) != index;
                         });
                     }
                 }
+                if(school_year_repeat_save.length == 0){
+                    alert("所比较的学生没有学年和学期相同！");
+                }else{
+                    for (let i = 0; i < school_year_repeat_save.length; i++) {
+                        this.school_year.push({label: school_year_repeat_save[i], value: i});
+                    }
+                }
+            },
+            remove_repeat(filed_aver_score_r){
+                let temp={};
+                for(let i in filed_aver_score_r) {
+                    let key = filed_aver_score_r[i].filed1;
+                    if (temp[key]) {
+                        temp[key].field1 = key;
+                        temp[key].score1 = 0;
+                        temp[key].num = 1;
+                    } else {
+                        temp[key] = {};
+                        temp[key].field1 = key;
+                        temp[key].score1 = 0;
+                        temp[key].num = 1;
+
+                    }
+                }
+                let array = [];
+                for(let i in temp){
+                    array.push(i);
+                }
+                return array;
+            },
+          moveSpace(array){
+                for(var i = 0 ;i<array.length;i++)
+                 {
+                     if(array[i] == "" || array[i] == null || typeof(array[i]) == "undefined")
+                 {
+                        array.splice(i,1);
+                    i= i-1;
+
+                 }
+             }
+             return array;
+          },
+    choose_fields(){
+                this.tidata1 = [];
+                this.field1 = [];
+                this.field_value = '';
+                this.second_field = [];
+                this.se_field_value = '';
+                this.project = [];
+                this.project_value = '';
+                this.table_slect_courses_y =[];
+                let school_year_term = (this.school_year[this.sch_year].label).split("--");
+                let ch_table_list = [];
+                for(let i = 0;i < this.table_select_courses.length;i++) {
+                    let stu_info = this.table_select_courses[i];
+                    for (let j = 0; j < stu_info.length; j++) {
+                        if ((stu_info[j].schoolYear === school_year_term[0]) && (stu_info[j].term === school_year_term[1])) {
+                            ch_table_list.push(stu_info[j]);
+                        }
+                    }
+                }
+                this.table_slect_courses_y = ch_table_list;
+                let field_score_all = [];
+                let field_aver_score_r = [];
+                let fields_B = [];
+                let stu_name = [];
+               for(let i = 0;i < ch_table_list.length;i++){
+                    stu_name.push(ch_table_list[i].stuName);
+                    let evalu = ch_table_list[i].evaluation;
+                    let field_score = [];
+                    for(let k = 0;k < evalu.length;k++){
+                        let score_1 = evalu[k].长期目标;
+                        if(score_1.length === 0){
+                            field_score.push({filed1:evalu[k].领域,score1:0,num:1});
+                            field_score_all.push({filed1:evalu[k].领域,score1:0,num:1});
+                        }else{
+                            let count = 0;
+                            let score = 0;
+                            for(let j in score_1){
+                                score += score_1[j].score;
+                                count++;
+                            }
+                            field_score.push({filed1:evalu[k].领域,score1:score,num:count});
+                            field_score_all.push({filed1:evalu[k].领域,score1:score,num:count});
+                        }
+                        fields_B.push(evalu[k].领域);
+                    }
+                   field_aver_score_r.push({label:i,value:field_score});
+               }
+               field_score_all = this.remove_repeat(field_score_all);
+                let ss = [];
+                for(let i = 0;i < field_aver_score_r.length;i++) {
+                    let tmp = field_aver_score_r[i].value;
+                    let s = [];
+                    for (let j = 0; j < field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 == field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1: field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1: field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let title = field_score_all;
+                let score_field_all =[];
+                let e_title  = this.school_year[this.sch_year].label;
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+
+                    score_field_all.push({
+                        barGap: 0,
+                        name: stu_name[i],
+                        type: 'bar',
+                        barWidth: 16,
+                        data: score_field,
+                    });
+                }
+                this.tidata1.push(score_field_all);
+                this.tidata1.push(title);
+                this.tidata1.push(e_title);
+                this.$nextTick(function () {
+                    this.$refs.tdata.drawLine(this.tidata1);
+                });
+                fields_B = this.moveSpace(fields_B);
+                if(fields_B.length >= 1){
+                    let fields_A = fields_B.filter(function(ele,index,self){
+                        return self.indexOf(ele) == index;
+                    });
+                    for(let i = 0; i < fields_A.length;i++){
+                        this.field1.push({label:fields_A[i],value:i});
+                    }
+                }else{
+                    alert("领域数据为空！");
+                }
+            },
+
+            second_traverse(){
+                this.tidata1 = [];
+                this.second_field = [];
+                this.se_field_value = '';
+                this.project = [];
+                this.project_value = '';
+                let ch_fields = this.field1[this.field_value].label;
+                let sec_fields_B = [];
+                let sec_field_aver_score = [];
+                let sec_field_score_all = [];
+                let stu_name = [];
+                let table_select_courses_y = this.table_slect_courses_y;
+                for(let i = 0;i < table_select_courses_y.length;i++){
+                    stu_name.push(table_select_courses_y[i].stuName);
+                    let evalu = table_select_courses_y[i].evaluation;
+                    let sec_field_score_r = [];
+                    for(let k = 0;k < evalu.length;k++){
+                        if(evalu[k].领域 == ch_fields){
+                            let score_1 = evalu[k].长期目标;
+                            if(score_1.length === 0){
+                                sec_field_score_r.push({filed1:evalu[k].次领域,score1:0,num:1});
+                                sec_field_score_all.push({filed1:evalu[k].次领域,score1:0,num:1});
+                            }else{
+                                let count = 0;
+                                let score = 0;
+                                for(let j in score_1){
+                                    score += score_1[j].score;
+                                    count++;
+                                }
+                                sec_field_score_r.push({filed1:evalu[k].次领域,score1:score,num:count});
+                                sec_field_score_all.push({filed1:evalu[k].次领域,score1:score,num:count});
+                            }
+                            sec_fields_B.push(evalu[k].次领域);
+                        }
+                    }
+                   sec_field_aver_score.push({label:i,value:sec_field_score_r});
+                }
+                sec_field_score_all = this.remove_repeat(sec_field_score_all,0);
+                let ss = [];
+                for(let i = 0;i < sec_field_aver_score.length;i++) {
+                    let tmp = sec_field_aver_score[i].value;
+                    let s = [];
+                    for (let j = 0; j <  sec_field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 ==  sec_field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1:sec_field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1:sec_field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let score_field_all =[];
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+                    score_field_all.push({
+                        barGap: 0,
+                        name: stu_name[i],
+                        type: 'bar',
+                        barWidth: 16,
+                        data: score_field,
+                    });
+                }
+                let title =  sec_field_score_all;
+                this.tidata1.push(score_field_all);
+                this.tidata1.push(title);
+                this.tidata1.push(ch_fields);
+                this.$nextTick(function () {
+                    this.$refs.tdata.drawLine(this.tidata1);
+                });
+                var sec_fields_A = sec_fields_B.filter(function(ele,index,self){
+                    return self.indexOf(ele) == index;
+                });
+                for(let i = 0; i < sec_fields_A.length;i++){
+                    this.second_field.push({label:sec_fields_A[i],value:i});
+                }
+
             },
             project_traverse(){
-                this.termTarget={};
-                this.project=[];
-                this.project_value='';
-                this.radio_title=[];
-                this.radioes=[];
-                for(var i =0 ;i<this.$store.state.course.length;i++)
-                {
-                    if(this.$store.state.course[i].father== this.se_field_value)
-                    {
-                        this.project.push({
-                            label:this.$store.state.course[i].label,
-                            value:this.$store.state.course[i].id});
+                this.tidata1 = [];
+                this.project = [];
+                this.project_value = '';
+                let ch_pro = this.second_field[this.se_field_value].label;
+                let table_select_courses_y = this.table_slect_courses_y;
+                let pro_field_aver_score = [];
+                let pro_field_score_all = [];
+                let stu_name=[];
+                let ch_project = [];
+                for(let i = 0;i < table_select_courses_y.length;i++){
+                    let evalu = table_select_courses_y[i].evaluation;
+                    stu_name.push(table_select_courses_y[i].stuName);
+                    let pro_field_aver_score_r = [];
+                    for(let i = 0;i < evalu.length;i++) {
+                        if (evalu[i].次领域 == ch_pro) {
+                            let score_1 = evalu[i].长期目标;
+                            if (score_1.length === 0) {
+                                pro_field_aver_score_r.push({filed1: evalu[i].项目, score1: 0, num: 1});
+                                pro_field_score_all.push({filed1: evalu[i].项目, score1: 0, num: 1});
+                            } else {
+                                let count1 = 0;
+                                let score = 0;
+                                for (let i in score_1) {
+                                    score += score_1[i].score;
+                                    count1++;
+                                }
+                                pro_field_aver_score_r.push({filed1: evalu[i].项目, score1: score, num: count1});
+                                pro_field_score_all.push({filed1: evalu[i].项目, score1: score, num: count1});
+                            }
+                            ch_project.push(evalu[i].项目);
+                        }
                     }
+                    pro_field_aver_score.push({label:i,value:pro_field_aver_score_r});
                 }
+                pro_field_score_all = this.remove_repeat(pro_field_score_all);
+                // console.log(pro_field_score_all);
+                let ss = [];
+                for(let i = 0;i < pro_field_aver_score.length;i++) {
+                    let tmp = pro_field_aver_score[i].value;
+                    let s = [];
+                    for (let j = 0; j <  pro_field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 ==  pro_field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1:pro_field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1:pro_field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let score_field_all =[];
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+                    score_field_all.push({
+                        barGap: 0,
+                        name: stu_name[i],
+                        type: 'bar',
+                        barWidth: 16,
+                        data: score_field,
+                    });
+                }
+                let title =  pro_field_score_all;
+                this.tidata1.push(score_field_all);
+                this.tidata1.push(title);
+                this.tidata1.push(ch_pro);
+                this.$nextTick(function () {
+                    this.$refs.tdata.drawLine(this.tidata1);
+                });
+                let ch_project_A = ch_project.filter(function(ele,index,self){
+                    return self.indexOf(ele) == index;
+                });
+                for(let i = 0; i < ch_project_A.length;i++){
+                    this.project.push({label:ch_project_A[i],value:i});
+                }
+
+
             },
             get_data_draw(){
-                var school_year_term = (this.school_year[this.sch_year].label).split("--");
-                for(let i = 0;i < this.$store.state.course.length;i++){
-                    if(this.$store.state.course[i].id == this.field_value){
-                        var first_field = this.$store.state.course[i].label;
-                    }else if (this.$store.state.course[i].id == this.se_field_value){
-                        var second_field = this.$store.state.course[i].label;
-                    }else if(this.$store.state.course[i].id == this.project_value){
-                        var third_project = this.$store.state.course[i].label;
-                        break;
-                    }
-                }
-                var check = 0;
-                var score_all = [];
-                for(let ij = 0;ij < this.table_select_courses.length;ij++) {
-                    let stu_info = this.table_select_courses[ij];
-                    console.log(stu_info);
-                    for (var i = 0; i < stu_info.length; i++) {
-                        if ((stu_info[i].schoolYear === school_year_term[0]) && (stu_info[i].term === school_year_term[1])) {
-                            let evalu = stu_info[i].evaluation;
-                            let stu_n = stu_info[i].stuName;
-                            console.log(evalu);
-                            console.log(stu_n);
-                            console.log(evalu.length);
-                            for (let j = 0; j < evalu.length; j++) {
-                                console.log(j);
-                                if ((evalu[j].领域 === first_field) && (evalu[j].次领域 === second_field) && (evalu[j].项目 === third_project)) {
-                                    var information = evalu[j].长期目标;
-                                    var title = [];
-                                    var score = [];
-                                    for (let k in information) {
-                                        title.push(information[k].title);
-                                        score.push(information[k].score);
-                                    }
-                                    score_all.push({
-                                        barGap: 0,
-                                        name: stu_n,
-                                        type: 'bar',
-                                        barWidth: 16,
-                                        data: score,
-                                    });
+                this.tidata1 = [];
+
+                let ch_fie = this.field1[this.field_value].label;
+                let sec_fie = this.second_field[this.se_field_value].label;
+                let pro = this.project[this.project_value].label;
+                let table_select_courses_y = this.table_slect_courses_y;
+                let fie_field_aver_score = [];
+                let fie_field_score_all = [];
+                let stu_name = [];
+                for(let i= 0 ;i < table_select_courses_y.length;i++){
+                    let evalu = table_select_courses_y[i].evaluation;
+                    stu_name.push(table_select_courses_y[i].stuName);
+                    let fie_field_aver_score_r = [];
+                    for(let j = 0;j < evalu.length;j++){
+                        if((evalu[j].领域 == ch_fie)&&(evalu[j].次领域 == sec_fie)&&(evalu[j].项目 == pro)){
+                            let score_1 = evalu[j].长期目标;
+                            if(score_1.length === 0){
+                                continue;
+                            }else{
+                                for(let i in score_1){
+                                    fie_field_aver_score_r.push({filed1: score_1[i].title, score1: score_1[i].score, num: 1});
+                                    fie_field_score_all.push({filed1: score_1[i].title, score1: score_1[i].score, num: 1});
                                 }
                             }
                         }
                     }
+                    fie_field_aver_score.push({label:i,value:fie_field_aver_score_r});
                 }
-                this.tidata1.push(score_all);
+                fie_field_score_all = this.remove_repeat(fie_field_score_all,0);
+                let ss = [];
+                for(let i = 0;i < fie_field_aver_score.length;i++) {
+                    let tmp = fie_field_aver_score[i].value;
+                    let s = [];
+                    for (let j = 0; j <  fie_field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 ==  fie_field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1:fie_field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1:fie_field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let score_field_all =[];
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+                    score_field_all.push({
+                        barGap: 0,
+                        name: stu_name[i],
+                        type: 'bar',
+                        barWidth: 16,
+                        data: score_field,
+                    });
+                }
+                let title =  fie_field_score_all;
+                this.tidata1.push(score_field_all);
                 this.tidata1.push(title);
-                this.tidata1.push(third_project);
+                this.tidata1.push(pro);
                 this.$nextTick(function () {
                     this.$refs.tdata.drawLine(this.tidata1);
                 });
+                // var check = 0;
+                // var score_all = [];
+                // for(let ij = 0;ij < this.table_select_courses.length;ij++) {
+                //     let stu_info = this.table_select_courses[ij];
+                //     console.log(stu_info);
+                //     for (var i = 0; i < stu_info.length; i++) {
+                //         if ((stu_info[i].schoolYear === school_year_term[0]) && (stu_info[i].term === school_year_term[1])) {
+                //             let evalu = stu_info[i].evaluation;
+                //             let stu_n = stu_info[i].stuName;
+                //             console.log(evalu);
+                //             console.log(stu_n);
+                //             console.log(evalu.length);
+                //             for (let j = 0; j < evalu.length; j++) {
+                //                 console.log(j);
+                //                 if ((evalu[j].领域 === first_field) && (evalu[j].次领域 === second_field) && (evalu[j].项目 === third_project)) {
+                //                     var information = evalu[j].长期目标;
+                //                     var title = [];
+                //                     var score = [];
+                //                     for (let k in information) {
+                //                         title.push(information[k].title);
+                //                         score.push(information[k].score);
+                //                     }
+                //                     score_all.push({
+                //                         barGap: 0,
+                //                         name: stu_n,
+                //                         type: 'bar',
+                //                         barWidth: 16,
+                //                         data: score,
+                //                     });
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
+                // this.tidata1.push(score_all);
+                // this.tidata1.push(title);
+                // this.tidata1.push(third_project);
+                // this.$nextTick(function () {
+                //     this.$refs.tdata.drawLine(this.tidata1);
+                // });
             },
 
             //跳转至课程评量界面

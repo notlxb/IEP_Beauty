@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="20202.23将数据表格导出为word格式">
-      <change afterPath="$PROJECT_DIR$/src/vendor/FileSaver.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vendor/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vendor/jquery.wordexport.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/webpack.base.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.base.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tools/echarts/columnar-chart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tools/echarts/columnar-chart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +46,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/vendor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -65,7 +60,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -173,7 +168,22 @@
       <workItem from="1582351743665" duration="3219000" />
       <workItem from="1582422734703" duration="24270000" />
       <workItem from="1582456873478" duration="418000" />
+      <workItem from="1582504216679" duration="36000" />
+      <workItem from="1583678057554" duration="766000" />
+      <workItem from="1583996930691" duration="96000" />
+      <workItem from="1583997272007" duration="1682000" />
+      <workItem from="1584196609322" duration="512000" />
+      <workItem from="1584234738186" duration="48052000" />
+      <workItem from="1584319066605" duration="28943000" />
     </task>
+    <task id="LOCAL-00001" summary="20202.23将数据表格导出为word格式">
+      <created>1582457815982</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582457815982</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">

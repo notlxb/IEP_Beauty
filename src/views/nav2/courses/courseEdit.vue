@@ -1,7 +1,6 @@
 <template>
   <section>
     <el-container>
-      <!--      <div>{{this.$store.state.stuinfo[0].Courses}}</div>-->
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/courseEvaluation' }">课程评量</el-breadcrumb-item>
         <el-breadcrumb-item>填写课程评量</el-breadcrumb-item>
@@ -40,10 +39,6 @@
     </div>
     <el-divider></el-divider>
     <div v-show="show1">
-      <!--      <div>-->
-      <!--        <el-button type="primary" @click="changedata()">成长图</el-button>-->
-      <!--        &lt;!&ndash;      <el-button type="primary" @click = "pass_data()">显示图形</el-button>&ndash;&gt;-->
-      <!--      </div>-->
       <el-form>
         <el-form-item  ref="school_year" label="年度">
           <el-select   v-model="sch_year" placeholder="请选择"  @change = "choose_fields()" >
