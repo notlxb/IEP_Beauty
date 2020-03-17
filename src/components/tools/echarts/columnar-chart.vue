@@ -1,6 +1,6 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
-  <div id="main" style="width: 700px;height: 400px;"></div>
+  <div id="main" style="width: 100%;height: 400px;"></div>
 </template>
 <script>
   import echarts from 'echarts'
@@ -12,7 +12,7 @@
         /*  opinion: ["1", "3", "3", "4", "5"],*/
         // opinionData: [3, 2, 4, 4, 5],
         // opinionData2: [4, 9, 8, 6, 5],
-        tdata: [],
+        // tdata: [],
         //     {
         //     barGap: 0,
         //     name: '刘一',
@@ -69,7 +69,7 @@
           // color:this.color,
           calculable:true,
           xAxis:[ {
-            name:"长期目标",
+            // name:"长期目标",
             type: 'category',
             axisTick:{
               show:false
@@ -97,7 +97,7 @@
             },
             splitLine:{
               lineStyle:{
-                color:['rgba(255,0,0,0.2']
+                color:['rgba(255,0,0,0.2)']
               }
             },
             axisLabel:{
