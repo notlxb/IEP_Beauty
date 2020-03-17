@@ -13,7 +13,6 @@
       </div>
       <div>
         <el-table v-loading="loading" :data="tables" ref="tablesection" @select="handlesection" align="left" stripe>
-          <el-table-column type="selection" label="选择" align="center"></el-table-column>
           <el-table-column
             :filters = this.schYear
             prop="schoolYear"
@@ -53,7 +52,8 @@
                   操 作<i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu>
-                  <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term)">查看/编辑</el-dropdown-item>
+                  <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,1)">编辑</el-dropdown-item>
+                  <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,2)">查看</el-dropdown-item>
                   <el-dropdown-item>删除</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -266,12 +266,12 @@
       },
 
       //跳转至课程评量界面
-      to_edit(stuID,schoolYear,term){
+      to_edit(stuID,schoolYear,term,isEdit){
         this.$http.post('/api/stu/queryStuinfo',{
           AStuID:stuID
         },{}).then((response) => {
           this.$store.dispatch("setstuinfo", response.bodyText);
-          this.$router.push({path:'/courseEdit',query:{schoolYear:schoolYear, term:term, currentPage: this.currentPage1}})
+          this.$router.push({path:'/courseEdit',query:{isEdit: isEdit, schoolYear:schoolYear, term:term, currentPage: this.currentPage1}})
         });
       },
 

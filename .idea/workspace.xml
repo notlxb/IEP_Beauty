@@ -2,10 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/stuApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/stuApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/sqlMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sqlMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,59 +49,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="54" column="65" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api/stuApi.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="622" column="26" lean-forward="true" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="307" column="42" selection-start-line="307" selection-start-column="42" selection-end-line="307" selection-end-column="42" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#5734#5752#0" />
-                <element signature="e#8015#8033#0" />
-                <element signature="e#8818#8836#0" />
-                <element signature="e#4361#4455#0" />
-                <element signature="e#15007#17957#0" />
-                <element signature="e#18025#18132#0" />
-                <element signature="e#18184#18319#0" />
-                <element signature="e#18375#18752#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -94,64 +57,8 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>choose_fields</find>
-      <find>choose_sec_fields</find>
-      <find>choose_pro</find>
-      <find>getdata</find>
-      <find>columnarchart</find>
-      <find>show</find>
-      <find>field1</find>
-      <find>field_value</find>
-      <find>field_label</find>
-      <find>project</find>
-      <find>choose_sch_year</find>
-      <find>changedata</find>
-      <find>stu_id_index</find>
-      <find>school_year</find>
-      <find>sch_year</find>
-      <find>cho_fields</find>
-      <find>term_location</find>
-      <find>sec_fields</find>
-      <find>choose_project</find>
-      <find>projects</find>
-      <find>tidata1</find>
-      <find>tdata</find>
-      <find>fields</find>
-      <find>stu_id</find>
-      <find>id</find>
-      <find>课程评量</find>
-      <find>queCourse</find>
-      <find>setStuCE</find>
-      <find>handlesection</find>
-      <find>getStuAppraisal</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>ckeditor5-build-balloon-block</replace>
-      <replace>this.$route.query.currentPage, currentSize:this.$route.query.currentSize</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/components/tools/tinymce/tinymce-editor.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" />
-        <option value="$PROJECT_DIR$/src/routes.js" />
-        <option value="$PROJECT_DIR$/src/views/nav4/courseManagement.vue" />
-        <option value="$PROJECT_DIR$/server/db.js" />
-        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" />
-        <option value="$PROJECT_DIR$/server/api/stuApi.js" />
-        <option value="$PROJECT_DIR$/server/sqlMap.js" />
-        <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" />
-      </list>
-    </option>
   </component>
   <component name="JsBowerSettings">
     <node-interpreter value="project" />
@@ -164,92 +71,14 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
-  </component>
   <component name="ProjectId" id="1Y1rjDoRaPyfkqip3YkzBjTRuXp" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav1" type="462c0819:PsiDirectoryNode" />
-              <item name="ecoAssessment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav2" type="462c0819:PsiDirectoryNode" />
-              <item name="courses" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IEP_Beauty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IEP_Beauty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav3" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -287,18 +116,6 @@
       <recent name="D:\dataManagementPlatform\src\views\nav2\courses" />
       <recent name="D:\dataManagementPlatform\src\views\nav2\IEP" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -401,89 +218,13 @@
       <workItem from="1583220549376" duration="1017000" />
       <workItem from="1583675066461" duration="689000" />
       <workItem from="1583746595738" duration="19728000" />
+      <workItem from="1584323305681" duration="1729000" />
+      <workItem from="1584325059753" duration="51000" />
+      <workItem from="1584326448769" duration="39000" />
+      <workItem from="1584450964604" duration="12485000" />
+      <workItem from="1584463490639" duration="597000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41394000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.20710456" />
-      <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
-      <window_info id="Structure" order="2" sideWeight="0.5053192" side_tool="true" weight="0.19936457" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Designer" order="4" />
-      <window_info id="Image Layers" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="UI Designer" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.23087819" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24645892" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.23087819" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Statistic" order="12" weight="0.32857144" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.20710456" />
-      <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
-      <window_info id="Structure" order="2" sideWeight="0.5053192" side_tool="true" weight="0.19936457" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Designer" order="4" />
-      <window_info id="Image Layers" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="UI Designer" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.23087819" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24645892" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.23087819" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Statistic" order="12" weight="0.32857144" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -494,12 +235,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -525,290 +260,23 @@
     <MESSAGE value="20202.23将数据表格导出为word格式" />
     <option name="LAST_COMMIT_MESSAGE" value="20202.23将数据表格导出为word格式" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/tools/ckeditor/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-build-classic/package.json" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <element signature="e#650#696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/studyReport/studyReport.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="41" selection-start-line="40" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectTeaEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="153" column="18" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iep_meeting.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="122" column="105" lean-forward="true" selection-start-line="122" selection-start-column="105" selection-end-line="122" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/IEP/iepmeeting_edit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="53" lean-forward="true" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
-          <folding>
-            <element signature="e#2375#2414#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/analysisEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="428" lean-forward="true" selection-start-line="428" selection-end-line="428" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTea.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="205" column="18" selection-start-line="205" selection-start-column="18" selection-end-line="207" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubject.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1026">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectTea.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1976">
-          <caret line="67" column="33" selection-start-line="66" selection-start-column="31" selection-end-line="67" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReport.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="116" column="45" lean-forward="true" selection-start-line="116" selection-start-column="45" selection-end-line="116" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectTeaEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="247" column="55" selection-start-line="247" selection-start-column="55" selection-end-line="247" selection-end-column="55" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#el-container#1;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tools/tinymce/tinymce-editor.vue" />
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="450" column="47" selection-start-line="450" selection-start-column="47" selection-end-line="450" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaThemeEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="409" column="8" lean-forward="true" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="8" />
-          <folding>
-            <element signature="e#15806#15845#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/longShortGoal/teaTheme.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="110" column="64" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="64" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="243" column="80" selection-start-line="243" selection-start-column="80" selection-end-line="243" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#342#389#0" expanded="true" />
-            <element signature="e#446#486#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav4/dataManagement.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="402" column="3" lean-forward="true" selection-start-line="402" selection-start-column="3" selection-end-line="402" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav4/schoolManagement.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="256" selection-start-line="256" selection-end-line="258" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav4/courseManagement.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubject.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2793">
-          <caret line="147" column="92" selection-start-line="147" selection-start-column="86" selection-end-line="147" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2166">
-          <caret line="117" column="78" selection-start-line="117" selection-start-column="62" selection-end-line="117" selection-end-column="78" />
-          <folding>
-            <element signature="e#2605#2644#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="156" column="35" lean-forward="true" selection-start-line="156" selection-start-column="35" selection-end-line="156" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/learningReportEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="32" column="28" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="35" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/groupSubjectEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="33" column="44" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/stuApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="622" column="26" lean-forward="true" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="54" column="65" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="365" column="20" lean-forward="true" selection-start-line="365" selection-start-column="20" selection-end-line="365" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="307" column="42" selection-start-line="307" selection-start-column="42" selection-end-line="307" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#5734#5752#0" />
-            <element signature="e#8015#8033#0" />
-            <element signature="e#8818#8836#0" />
-            <element signature="e#4361#4455#0" />
-            <element signature="e#15007#17957#0" />
-            <element signature="e#18025#18132#0" />
-            <element signature="e#18184#18319#0" />
-            <element signature="e#18375#18752#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state width="1493" height="139" key="GridCell.Tab.0.bottom" timestamp="1584464087405">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="139" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584464087405" />
+    <state width="1493" height="139" key="GridCell.Tab.0.center" timestamp="1584464087405">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="139" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584464087405" />
+    <state width="1493" height="139" key="GridCell.Tab.0.left" timestamp="1584464087404">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="139" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584464087404" />
+    <state width="1493" height="139" key="GridCell.Tab.0.right" timestamp="1584464087405">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="139" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584464087405" />
   </component>
   <component name="masterDetails">
     <states>

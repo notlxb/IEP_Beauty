@@ -2,7 +2,7 @@
     <section>
         <el-container>
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/evaluationAnalysis' }">评量分析</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/evaluationAnalysis', query:{currentPage:this.$route.query.currentPage} }">评量分析</el-breadcrumb-item>
                 <el-breadcrumb-item>编辑</el-breadcrumb-item>
                 <el-breadcrumb-item></el-breadcrumb-item>
             </el-breadcrumb>
@@ -79,7 +79,15 @@
             <div >
                 <columnarchart ref="tdata" />
             </div>
-            <el-collapse>
+            <el-collapse v-if="!isOneTerm">
+                <el-collapse-item v-for="(domain, index) in [{领域:'提示', 描述:'只有在只选中一个学期的情况下可以进行分析描述！'}]"
+                                  :title="domain.领域"
+                                  :name="domain.领域"
+                                  :key="domain.领域">
+                    {{domain.描述}}
+                </el-collapse-item>
+            </el-collapse>
+            <el-collapse v-if="isOneTerm">
                 <el-collapse-item v-for="(domain, index) in LRTable"
                                   :title="domain.领域"
                                   :name="domain.领域"
@@ -88,25 +96,41 @@
                         <div slot="header" class="clearfix">
                             <span>结果分析</span>
                         </div>
-                        {{domain.描述}}
+                        <vue-ckeditor type="classic"  v-model="domain.描述" :editors="editors1"
+                                      :config='config' :readonly="disabled"></vue-ckeditor>
                     </el-card>
                 </el-collapse-item>
             </el-collapse>
+
+            <el-divider></el-divider>
+
+            <el-form :inline="true" align="center">
+                <el-form-item>
+                    <el-button type="danger" :disabled="disabled" @click="eval_submit()">修改提交</el-button>
+                    <el-button type="danger" @click.native="go_back()">返回</el-button>
+                </el-form-item>
+            </el-form>
         </div>
     </section>
 </template>
 
 <script>
     import columnarchart from '../../../components/tools/echarts/columnar-chart'
+    import VueCkeditor from 'vue-ckeditor5'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
+
     export default {
         components: {
-            columnarchart
+            columnarchart,
+            'vue-ckeditor': VueCkeditor.component
         },
         data(){
             return{
                 show:false,
                 show1:true,
                 show2:false,
+                isOneTerm:false,
                 field1: [],
                 field_value:'',
                 field_label:'',
@@ -137,15 +161,20 @@
                 projects:[],
                 tidata1:[],
                 tdata:[],
-                LRTable:[{
-                    subject:'生活数学',
-                    evaluation:'认识新班级，知道名字'
+                LRTable:[],
+
+                edt: ClassicEditor,
+                disabled:true,
+                editors1: {
+                    classic: ClassicEditor,
+                },
+                config:{
+                    language:'zh-cn',
+                    placeholder:'在此添加分析描述',
+                    ckfinder: {
+                        uploadUrl: '/api/stu/picture_CEE'
                     },
-                    {
-                        subject:'生活语文',
-                        evaluation:'认识新班级，知道名字'
-                    },
-                    ],
+                },
             }
         },
         mounted(){
@@ -325,6 +354,18 @@
             },
 
             choose_fields(){
+                //只有当之选中一个学期的时候可以进行分析描述
+                if (this.sch_year.length == 1 && this.$route.query.isEdit == 1) {
+                    this.isOneTerm = true;
+                    this.disabled = false;
+                } else if (this.sch_year.length == 1 && this.$route.query.isEdit == 2){
+                    this.isOneTerm = true;
+                    this.disabled = true;
+                } else {
+                    this.isOneTerm = false;
+                    this.disabled = true;
+                }
+
                 this.tidata1 = [];
                 this.tdata=[];
                 this.fields = [];
@@ -605,56 +646,6 @@
                 this.$nextTick(function () {
                     this.$refs.tdata.drawLine(this.tidata1);
                 });
-                // console.log(pro_field_score_all);
-                // let evalu = stu_info[this.term_location].evaluation;
-                // let count=0;
-                // let pro_filed_aver_score_r =[];
-                // for(let i = 0;i < evalu.length;i++){
-                //     if(evalu[i].次领域 == ch_pro){
-                //         let score_1 = evalu[i].长期目标;
-                //         let count1 = 0;
-                //         let score = 0;
-                //         for(let i in score_1){
-                //             score += score_1[i].score;
-                //             count1++;
-                //         }
-                //         pro_filed_aver_score_r.push({filed1:evalu[i].项目,score1:score,num:count1});
-                //         this.projects.push({label:evalu[i].项目,value:count});
-                //         count++;
-                //     }
-                // }
-                // let temp={};
-                // for(let i in pro_filed_aver_score_r){
-                //     let key = pro_filed_aver_score_r[i].filed1;
-                //     if(temp[key]){
-                //         temp[key].field1 = key;
-                //         temp[key].score1 = temp[key].score1 + pro_filed_aver_score_r[i].score1;
-                //         temp[key].num = temp[key].num + pro_filed_aver_score_r[i].num;
-                //     }else{
-                //         temp[key] = {};
-                //         temp[key].field1 = key;
-                //         temp[key].score1 = pro_filed_aver_score_r[i].score1;
-                //         temp[key].num = pro_filed_aver_score_r[i].num;
-                //     }
-                // }
-                // let title =[];
-                // let score = [];
-                // for(let k in temp){
-                //     title.push(temp[k].field1);
-                //     score.push((temp[k].score1/temp[k].num).toFixed(2));
-                // }
-                // this.tidata1.push({
-                //     barGap:0,
-                //     type:'bar',
-                //     barWidth:16,
-                //     data:score,
-                // });
-                // this.tidata1.push(title);
-                // this.tidata1.push(ch_pro);
-                // this.$nextTick(function () {
-                //     this.$refs.tdata.drawLine(this.tidata1);
-                // });
-
             },
             getdata(){
                 this.tidata1 = [];
@@ -751,8 +742,51 @@
                         this.project_label = this.$store.state.course[i].label;
                 }
             },
+            go_back(){
+                this.$router.replace({path:'/evaluationAnalysis', query:{currentPage: this.$route.query.currentPage}});
+            },
+            async eval_submit(){
+                //console.log(this.LRTable)
+                var Courses = JSON.parse(this.$store.state.stuinfo[this.stu_id_index].Courses);
+                var year;
+                var term;
+                var status;
 
-            eval_submit(){
+                //识别当前选择的学年和学期以定位分析描述LRTable（appraisal）在课程评量列表Courses中的位置
+                for (var i = 0; i < this.school_year.length; i++)
+                    if (this.school_year[i].value == this.sch_year){
+                        year = this.school_year[i].label.split('--')[0];
+                        term = this.school_year[i].label.split('--')[1];
+                    }
+
+                //将编辑好的LRTable赋给课程评量列表Courses中对应评量的appraisal
+                for (var i = 0; i < Courses.length; i++)
+                    if (Courses[i].schoolYear == year && Courses[i].term == term)
+                        Courses[i].appraisal = this.LRTable;
+
+                //将编辑好的评量分析上传至服务端数据库进行保存
+                await this.$http.post('/api/stu/upStuCourse', {
+                    Course:Courses,
+                    stuID:this.stu_id
+                }, {}).then((response) => {
+                    status = response.status;
+                });
+
+                if (status == 200) {
+                    this.$http.post('/api/stu/queryStuinfo',{
+                        AStuID:this.stu_id
+                    },{}).then((response) => {
+                        this.$store.dispatch("setstuinfo", response.bodyText);
+                        this.choose_fields();
+                        this.$message({
+                            message: year + '--' + term + '的评量分析描述保存成功！',
+                            type: 'success'
+                        });
+                    });
+                }
+                else
+                    this.$message.error("发生错误，错误码："+status);
+
             }
 
         }

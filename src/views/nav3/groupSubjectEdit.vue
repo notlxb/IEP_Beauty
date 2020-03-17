@@ -352,7 +352,7 @@
                 zycs:'',   zycs_bz:'',
                 jxmb_bz:'',
 
-                teachingProgress:'<h1>点击以编辑内容</h1>',
+                teachingProgress:'',
                 form:{
                     group: '',
                     students: [],
@@ -376,7 +376,7 @@
                         if (show_type == 0){
                             await that.$http.post('/api/stu/queSS_ST', {
                                 show_type:0,
-                                producerID:1
+                                //producerID:1
                             }, {}).then((response) => {
                                 length = response.body.length;
                                 node_info = response.body;
@@ -385,7 +385,7 @@
                             await that.$http.post('/api/stu/queSS', {
                                 show_type:show_type,
                                 father:node.data.id,
-                                producerID:1
+                                //producerID:1
                             }, {}).then((response) => {
                                 length = response.body.length;
                                 node_info = response.body;
@@ -436,6 +436,7 @@
                 },
                 config:{
                     language:'zh-cn',
+                    placeholder:'点击此处编辑',
                     ckfinder: {
                         uploadUrl: '/api/stu/picture_JiTiJH'
                     },

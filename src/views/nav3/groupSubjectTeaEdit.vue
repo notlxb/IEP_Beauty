@@ -116,7 +116,7 @@
                 week:'',
                 section:'',
                 topic:'',
-                content:'<h1>点击以编辑内容</h1>',
+                content:'',
 
 
                 term_options: [{value: '上学期', label: '上学期'},
@@ -145,6 +145,7 @@
                 },
                 config:{
                     language:'zh-cn',
+                    placeholder:'点击此处编辑',
                     ckfinder: {
                         uploadUrl: '/api/stu/picture_JiTiJX'
                     },
