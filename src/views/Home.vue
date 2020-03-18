@@ -37,8 +37,9 @@
             :collapse="collapsed"
             :unique-opened=openMethod
             background-color="#545c64"
+            color="#fffff"
             text-color="#fffff"
-            active-text-color="#ffd04b"
+            active-text-color="#ffffff"
             style="width: 90%"
         >
           <template v-for="(item,index) in $router.options.routes"
@@ -364,7 +365,6 @@
           .el-menu-item {
             background-color: #545d64 !important;
             color: #FFF !important;
-
           }
 
           .el-aside {
@@ -414,13 +414,15 @@
           width: 60px;
 
           .item {
+            color :#fff;
             position: relative;
           }
 
           .submenu {
+            color :#fff;
             position: absolute;
             top: 0px;
-            left: 60px;
+            left: 200px;
             z-index: 99999;
             height: auto;
             display: none;
@@ -435,6 +437,7 @@
       }
 
       .menu-expanded {
+
         flex: 0 0 230px;
         width: 230px;
       }

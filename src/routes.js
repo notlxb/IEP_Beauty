@@ -78,8 +78,8 @@ let routes = [
             {path: '/data', component: data, name: '指标选择', authority: [1, 1, 1, 1, 1],},
             /*{path: '/table', component: Table, name: '生态评量', authority: [1, 1, 1, 1, 1], hidden: true},*/
             {path: '/page6', component: Page6, name: '指标选择test', authority: [1, 1, 1, 1, 1], hidden: true},
-            {path: '/studentManagement', component: studentManagement, authority: [1, 1, 1, 1, 1], name: '学生管理'},
-            {path: '/classManagement', component: classManagement, authority: [1, 1, 1, 1, 1], name: '班级管理'},
+            // {path: '/studentManagement', component: studentManagement, authority: [1, 1, 1, 1, 1], name: '学生管理'},
+
             {path: '/newContact', component: newContact, name: '生态评量', authority: [1, 1, 1, 1, 1]},
             {path: '/checkNEdit', component: CheckNEdit, name: '查询/编辑', authority: [1, 1, 1, 1, 1], hidden: true},
             {
@@ -238,6 +238,7 @@ let routes = [
         children: [
             {path: '/echarts', component: echarts, name: '图标', authority: [1, 1, 1, 1, 1], hidden: true},
             {path: '/schoolManagement', component: schoolManagement, name: '学校管理', authority: [1, 1, 1, 1, 0],},
+            {path: '/classManagement', component: classManagement, authority: [1, 1, 1, 1, 1], name: '班级管理'},
             {path: '/userManagement', component: userManagement, name: '用户管理', authority: [1, 1, 1, 1, 0],},
             {path: '/dataManagement', component: dataManagement, name: '指标管理', authority: [1, 1, 1, 1, 0],},
             {path: '/subjectManagement', component: subjectManagement, name: '课标管理', authority: [1, 1, 1, 1, 0],},
