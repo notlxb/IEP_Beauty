@@ -76,7 +76,7 @@
                 stuName:'',
                 stuID:'',
                 creator:'',
-                summary:'<h1>点击以编辑内容</h1>',
+                summary:'',
                 term_options: [{value: '上学期', label: '上学期'},
                     {value: '下学期', label: '下学期'}],
                 schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
@@ -92,6 +92,7 @@
                 },
                 config:{
                     language:'zh-cn',
+                    placeholder:'点击此处编辑',
                     ckfinder: {
                         uploadUrl: '/api/stu/picture_IEP'
                     },

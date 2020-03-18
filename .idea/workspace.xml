@@ -10,8 +10,8 @@
       <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" afterDir="false" />
+      
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,25 +39,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/Home.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7194">
-              <caret line="366" column="23" lean-forward="true" selection-start-line="366" selection-start-column="23" selection-end-line="366" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#i#0;n#div#0;n#el-col#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-menu#0;n#aside#0;n#el-col#1;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#8744#10900#0" />
-                <element signature="e#13326#13600#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
+
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -66,6 +48,7 @@
       </list>
     </option>
   </component>
+
   <component name="FindInProjectRecents">
     <findStrings>
       <find>id</find>
@@ -142,6 +125,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
+
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="width" value="978" />
@@ -207,8 +191,10 @@
       </pane>
       <pane id="PackagesPane" />
     </panes>
+
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -246,18 +232,6 @@
       <recent name="D:\dataManagementPlatform\src\views\nav2\courses" />
       <recent name="D:\dataManagementPlatform\src\views\nav2\IEP" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -360,6 +334,7 @@
       <workItem from="1583220549376" duration="1017000" />
       <workItem from="1583675066461" duration="689000" />
       <workItem from="1583746595738" duration="19728000" />
+
       <workItem from="1584086980159" duration="4785000" />
     </task>
     <servers />
@@ -445,6 +420,7 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout-to-restore>
   </component>
+
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -454,12 +430,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -485,6 +455,7 @@
     <MESSAGE value="20202.23将数据表格导出为word格式" />
     <option name="LAST_COMMIT_MESSAGE" value="20202.23将数据表格导出为word格式" />
   </component>
+
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js" />
     <entry file="file://$PROJECT_DIR$/src/components/tools/ckeditor/index.vue">
@@ -851,6 +822,7 @@
         </state>
       </provider>
     </entry>
+
   </component>
   <component name="masterDetails">
     <states>

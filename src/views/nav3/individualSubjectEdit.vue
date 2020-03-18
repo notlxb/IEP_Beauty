@@ -250,7 +250,7 @@
                 jxznd:'',  jxznd_bz:'',
                 zycs:'',   zycs_bz:'',
 
-                teachingProgress:'<h1>点击以编辑内容</h1>',
+                teachingProgress:'',
 
 
                 term_options: [{value: '上学期', label: '上学期'},
@@ -278,7 +278,7 @@
                         if (show_type == 0){
                             await that.$http.post('/api/stu/queSS_ST', {
                                 show_type:0,
-                                producerID:1
+                                //producerID:1
                             }, {}).then((response) => {
                                 length = response.body.length;
                                 node_info = response.body;
@@ -287,7 +287,7 @@
                             await that.$http.post('/api/stu/queSS', {
                                 show_type:show_type,
                                 father:node.data.id,
-                                producerID:1
+                                //producerID:1
                             }, {}).then((response) => {
                                 length = response.body.length;
                                 node_info = response.body;
@@ -301,7 +301,7 @@
                                     id:node_info[id].id,
                                     value: node_info[id].label,
                                     label: node_info[id++].label,
-                                    leaf: show_type >= 5
+                                    leaf: show_type >= 4
                                 }));
                             // 通过调用resolve将子节点数据返回，通知组件数据加载完成
                             resolve(nodes);
@@ -320,6 +320,7 @@
                 },
                 config:{
                     language:'zh-cn',
+                    placeholder:'点击此处编辑',
                     ckfinder: {
                         uploadUrl: '/api/stu/picture_GeXunJH'
                     },

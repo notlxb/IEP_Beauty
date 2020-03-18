@@ -81,6 +81,9 @@ var JXZhuTi = multipart({
 var IEPm = multipart({
   uploadDir:'../../uploadPic/uploadPic_IEP/'
 });
+var CEE = multipart({
+  uploadDir:'../../uploadPic/uploadPic_CourseEvaluation/'
+});
 
 
 
@@ -254,6 +257,28 @@ router.post('/picture_IEP', IEPm, (req, res) => {
   fs.rename(oldpath, newpath, (err) => {
     if (!err) {
       let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_IEP/${fileName}`;
+      res.json({
+        "uploaded": true,
+        "url": fangStr
+      });
+    }
+  });
+});
+router.post('/picture_CEE', CEE, (req, res) => {
+  var newName = '';
+  for (var i = 0; i < 24; i++){
+    newName += getCharacter(Math.round(Math.random()*3));
+  }
+  newName += '_'+getDate();
+  console.log(req.files);
+  var files = req.files.upload;
+  files.name = newName+'.'+files.type.split('/')[1];
+  let oldpath=files.path;
+  let newpath= `../../uploadPic/uploadPic_CourseEvaluation`+"/"+ files.name;
+  let fileName = files.name;
+  fs.rename(oldpath, newpath, (err) => {
+    if (!err) {
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_CourseEvaluation/${fileName}`;
       res.json({
         "uploaded": true,
         "url": fangStr
@@ -786,7 +811,7 @@ router.post('/queSS',(req, res) => {
   var sql = $sql.stu.queSS;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.show_type, params.father, params.producerID], function (err, result) {
+  conn.query(sql, [params.show_type, params.father/*, params.producerID*/], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -799,7 +824,7 @@ router.post('/queSS_ST',(req, res) => {
   var sql = $sql.stu.queSS_ST;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.show_type, params.producerID], function (err, result) {
+  conn.query(sql, [params.show_type/*, params.producerID*/], function (err, result) {
     if (err) {
       console.log(err);
     }

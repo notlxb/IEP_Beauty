@@ -67,7 +67,7 @@
       </el-form>
       <el-form v-for="(item,index) in radio_title":key="item.value">
         <el-form-item :label="item.label">
-          <el-radio-group v-model="radioarray[index]">
+          <el-radio-group v-model="radioarray[index]" :disabled="disabled">
             <el-radio style="display: block" v-for="opt in radioes[index]":key="opt.value":label="opt.label":value="opt.label" >
               {{opt.value}}<br>
             </el-radio>
@@ -79,7 +79,7 @@
 
       <el-form :inline="true" align="center">
         <el-form-item>
-          <el-button type="danger" @click="eval_submit()">修改提交</el-button>
+          <el-button type="danger" :disabled="disabled" @click="eval_submit()">修改提交</el-button>
           <el-button type="danger" @click.native="go_back()">返回</el-button>
         </el-form-item>
       </el-form>
@@ -91,6 +91,7 @@
   export default {
     data(){
       return{
+        disabled:false,
         field1: [],
         field_value:'',
         field_label:'',
@@ -110,11 +111,14 @@
       }
     },
     mounted(){
+      if (this.$route.query.isEdit == 1)
+        this.disabled = false;
+      else
+        this.disabled = true;
       this.field1_traverse();
       this.evaDate = this.getDate();
       this.getStuAppraisal();
     },
-
     methods:{
       getStuAppraisal(){
         var courses = JSON.parse(this.$store.state.stuinfo[0].Courses);
@@ -127,7 +131,6 @@
           }
         }
       },
-
       getDate() {
         var date = new Date();
         var seperator1 = "-";
@@ -143,11 +146,7 @@
         var currentdate = year + seperator1 + month + seperator1 + strDate;
         return currentdate;
       },
-
-
-
       field1_traverse(){
-
         // var value_nub=0;
         for(var i=0; i<this.$store.state.course.length;i++)
         {
@@ -158,7 +157,6 @@
           }
         }
       },
-
       second_traverse(){
         this.termTarget={};
         this.second_field=[];
@@ -222,8 +220,6 @@
             this.radio_title.push({
               label:this.$store.state.course[i].label,
               value:this.$store.state.course[i].id});
-
-
             // var s2 = this.$store.state.course[c-1].children_id;
             // var arr=[];
             // var str2 = s2.substring(1,s2.length-1);
@@ -260,12 +256,9 @@
           this.radioarray = [];
         }
       },
-
-
       change(name){
         console.log(name)
       },
-
       fieldID2label(){
         for (var i = 0; i < this.$store.state.course.length; i++){
           if(this.$store.state.course[i].id == this.field_value)
@@ -276,11 +269,9 @@
             this.project_label = this.$store.state.course[i].label;
         }
       },
-
       go_back(){
         this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}});
       },
-
       eval_submit(){
         for (var i = 0; i < this.radio_title.length; i++){
           for (var j = 0; j < this.radioes[i].length; j++){
@@ -293,7 +284,6 @@
             }
           }
         }
-
         if (this.appraisal.length == 0)
           this.appraisal.push({领域:this.field_label, 描述:''});
         else
@@ -303,12 +293,10 @@
             if (i == this.appraisal.length-1)
               this.appraisal.push({领域:this.field_label, 描述:''});
           }
-
         this.evaluation.领域 = this.field_label;
         this.evaluation.次领域 = this.se_field_label;
         this.evaluation.项目 = this.project_label;
         this.evaluation.长期目标 = this.termTarget;
-
         var Courses = JSON.parse(this.$store.state.stuinfo[0].Courses);
         for (var i = 0; i < Courses.length; i++){
           if (Courses[i].schoolYear == this.$route.query.schoolYear && Courses[i].term == this.$route.query.term)
@@ -339,11 +327,9 @@
                   Courses[i].appraisal.push(this.appraisal[n]);
                 break;
               }
-
             Courses[i].evaDate = this.evaDate;
           }
         }
-
         this.$http.post('/api/stu/upStuCourse', {
           Course:Courses,
           stuID:this.$store.state.stuinfo[0].student_id
@@ -351,12 +337,9 @@
           this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}})
         });
       }
-
-
     }
   }
 </script>
 
 <style scoped>
-
 </style>

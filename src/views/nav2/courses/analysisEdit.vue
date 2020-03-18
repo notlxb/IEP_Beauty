@@ -1,7 +1,6 @@
 <template>
     <section>
         <el-container>
-            <!--      <div>{{this.$store.state.stuinfo[0].Courses}}</div>-->
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/evaluationAnalysis', query:{currentPage:this.$route.query.currentPage} }">评量分析</el-breadcrumb-item>
                 <el-breadcrumb-item>编辑</el-breadcrumb-item>
@@ -35,18 +34,12 @@
         </el-container>
         <el-divider></el-divider>
         <div>
-<!--            <el-button type="danger" @click="show_data1()" >数据视图</el-button>-->
-<!--            <el-button type="danger"@click="show_data()">修改数据</el-button>-->
         </div>
         <el-divider></el-divider>
         <div v-show="show1">
-            <!--      <div>-->
-            <!--        <el-button type="primary" @click="changedata()">成长图</el-button>-->
-            <!--        &lt;!&ndash;      <el-button type="primary" @click = "pass_data()">显示图形</el-button>&ndash;&gt;-->
-            <!--      </div>-->
             <el-form>
                 <el-form-item  ref="school_year" label="年度">
-                    <el-select   v-model="sch_year" placeholder="请选择"  @change = "choose_fields()" >
+                    <el-select   v-model="sch_year"  multiple :multiple-limit=2 placeholder="请选择"  @change = "choose_fields()" >
                         <el-option v-for="item in school_year"
                                    :label="item.label"
                                    :key="item.value"
@@ -82,11 +75,38 @@
                     </el-select>
                 </el-form-item>
             </el-form>
+
             <div >
                 <columnarchart ref="tdata" />
             </div>
+            <el-collapse v-if="!isOneTerm">
+                <el-collapse-item v-for="(domain, index) in [{领域:'提示', 描述:'只有在只选中一个学期的情况下可以进行分析描述！'}]"
+                                  :title="domain.领域"
+                                  :name="domain.领域"
+                                  :key="domain.领域">
+                    {{domain.描述}}
+                </el-collapse-item>
+            </el-collapse>
+            <el-collapse v-if="isOneTerm">
+                <el-collapse-item v-for="(domain, index) in LRTable"
+                                  :title="domain.领域"
+                                  :name="domain.领域"
+                                  :key="domain.领域">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <span>结果分析</span>
+                        </div>
+                        <vue-ckeditor type="classic"  v-model="domain.描述" :editors="editors1"
+                                      :config='config' :readonly="disabled"></vue-ckeditor>
+                    </el-card>
+                </el-collapse-item>
+            </el-collapse>
+
+            <el-divider></el-divider>
+
             <el-form :inline="true" align="center">
                 <el-form-item>
+                    <el-button type="danger" :disabled="disabled" @click="eval_submit()">修改提交</el-button>
                     <el-button type="danger" @click.native="go_back()">返回</el-button>
                 </el-form-item>
             </el-form>
@@ -96,15 +116,21 @@
 
 <script>
     import columnarchart from '../../../components/tools/echarts/columnar-chart'
+    import VueCkeditor from 'vue-ckeditor5'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+    import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
+
     export default {
         components: {
-            columnarchart
+            columnarchart,
+            'vue-ckeditor': VueCkeditor.component
         },
         data(){
             return{
                 show:false,
                 show1:true,
                 show2:false,
+                isOneTerm:false,
                 field1: [],
                 field_value:'',
                 field_label:'',
@@ -124,17 +150,31 @@
                 stu_id:'',
                 stu_id_index:'',
                 school_year:[],
-                sch_year:'',
+                sch_year:[],
                 school_year_term:[],
                 fields:[],
                 cho_fields:'',
-                term_location:'',
+                term_location:[],
                 sec_fields:[],
                 cho_sec_fields:'',
                 choose_project:'',
                 projects:[],
                 tidata1:[],
-                tdata:[]
+                tdata:[],
+                LRTable:[],
+
+                edt: ClassicEditor,
+                disabled:true,
+                editors1: {
+                    classic: ClassicEditor,
+                },
+                config:{
+                    language:'zh-cn',
+                    placeholder:'在此添加分析描述',
+                    ckfinder: {
+                        uploadUrl: '/api/stu/picture_CEE'
+                    },
+                },
             }
         },
         mounted(){
@@ -170,17 +210,12 @@
                 return currentdate;
             },
 
-
-
             field1_traverse(){
-
-                // var value_nub=0;
                 for(var i=0; i<this.$store.state.course.length;i++)
                 {
                     if(this.$store.state.course[i].show_type=='1')
                     {
                         this.field1.push({label:this.$store.state.course[i].label,value:this.$store.state.course[i].id});
-                        //value_nub++;
                     }
                 }
             },
@@ -191,17 +226,10 @@
                 this.se_field_value='';
                 for (var i = 0; i < this.$store.state.course.length; i++) {
                     if (this.$store.state.course[i].father == this.field_value) {
-                        // var s = this.$store.state.course[i].children_id;
-                        // var shuzu = [];
-                        // var str1 = s.substring(1, s.length - 1);
-                        // shuzu = str1.split(",");
-                        // for (var j = 0; j < shuzu.length; j++) {
-                        //   var c = parseInt(shuzu[j]);
                         this.second_field.push({
                             label: this.$store.state.course[i].label,
                             value: this.$store.state.course[i].id
                         });
-                        // }
                     }
                 }
             },
@@ -215,17 +243,9 @@
                 {
                     if(this.$store.state.course[i].father== this.se_field_value)
                     {
-                        // var s = this.$store.state.course[i].children_id;
-                        // var shuzu=[];
-                        // var str1 = s.substring(1,s.length-1);
-                        // shuzu = str1.split(",");
-                        // for (var j = 0; j < shuzu.length ; j++)
-                        // {
-                        //   var c = parseInt(shuzu[j]);
                         this.project.push({
                             label:this.$store.state.course[i].label,
                             value:this.$store.state.course[i].id});
-                        // }
                     }
                 }
             },
@@ -238,22 +258,9 @@
                 {
                     if(this.$store.state.course[i].father == this.project_value)
                     {
-                        // var s = this.$store.state.course[i].children_id;
-                        // var shuzu=[];
-                        // var str1 = s.substring(1,s.length-1);
-                        // shuzu = str1.split(",");
-                        // for (var j = 0; j < shuzu.length ; j++)
-                        // {
-                        // var c = parseInt(shuzu[j]);
                         this.radio_title.push({
                             label:this.$store.state.course[i].label,
                             value:this.$store.state.course[i].id});
-
-
-                        // var s2 = this.$store.state.course[c-1].children_id;
-                        // var arr=[];
-                        // var str2 = s2.substring(1,s2.length-1);
-                        // arr = str2.split(",");
                         var arr1=[];
                         for(var j = 0;j<this.$store.state.course.length;j++) {
                             if (this.$store.state.course[j].father == this.$store.state.course[i].id) {
@@ -265,7 +272,6 @@
                             }
                         }
                         this.radioes.push(arr1)
-                        // }
                     }
                 }
                 this.fieldID2label();
@@ -286,8 +292,6 @@
                     this.radioarray = [];
                 }
             },
-
-
             changedata(){
                 for(var i = 0;i < this.$store.state.stuinfo.length;i++){
                     if(this.$store.state.stuinfo[i].student_id = this.stu_id){
@@ -295,12 +299,13 @@
                         break;
                     }
                 }
-                //console.log(this.stu_id)
                 this.choose_sch_year();
 
             },
             choose_sch_year(){
-                this.sch_year = '';
+                this.tidata1 = [];
+                this.tdata=[];
+                this.sch_year = [];
                 this.school_year = [];
                 this.fields = [];
                 this.cho_fields='';
@@ -313,65 +318,334 @@
                     this.school_year.push({label:stu_info[i].schoolYear+"--"+stu_info[i].term,value:stu_info[i].id});
                 }
             },
+            remove_repeat(filed_aver_score_r,t){
+                let temp={};
+                for(let i in filed_aver_score_r){
+                    let key = filed_aver_score_r[i].filed1;
+                    if(temp[key]){
+                        temp[key].field1 = key;
+                        if(t === 0){
+                            temp[key].score1 = 0;
+                            temp[key].num = 1;
+                        }else{
+                            temp[key].score1 = temp[key].score1 + filed_aver_score_r[i].score1;
+                            temp[key].num = temp[key].num + filed_aver_score_r[i].num;
+                        }
+                    }else{
+                        if(t === 0){
+                            temp[key] = {};
+                            temp[key].field1 = key;
+                            temp[key].score1 = 0;
+                            temp[key].num = 1;
+                        }else
+                        temp[key] = {};
+                        temp[key].field1 = key;
+                        temp[key].score1 = filed_aver_score_r[i].score1;
+                        temp[key].num = filed_aver_score_r[i].num;
+                    }
+                }
+                if(t==0){
+                    let array = [];
+                    for(let i in temp){
+                        array.push(i);
+                    }
+                    return array;
+                }
+            },
+
             choose_fields(){
+                //只有当之选中一个学期的时候可以进行分析描述
+                if (this.sch_year.length == 1 && this.$route.query.isEdit == 1) {
+                    this.isOneTerm = true;
+                    this.disabled = false;
+                } else if (this.sch_year.length == 1 && this.$route.query.isEdit == 2){
+                    this.isOneTerm = true;
+                    this.disabled = true;
+                } else {
+                    this.isOneTerm = false;
+                    this.disabled = true;
+                }
+
+                this.tidata1 = [];
+                this.tdata=[];
                 this.fields = [];
                 this.cho_fields='';
                 this.sec_fields=[];
                 this.cho_sec_fields = '';
                 this.projects=[];
                 this.choose_project = '';
+                this.term_location=[];
                 let  stu_info = JSON.parse(this.$store.state.stuinfo[this.stu_id_index].Courses);
-                for(let i = 0;i < stu_info.length;i++){
-                    if(stu_info[i].id == this.sch_year){
-                        let evalu = stu_info[i].evaluation;
-                        this.term_location = i;
-                        let fields_B = [];
-                        for(let i = 0; i < evalu.length; i++){
-                            fields_B.push(evalu[i].领域);
-                        }
-                        var fields_A = fields_B.filter(function(ele,index,self){
-                            return self.indexOf(ele) == index;
-                        });
-                        for(let i = 0; i < fields_A.length;i++){
-                            this.fields.push({label:fields_A[i],value:i});
+                let field_aver_score_r =[];
+                let field_score_all=[];
+                let fields_B = [];
+                let echarts_name = [];
+                for(let j = 0;j < this.sch_year.length;j++){
+                    for(let i = 0;i < stu_info.length;i++){
+                        if(stu_info[i].id == this.sch_year[j]){
+                            echarts_name.push(stu_info[i].schoolYear+"--"+stu_info[i].term);
+                            let evalu = stu_info[i].evaluation;
+                            this.LRTable = [];
+                            this.LRTable = stu_info[i].appraisal;
+                            // if( j == 0 ){
+                            //     this.LRTable = [];
+                           // let ss = stu_info[i].appraisal;
+                           // for(let k in ser){
+                           //     this.LRTable[]
+                           // }
+                           //  console.log(this.LRTable);
+                            // }
+                            this.term_location.push(i);
+                            let filed_score = [];
+                            for(let k = 0;k < evalu.length;k++){
+                                let score_1 = evalu[k].长期目标;
+                                if(score_1.length === 0){
+                                    filed_score.push({filed1:evalu[k].领域,score1:0,num:1});
+                                    field_score_all.push({filed1:evalu[k].领域,score1:0,num:1});
+                                }else{
+                                    let count = 0;
+                                    let score = 0;
+                                    for(let i in score_1){
+                                        score += score_1[i].score;
+                                        count++;
+                                    }
+                                    filed_score.push({filed1:evalu[k].领域,score1:score,num:count});
+                                    field_score_all.push({filed1:evalu[k].领域,score1:0,num:1});
+                                }
+                                fields_B.push(evalu[k].领域);
+                            }
+                            field_aver_score_r.push({label:j,value:filed_score});
                         }
                     }
                 }
+                field_score_all = this.remove_repeat( field_score_all,0);
+                let ss = [];
+                for(let i = 0;i < field_aver_score_r.length;i++) {
+                    let tmp = field_aver_score_r[i].value;
+                    let s = [];
+                    for (let j = 0; j < field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 == field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1: field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1: field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let title = field_score_all;
+                let score_field_all =[];
+                let e_titile=''
+                if(echarts_name.length > 1){
+                    e_titile = "学年/学期对比图"
+                }else{
+                    e_titile = echarts_name[0];
+                }
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+
+                    score_field_all.push({
+                            barGap: 0,
+                            name: echarts_name[i],
+                            type: 'bar',
+                            barWidth: 16,
+                            data: score_field,
+                        });
+                }
+                this.tidata1.push(score_field_all);
+                this.tidata1.push(title);
+                this.tidata1.push(e_titile);
+                this.$nextTick(function () {
+                    this.$refs.tdata.drawLine(this.tidata1);
+                });
+                var fields_A = fields_B.filter(function(ele,index,self){
+                    return self.indexOf(ele) == index;
+                });
+                for(let i = 0; i < fields_A.length;i++){
+                    this.fields.push({label:fields_A[i],value:i});
+                }
             },
             choose_sec_fields(){
+                this.tidata1 = [];
+                this.tdata=[];
                 this.sec_fields=[];
                 this.cho_sec_fields = '';
                 this.projects=[];
                 this.choose_project = '';
                 let ch_fields = this.fields[this.cho_fields].label;
                 let  stu_info = JSON.parse(this.$store.state.stuinfo[this.stu_id_index].Courses);
-                let evalu = stu_info[this.term_location].evaluation;
                 let sec_fields_B = [];
-                for(let i = 0;i < evalu.length;i++){
-                    if(evalu[i].领域 == ch_fields){
-                        sec_fields_B.push(evalu[i].次领域);
+                let sec_filed_aver_score = [];
+                let sec_field_score_all = [];
+                let echarts_name = [];
+                for(let i = 0;i < this.term_location.length;i++){
+                    let evalu = stu_info[this.term_location[i]].evaluation;
+                    echarts_name.push(stu_info[this.term_location[i]].schoolYear+"--"+stu_info[this.term_location[i]].term);
+                    let sec_filed_aver_score_r =[];
+                    for(let i = 0;i < evalu.length;i++){
+                        if(evalu[i].领域 == ch_fields){
+                            let score_1 = evalu[i].长期目标;
+                            if(score_1.length === 0){
+                                sec_filed_aver_score_r.push({filed1:evalu[i].次领域,score1:0,num:1});
+                                sec_field_score_all.push({filed1:evalu[i].次领域,score1:0,num:1});
+                            }else {
+                                let count = 0;
+                                let score = 0;
+                                for (let i in score_1) {
+                                    score += score_1[i].score;
+                                    count++;
+                                }
+                                sec_filed_aver_score_r.push({filed1: evalu[i].次领域, score1: score, num: count});
+                                sec_field_score_all.push({filed1: evalu[i].次领域, score1: score, num: count});
+                            }
+                            sec_fields_B.push(evalu[i].次领域);
+                        }
                     }
+                    sec_filed_aver_score.push({label:i,value:sec_filed_aver_score_r});
                 }
+                sec_field_score_all = this.remove_repeat(sec_field_score_all,0);
+                let ss = [];
+                for(let i = 0;i < sec_filed_aver_score.length;i++) {
+                    let tmp = sec_filed_aver_score[i].value;
+                    let s = [];
+                    for (let j = 0; j <  sec_field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 ==  sec_field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1:sec_field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1:sec_field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let score_field_all =[];
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+                    score_field_all.push({
+                        barGap: 0,
+                        name: echarts_name[i],
+                        type: 'bar',
+                        barWidth: 16,
+                        data: score_field,
+                    });
+                }
+                let title =  sec_field_score_all;
+                this.tidata1.push(score_field_all);
+                this.tidata1.push(title);
+                this.tidata1.push(ch_fields);
+                this.$nextTick(function () {
+                    this.$refs.tdata.drawLine(this.tidata1);
+                });
                 var sec_fields_A = sec_fields_B.filter(function(ele,index,self){
                     return self.indexOf(ele) == index;
                 });
                 for(let i = 0; i < sec_fields_A.length;i++){
-                    this. sec_fields.push({label:sec_fields_A[i],value:i});
+                    this.sec_fields.push({label:sec_fields_A[i],value:i});
                 }
             },
             choose_pro(){
+                this.tidata1 = [];
+                this.tdata=[];
                 this.projects=[];
                 this.choose_project = '';
                 let ch_pro = this.sec_fields[this.cho_sec_fields].label;
                 let  stu_info = JSON.parse(this.$store.state.stuinfo[this.stu_id_index].Courses);
-                let evalu = stu_info[this.term_location].evaluation;
-                let count = 0;
-                for(let i = 0;i < evalu.length;i++){
-                    if(evalu[i].次领域 == ch_pro){
-                        this.projects.push({label:evalu[i].项目,value:count});
-                        count++;
+                let pro_filed_aver_score = [];
+                let pro_field_score_all = [];
+                let echarts_name = [];
+                for(let i = 0;i < this.term_location.length;i++){
+                    let evalu = stu_info[this.term_location[i]].evaluation;
+                    echarts_name.push(stu_info[this.term_location[i]].schoolYear+"--"+stu_info[this.term_location[i]].term);
+                    let pro_filed_aver_score_r =[];
+                    let count=0;
+                    for(let i = 0;i < evalu.length;i++){
+                        if(evalu[i].次领域 == ch_pro){
+                            let score_1 = evalu[i].长期目标;
+                            if(score_1.length === 0){
+                                pro_filed_aver_score_r.push({filed1:evalu[i].项目,score1:0,num:1});
+                                pro_field_score_all.push({filed1:evalu[i].项目,score1:0,num:1});
+                            }else {
+                                let count1 = 0;
+                                let score = 0;
+                                for (let i in score_1) {
+                                    score += score_1[i].score;
+                                    count1++;
+                                }
+                                pro_filed_aver_score_r.push({filed1: evalu[i].项目, score1: score, num: count1});
+                                pro_field_score_all.push({filed1: evalu[i].项目, score1: score, num: count1});
+                            }
+                            this.projects.push({label:evalu[i].项目,value:count});
+                            count++;
+                        }
                     }
+                    pro_filed_aver_score.push({label:i,value:pro_filed_aver_score_r});
                 }
+                pro_field_score_all = this.remove_repeat(pro_field_score_all,0);
+                let ss = [];
+                for(let i = 0;i < pro_filed_aver_score.length;i++) {
+                    let tmp = pro_filed_aver_score[i].value;
+                    let s = [];
+                    for (let j = 0; j <  pro_field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 ==  pro_field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1:pro_field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1:pro_field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let score_field_all =[];
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+                    score_field_all.push({
+                        barGap: 0,
+                        name: echarts_name[i],
+                        type: 'bar',
+                        barWidth: 16,
+                        data: score_field,
+                    });
+                }
+                let title =  pro_field_score_all;
+                this.tidata1.push(score_field_all);
+                this.tidata1.push(title);
+                this.tidata1.push(ch_pro);
+                this.$nextTick(function () {
+                    this.$refs.tdata.drawLine(this.tidata1);
+                });
             },
             getdata(){
                 this.tidata1 = [];
@@ -380,31 +654,73 @@
                 let sec_fie = this.sec_fields[this.cho_sec_fields].label;
                 let pro = this.projects[this.choose_project].label;
                 let  stu_info = JSON.parse(this.$store.state.stuinfo[this.stu_id_index].Courses);
-                let evalu = stu_info[this.term_location].evaluation;
-                for(let i = 0;i < evalu.length;i++){
-                    if((evalu[i].领域 == ch_fie)&&(evalu[i].次领域 == sec_fie)&&(evalu[i].项目 == pro)){
-                        var information = evalu[i].长期目标;
-                        var title =[];
-                        var score = [];
-                        //console.log(Object.keys(information));
-                        for(let i in information){
-                            if(information[i].score != 0){
-                                title.push(information[i].title);
-                                score.push(information[i].score);
+                let fie_filed_aver_score = [];
+                let fie_field_score_all = [];
+                let echarts_name = [];
+                for(let i = 0;i < this.term_location.length;i++) {
+                    let evalu = stu_info[this.term_location[i]].evaluation;
+                    echarts_name.push(stu_info[this.term_location[i]].schoolYear + "--" + stu_info[this.term_location[i]].term);
+                    let fie_filed_aver_score_r =[];
+                    for(let i = 0;i < evalu.length;i++){
+                        if((evalu[i].领域 == ch_fie)&&(evalu[i].次领域 == sec_fie)&&(evalu[i].项目 == pro)){
+                            let score_1 = evalu[i].长期目标;
+                            if(score_1.length === 0){
+                                // fie_filed_aver_score_r.push({filed1:evalu[i].领域,score1:0,num:1});
+                                // fie_field_score_all.push({filed1:evalu[i].领域,score1:0,num:1});
+                                continue;
+                            }else {
+                                // let count = 0;
+                                // let score = 0;
+                                for (let i in score_1) {
+                                    fie_filed_aver_score_r.push({filed1: score_1[i].title, score1: score_1[i].score, num: 1});
+                                    fie_field_score_all.push({filed1: score_1[i].title, score1: score_1[i].score, num: 1});
+                                }
                             }
                         }
-                        this.tidata1.push({
-                            barGap:0,
-                            type:'bar',
-                            barWidth:16,
-                            data:score,
-                        });
-                        this.tidata1.push(title);
-                        this.tidata1.push(pro);
-                        // console.log(this.tidata1[0]);
                     }
+                    fie_filed_aver_score.push({label:i,value:fie_filed_aver_score_r});
                 }
-
+                fie_field_score_all = this.remove_repeat(fie_field_score_all,0);
+                let ss = [];
+                for(let i = 0;i < fie_filed_aver_score.length;i++) {
+                    let tmp = fie_filed_aver_score[i].value;
+                    let s = [];
+                    for (let j = 0; j <  fie_field_score_all.length; j++) {
+                        let score = 0;
+                        let num = 0;
+                        for (let k = 0; k < tmp.length; k++) {
+                            if (tmp[k].filed1 ==  fie_field_score_all[j]) {
+                                score += tmp[k].score1;
+                                num += tmp[k].num;
+                            }
+                        }
+                        if (num !== 0) {
+                            s.push({filed1:fie_field_score_all[j], score1: score, num: num})
+                        } else {
+                            s.push({filed1:fie_field_score_all[j], score1: 0, num: 1})
+                        }
+                    }
+                    ss.push(s);
+                }
+                let score_field_all =[];
+                for(let i = 0;i < ss.length;i++){
+                    let temp = ss[i];
+                    let score_field = [];
+                    for(let k in temp){
+                        score_field.push((temp[k].score1/temp[k].num).toFixed(2));
+                    }
+                    score_field_all.push({
+                        barGap: 0,
+                        name: echarts_name[i],
+                        type: 'bar',
+                        barWidth: 16,
+                        data: score_field,
+                    });
+                }
+                let title =  fie_field_score_all;
+                this.tidata1.push(score_field_all);
+                this.tidata1.push(title);
+                this.tidata1.push(ch_fie);
                 this.$nextTick(function () {
                     this.$refs.tdata.drawLine(this.tidata1);
                 });
@@ -426,12 +742,51 @@
                         this.project_label = this.$store.state.course[i].label;
                 }
             },
-
             go_back(){
                 this.$router.replace({path:'/evaluationAnalysis', query:{currentPage: this.$route.query.currentPage}});
             },
+            async eval_submit(){
+                //console.log(this.LRTable)
+                var Courses = JSON.parse(this.$store.state.stuinfo[this.stu_id_index].Courses);
+                var year;
+                var term;
+                var status;
 
-            eval_submit(){
+                //识别当前选择的学年和学期以定位分析描述LRTable（appraisal）在课程评量列表Courses中的位置
+                for (var i = 0; i < this.school_year.length; i++)
+                    if (this.school_year[i].value == this.sch_year){
+                        year = this.school_year[i].label.split('--')[0];
+                        term = this.school_year[i].label.split('--')[1];
+                    }
+
+                //将编辑好的LRTable赋给课程评量列表Courses中对应评量的appraisal
+                for (var i = 0; i < Courses.length; i++)
+                    if (Courses[i].schoolYear == year && Courses[i].term == term)
+                        Courses[i].appraisal = this.LRTable;
+
+                //将编辑好的评量分析上传至服务端数据库进行保存
+                await this.$http.post('/api/stu/upStuCourse', {
+                    Course:Courses,
+                    stuID:this.stu_id
+                }, {}).then((response) => {
+                    status = response.status;
+                });
+
+                if (status == 200) {
+                    this.$http.post('/api/stu/queryStuinfo',{
+                        AStuID:this.stu_id
+                    },{}).then((response) => {
+                        this.$store.dispatch("setstuinfo", response.bodyText);
+                        this.choose_fields();
+                        this.$message({
+                            message: year + '--' + term + '的评量分析描述保存成功！',
+                            type: 'success'
+                        });
+                    });
+                }
+                else
+                    this.$message.error("发生错误，错误码："+status);
+
             }
 
         }
