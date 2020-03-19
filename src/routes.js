@@ -116,12 +116,6 @@ let routes = [
         authority: [1, 1, 1, 1, 1],
         children: [
             {
-                path: '/schoolTables',
-                component: schoolTables,
-                name: '课程表主页',
-                authority: [1, 1, 1, 1, 1],
-            },
-            {
                 path: '/showSchoolTables',
                 component: showSchoolTables,
                 name: '展示课程表',
@@ -188,6 +182,12 @@ let routes = [
                 authority: [1, 1, 1, 1, 1],
                 hidden: true
             },
+            {
+                path: '/schoolTables',
+                component: schoolTables,
+                name: '课程表主页',
+                authority: [1, 1, 1, 1, 1],
+            },
         ]
     },
     {
@@ -219,14 +219,14 @@ let routes = [
 
             //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
 
-            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学设计', authority: [1, 1, 1, 1, 1]},
+            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学设计编辑', authority: [1, 1, 1, 1, 1], hidden:true},
 
-            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学设计', authority: [1, 1, 1, 1, 1]},
+            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学设计编辑', authority: [1, 1, 1, 1, 1], hidden:true},
 
-            {path: '/learningReport', component: learningReport, name: '学习报表', authority: [1, 1, 1, 1, 1]},
-            {path: '/learningReportEdit', component: learningReportEdit, name: '学习报表编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {path: '/learningReport', component: learningReport, name: '学业评鉴报告', authority: [1, 1, 1, 1, 1]},
+            {path: '/learningReportEdit', component: learningReportEdit, name: '学业评鉴报告查看', authority: [1, 1, 1, 1, 1], hidden:true},
         ]
     },
     {

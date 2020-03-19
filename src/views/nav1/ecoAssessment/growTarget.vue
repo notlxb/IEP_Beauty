@@ -10,19 +10,31 @@
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
 
-    <div class="certificate-upload">
-      <h2 style="text-align: center;margin-bottom: 1%">诊断证书</h2>
+    <el-card style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2)">
+      <div slot="header" class="cardTitle" align="center">
+              <span>
+                诊断证书
+              </span><i class="header-icon el-icon-info"></i>
+      </div>
       <vue-ckeditor type="classic" :editors="editors1" v-model="ZDZS" :config='config'></vue-ckeditor>
-    </div>
+    </el-card>
 
-    <div>
-      <h2 style="text-align: center;margin-bottom: 1%">残疾证</h2>
+    <br/>
+
+    <el-card style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2)">
+      <div slot="header" class="cardTitle" align="center">
+              <span>
+                残疾证
+              </span><i class="header-icon el-icon-info"></i>
+      </div>
       <vue-ckeditor type="classic" :editors="editors1" v-model="CJZ" :config='config'></vue-ckeditor>
-    </div>
+    </el-card>
 
     <el-divider content-position="center"></el-divider>
-    <el-button type="danger" @click="submitForm()">提交</el-button>
-    <el-button type="danger" @click.native="go_back()">返回</el-button>
+    <el-form align="center">
+      <el-button type="danger" @click="submitForm()">提交</el-button>
+      <el-button type="danger" @click.native="go_back()">返回</el-button>
+    </el-form>
   </section>
 </template>
 
@@ -316,5 +328,13 @@
   }
   .certificate-upload{
     margin-bottom: 2%;
+  }
+  .cardTitle{
+    align-self: center;
+    font-weight: bold;
+    font-size: large;
+    font-family: 楷体;
+    color: #000000;
+    letter-spacing: 3px;
   }
 </style>
