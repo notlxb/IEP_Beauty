@@ -13,7 +13,6 @@
       </div>
       <div>
         <el-table v-loading="loading" :data="tables" ref="tablesection" @select="handlesection" align="left" stripe>
-          <el-table-column type="selection" label="选择" align="center"></el-table-column>
           <el-table-column
             :filters = this.schYear
             prop="schoolYear"
@@ -53,7 +52,8 @@
                   操 作<i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu>
-                  <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term)">查看/编辑</el-dropdown-item>
+                  <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,1)">编辑</el-dropdown-item>
+                  <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,2)">查看</el-dropdown-item>
                   <el-dropdown-item>删除</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -76,7 +76,7 @@
     <el-dialog title="新增课程评量" :visible.sync="dialogVisible">
       <el-form :model="form">
         <el-form-item label="学年" label-width="15%">
-          <el-select v-model="form.schoolYear" placeholder="请选择学年" width="50%">
+          <el-select filterable v-model="form.schoolYear" placeholder="请选择学年" width="50%">
             <el-option
                     v-for="item in form.schoolYear_options"
                     :key="item.key"
@@ -106,7 +106,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="班级" label-width="15%">
-          <el-select v-model="form.stu_class" @change="queStudents()" placeholder="请选择班级">
+          <el-select filterable v-model="form.stu_class" @change="queStudents()" placeholder="请选择班级">
             <el-option
                     v-for="item in form.class_options"
                     :key="item.key"
@@ -116,7 +116,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="学生" label-width="15%">
-          <el-select v-model="form.stu_id" @change="" placeholder="请选择学生" @change="selectStuName">
+          <el-select filterable v-model="form.stu_id" @change="" placeholder="请选择学生" @change="selectStuName">
             <el-option
                     v-for="item in form.student_options"
                     :key="item.key"
@@ -209,13 +209,14 @@
         this.form.class_options = [];
 
         //初始化学年选项
-        var date = new Date();
-        var year = date.getFullYear();
-        this.form.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)})
+        var year = new Date().getFullYear();
+        this.form.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)});
         this.form.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
-        for (var i = 2; i < 7; i++){
-          this.form.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
-        }
+        for (var i = 2; ; i++)
+          if (year-i+1 >= 2019)
+            this.form.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+          else
+            break;
 
         //初始化课程大类选项
         await this.$http.post('/api/stu/queCourseCategeories',{
@@ -266,12 +267,12 @@
       },
 
       //跳转至课程评量界面
-      to_edit(stuID,schoolYear,term){
+      to_edit(stuID,schoolYear,term,isEdit){
         this.$http.post('/api/stu/queryStuinfo',{
           AStuID:stuID
         },{}).then((response) => {
           this.$store.dispatch("setstuinfo", response.bodyText);
-          this.$router.push({path:'/courseEdit',query:{schoolYear:schoolYear, term:term, currentPage: this.currentPage1}})
+          this.$router.push({path:'/courseEdit',query:{isEdit: isEdit, schoolYear:schoolYear, term:term, currentPage: this.currentPage1}})
         });
       },
 
@@ -322,7 +323,7 @@
           stuID:this.form.stu_id
         },{}).then((response) => {
           if (response.status == 200)
-            this.to_edit(this.form.stu_id, this.form.schoolYear, this.form.term);
+            this.to_edit(this.form.stu_id, this.form.schoolYear, this.form.term, 1);
           else
             this.$message.error('错误！');
         });

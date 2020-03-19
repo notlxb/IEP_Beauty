@@ -2,16 +2,19 @@
 <template>
   <section>
     <!--展示学年学期标签-->
-    <el-tag
-            v-for="item in heads"
-            :key="item.key"
-            :type="item.type"
-            effect="dark">
-            {{ item.label }}
-          </el-tag>
+    <div style="padding-bottom: 1%; text-align: center" >
+      <el-tag
+          v-for="item in heads"
+          :key="item.key"
+          :type="item.type"
+          effect="dark">
+        {{ item.label }}
+      </el-tag>
+      <el-button type="text" @click="dialogFormVisible2 = true">选择学年学期</el-button>
+    </div>
 
     <!--选择学年学期-->
-    <el-button type="text" @click="dialogFormVisible2 = true">选择学年学期</el-button>
+
     <el-dialog title="选择查询的学年学期" :visible.sync="dialogFormVisible2">
             <el-form :model="form">
               <el-form-item label="学年" :label-width="formLabelWidth">
@@ -77,14 +80,14 @@
                     icon="el-icon-edit"
                     circle
                     type="primary"
-                    size="medium"
+                    size="small"
                     @click="chooseLesson(item.id)">
                   </el-button>
                 </div>
               </el-col>
             </el-row>
 
-            <el-button type="primary" @click="save()">保存</el-button>
+            <el-button type="primary" @click="save()" style="margin-top: 1%">保存</el-button>
 
             <div>
               <el-dialog title="选择课程" :visible.sync="dialogFormVisible">
@@ -229,22 +232,29 @@ export default {
       })
     },
 
-    getOptionalCourses () {
-      //开发用http://chooseablecoursesmock.com
-      //测试用http://localhost:8082/scheduleSet/courses/
-      axios({
-        method: 'get',
-        //url: 'http://localhost:8082/scheduleSet/courses/',
-        url: 'http://47.110.134.247/group2_b/scheduleSet/courses/',
-        params: {
-          'pageNumber': '0',
-          'pageSize': '10',
-        }
-      }).then((res) => {
-        //console.log(res.data.data.courses)
-        this.options = res.data.data.courses;
-      })
-    },
+      getOptionalCourses() {
+          //开发用http://chooseablecoursesmock.com
+          //测试用http://localhost:8082/scheduleSet/courses/
+          axios({
+              method: 'get',
+              // url: 'http://47.110.134.247/group2_b/scheduleSet/courses/',
+              url: 'http://47.110.134.247/group1_b/sysAdmin/resource/SubjectData',
+              //测试用http://localhost:8082/scheduleSet/courses/
+              //url:'http://localhost:8082/scheduleSet/courses/',
+              // params: {
+              //   'pageNumber': '0',
+              //   'pageSize': '10',
+              // }
+          }).then((res) => {
+              let cour = [];
+              let result = res.data.data;
+              for (let i = 0; i < result.length; i++) {
+                  cour.push(result[i].subjectName);
+              }
+              this.options = cour;
+              this.mockTest()
+          })
+      },
 
     chooseLesson (buttonId) {
       if(buttonId>=100){
@@ -358,7 +368,12 @@ export default {
 </script>
 
 <style scoped>
-
+  .el-col {
+    text-align: center;
+    vertical-align: center;
+    font-size: 14px;
+    border-radius: 4px;
+  }
   .bg-purple {
     background: #d3dce6;
   }
