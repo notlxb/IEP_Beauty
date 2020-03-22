@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="2020-3.16：学生以及不同学生间的每层对比">
-      <change afterPath="$PROJECT_DIR$/src/views/nav2/periodic_assess/assess_analysis.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/nav2/periodic_assess/assess_edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" afterDir="false" />
-    </list>
+    <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="2020-3.22：定期评估分析" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,8 +205,16 @@
       <workItem from="1583220549376" duration="1017000" />
       <workItem from="1583675066461" duration="689000" />
       <workItem from="1583746595738" duration="19728000" />
-      <workItem from="1584839187528" duration="7574000" />
+      <workItem from="1584839187528" duration="7818000" />
     </task>
+    <task id="LOCAL-00001" summary="2020-3.22：定期评估分析">
+      <created>1584846995292</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584846995292</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -258,7 +258,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="20202.23将数据表格导出为word格式" />
-    <option name="LAST_COMMIT_MESSAGE" value="20202.23将数据表格导出为word格式" />
+    <MESSAGE value="2020-3.22：定期评估分析" />
+    <option name="LAST_COMMIT_MESSAGE" value="2020-3.22：定期评估分析" />
   </component>
   <component name="masterDetails">
     <states>
