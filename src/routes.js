@@ -28,6 +28,8 @@ import analysisEdit from './views/nav2/courses/analysisEdit.vue'
 import iepMeeting from './views/nav2/IEP/iep_meeting.vue'
 import iepMeetingEdit from './views/nav2/IEP/iepmeeting_edit.vue'
 import iepMeetingCreate from './views/nav2/IEP/iepmeeting_create.vue'
+import assess_analysis from "./views/nav2/periodic_assess/assess_analysis";
+import assess_edit from "./views/nav2/periodic_assess/assess_edit";
 import newContact from './views/nav1/ecoAssessment/newContact.vue'
 import devTarget from './views/nav1/ecoAssessment/developTarget.vue'
 import funcTarget from './views/nav1/ecoAssessment/functionTarget.vue'
@@ -78,8 +80,8 @@ let routes = [
             {path: '/data', component: data, name: '指标选择', authority: [1, 1, 1, 1, 1],},
             /*{path: '/table', component: Table, name: '生态评量', authority: [1, 1, 1, 1, 1], hidden: true},*/
             {path: '/page6', component: Page6, name: '指标选择test', authority: [1, 1, 1, 1, 1], hidden: true},
-            // {path: '/studentManagement', component: studentManagement, authority: [1, 1, 1, 1, 1], name: '学生管理'},
-
+            {path: '/studentManagement', component: studentManagement, authority: [1, 1, 1, 1, 1], name: '学生管理'},
+            {path: '/classManagement', component: classManagement, authority: [1, 1, 1, 1, 1], name: '班级管理'},
             {path: '/newContact', component: newContact, name: '生态评量', authority: [1, 1, 1, 1, 1]},
             {path: '/checkNEdit', component: CheckNEdit, name: '查询/编辑', authority: [1, 1, 1, 1, 1], hidden: true},
             {
@@ -115,6 +117,12 @@ let routes = [
         iconCls: 'fa fa-list-alt',
         authority: [1, 1, 1, 1, 1],
         children: [
+            {
+                path: '/schoolTables',
+                component: schoolTables,
+                name: '课程表主页',
+                authority: [1, 1, 1, 1, 1],
+            },
             {
                 path: '/showSchoolTables',
                 component: showSchoolTables,
@@ -183,11 +191,20 @@ let routes = [
                 hidden: true
             },
             {
-                path: '/schoolTables',
-                component: schoolTables,
-                name: '课程表主页',
-                authority: [1, 1, 1, 1, 1],
+                path:'/periodicAnalysis',
+                component:assess_analysis,
+                name:'定期评估分析',
+                authority:[1, 1, 1, 1, 1],
             },
+            {
+                path:'/assessEdit',
+                component:assess_edit,
+                name:'定期评估编辑',
+                authority:[1, 1, 1, 1, 1],
+                hidden:true
+            },
+
+
         ]
     },
     {
@@ -219,14 +236,14 @@ let routes = [
 
             //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
 
-            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学设计', authority: [1, 1, 1, 1, 1]},
-            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学设计编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学', authority: [1, 1, 1, 1, 1]},
+            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
 
-            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学设计', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学设计编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
+            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
 
-            {path: '/learningReport', component: learningReport, name: '学业评鉴报告', authority: [1, 1, 1, 1, 1]},
-            {path: '/learningReportEdit', component: learningReportEdit, name: '学业评鉴报告查看', authority: [1, 1, 1, 1, 1], hidden:true},
+            {path: '/learningReport', component: learningReport, name: '学习报表', authority: [1, 1, 1, 1, 1]},
+            {path: '/learningReportEdit', component: learningReportEdit, name: '学习报表编辑', authority: [1, 1, 1, 1, 1], hidden:true},
         ]
     },
     {
@@ -238,7 +255,6 @@ let routes = [
         children: [
             {path: '/echarts', component: echarts, name: '图标', authority: [1, 1, 1, 1, 1], hidden: true},
             {path: '/schoolManagement', component: schoolManagement, name: '学校管理', authority: [1, 1, 1, 1, 0],},
-            {path: '/classManagement', component: classManagement, authority: [1, 1, 1, 1, 1], name: '班级管理'},
             {path: '/userManagement', component: userManagement, name: '用户管理', authority: [1, 1, 1, 1, 0],},
             {path: '/dataManagement', component: dataManagement, name: '指标管理', authority: [1, 1, 1, 1, 0],},
             {path: '/subjectManagement', component: subjectManagement, name: '课标管理', authority: [1, 1, 1, 1, 0],},
