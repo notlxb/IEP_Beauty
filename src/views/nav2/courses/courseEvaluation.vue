@@ -184,7 +184,7 @@
               return String(dataNews[key]).toLowerCase().indexOf(search) > -1
             })
           })
-          return this.$store.state.stucourseslist
+          // return this.$store.state.stucourseslist
         }
         else {
           return  this.tempList.filter(function(dataNews){

@@ -28,6 +28,8 @@ import analysisEdit from './views/nav2/courses/analysisEdit.vue'
 import iepMeeting from './views/nav2/IEP/iep_meeting.vue'
 import iepMeetingEdit from './views/nav2/IEP/iepmeeting_edit.vue'
 import iepMeetingCreate from './views/nav2/IEP/iepmeeting_create.vue'
+import assess_analysis from "./views/nav2/periodic_assess/assess_analysis";
+import assess_edit from "./views/nav2/periodic_assess/assess_edit";
 import newContact from './views/nav1/ecoAssessment/newContact.vue'
 import devTarget from './views/nav1/ecoAssessment/developTarget.vue'
 import funcTarget from './views/nav1/ecoAssessment/functionTarget.vue'
@@ -188,6 +190,21 @@ let routes = [
                 authority: [1, 1, 1, 1, 1],
                 hidden: true
             },
+            {
+                path:'/periodicAnalysis',
+                component:assess_analysis,
+                name:'定期评估分析',
+                authority:[1, 1, 1, 1, 1],
+            },
+            {
+                path:'/assessEdit',
+                component:assess_edit,
+                name:'定期评估编辑',
+                authority:[1, 1, 1, 1, 1],
+                hidden:true
+            },
+
+
         ]
     },
     {
