@@ -6,7 +6,7 @@
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider></el-divider>
-    <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+    <el-col :span="24" class="toolbar" style="padding-bottom: 0px; box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
       <el-form :inline="true"  align="left" >
         <el-form-item label="学年">
           <el-select v-model="schoolYear" placeholder="请选择" :disabled="disabled">
@@ -81,7 +81,7 @@
       <el-button  type="danger"  @click="push2()" >教学进度</el-button>
     </div>
     <el-divider></el-divider>
-    <table v-if="this.judge"  class="hovertable" width="100%" border="1"  cellpadding="0" cellspacing="0" >
+    <table v-if="this.judge"  class="hovertable" width="100%" border="1"  cellpadding="0" cellspacing="0" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
       <thead >
       <tr >
         <th style="width: 5%;">项目</th>
@@ -211,7 +211,7 @@
       </tbody>
     </table>
 
-      <vue-ckeditor v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"
+      <vue-ckeditor style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)" v-if="this.judge1" type="classic"  v-model="teachingProgress" :editors="editors1"
                     :config='config' :readonly="disabled"></vue-ckeditor>
 
     <el-divider></el-divider>
@@ -250,15 +250,12 @@
                 jxznd:'',  jxznd_bz:'',
                 zycs:'',   zycs_bz:'',
 
-                teachingProgress:'<h1>点击以编辑内容</h1>',
+                teachingProgress:'',
 
 
                 term_options: [{value: '上学期', label: '上学期'},
                     {value: '下学期', label: '下学期'}],
-                schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
-                    {value: '2018-2019', label: '2018-2019'},
-                    {value: '2019-2020', label: '2019-2020'},
-                    {value: '2020-2021', label: '2020-2021'}],
+                schoolYear_options: [],
                 class_options:[],
                 stuOptions:[],
                 teacher_options:[],
@@ -278,7 +275,7 @@
                         if (show_type == 0){
                             await that.$http.post('/api/stu/queSS_ST', {
                                 show_type:0,
-                                producerID:1
+                                //producerID:1
                             }, {}).then((response) => {
                                 length = response.body.length;
                                 node_info = response.body;
@@ -287,7 +284,7 @@
                             await that.$http.post('/api/stu/queSS', {
                                 show_type:show_type,
                                 father:node.data.id,
-                                producerID:1
+                                //producerID:1
                             }, {}).then((response) => {
                                 length = response.body.length;
                                 node_info = response.body;
@@ -301,7 +298,7 @@
                                     id:node_info[id].id,
                                     value: node_info[id].label,
                                     label: node_info[id++].label,
-                                    leaf: show_type >= 5
+                                    leaf: show_type >= 4
                                 }));
                             // 通过调用resolve将子节点数据返回，通知组件数据加载完成
                             resolve(nodes);
@@ -320,6 +317,7 @@
                 },
                 config:{
                     language:'zh-cn',
+                    placeholder:'点击此处编辑',
                     ckfinder: {
                         uploadUrl: '/api/stu/picture_GeXunJH'
                     },
@@ -337,19 +335,32 @@
                 this.disabled = false;
                 this.createDate = this.getDate();
                 this.updateDate = this.getDate();
-                this.$http.post('/api/stu/queSchoolTeachers', {
-                    school:"苏州工业园区仁爱学校"
-                },{}).then((response) => {
-                    console.log(response);
-                    for (var i = 0; i < response.body.length; i++) {
-                        this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
-                    }
-                });
-                this.querySubject();
-                this.queryClasstable();
+                this.init_options();
             }
         },
         methods:{
+          init_options(){
+            this.$http.post('/api/stu/queSchoolTeachers', {
+              school:"苏州工业园区仁爱学校"
+            },{}).then((response) => {
+              console.log(response);
+              for (var i = 0; i < response.body.length; i++) {
+                this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
+              }
+            });
+            this.querySubject();
+            this.queryClasstable();
+
+            //初始化学年选项
+            var year = new Date().getFullYear();
+            this.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)});
+            this.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
+            for (var i = 2; ; i++)
+              if (year-i+1 >= 2019)
+                this.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+              else
+                break;
+          },
             readTrainingSPinfo(){
                 this.schoolYear=this.$store.state.trainingSP[0].schoolYear;
                 this.term=this.$store.state.trainingSP[0].term;
@@ -375,16 +386,7 @@
 
                 this.teachingProgress = JSON.parse(this.$store.state.trainingSP[0].teachingProgress).content;
 
-                this.$http.post('/api/stu/queSchoolTeachers', {
-                    school:"苏州工业园区仁爱学校"
-                },{}).then((response) => {
-                    console.log(response);
-                    for (var i = 0; i < response.body.length; i++) {
-                        this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
-                    }
-                });
-                this.querySubject();
-                this.queryClasstable();
+                this.init_options();
             },
 
             queryClasstable(){

@@ -2,7 +2,7 @@
 <template>
   <section>
     <!--<el-button type="primary" @click="mockTest">测试</el-button>-->
-    <div style="padding-top: 10px; text-align: center" >
+    <div style="padding-bottom: 1%; text-align: center" >
       <el-tag
           v-for="item in heads"
           :key="item.key"
@@ -276,6 +276,9 @@ export default {
 
 <style scoped>
   .el-col {
+    text-align: center;
+    vertical-align: center;
+    font-size: medium;
     border-radius: 4px;
   }
 
