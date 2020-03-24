@@ -129,12 +129,6 @@ export default {
                 }, {
                     value: '2',
                     label: '第二学期'
-                }, {
-                    value: '3',
-                    label: '第三学期'
-                }, {
-                    value: '4',
-                    label: '第四学期'
                 },
             ],
             //弹框表单内
@@ -158,6 +152,7 @@ export default {
     components: {ElSelectDropdown},
     methods: {
         mockTest() {
+            console.log(this.semesterOptions);
             axios({
                 method: 'get',
                 //url: 'http://coursesmock.com',
@@ -166,7 +161,7 @@ export default {
                 params: {
                     /*'year': this.form.year,
                     'semester': this.form.semester,*/
-                    'year': '2018/2019',
+                    'year': '2019/2020',
                     'semester': '1',
                     'studentId': this.$route.query.row.studentId
                 }
@@ -202,9 +197,9 @@ export default {
         },
         getParams() {
             let temp = this.$route.query.row;
-            console.log('跳转到show list 了', this.$route.query.row);
+            // console.log('跳转到show list 了', this.$route.query.row);
             this.studentId = temp.studentId;
-            console.log(this.form)
+            // console.log(this.form)
         },
         searchTables() {
             this.dialogFormVisible = false;
@@ -270,7 +265,8 @@ export default {
                 }
             }
         },
-    }
+    },
+
 }
 </script>
 

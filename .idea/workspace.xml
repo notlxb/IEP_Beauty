@@ -2,16 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vue-admin-master.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav1/classManagement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/classManagement.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" afterDir="false" />
-      
     </list>
+    <ignored path="$PROJECT_DIR$/node_modules/" />
+    <ignored path="$PROJECT_DIR$/server/node_modules/" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +48,34 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="351" column="50" lean-forward="true" selection-start-line="351" selection-start-column="50" selection-end-line="351" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="154" column="46" selection-start-line="154" selection-start-column="46" selection-end-line="154" selection-end-column="46" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#7180#7383#0" />
+                <element signature="e#7408#9537#0" />
+                <element signature="e#9561#10337#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -48,39 +84,38 @@
       </list>
     </option>
   </component>
-
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>id</find>
-      <find>课程评量</find>
-      <find>queCourse</find>
-      <find>setStuCE</find>
-      <find>handlesection</find>
-      <find>getStuAppraisal</find>
-      <find>学生</find>
-      <find>ico</find>
-      <find>i</find>
-      <find>icon</find>
-      <find>baocun</find>
-      <find>保存</find>
-      <find>coursesNames</find>
-      <find>list</find>
-      <find>subjectName</find>
-      <find>options</find>
-      <find>for</find>
-      <find>small</find>
-      <find>medi</find>
       <find>mediu</find>
       <find>courses</find>
       <find>getOptio</find>
       <find>get</find>
-      <find>47.11</find>
       <find>presentStudents</find>
       <find>getData</find>
       <find>班级</find>
       <find>allClass</find>
       <find>allStudent</find>
       <find>allClasses</find>
+      <find>icon</find>
+      <find>ico</find>
+      <find>系统</find>
+      <find>padding-left</find>
+      <find>40</find>
+      <find>&lt;el-menu-item</find>
+      <find>评量</find>
+      <find>问卷</find>
+      <find>active</find>
+      <find>padd</find>
+      <find>545d64</find>
+      <find>danger</find>
+      <find>47.11</find>
+      <find>47.1</find>
+      <find>sta</find>
+      <find>学期</find>
+      <find>评估</find>
+      <find>家长</find>
+      <find>家长自评</find>
+      <find>（家长自评）</find>
     </findStrings>
     <replaceStrings>
       <replace>ckeditor5-build-balloon-block</replace>
@@ -98,19 +133,25 @@
         <option value="$PROJECT_DIR$/src/views/nav3/individualSubjectEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav4/courseManagement.vue" />
         <option value="$PROJECT_DIR$/server/db.js" />
-        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" />
         <option value="$PROJECT_DIR$/server/api/stuApi.js" />
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
         <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" />
-        <option value="$PROJECT_DIR$/src/routes.js" />
-        <option value="$PROJECT_DIR$/src/views/Home.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/classManagement.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" />
+        <option value="$PROJECT_DIR$/src/views/Home.vue" />
+        <option value="$PROJECT_DIR$/src/views/Login.vue" />
+        <option value="$PROJECT_DIR$/src/routes.js" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav1/analysis.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" />
       </list>
     </option>
   </component>
@@ -125,13 +166,13 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="width" value="978" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectId" id="1Y1rjDoRaPyfkqip3YkzBjTRuXp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -161,13 +202,6 @@
               <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="nav2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -181,9 +215,7 @@
             <path>
               <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
               <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="nav4" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -191,7 +223,6 @@
       </pane>
       <pane id="PackagesPane" />
     </panes>
-
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -218,13 +249,6 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\notlxb\Desktop\project_vue\IEP_Beauty\src\vendor" />
-      <recent name="D:\dataManagementPlatform\src\views\nav3" />
-      <recent name="D:\dataManagementPlatform\src\views\nav2" />
-      <recent name="D:\dataManagementPlatform\src" />
-      <recent name="D:\dataManagementPlatform\src\views" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\dataManagementPlatform\src\views\nav1\test" />
       <recent name="D:\dataManagementPlatform\src\views\nav3" />
@@ -232,6 +256,25 @@
       <recent name="D:\dataManagementPlatform\src\views\nav2\courses" />
       <recent name="D:\dataManagementPlatform\src\views\nav2\IEP" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\notlxb\Desktop\project_vue\IEP_Beauty\src\vendor" />
+      <recent name="D:\dataManagementPlatform\src\views\nav3" />
+      <recent name="D:\dataManagementPlatform\src\views\nav2" />
+      <recent name="D:\dataManagementPlatform\src" />
+      <recent name="D:\dataManagementPlatform\src\views" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -334,13 +377,14 @@
       <workItem from="1583220549376" duration="1017000" />
       <workItem from="1583675066461" duration="689000" />
       <workItem from="1583746595738" duration="19728000" />
-
       <workItem from="1584086980159" duration="4785000" />
+      <workItem from="1584793185617" duration="4321000" />
+      <workItem from="1585034913008" duration="2459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46179000" />
+    <option name="totallyTimeSpent" value="52959000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -353,6 +397,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.21842733" />
       <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
@@ -364,16 +409,16 @@
       <window_info id="UI Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" weight="0.18739635" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.07131012" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.68822557" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.41791046" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.23087819" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.32857144" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -420,7 +465,6 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout-to-restore>
   </component>
-
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -430,6 +474,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -455,39 +505,7 @@
     <MESSAGE value="20202.23将数据表格导出为word格式" />
     <option name="LAST_COMMIT_MESSAGE" value="20202.23将数据表格导出为word格式" />
   </component>
-
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/tools/ckeditor/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-build-classic/package.json" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <element signature="e#650#696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/studyReport/studyReport.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -609,13 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -627,32 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2793">
           <caret line="147" column="92" selection-start-line="147" selection-start-column="86" selection-end-line="147" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2166">
-          <caret line="117" column="78" selection-start-line="117" selection-start-column="62" selection-end-line="117" selection-end-column="78" />
-          <folding>
-            <element signature="e#2605#2644#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="156" column="35" lean-forward="true" selection-start-line="156" selection-start-column="35" selection-end-line="156" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -688,18 +673,6 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#el-option#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="236" column="28" lean-forward="true" selection-start-line="236" selection-start-column="28" selection-end-line="236" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#342#389#0" expanded="true" />
-            <element signature="e#446#486#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -747,16 +720,6 @@
         <state relative-caret-position="-2816" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="253" column="27" lean-forward="true" selection-start-line="253" selection-start-column="27" selection-end-line="253" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2486">
@@ -788,41 +751,149 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue">
+    <entry file="file://$PROJECT_DIR$/src/views/charts/echarts.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="348" column="57" selection-start-line="348" selection-start-column="57" selection-end-line="348" selection-end-column="57" />
+        <state relative-caret-position="136">
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/build.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-396" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/lgon.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/icon.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/home.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="181" selection-start-column="178" selection-end-column="181" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/Create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1584">
+          <caret line="132" column="33" selection-start-line="132" selection-start-column="33" selection-end-line="132" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="7" column="38" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="6" column="120" lean-forward="true" selection-start-line="6" selection-start-column="120" selection-end-line="6" selection-end-column="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/newContact.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="226" column="39" lean-forward="true" selection-start-line="226" selection-start-column="39" selection-end-line="226" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="6" column="159" selection-start-line="6" selection-start-column="153" selection-end-line="6" selection-end-column="159" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/functionTarget.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="6" column="159" selection-start-line="6" selection-start-column="153" selection-end-line="6" selection-end-column="159" />
           <folding>
-            <element signature="e#4819#4835#0" />
-            <element signature="e#5920#6249#0" />
-            <element signature="e#6274#7531#0" />
-            <element signature="e#7555#8293#0" />
-            <element signature="e#8320#9242#0" />
-            <element signature="e#9571#9957#0" />
-            <element signature="e#9991#10320#0" />
-            <element signature="e#10354#10597#0" />
-            <element signature="e#10630#10875#0" />
-            <element signature="e#10911#10958#0" />
-            <element signature="e#11007#11121#0" />
-            <element signature="e#11144#11478#0" />
+            <element signature="e#2605#2644#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav1/analysis.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="65" column="46" lean-forward="true" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#el-dialog#1;n#div#0;n#div#0;n#template#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#0;n#div#0;n#template#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#3852#3893#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/Home.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7194">
-          <caret line="366" column="23" lean-forward="true" selection-start-line="366" selection-start-column="23" selection-end-line="366" selection-end-column="23" />
+        <state relative-caret-position="211">
+          <caret line="147" column="23" selection-start-line="147" selection-start-column="23" selection-end-line="147" selection-end-column="23" />
           <folding>
             <element signature="n#style#0;n#i#0;n#div#0;n#el-col#1;n#el-col#0;n#el-row#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-menu#0;n#aside#0;n#el-col#1;n#el-row#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#8744#10900#0" />
-            <element signature="e#13326#13600#0" />
+            <element signature="n#style#0;n#el-menu-item#0;n#template#1;n#el-submenu#0;n#template#0;n#el-menu#0;n#aside#0;n#el-col#1;n#el-row#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="233" column="33" selection-start-line="233" selection-start-column="33" selection-end-line="233" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#342#389#0" expanded="true" />
+            <element signature="e#446#486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="351" column="50" lean-forward="true" selection-start-line="351" selection-start-column="50" selection-end-line="351" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="154" column="46" selection-start-line="154" selection-start-column="46" selection-end-line="154" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#7180#7383#0" />
+            <element signature="e#7408#9537#0" />
+            <element signature="e#9561#10337#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

@@ -34,10 +34,10 @@
     export default {
         data() {
             return {
-                //icon: 'static/icon.jpg',
-                //logo: 'static/lgon.jpg',
-                icon: 'http://47.110.134.247/family_members/icon.jpg',
-                logo: 'http://47.110.134.247/family_members/lgon.jpg',
+                icon: 'icon.jpg',
+                logo: 'lgon.jpg',
+                // icon: 'http://47.110.134.247/family_members/icon.jpg',
+                // logo: 'http://47.110.134.247/family_members/lgon.jpg',
                 logining: false,
                 ruleForm2: {
                     // account: 'admin',
