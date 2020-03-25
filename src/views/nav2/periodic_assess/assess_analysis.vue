@@ -1,5 +1,9 @@
 <template>
     <section>
+        <!--工具条-->
+        <el-container>
+            <el-button type="danger" icon="el-icon-edit" v-on:click="to_edit(0,0)">新建会议</el-button>
+        </el-container>
         <el-divider></el-divider>
         <div class="table">
             <div class="search-Box">
@@ -11,9 +15,9 @@
                 <el-table-column prop="id" label="ID"></el-table-column>
                 <el-table-column prop="schoolYear" label="学年"></el-table-column>
                 <el-table-column prop="term" label="学期"></el-table-column>
-                <el-table-column prop="stuID" label="学号"></el-table-column>
+                <el-table-column prop="class" label="班级"></el-table-column>
                 <el-table-column prop="stuName" label="学生"></el-table-column>
-                <el-table-column prop="date" label="分析时间"></el-table-column>
+                <el-table-column prop="analysisTime" label="分析时间"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <el-dropdown>
@@ -23,7 +27,7 @@
                             <el-dropdown-menu>
                                 <el-dropdown-item @click.native="to_edit(scope.row.id,1)">编辑</el-dropdown-item>
                                 <el-dropdown-item @click.native="to_edit(scope.row.id,2)">查看</el-dropdown-item>
-                                <el-dropdown-item @click.native="whetherDel(scope.row.id,scope.row.stuName,scope.row.stuID)">删除</el-dropdown-item>
+                                <el-dropdown-item @click.native="whetherDel(scope.row.id)">删除</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </template>
@@ -45,9 +49,7 @@
             :visible.sync="this.dialogVisible"
             width="30%"
             :show-close="false">
-            <span><font size="3">是否要删除ID为</font><font size="4"><i><strong>{{delID}}</strong></i></font> <font size="3">
-            ，学号为</font><font size="4"><i><strong>{{delStuID}}</strong></i></font> <font size="3">的</font><font size="4"><i><strong>{{delName}}</strong></i></font>
-            <font size="3">同学的分析信息？</font></span>
+            <span><font size="3">是否要删除此条信息？</font></span>
             <span slot="footer" class="dialog-footer">
             <el-button @click="handleClose">取消</el-button>
             <el-button type="danger" icon="el-icon-delete" @click="delAnalysis">确认删除</el-button>
@@ -61,9 +63,7 @@
        data(){
            return{
                dialogVisible:false,
-               delID:0,
-               delName:'null',
-               delStuID:'null',
+               delID:-1,
 
                search:'',
                tempList:[],
@@ -78,12 +78,12 @@
             tables:function(){
                 var search=this.search;
                 if(search.length > 0){
-                    return  this.$store.state.iepmeetinglist.filter(function(dataNews){
+                    return  this.$store.state.PAList.filter(function(dataNews){
                         return Object.keys(dataNews).some(function(key){
                             return String(dataNews[key]).toLowerCase().indexOf(search) > -1
                         })
                     })
-                    return this.$store.state.iepmeetinglist
+                    return this.$store.state.PAList
                 }
                 else{
                     return  this.tempList.filter(function(dataNews){
@@ -101,29 +101,54 @@
         methods:{
            //跳转至课程评量界面
            to_edit(id,isEdit){
-
+               if (isEdit === 1 || isEdit === 2) {
+                   this.$http.post('/api/stu/quePA', {
+                       id: id
+                   }, {}).then((response) => {
+                       this.$store.dispatch("setPA", response.bodyText);
+                       this.$router.push({path: '/assessEdit', query: {isEdit: isEdit, currentPage: this.currentPage1},});
+                   })
+               }
+               else {
+                   this.$router.push({path: '/assessEdit', query: {isEdit: isEdit, currentPage: this.currentPage1},});
+               }
            },
 
 
 
             //更新评估分析信息
-            updateAnalysis(){
-
+            async updateAnalysis(){
+                await this.$http.post('/api/stu/quePAList', {
+                }, {}).then((response) => {
+                    this.$store.dispatch("setPAList", response.bodyText);
+                    this.total = this.$store.state.PAList.length;
+                    if(this.$route.query.currentPage != undefined)
+                        this.currentPage1 = parseInt(this.$route.query.currentPage);
+                    this.currentChangePage(this.currentPage1);
+                });
+                this.loading = false;
             },
 
 
             //删除评估信息
             delAnalysis() {
-
+                this.$http.post('/api/stu/delPA', {
+                    id:this.delID
+                }, {}).then((response) => {
+                    this.delID = -1;
+                    this.dialogVisible = false;
+                    this.loading = true;
+                    this.updateAnalysis();
+                });
             },
-            whetherDel(ID,Name,stuID){
-                this.delID = ID;
-                this.delName = Name;
-                this.delStuID = stuID;
+
+            whetherDel(id){
+                this.delID = id;
                 this.dialogVisible = true;
             },
-            handleClose(){
-                console.log(this.delID)
+
+            handleClose() {
+                this.delID = -1;
                 this.dialogVisible = false;
             },
 
@@ -140,13 +165,13 @@
             },
             //分页方法（重点）
             currentChangePage(currentPage) {
-                console.log(this.$store.state.iepmeetinglist)
+                console.log(this.$store.state.PAList)
                 var from = (currentPage - 1) * this.pageSize;
                 var to = currentPage * this.pageSize;
                 this.tempList = [];
                 for (var i = from; i < to; i++) {
-                    if (this.$store.state.iepmeetinglist[i]) {
-                        this.tempList.push(this.$store.state.iepmeetinglist[i]);
+                    if (this.$store.state.PAList[i]) {
+                        this.tempList.push(this.$store.state.PAList[i]);
                     }
                 }
             },

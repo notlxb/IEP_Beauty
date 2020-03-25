@@ -4,3 +4,5 @@ node_modules/
 npm-debug.log
 .editorconfig
 dist/
+.idea/workspace.xml
+server/db.js

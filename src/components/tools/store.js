@@ -26,6 +26,8 @@ let store = new Vuex.Store({
     trainingSIlist:[],        //个训学科教学列表信息
     LReports:[],              //单个学习报表信息
     LReportslist:[],          //学习报表列表信息
+    PA:[],                   //单个定期评估分析信息
+    PAList:[],               //定期评估分析列表
   },
 
   // // 2. getters
@@ -103,6 +105,13 @@ let store = new Vuex.Store({
     },
     getLReportslist(state) {
       return state.LReportslist;
+    },
+
+    getPA(state) {
+      return state.PA;
+    },
+    getPAList(state) {
+      return state.PAList;
     },
   },
   // 3. actions
@@ -193,6 +202,13 @@ let store = new Vuex.Store({
     },
     setLReportslist(ctx, name) {
       ctx.commit("setLReportslist",name);
+    },
+
+    setPA(ctx, name) {
+      ctx.commit("setPA",name);
+    },
+    setPAList(ctx, name){
+      ctx.commit("setPAList",name);
     },
   },
   // 4. mutations
@@ -369,6 +385,22 @@ let store = new Vuex.Store({
       state.LReportslist.reverse();
     },
 
+    setPA(state, name){
+      state.PA = [];
+      const obj = JSON.parse(name);
+      for (let key in obj) {
+        state.PA.push(obj[key]);
+      }
+      state.PA.reverse();
+    },
+    setPAList(state, name){
+      state.PAList = [];
+      const obj = JSON.parse(name);
+      for (let key in obj) {
+        state.PAList.push(obj[key]);
+      }
+      state.PAList.reverse();
+    },
   }
 });
 
