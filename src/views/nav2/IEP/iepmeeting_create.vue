@@ -9,7 +9,7 @@
     </el-container>
     <el-divider></el-divider>
     <el-container>
-      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
         <el-form :inline="true"  align="left" >
           <el-form-item label="日期">
             <el-date-picker format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd" align="left" v-model="date" type="date" placeholder="选择日期"></el-date-picker>
@@ -48,7 +48,7 @@
     </el-container>
     <el-divider></el-divider>
 
-    <vue-ckeditor type="classic"  v-model="summary" :editors="editors1"
+    <vue-ckeditor style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)" type="classic"  v-model="summary" :editors="editors1"
                   :config='config'></vue-ckeditor>
 
     <el-divider></el-divider>
@@ -79,10 +79,7 @@
                 summary:'',
                 term_options: [{value: '上学期', label: '上学期'},
                     {value: '下学期', label: '下学期'}],
-                schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
-                    {value: '2018-2019', label: '2018-2019'},
-                    {value: '2019-2020', label: '2019-2020'},
-                    {value: '2020-2021', label: '2020-2021'}],
+                schoolYear_options: [],
 
 
                 edt: ClassicEditor,
@@ -100,11 +97,24 @@
             }
         },
         mounted(){
+          this.init_options();
         },
 
         methods:{
             go_back(){
               this.$router.replace({path:'/iepMeeting', query:{currentPage: this.$route.query.currentPage}});
+            },
+
+            init_options(){
+              //初始化学年选项
+              var year = new Date().getFullYear();
+              this.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)});
+              this.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
+              for (var i = 2; ; i++)
+                if (year-i+1 >= 2019)
+                  this.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+                else
+                  break;
             },
 
             meeting_add() {

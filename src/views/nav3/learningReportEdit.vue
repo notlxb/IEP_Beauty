@@ -6,6 +6,8 @@
         </el-breadcrumb>
         <el-divider></el-divider>
 
+        <el-container>
+        <el-col :span="24" class="toolbar" style="padding-bottom: 0px; box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
         <el-form :inline="true"  align="left" >
             <el-form-item label="学年">
                 <el-select v-model="schoolYear" placeholder="请选择" :disabled="disabled">
@@ -58,17 +60,25 @@
                 </el-select>
             </el-form-item>
         </el-form>
+        </el-col>
+        </el-container>
 
         <el-divider></el-divider>
 
-        <el-collapse>
+        <el-collapse style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
             <el-collapse-item v-for="(domain, index) in LRTable"
                               :title="domain.subject"
                               :name="domain.subject"
                               :key="domain.subject">
+                <template slot="title">
+                    <div id="title">
+                        {{domain.subject}}<i class="header-icon el-icon-info"></i>
+                    </div>
+                </template>
                 <el-table
                         :data="domain.table"
-                        :stripe="true">
+                        :stripe="true"
+                        style="padding: 10px;">
                     <el-table-column
                             align='center'
                             prop="week"
@@ -138,10 +148,7 @@
                 month_options: [],
                 term_options: [{value: '上学期', label: '上学期'},
                     {value: '下学期', label: '下学期'}],
-                schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
-                    {value: '2018-2019', label: '2018-2019'},
-                    {value: '2019-2020', label: '2019-2020'},
-                    {value: '2020-2021', label: '2020-2021'}],
+                schoolYear_options: [],
                 class_options:[],
                 stuOptions:[],
 
@@ -163,6 +170,17 @@
         },
 
         methods:{
+            // init_options(){
+            //     //初始化学年选项
+            //     var year = new Date().getFullYear();
+            //     this.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)});
+            //     this.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
+            //     for (var i = 2; ; i++)
+            //         if (year-i+1 >= 2019)
+            //             this.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+            //         else
+            //             break;
+            // },
             readLReport(){
                 this.readMonths();
                 this.schoolYear = this.$store.state.LReports[0].schoolYear;
@@ -292,6 +310,17 @@
     }
     table tr{
         background:#fff;
+    }
+    #title{
+        align-self: center;
+        font-weight: bold;
+        font-size: large;
+        font-family: 楷体;
+        color: #000000;
+        letter-spacing: 3px;
+    }
+    #title:hover{
+        color: #1d8ce0;
     }
 </style>
 

@@ -9,7 +9,7 @@
         </el-container>
         <el-divider></el-divider>
         <el-container>
-            <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+            <el-col :span="24" class="toolbar" style="padding-bottom: 0px; box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
                 <el-form :inline="true"  align="left" >
                     <el-form-item label="学年">
                         <el-input align="left" :disabled="true" :value="this.$route.query.schoolYear"></el-input>
@@ -34,12 +34,9 @@
         </el-container>
         <el-divider></el-divider>
         <div>
-        </div>
-        <el-divider></el-divider>
-        <div v-show="show1">
-            <el-form>
-                <el-form-item  ref="school_year" label="年度">
-                    <el-select   v-model="sch_year"  multiple :multiple-limit=2 placeholder="请选择"  @change = "choose_fields()" >
+            <el-form style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
+                <el-form-item style="padding-left: 1em; padding-top: 1em"  ref="school_year" label="年度">
+                    <el-select   v-model="sch_year" clearable multiple :multiple-limit=2 placeholder="请选择"  @change = "choose_fields()" >
                         <el-option v-for="item in school_year"
                                    :label="item.label"
                                    :key="item.value"
@@ -47,8 +44,8 @@
                         </el-option>
                     </el-select>
                 </el-form-item><br>
-                <el-form-item   label="领域">
-                    <el-select  v-model="cho_fields" placeholder="请选择"  @change = "choose_sec_fields()" >
+                <el-form-item  style="padding-left: 1em" label="领域">
+                    <el-select  v-model="cho_fields" clearable placeholder="请选择"  @change = "choose_sec_fields()" >
                         <el-option v-for="item in fields"
                                    :label="item.label"
                                    :key="item.value"
@@ -56,8 +53,8 @@
                         </el-option>
                     </el-select>
                 </el-form-item><br>
-                <el-form-item   label="次领域">
-                    <el-select v-model="cho_sec_fields" placeholder="请选择"  @change = "choose_pro()" >
+                <el-form-item  style="padding-left: 1em" label="次领域">
+                    <el-select v-model="cho_sec_fields" clearable placeholder="请选择"  @change = "choose_pro()" >
                         <el-option v-for="item in sec_fields"
                                    :label="item.label"
                                    :key="item.value"
@@ -65,8 +62,8 @@
                         </el-option>
                     </el-select>
                 </el-form-item><br>
-                <el-form-item   label="项目">
-                    <el-select v-model="choose_project" placeholder="请选择" @change = "getdata()">
+                <el-form-item  style="padding-left: 1em;padding-bottom: 1em" label="项目">
+                    <el-select v-model="choose_project" clearable placeholder="请选择" @change = "getdata()">
                         <el-option v-for="item in projects"
                                    :label="item.label"
                                    :key="item.value"
@@ -76,24 +73,31 @@
                 </el-form-item>
             </el-form>
 
-            <div >
+            <div v-if="show" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
                 <columnarchart ref="tdata" />
             </div>
+            <br />
+            <br />
             <el-collapse v-if="!isOneTerm">
                 <el-collapse-item v-for="(domain, index) in [{领域:'提示', 描述:'只有在只选中一个学期的情况下可以进行分析描述！'}]"
                                   :title="domain.领域"
                                   :name="domain.领域"
-                                  :key="domain.领域">
+                                  :key="domain.领域"
+                                  style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
                     {{domain.描述}}
                 </el-collapse-item>
             </el-collapse>
-            <el-collapse v-if="isOneTerm">
-                <el-collapse-item v-for="(domain, index) in LRTable"
-                                  :title="domain.领域"
+            <el-collapse v-model="activeNames" v-if="isOneTerm">
+                <el-collapse-item v-for="(domain, index) in LRTable" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)"
                                   :name="domain.领域"
                                   :key="domain.领域">
+                    <template slot="title">
+                        <div id="appraisal_title">
+                            {{domain.领域}}<i class="header-icon el-icon-info"></i>
+                        </div>
+                    </template>
                     <el-card class="box-card">
-                        <div slot="header" class="clearfix">
+                        <div slot="header" class="clearfix" style="font-family: 楷体; font-size: medium">
                             <span>结果分析</span>
                         </div>
                         <vue-ckeditor type="classic"  v-model="domain.描述" :editors="editors1"
@@ -128,8 +132,6 @@
         data(){
             return{
                 show:false,
-                show1:true,
-                show2:false,
                 isOneTerm:false,
                 field1: [],
                 field_value:'',
@@ -175,6 +177,7 @@
                         uploadUrl: '/api/stu/picture_CEE'
                     },
                 },
+                activeNames: []
             }
         },
         mounted(){
@@ -186,14 +189,6 @@
         },
 
         methods:{
-            show_data1(){
-                this.show2 = false;
-                this.show1 = true;
-            },
-            show_data(){
-                this.show2 = true;
-                this.show1 = false;
-            },
             getDate() {
                 var date = new Date();
                 var seperator1 = "-";
@@ -354,6 +349,10 @@
             },
 
             choose_fields(){
+                if (this.sch_year.length == 0)
+                    this.show = false;
+                else
+                    this.show = true;
                 //只有当之选中一个学期的时候可以进行分析描述
                 if (this.sch_year.length == 1 && this.$route.query.isEdit == 1) {
                     this.isOneTerm = true;
@@ -386,7 +385,10 @@
                             echarts_name.push(stu_info[i].schoolYear+"--"+stu_info[i].term);
                             let evalu = stu_info[i].evaluation;
                             this.LRTable = [];
+                            this.activeNames = [];
                             this.LRTable = stu_info[i].appraisal;
+                            for (var n = 0; n < this.LRTable.length; n++)
+                                this.activeNames.push(this.LRTable[n].领域);
                             // if( j == 0 ){
                             //     this.LRTable = [];
                            // let ss = stu_info[i].appraisal;
@@ -477,6 +479,12 @@
                 }
             },
             choose_sec_fields(){
+                //当清空领域选项时，显示年度图表
+                if(this.cho_fields==null||$.trim(this.cho_fields)==""){
+                    this.fields = [];
+                    this.choose_fields();
+                    return;
+                }
                 this.tidata1 = [];
                 this.tdata=[];
                 this.sec_fields=[];
@@ -566,6 +574,12 @@
                 }
             },
             choose_pro(){
+                //当清空次领域选项时，显示领域图表
+                if(this.cho_sec_fields==null||$.trim(this.cho_sec_fields)==""){
+                    this.sec_fields = [];
+                    this.choose_sec_fields();
+                    return;
+                }
                 this.tidata1 = [];
                 this.tdata=[];
                 this.projects=[];
@@ -648,6 +662,12 @@
                 });
             },
             getdata(){
+                //当清空项目选项时显示次领域的图表
+                if(this.choose_project==null||$.trim(this.choose_project)==""){
+                    this.projects=[];
+                    this.choose_pro();
+                    return;
+                }
                 this.tidata1 = [];
                 this.tdata=[];
                 let ch_fie = this.fields[this.cho_fields].label;
@@ -794,5 +814,17 @@
 </script>
 
 <style scoped>
+
+    #appraisal_title{
+        align-self: center;
+        font-weight: bold;
+        font-size: large;
+        font-family: 楷体;
+        color: #000000;
+        letter-spacing: 3px;
+    }
+    #appraisal_title:hover{
+        color: #1d8ce0;
+    }
 
 </style>

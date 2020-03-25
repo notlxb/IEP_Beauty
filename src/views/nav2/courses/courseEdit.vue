@@ -10,7 +10,7 @@
     </el-container>
     <el-divider></el-divider>
     <el-container>
-      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-col :span="24" class="toolbar" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);padding-bottom: 0px;">
         <el-form :inline="true"  align="left" >
           <el-form-item label="学年">
             <el-input align="left" :disabled="true" :value="this.$route.query.schoolYear"></el-input>
@@ -36,8 +36,8 @@
     <el-divider></el-divider>
 
     <div>
-      <el-form >
-        <el-form-item  ref="field1" label="领域">
+      <el-form style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
+        <el-form-item style="padding-left: 1em; padding-top: 1em" ref="field1" label="领域">
           <el-select v-model="field_value" placeholder="请选择" @change="second_traverse()" >
             <el-option v-for="item in field1"
                        :label="item.label"
@@ -46,32 +46,52 @@
             </el-option>
           </el-select>
         </el-form-item><br>
-        <el-form-item label="次领域">
+        <el-form-item style="padding-left: 1em" label="次领域">
           <el-select v-model="se_field_value" placeholder="请选择" @change="project_traverse()" >
             <el-option v-for="item in second_field"
                        :label="item.label"
                        :key="item.value"
-                       :value="item.value" @click="this.change(item.value)">
+                       :value="item.value" @click="change(item.label)">
             </el-option>
           </el-select>
         </el-form-item><br>
-        <el-form-item  label="项目">
+        <el-form-item style="padding-left: 1em" label="项目">
           <el-select  v-model="project_value"   placeholder="请选择" @change="pro_item_traverse()">
-            <el-option v-for="item in project"
+            <el-option v-for="(item,index) in project"
                        :label="item.label"
                        :key="item.value"
-                       :value="item.value" @click="this.change(item.value)">
+                       :value="item.value" @click.native="set_project_index(index)">
             </el-option>
           </el-select>
         </el-form-item>
+        <el-form-item>
+          <el-button-group style="padding-left: 1em; padding-bottom: 1em">
+            <el-button icon="el-icon-edit" v-for="(item,index) in radioes[0]":key="index" :disabled="disabled" @click="choose_item(index)" type="primary" plain round>全选{{index}}分</el-button>
+            <el-button icon="el-icon-caret-top" v-if="radioes.length>0" type="primary" round @click="last_project"></el-button>
+            <el-button icon="el-icon-caret-bottom" v-if="radioes.length>0" type="primary" round @click="next_project"></el-button>
+            <el-button v-if="radioes.length>0" type="danger" :disabled="disabled" @click="eval_submit()" plain round>修改提交</el-button>
+          </el-button-group>
+        </el-form-item>
       </el-form>
-      <el-form v-for="(item,index) in radio_title":key="item.value">
-        <el-form-item :label="item.label">
-          <el-radio-group v-model="radioarray[index]" :disabled="disabled">
-            <el-radio style="display: block" v-for="opt in radioes[index]":key="opt.value":label="opt.label":value="opt.label" >
-              {{opt.value}}<br>
-            </el-radio>
-          </el-radio-group>
+
+      <el-divider></el-divider>
+
+      <el-form style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)" v-for="(item,index) in radio_title":key="item.value">
+        <el-form-item>
+          <el-card>
+            <div slot="header" style="font-size: 1.1em">
+              <span>
+                {{item.label}}。::{{radioarray[index]}}分
+              </span>
+            </div>
+            <el-radio-group v-model="radioarray[index]" :disabled="disabled">
+              <el-radio style="display: block; margin-top: 1em;" v-for="opt in radioes[index]":key="opt.value":label="opt.label":value="opt.label">
+                <p style="display: inline; font-size: 1em">
+                  {{opt.value}}<br>
+                </p>
+              </el-radio>
+            </el-radio-group>
+          </el-card>
         </el-form-item>
       </el-form>
 
@@ -101,6 +121,7 @@
         project:[],
         project_value:'',
         project_label:'',
+        project_index:'',
         radio_title:[],
         radioes:[],
         radioarray:[],
@@ -111,15 +132,19 @@
       }
     },
     mounted(){
-      if (this.$route.query.isEdit == 1)
-        this.disabled = false;
-      else
-        this.disabled = true;
-      this.field1_traverse();
-      this.evaDate = this.getDate();
-      this.getStuAppraisal();
+      this.init();
     },
     methods:{
+      init(){
+        if (this.$route.query.isEdit == 1)
+          this.disabled = false;
+        else
+          this.disabled = true;
+        this.field1_traverse();
+        this.evaDate = this.getDate();
+        this.getStuAppraisal();
+      },
+      //获取评量分析的文字描述
       getStuAppraisal(){
         var courses = JSON.parse(this.$store.state.stuinfo[0].Courses);
         for (var i = 0; i < courses.length; i++){
@@ -131,6 +156,7 @@
           }
         }
       },
+
       getDate() {
         var date = new Date();
         var seperator1 = "-";
@@ -147,6 +173,7 @@
         return currentdate;
       },
       field1_traverse(){
+        this.field1 = [];
         // var value_nub=0;
         for(var i=0; i<this.$store.state.course.length;i++)
         {
@@ -159,6 +186,10 @@
       },
       second_traverse(){
         this.termTarget={};
+        this.project=[];
+        this.project_value='';
+        this.radio_title=[];
+        this.radioes=[];
         this.second_field=[];
         this.se_field_value='';
         for (var i = 0; i < this.$store.state.course.length; i++) {
@@ -272,7 +303,8 @@
       go_back(){
         this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}});
       },
-      eval_submit(){
+      async eval_submit(){
+        var status;
         for (var i = 0; i < this.radio_title.length; i++){
           for (var j = 0; j < this.radioes[i].length; j++){
             if (this.radioes[i][j].label == this.radioarray[i]){
@@ -310,12 +342,23 @@
                 Courses[i].evaDate = this.evaDate;
                 for (var n = 0; n < this.appraisal.length; n++)
                   Courses[i].appraisal.push(this.appraisal[n])
-                this.$http.post('/api/stu/upStuCourse', {
+                await this.$http.post('/api/stu/upStuCourse', {
                   Course:Courses,
                   stuID:this.$store.state.stuinfo[0].student_id
                 }, {}).then((response) => {
-                  this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}})
+                  status = response.status;
                 });
+                if (status == 200){
+                  this.$message.success('“'+this.project_label+'”项目评量已成功保存！');
+                  this.$http.post('/api/stu/queryStuinfo',{
+                    AStuID:JSON.parse(this.$store.state.stuinfo[0].Courses)[0].stuID
+                  },{}).then((response) => {
+                    this.$store.dispatch("setstuinfo", response.bodyText);
+                    this.init();
+                    this.next_project();
+                  });
+                }else
+                  this.$message.error("发生错误，错误代码："+status);
                 return;
               }
             }
@@ -330,12 +373,57 @@
             Courses[i].evaDate = this.evaDate;
           }
         }
-        this.$http.post('/api/stu/upStuCourse', {
+
+        await this.$http.post('/api/stu/upStuCourse', {
           Course:Courses,
           stuID:this.$store.state.stuinfo[0].student_id
-        }, {}).then((response) => {
-          this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}})
+        }).then((response) => {
+          status = response.status;
         });
+        if (status == 200){
+          this.$message.success('“'+this.project_label+'”项目评量已成功保存！');
+          this.$http.post('/api/stu/queryStuinfo',{
+            AStuID:JSON.parse(this.$store.state.stuinfo[0].Courses)[0].stuID
+          },{}).then((response) => {
+            this.$store.dispatch("setstuinfo", response.bodyText);
+            this.init();
+            this.next_project();
+          });
+        }else
+          this.$message.error("发生错误，错误代码："+status);
+      },
+
+      //单选全选num选项
+      choose_item(num){
+        this.radioarray = [];
+        for (var i = 0; i < this.radioes.length; i++)
+          this.radioarray.push(num);
+      },
+
+      set_project_index(index){
+        this.project_index = index;
+      },
+
+      //下一个项目
+      next_project(){
+        if (this.project_index == this.project.length-1){
+          this.$message.warning("当前已是最后一个项目！")
+          return;
+        }
+        this.project_index++;
+        this.project_value = this.project[this.project_index].value;
+        this.pro_item_traverse();
+      },
+
+      //上一个项目
+      last_project(){
+        if (this.project_index == 0) {
+          this.$message.warning("当前已是第一个项目！")
+          return;
+        }
+        this.project_index--;
+        this.project_value = this.project[this.project_index].value;
+        this.pro_item_traverse();
       }
     }
   }

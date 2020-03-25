@@ -8,7 +8,7 @@
     </el-container>
     <el-divider></el-divider>
     <el-container>
-      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
         <el-form :inline="true"  align="left" >
           <el-form-item label="学年">
             <el-select v-model="schoolYear" placeholder="请选择" :disabled="disabled">
@@ -84,7 +84,7 @@
     </el-container>
     <el-divider></el-divider>
     <div>
-            <vue-ckeditor type="classic"  v-model="content" :editors="editors1"
+            <vue-ckeditor style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)" type="classic"  v-model="content" :editors="editors1"
                           :config='config' :readonly="tmdisabled"></vue-ckeditor>
     </div>
     <el-divider></el-divider>
@@ -121,10 +121,7 @@
 
                 term_options: [{value: '上学期', label: '上学期'},
                     {value: '下学期', label: '下学期'}],
-                schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
-                    {value: '2018-2019', label: '2018-2019'},
-                    {value: '2019-2020', label: '2019-2020'},
-                    {value: '2020-2021', label: '2020-2021'}],
+                schoolYear_options: [],
                 week_options: [{value: '第1周' , label: '第1周' },{value: '第2周', label: '第2周'},{value: '第3周', label: '第3周'},{value: '第4周', label: '第4周'},{value: '第5周', label: '第5周'},
                     {value: '第6周' , label: '第6周' },{value: '第7周', label: '第7周'},{value: '第8周', label: '第8周'},{value: '第9周', label: '第9周'},{value: '第10周', label: '第10周'},
                     {value: '第11周', label: '第11周'},{value: '第12周', label: '第12周'},{value: '第13周', label: '第13周'},{value: '第14周', label: '第14周'},{value: '第15周', label: '第15周'},
@@ -164,19 +161,31 @@
             }else {
                 this.disabled = false;
                 this.tmdisabled = false;
-                this.$http.post('/api/stu/queSchoolTeachers', {
-                    school:"苏州工业园区仁爱学校"
-                },{}).then((response) => {
-                    console.log(response);
-                    for (var i = 0; i < response.body.length; i++) {
-                        this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
-                    }
-                });
-                this.querySubject();
-                this.queryClasstable();
+                this.init_options();
             }
         },
         methods:{
+            init_options(){
+              this.$http.post('/api/stu/queSchoolTeachers', {
+                school:"苏州工业园区仁爱学校"
+              },{}).then((response) => {
+                console.log(response);
+                for (var i = 0; i < response.body.length; i++) {
+                  this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
+                }
+              });
+              this.querySubject();
+              this.queryClasstable();
+              //初始化学年选项
+              var year = new Date().getFullYear();
+              this.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)});
+              this.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
+              for (var i = 2; ; i++)
+                if (year-i+1 >= 2019)
+                  this.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+                else
+                  break;
+            },
 
             readGroupSI(){
                 this.schoolYear = this.$store.state.groupSI[0].schoolYear;
@@ -189,16 +198,8 @@
                 this.section = this.$store.state.groupSI[0].section;
                 this.topic = this.$store.state.groupSI[0].topic;
                 this.content = JSON.parse(this.$store.state.groupSI[0].content).content;
-                this.$http.post('/api/stu/queSchoolTeachers', {
-                    school:"苏州工业园区仁爱学校"
-                },{}).then((response) => {
-                    console.log(response);
-                    for (var i = 0; i < response.body.length; i++) {
-                        this.teacher_options.push({value:response.body[i].userName, label:response.body[i].userName, id:response.body[i].id});
-                    }
-                });
-                this.querySubject();
-                this.queryClasstable();
+
+                this.init_options();
             },
 
             queryClasstable(){

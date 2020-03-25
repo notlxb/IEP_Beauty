@@ -76,7 +76,7 @@
     <el-dialog title="新增课程评量" :visible.sync="dialogVisible">
       <el-form :model="form">
         <el-form-item label="学年" label-width="15%">
-          <el-select v-model="form.schoolYear" placeholder="请选择学年" width="50%">
+          <el-select filterable v-model="form.schoolYear" placeholder="请选择学年" width="50%">
             <el-option
                     v-for="item in form.schoolYear_options"
                     :key="item.key"
@@ -106,7 +106,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="班级" label-width="15%">
-          <el-select v-model="form.stu_class" @change="queStudents()" placeholder="请选择班级">
+          <el-select filterable v-model="form.stu_class" @change="queStudents()" placeholder="请选择班级">
             <el-option
                     v-for="item in form.class_options"
                     :key="item.key"
@@ -116,7 +116,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="学生" label-width="15%">
-          <el-select v-model="form.stu_id" @change="" placeholder="请选择学生" @change="selectStuName">
+          <el-select filterable v-model="form.stu_id" @change="" placeholder="请选择学生" @change="selectStuName">
             <el-option
                     v-for="item in form.student_options"
                     :key="item.key"
@@ -184,7 +184,7 @@
               return String(dataNews[key]).toLowerCase().indexOf(search) > -1
             })
           })
-          return this.$store.state.stucourseslist
+          // return this.$store.state.stucourseslist
         }
         else {
           return  this.tempList.filter(function(dataNews){
@@ -209,13 +209,14 @@
         this.form.class_options = [];
 
         //初始化学年选项
-        var date = new Date();
-        var year = date.getFullYear();
-        this.form.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)})
+        var year = new Date().getFullYear();
+        this.form.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)});
         this.form.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
-        for (var i = 2; i < 7; i++){
-          this.form.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
-        }
+        for (var i = 2; ; i++)
+          if (year-i+1 >= 2019)
+            this.form.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+          else
+            break;
 
         //初始化课程大类选项
         await this.$http.post('/api/stu/queCourseCategeories',{
@@ -322,7 +323,7 @@
           stuID:this.form.stu_id
         },{}).then((response) => {
           if (response.status == 200)
-            this.to_edit(this.form.stu_id, this.form.schoolYear, this.form.term);
+            this.to_edit(this.form.stu_id, this.form.schoolYear, this.form.term, 1);
           else
             this.$message.error('错误！');
         });

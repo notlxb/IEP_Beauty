@@ -7,7 +7,7 @@
     </el-breadcrumb>
     <el-divider></el-divider>
     <el-container>
-      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
         <el-form :inline="true"  align="left" >
           <el-form-item label="课程">
             <el-select align="left" v-model="course" placeholder="请选择" :disabled="disabled1">
@@ -80,83 +80,90 @@
             <el-date-picker align="left" format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd" placeholder="选择结束日期" :disabled="disabled" v-model="finishTime"></el-date-picker>
           </el-form-item>
         </el-form>
-        <el-form :inline="true"  align="left">
-          <p>教学主题</p>
-          <div>
-            <el-table
-                    :data="teachingAim"
-                    style="width: 100%">
-              <el-table-column
-                      align='left'
-                      label="周次"
-                      prop="w"
-                      v-if="false">
-              </el-table-column>
-              <el-table-column
-                      align='left'
-                      label="周次">
-                <template slot-scope="s">
-                  <el-input
-                          :disabled="disabled"
-                          @change.native.prevent="HIChange(s.$index)"
-                          v-model="teachingAim[s.$index].w">
-                    <template slot="prepend">第</template>
-                    <template slot="append">周</template>
-                  </el-input>
-                </template>
-              </el-table-column>
-              <el-table-column
-                      align='center'
-                      label="描述"
-                      prop="des"
-                      v-if="false">
-              </el-table-column>
-              <el-table-column
-                      align='center'
-                      label="描述">
-                <template slot-scope="s">
-                  <el-input
-                          :disabled="disabled"
-                          type="textarea"
-                          v-model="teachingAim[s.$index].des">
-                  </el-input>
-                </template>
-              </el-table-column>
-              <el-table-column
-                      align='center'>
-                <template slot="header" slot-scope="slot">
-                  <el-button type="primary" v-on:click="addTeachingAim()">添加</el-button>
-                </template>
-                <template slot-scope="a">
-                  <el-button
-                          @click.native.prevent="deleteRow(a.$index, teachingAim)"
-                          type="text"
-                          size="small">
-                    移除
-                  </el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-          </div>
-        </el-form>
       </el-col>
     </el-container>
     <el-divider></el-divider>
-    <div>
-      <el-button  type="primary"  @click="push1()" v-if="false">详情</el-button>
-      <el-button  type="primary"  @click="push2()" v-if="false">教学流程</el-button>
-      <el-divider></el-divider>
-    </div>
-
-    <el-container v-if="this.judge">
+    <el-form :inline="true"  align="left" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2)">
       <el-header>
-        <p v-if="this.judge">教学目标</p>
+        <p style="color: #000000;font-family: 楷体; font-size: large; font-weight:bold">教学主题</p>
       </el-header>
-      <el-collapse v-if="this.judge">
+      <div>
+        <el-table
+                :data="teachingAim"
+                style="width: 100%">
+          <el-table-column
+                  align='left'
+                  label="周次"
+                  prop="w"
+                  v-if="false">
+          </el-table-column>
+          <el-table-column
+                  align='left'
+                  label="周次">
+            <template slot-scope="s">
+              <el-input
+                      :disabled="disabled"
+                      @change.native.prevent="HIChange(s.$index)"
+                      v-model="teachingAim[s.$index].w">
+                <template slot="prepend">第</template>
+                <template slot="append">周</template>
+              </el-input>
+            </template>
+          </el-table-column>
+          <el-table-column
+                  align='center'
+                  label="描述"
+                  prop="des"
+                  v-if="false">
+          </el-table-column>
+          <el-table-column
+                  align='center'
+                  label="描述">
+            <template slot-scope="s">
+              <el-input
+                      :disabled="disabled"
+                      type="textarea"
+                      v-model="teachingAim[s.$index].des">
+              </el-input>
+            </template>
+          </el-table-column>
+          <el-table-column
+                  align='center'>
+            <template slot="header" slot-scope="slot">
+              <el-button type="primary" size="small" round plain v-on:click="addTeachingAim()">添加</el-button>
+            </template>
+            <template slot-scope="a">
+              <el-button
+                      @click.native.prevent="deleteRow(a.$index, teachingAim)"
+                      type="text"
+                      size="small">
+                移除
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+    </el-form>
+<!--    <div>-->
+<!--      <el-button  type="primary"  @click="push1()" v-if="false">详情</el-button>-->
+<!--      <el-button  type="primary"  @click="push2()" v-if="false">教学流程</el-button>-->
+<!--      <el-divider></el-divider>-->
+<!--    </div>-->
+    <br/><br/>
+
+    <el-container v-if="this.judge" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2)">
+      <el-header>
+        <p v-if="this.judge" style="color: #000000;font-family: 楷体; font-size: large; font-weight:bold">教学目标</p>
+      </el-header>
+      <el-collapse v-if="this.judge" style="padding: 10px">
         <el-collapse-item v-for="(domain, index) in jxmb"
-                          :title="domain.title"
                           :name="domain.w"
                           :key="domain.w">
+          <template slot="title">
+            <div id="week_title">
+              {{domain.title}}<i class="header-icon el-icon-info"></i>
+            </div>
+          </template>
           <el-button
                   :disabled="disabled"
                   @click.native.prevent="addGroup(index)"
@@ -247,7 +254,6 @@
           </el-table>
         </el-collapse-item>
       </el-collapse>
-      <el-divider></el-divider>
     </el-container>
 
     <el-dialog title="添加组" :visible.sync="dialogFormVisible" @close="dialogCancel()">
@@ -306,15 +312,15 @@
         <el-button type="primary" @click="stdialogConfirm()">确 定</el-button>
       </div>
     </el-dialog>
-
-    <el-container v-if="this.judge">
+    <br/><br/>
+    <el-container v-if="this.judge" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2)">
       <el-header>
-        <p>目标评鉴</p>
+        <p style="color: #000000;font-family: 楷体; font-size: large; font-weight:bold">目标评鉴</p>
       </el-header>
       <div>
         <el-table
                 :data="mbpj"
-                style="width: 100%">
+                style="width: 100%;padding: 10px">
           <el-table-column
                   align='left'
                   label="学生"
@@ -340,7 +346,7 @@
           <el-table-column
                   align='center'>
             <template slot="header" slot-scope="slot">
-              <el-button type="primary" @click="addPJ(1)">添加</el-button>
+              <el-button size="small" round plain type="primary" @click="addPJ(1)">添加</el-button>
             </template>
             <template slot-scope="z">
               <el-button
@@ -354,7 +360,6 @@
           </el-table-column>
         </el-table>
       </div>
-      <el-divider></el-divider>
     </el-container>
 
 
@@ -397,6 +402,8 @@
       <vue-ckeditor :readonly="disabled" type="classic"  v-model="khfs" height="300" width="700" :editors="editors1" :config='config'></vue-ckeditor>
       <el-divider></el-divider>
     </el-container>
+
+    <el-divider></el-divider>
 
     <el-form :inline="true" align="center">
       <el-form-item>
@@ -473,10 +480,7 @@
         subject_options:[],
         term_options: [{value: '上学期', label: '上学期'},
           {value: '下学期', label: '下学期'}],
-        schoolYear_options: [{value: '2017-2018', label: '2017-2018'},
-          {value: '2018-2019', label: '2018-2019'},
-          {value: '2019-2020', label: '2019-2020'},
-          {value: '2020-2021', label: '2020-2021'}],
+        schoolYear_options: [],
 
 
 
@@ -505,12 +509,24 @@
       }else {
         this.disabled = false;
         this.disabled1 = false;
-        this.queryClasstable();
-        this.queryTeacher();
-        this.querySubject();
+        this.init_options();
       }
     },
     methods:{
+      init_options(){
+        this.queryClasstable();
+        this.queryTeacher();
+        this.querySubject();
+        //初始化学年选项
+        var year = new Date().getFullYear();
+        this.schoolYear_options.push({key:0, value:(year+1)+'-'+(year+2), label:(year+1)+'-'+(year+2)});
+        this.schoolYear_options.push({key:1, value:year+'-'+(year+1), label:year+'-'+(year+1)});
+        for (var i = 2; ; i++)
+          if (year-i+1 >= 2019)
+            this.schoolYear_options.push({key:i, value:(year-i+1)+'-'+(year-i+2), label:(year-i+1)+'-'+(year-i+2)});
+          else
+            break;
+      },
       readTrainingSPinfo(){
         this.schoolYear=this.$store.state.teachingTheme[0].schoolYear;
         this.term=this.$store.state.teachingTheme[0].term;
@@ -534,8 +550,7 @@
         this.zlhd=JSON.parse(this.$store.state.teachingTheme[0].teachingProcess).zlhd;
         this.khfs=JSON.parse(this.$store.state.teachingTheme[0].teachingProcess).khfs;
 
-        this.queryClasstable();
-        this.queryTeacher();
+        this.init_options();
       },
 
       queryClasstable(){
@@ -1013,6 +1028,12 @@
     padding: 8px;
     border-style: solid;
     border-color: #a9c6c9;
+  }
+  #week_title{
+    align-self: center;
+    font-size: medium;
+    font-family: 楷体;
+    letter-spacing: 3px;
   }
 </style>
 
