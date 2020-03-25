@@ -37,32 +37,37 @@
             :collapse="collapsed"
             :unique-opened=openMethod
             background-color="#545c64"
-            color="#fffff"
-            text-color="#fffff"
-            active-text-color="#ffffff"
+            color="#fff"
+            text-color="#fff"
+            active-text-color="#ffd04b"
             style="width: 90%"
         >
           <template v-for="(item,index) in $router.options.routes"
                     v-if="!item.hidden">
             <el-submenu :index="index+''" v-if="!item.leaf">
-              <template slot="title"><i :class="item.iconCls"></i><span slot="title">{{item.name}}</span></template>
+              <template slot="title"><i :class="item.iconCls"></i><span slot="title">{{item.name}}</span>
+              </template>
               <template v-for="child in item.children">
                 <el-submenu :index="child.path" v-if="(child.goon) && (child.authority[sysUserRank] === 1)">
                   <template slot="title"><i :class="child.iconCls"></i><span slot="title">{{child.name}}</span>
                   </template>
                   <el-menu-item v-for="childone in child.children" :index="childone.path" :key="childone.path"
-                                v-if="(!childone.hidden) && (childone.authority[sysUserRank] === 1)" @click="$router.push(childone.path)"><span slot="title">{{childone.name}}</span>
+                                v-if="(!childone.hidden) && (childone.authority[sysUserRank] === 1)"
+                                @click="$router.push(childone.path)"><span slot="title">{{childone.name}}</span>
                   </el-menu-item>
                 </el-submenu>
-                <el-menu-item :index="child.path" :key="child.path"
-                              v-else-if="!child.hidden&&!child.goon&&(child.authority[sysUserRank] === 1)" @click="$router.push(child.path)">
-                  <span slot="title">{{child.name}}</span>
+                <el-menu-item style="padding-left: 50px"
+                              :index="child.path" :key="child.path"
+                              v-else-if="!child.hidden&&!child.goon&&(child.authority[sysUserRank] === 1)"
+                              @click="$router.push(child.path)">
+                  <i :class="child.iconCls"></i><span slot="title">{{child.name}}</span>
                 </el-menu-item>
               </template>
 
 
             </el-submenu>
-            <el-menu-item v-if="item.leaf&&item.children.length>0&&item.authority[0] === 1" :index="item.children[0].path"
+            <el-menu-item v-if="item.leaf&&item.children.length>0&&item.authority[0] === 1"
+                          :index="item.children[0].path"
                           @click="$router.push(item.children[0].path)"><i
                 :class="item.iconCls"></i><span slot="title">{{item.children[0].name}}</span>
             </el-menu-item>
@@ -140,8 +145,8 @@
     export default {
         data() {
             return {
-                //logo: 'static/home.jpg', //平台logo
-                logo: 'http://47.110.134.247/family_members/home.jpg', //平台logo
+                logo: 'static/home.jpg', //平台logo
+                // logo: 'http://47.110.134.247/family_members/home.jpg', //平台logo
                 sysName: 'IEP综合数据管理平台',
                 collapsed: false,
                 openMethod: true, //手风琴式展开
@@ -378,7 +383,7 @@
           }
 
           .el-menu-item.is-active {
-            color: #fff !important;
+            color: #ffd04b !important;
             background: #4b545b !important;
           }
 
@@ -414,12 +419,12 @@
           width: 60px;
 
           .item {
-            color :#fff;
+            color: #fff;
             position: relative;
           }
 
           .submenu {
-            color :#fff;
+            color: #fff;
             position: absolute;
             top: 0px;
             left: 200px;

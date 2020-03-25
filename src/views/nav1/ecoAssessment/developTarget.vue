@@ -10,6 +10,10 @@
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
+    <div style="margin-top: 1%">
+      <a href="http://47.110.134.247/group1/babytable.html" target="_blank"><el-button type="danger">生活能力量表填写</el-button></a>
+      <a href="http://47.110.134.247/group1/gantongliangbiao.html" target="_blank"><el-button type="danger">感统量表填写</el-button></a>
+    </div>
     <el-form :model="formData2" ref="formData2" label-width="200px" class="form-dynamic">
       <el-form-item v-for="(domain, index) in formData2.domains2"
                     :label="data23[index]"
@@ -18,6 +22,7 @@
         <el-input @focus="open2(domain.key)" @focusout.native="close2()" v-model="domain.value"></el-input>
         <a class="remove-item" v-show="formData2.domains2.length>1" @click.prevent="removeDomain2(domain)"></a>
       </el-form-item>
+
       <el-form-item class="submit-btn">
         <el-button type="danger" @click="submitForm2()">提交</el-button>
         <el-button type="danger" @click.native="go_back()">返回</el-button>
