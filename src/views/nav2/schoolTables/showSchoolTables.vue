@@ -2,7 +2,7 @@
 <template>
   <section>
     <!--<el-button type="primary" @click="mockTest">测试</el-button>-->
-    <div style="padding-bottom: 1%; text-align: center" >
+    <div style="padding-bottom: 1%; text-align: center">
       <el-tag
           v-for="item in heads"
           :key="item.key"
@@ -104,24 +104,7 @@ export default {
                 {type: '', label: '', key: 1},
             ],
             //学年学期选择
-            yearOptions: [
-                {
-                    value: '2016/2017',
-                    label: '2016/2017学年'
-                },
-                {
-                    value: '2017/2018',
-                    label: '2017/2018学年'
-                },
-                {
-                    value: '2018/2019',
-                    label: '2018/2019学年'
-                },
-                {
-                    value: '2019/2020',
-                    label: '2019/2020学年'
-                },
-            ],
+            yearOptions: [],
             semesterOptions: [
                 {
                     value: '1',
@@ -134,7 +117,7 @@ export default {
             //弹框表单内
             dialogFormVisible: false,
             form: {
-                year: '2018/2019',
+                year: '2019/2020',
                 semester: '1',
             },
             formLabelWidth: '120px',
@@ -148,11 +131,9 @@ export default {
         }
 
     },
-
     components: {ElSelectDropdown},
     methods: {
         mockTest() {
-            console.log(this.semesterOptions);
             axios({
                 method: 'get',
                 //url: 'http://coursesmock.com',
@@ -167,7 +148,7 @@ export default {
                 }
             }).then((res) => {
                 if (res.data.data === null) {
-                    alert('该学生暂无' + '2018/2019学年 第 1 学期 ' + '课表！请查看其他学期课表！');
+                    alert('该学生暂无' + '2019/2020学年 第 1 学期 ' + '课表！请查看其他学期课表！');
                     return
                 }
                 //console.log(res.data.data)
@@ -193,6 +174,23 @@ export default {
                 this.coursesNames.splice(40, 0, {id: 106, mes: '第六节课'});
                 this.coursesNames.splice(48, 0, {id: 107, mes: '第七节课'});
                 //console.log(this.coursesNames)
+                // console.log(this.yearOptions);
+                const current = new Date();
+                const y = current.getFullYear();
+                this.yearOptions.push(
+                    {
+                        value: (y - 1) + "/" + y,
+                        label: (y - 1) + "/" + y + "学年",
+                    },
+                    {
+                        value: y + "/" + (y + 1),
+                        label: y + "/" + (y + 1) + "学年",
+                    },
+                    {
+                        value: y + 1 + "/" + (y + 2),
+                        label: y + 1 + "/" + (y + 2) + "学年",
+                    },
+                )
             })
         },
         getParams() {

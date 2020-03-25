@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2eca5540-147b-4f90-b71e-8cab327b0b91" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/server/node_modules/" />
@@ -43,13 +41,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="208">
+              <caret line="351" column="50" selection-start-line="351" selection-start-column="50" selection-end-line="351" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="300" column="17" lean-forward="true" selection-start-line="300" selection-start-column="17" selection-end-line="300" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-button#0;n#div#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#5510#6932#0" />
+                <element signature="e#6962#8419#0" />
+                <element signature="e#8309#8524#0" />
+                <element signature="e#8542#9031#0" />
+                <element signature="e#9052#9532#0" />
               </folding>
             </state>
           </provider>
@@ -67,9 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getOptio</find>
-      <find>get</find>
-      <find>presentStudents</find>
       <find>getData</find>
       <find>班级</find>
       <find>allClass</find>
@@ -97,6 +107,9 @@
       <find>（家长自评）</find>
       <find>2019</find>
       <find>&lt;div style=&quot;margin-left: 1%;margin-top: 1%&quot;&gt;</find>
+      <find>mockTest</find>
+      <find>2018/2019</find>
+      <find>reformList</find>
     </findStrings>
     <replaceStrings>
       <replace>ckeditor5-build-balloon-block</replace>
@@ -119,8 +132,6 @@
         <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/courses/evaluationAnalysis.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/courses/courseEvaluation.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/classManagement.vue" />
         <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue" />
         <option value="$PROJECT_DIR$/src/routes.js" />
@@ -129,10 +140,12 @@
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/growTarget.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/CheckNEdit.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/analysis.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" />
         <option value="$PROJECT_DIR$/src/views/Home.vue" />
         <option value="$PROJECT_DIR$/src/views/Login.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/ecoAssessment/developTarget.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue" />
       </list>
     </option>
   </component>
@@ -147,7 +160,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="width" value="978" />
     <option name="height" value="1038" />
@@ -177,6 +190,21 @@
               <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="nav2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dataManagementPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="nav2" type="462c0819:PsiDirectoryNode" />
+              <item name="schoolTables" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dataManagementPlatform" type="b2602c69:ProjectViewProjectNode" />
@@ -346,12 +374,12 @@
       <workItem from="1584086980159" duration="4785000" />
       <workItem from="1584793185617" duration="4321000" />
       <workItem from="1585034913008" duration="4436000" />
-      <workItem from="1585094131113" duration="1715000" />
+      <workItem from="1585094131113" duration="3718000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56651000" />
+    <option name="totallyTimeSpent" value="58654000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -363,8 +391,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="735" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452955" visible="true" weight="0.21842733" />
       <window_info id="npm" order="1" sideWeight="0.50547045" side_tool="true" weight="0.19936457" />
@@ -376,14 +403,14 @@
       <window_info id="UI Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" weight="0.7893864" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" weight="0.049751244" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32719547" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.13764511" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.13764511" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.23087819" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.32857144" />
@@ -687,18 +714,6 @@
         <state relative-caret-position="-2816" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="208" column="8" lean-forward="true" selection-start-line="208" selection-start-column="8" selection-end-line="230" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#6620#7525#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav1/classManagement.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -810,34 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="205" column="38" selection-start-line="205" selection-start-column="38" selection-end-line="205" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#div#1;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="162" column="16" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="351" column="50" selection-start-line="351" selection-start-column="50" selection-end-line="351" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/Home.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-933">
@@ -856,6 +843,54 @@
           <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/createSchoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="160" column="32" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/showSchoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="150" column="46" selection-start-line="150" selection-start-column="46" selection-end-line="150" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#5055#5601#0" />
+            <element signature="e#7053#7262#0" />
+            <element signature="e#7287#9416#0" />
+            <element signature="e#9440#10216#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/schoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="351" column="50" selection-start-line="351" selection-start-column="50" selection-end-line="351" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav2/schoolTables/editSchoolTables.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="300" column="17" lean-forward="true" selection-start-line="300" selection-start-column="17" selection-end-line="300" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#0;n#div#1;n#section#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#5510#6932#0" />
+            <element signature="e#6962#8419#0" />
+            <element signature="e#8309#8524#0" />
+            <element signature="e#8542#9031#0" />
+            <element signature="e#9052#9532#0" />
           </folding>
         </state>
       </provider>
