@@ -145,7 +145,7 @@
     export default {
         data() {
             return {
-                logo: 'home.jpg', //平台logo
+                logo: 'static/home.jpg', //平台logo
                 // logo: 'http://47.110.134.247/family_members/home.jpg', //平台logo
                 sysName: 'IEP综合数据管理平台',
                 collapsed: false,
