@@ -6,3 +6,4 @@ npm-debug.log
 dist/
 .idea/workspace.xml
 server/db.js
+.idea/workspace.xml

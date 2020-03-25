@@ -64,7 +64,7 @@
                 <el-dropdown-menu>
                   <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,1)">编辑</el-dropdown-item>
                   <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,2)">查看</el-dropdown-item>
-                  <el-dropdown-item>删除</el-dropdown-item>
+                  <el-dropdown-item  @click.native="whetherDel(scope.row.schoolYear,scope.row.term,scope.row.courseName,scope.row.stuID)">删除</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </template>
@@ -143,6 +143,18 @@
         <el-button type="primary" @click="dialogConfirm()">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog
+            title="提示"
+            :visible.sync="deldialogVisible"
+            width="30%"
+            :show-close="false"
+            @close="delCancel">
+      是否要删除此条信息？
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="delCancel">取消</el-button>
+        <el-button type="danger" icon="el-icon-delete" @click="delconfirm">确认删除</el-button>
+      </span>
+    </el-dialog>
   </section>
 </template>
 
@@ -181,6 +193,14 @@
           term:'',
         },
         dialogVisible:false,
+
+        del_form:{
+          del_year:'',
+          del_term:'',
+          del_course:'',
+          del_stuID:''
+        },
+        deldialogVisible:false,
 
         loading:true,
       }
@@ -385,6 +405,8 @@
               }
             }
           }
+          this.$store.state.stucourseslist.reverse(); //倒置列表，使最新添加的信息显示在在前面
+
           let schoolYear_a = schoolYear_array.filter(function (ele,index,self) {
             return self.indexOf(ele) === index;
           });
@@ -413,7 +435,52 @@
       },
 
 
+      //删除评量
+      whetherDel(del_year, del_term, del_course, del_stuID){
+        this.del_form.del_year = del_year;
+        this.del_form.del_course = del_course;
+        this.del_form.del_stuID = del_stuID;
+        this.del_form.del_term = del_term;
+        this.deldialogVisible = true;
+      },
+      delCancel(){
+        this.del_form.del_year = '';
+        this.del_form.del_course = '';
+        this.del_form.del_stuID = '';
+        this.del_form.del_term = '';
+        this.deldialogVisible = false;
+      },
+      async delconfirm(){
+        var courses = []; //用来存放删除此条评量后的学生的课程评量
 
+        //获取当前学生的课程评量Json数据存入course_tmp
+        await this.$http.post('/api/stu/queryStuinfo',{
+          AStuID:this.del_form.del_stuID
+        }).then((response) => {
+          var course_tmp = JSON.parse(response.body[0].Courses);
+          //逐条对比，若课程评量的信息与当前要删除的相符时，则舍弃，不放入courses中
+          for (var i = 0; i < course_tmp.length; i++)
+            if (course_tmp[i].schoolYear == this.del_form.del_year && course_tmp[i].term == this.del_form.del_term && course_tmp[i].courseName == this.del_form.del_course)
+              continue;
+            else
+              courses.push(course_tmp[i]);
+        });
+
+        if (courses.length == 0)
+          //设置学生的课程评量为NULL
+          await this.$http.post('/api/stu/stuCourseCl',{
+            stuID:this.del_form.del_stuID
+          });
+        else
+          //将courses更新到数据库中保存
+          await this.$http.post('/api/stu/upStuCourse',{
+            Course:courses,
+            stuID:this.del_form.del_stuID
+          });
+
+        this.delCancel();
+        this.updateCourse();
+      },
 
       //分页
       handleSizeChange1: function(pageSize) { // 每页条数切换

@@ -62,7 +62,6 @@
                                 <el-dropdown-menu>
                                     <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,1)">编辑</el-dropdown-item>
                                     <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,2)">查看</el-dropdown-item>
-                                    <el-dropdown-item>删除</el-dropdown-item>
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </template>
@@ -766,6 +765,8 @@
                             }
                         }
                     }
+                    this.$store.state.stucourseslist.reverse(); //倒置列表，使最新添加的信息显示在在前面
+
                     let schoolYear_a = schoolYear_array.filter(function (ele,index,self) {
                         return self.indexOf(ele) === index;
                     });

@@ -135,34 +135,6 @@ let routes = [
         authority: [1, 1, 1, 1, 1],
         children: [
             {
-                path: '/schoolTables',
-                component: schoolTables,
-                name: '课程表主页',
-                authority: [1, 1, 1, 1, 1],
-                iconCls: 'el-icon-date',
-            },
-            {
-                path: '/showSchoolTables',
-                component: showSchoolTables,
-                name: '展示课程表',
-                authority: [1, 1, 1, 1, 1],
-                hidden: true
-            },
-            {
-                path: '/createSchoolTables',
-                component: createSchoolTables,
-                name: '创建课程表',
-                authority: [1, 1, 1, 1, 1],
-                hidden: true
-            },
-            {
-                path: '/editSchoolTables',
-                component: editSchoolTables,
-                name: '修改课程表',
-                authority: [1, 1, 1, 1, 1],
-                hidden: true
-            },
-            {
                 path: '/courseEdit',
                 component: courseEdit,
                 name: '课程设置',
@@ -213,10 +185,39 @@ let routes = [
                 hidden: true
             },
             {
+                path: '/schoolTables',
+                component: schoolTables,
+                name: '课程表主页',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-date',
+            },
+            {
+                path: '/showSchoolTables',
+                component: showSchoolTables,
+                name: '展示课程表',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/createSchoolTables',
+                component: createSchoolTables,
+                name: '创建课程表',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/editSchoolTables',
+                component: editSchoolTables,
+                name: '修改课程表',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
                 path:'/periodicAnalysis',
                 component:assess_analysis,
                 name:'定期评估分析',
                 authority:[1, 1, 1, 1, 1],
+                iconCls: 'el-icon-s-flag',
             },
             {
                 path:'/assessEdit',
@@ -291,14 +292,14 @@ let routes = [
             {
                 path: '/groupSubjectTea',
                 component: groupSubjectTea,
-                name: '集体学科教学',
+                name: '集体学科教学设计',
                 authority: [1, 1, 1, 1, 1],
                 iconCls: 'el-icon-collection-tag'
             },
             {
                 path: '/groupSubjectTeaEdit',
                 component: groupSubjectTeaEdit,
-                name: '集体学科教学编辑',
+                name: '集体学科教学设计编辑',
                 authority: [1, 1, 1, 1, 1],
                 hidden: true
             },
@@ -306,14 +307,14 @@ let routes = [
             {
                 path: '/indSubjectTea',
                 component: indSubjectTea,
-                name: '个训学科教学',
+                name: '个训学科教学设计',
                 authority: [1, 1, 1, 1, 1],
                 iconCls: 'el-icon-collection-tag'
             },
             {
                 path: '/indSubjectTeaEdit',
                 component: indSubjectTeaEdit,
-                name: '个训学科教学编辑',
+                name: '个训学科教学设计编辑',
                 authority: [1, 1, 1, 1, 1],
                 hidden: true
             },
@@ -321,7 +322,7 @@ let routes = [
             {
                 path: '/learningReport',
                 component: learningReport,
-                name: '学习报表',
+                name: '学业评鉴报告',
                 authority: [1, 1, 1, 1, 1],
                 iconCls: 'el-icon-s-data'
             },

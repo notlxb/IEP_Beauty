@@ -391,7 +391,6 @@ let store = new Vuex.Store({
       for (let key in obj) {
         state.PA.push(obj[key]);
       }
-      state.PA.reverse();
     },
     setPAList(state, name){
       state.PAList = [];
