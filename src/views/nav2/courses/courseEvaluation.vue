@@ -313,6 +313,21 @@
         var id = 1;
         var Courses;
 
+        var lastSchoolYear;
+        var lastTerm;
+        var lastEvaluation;
+        var lastAppraisal;
+
+        //判断上一学期的学年和学期
+        if (this.form.term == '上学期'){
+          lastSchoolYear = (this.form.schoolYear.split('-')[0]-1) + '-' + (this.form.schoolYear.split('-')[1]-1);
+          lastTerm = '下学期';
+        }else if (this.form.term == '下学期'){
+          lastSchoolYear = this.form.schoolYear;
+          lastTerm = '上学期';
+        }
+        console.log(lastSchoolYear+lastTerm);
+
         //获取当前学生已有的课程评量的JSON数据赋给Courses，若没有，则Courses=[]
         await this.$http.post('/api/stu/queryStuinfo',{
           AStuID:this.form.stu_id
@@ -325,11 +340,21 @@
 
         //判断当前所要创建的评量是否已经存在，若存在，则提醒用户并退出创建
         for (var i = 0; i < Courses.length; i++)
-          if (Courses[i].term == this.form.term && Courses[i].class == this.form.stu_class && Courses[i].stuID == this.form.stu_id && Courses[i].courseName == this.form.course_category && Courses[i].schoolYear == this.form.schoolYear) {
-            this.$message.error('该课程评量已存在！');
-            this.dialogVisible = false;
-            return;
-          }
+          if (Courses[i].class == this.form.stu_class && Courses[i].stuID == this.form.stu_id && Courses[i].courseName == this.form.course_category)
+            if (Courses[i].term == this.form.term && Courses[i].schoolYear == this.form.schoolYear) {
+              this.$message.error('该课程评量已存在！');
+              this.dialogVisible = false;
+              return;
+            }else if (Courses[i].term == lastTerm && Courses[i].schoolYear == lastSchoolYear){
+              //判断之前一学期的评量是否存在，若存在，则继承评量内容
+              lastEvaluation = Courses[i].evaluation;
+              lastAppraisal = Courses[i].appraisal;
+            }
+
+        if (lastAppraisal == undefined && lastEvaluation == undefined){
+          lastEvaluation = [];
+          lastAppraisal = [];
+        }
 
         //为当前要创建的课程评量生成id
         if (Courses.length > 0) {
@@ -350,8 +375,8 @@
           evaDate:'',
           stuName:this.form.stu_name,
           courseName:this.form.course_category,
-          evaluation:[],
-          appraisal:[],
+          evaluation:lastEvaluation,
+          appraisal:lastAppraisal,
           schoolYear:this.form.schoolYear,
           progress:0,
           status:'warning',

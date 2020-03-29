@@ -131,7 +131,6 @@
         evaluation:{},
         termTarget:{},
         appraisal:[],
-        selectedCourses:[],
       }
     },
     mounted(){
@@ -144,44 +143,6 @@
         await  this.$http.post('/api/stu/queCourse', {
         }, {}).then((response) => {
           this.$store.dispatch("setcourse", response.bodyText);
-        });
-
-        //获取当前学生本学期选择的课程
-        var semester;
-        if (this.$route.query.term == '上学期')
-          semester = 1;
-        else if (this.$route.query.term == '下学期')
-          semester = 2;
-        await this.$http.post('/api/stu/queSchedule', {
-          student_id:JSON.parse(this.$store.state.stuinfo[0].Courses)[0].stuID,
-          year:this.$route.query.schoolYear,
-          semester:semester
-        }).then((response) => {
-          console.log(response)
-          if (response.body.length == 0) {
-            this.$message.warning(JSON.parse(this.$store.state.stuinfo[0].Courses)[0].stuName +
-                    " 同学在 " + this.$route.query.schoolYear + " 学年 " + this.$route.query.term + " 没有选课！");
-            return;
-          }
-
-          for (var i = 1;;i++){
-            if (JSON.parse(response.body[0].courses)[i] == undefined)
-              break;
-            else {
-              if (this.selectedCourses.length == 0 && JSON.parse(response.body[0].courses)[i] != '暂无课程')
-                this.selectedCourses.push(JSON.parse(response.body[0].courses)[i]);
-              else
-                for (var j = 0; j < this.selectedCourses.length; j++) {
-                  if (this.selectedCourses[j] == JSON.parse(response.body[0].courses)[i] || JSON.parse(response.body[0].courses)[i] == '暂无课程')
-                    break;
-
-                  else if (j+1 == this.selectedCourses.length) {
-                    this.selectedCourses.push(JSON.parse(response.body[0].courses)[i]);
-                    break;
-                  }
-                }
-            }
-          }
         });
 
         //判断是否可以编辑
@@ -230,11 +191,8 @@
         {
           if(this.$store.state.course[i].show_type=='1')
           {
-            for (var j = 0; j < this.selectedCourses.length; j++)
-              if (this.$store.state.course[i].label == this.selectedCourses[j]) {
                 this.field1.push({label: this.$store.state.course[i].label, value: this.$store.state.course[i].id});
                 //value_nub++;
-              }
           }
         }
       },
@@ -420,7 +378,7 @@
                       if (Courses[i].completedCourses[n] != this.evaluation.领域 && n+1 == Courses[i].completedCourses.length)
                         Courses[i].completedCourses.push(this.evaluation.领域);
                 }
-                var progress = (Courses[i].completedCourses.length / this.selectedCourses.length).toFixed(2) * 100;
+                var progress = (Courses[i].completedCourses.length / this.field1.length).toFixed(2) * 100;
                 Courses[i].progress = progress;
                 if (Courses[i].progress == 100)
                   Courses[i].status = 'success';
@@ -469,7 +427,7 @@
                       if (Courses[i].completedCourses[n] != this.evaluation.领域 && n+1 == Courses[i].completedCourses.length)
                         Courses[i].completedCourses.push(this.evaluation.领域);
                 }
-                var progress = (Courses[i].completedCourses.length / this.selectedCourses.length).toFixed(2) * 100;
+                var progress = (Courses[i].completedCourses.length / this.field1.length).toFixed(2) * 100;
                 Courses[i].progress = progress;
                 if (Courses[i].progress == 100)
                   Courses[i].status = 'success';
