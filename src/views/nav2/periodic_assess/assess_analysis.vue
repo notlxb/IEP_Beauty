@@ -2,7 +2,7 @@
     <section>
         <!--工具条-->
         <el-container>
-            <el-button type="danger" icon="el-icon-edit" v-on:click="to_edit(0,0)">新建会议</el-button>
+            <el-button type="danger" icon="el-icon-edit" v-on:click="to_edit(0,0)">新建分析</el-button>
         </el-container>
         <el-divider></el-divider>
         <div class="table">
