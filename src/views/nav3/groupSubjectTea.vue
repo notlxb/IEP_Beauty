@@ -88,6 +88,9 @@
         name: "jitixuekejiaoxue",
         data(){
             return{
+              checkPermission:localStorage.getItem('Permission')[21],
+              editPermission:localStorage.getItem('Permission')[22],
+
                 class_a:[],
                 subject_a:[],
                 topic_a:[],
@@ -192,6 +195,10 @@
 
             //删除信息
             whetherDel(ID){
+              if (this.editPermission != 1){
+                this.$message.warning("暂无权限！");
+                return;
+              }
                 this.delID = ID;
                 this.dialogVisible = true;
             },
@@ -211,6 +218,18 @@
 
             //跳转至个训学科计划编辑界面
             to_edit(id,isEdit){
+              if (isEdit == 0 && this.editPermission != 1){
+                this.$message.warning("暂无权限！");
+                return;
+              }
+              if (isEdit == 1 && this.editPermission != 1){
+                this.$message.warning("暂无权限！");
+                return;
+              }
+              if (isEdit == 2 && this.checkPermission != 1){
+                this.$message.warning("暂无权限！");
+                return;
+              }
                 if (isEdit == 1 || isEdit == 2) {
                     this.$http.post('/api/stu/queFullGroupSbjIns', {
                         id: id

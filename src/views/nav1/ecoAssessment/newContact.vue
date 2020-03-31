@@ -66,6 +66,9 @@
         name: "NewContact",
         data() {
             return {
+                checkPermission:localStorage.getItem('Permission')[6],
+                editPermission:localStorage.getItem('Permission')[7],
+
                 dialogVisible:false,
                 delID:'',
                 delName:'null',
@@ -115,6 +118,7 @@
         },
         mounted(){
             this.updatestuNNS();
+            console.log(this.checkPermission)
         },
         methods:{
             //页面刷新
@@ -132,7 +136,7 @@
                     if(this.$route.query.currentPage != undefined)
                       this.currentPage1 = parseInt(this.$route.query.currentPage);
                     this.currentChangePage(this.currentPage1);
-                    console.log(this.tempList)
+                    // console.log(this.tempList)
                 });
 
                 this.loading = false;
@@ -140,6 +144,10 @@
 
             //获取学校选项
             jmp2create() {
+              if (this.editPermission != 1){
+                this.$message.warning("暂无权限！");
+                return;
+              }
                 this.$router.replace({path:'/createAssess', query: {currentPage: this.currentPage1}});
             },
 
@@ -156,16 +164,24 @@
                     this.currentChangePage(this.currentPage1);
                     this.delID = 0;
                     this.dialogVisible = false;
-                    console.log(this.$store.state.stuNNS);
+                    // console.log(this.$store.state.stuNNS);
                 });
             },
 
             //查询指定学生所有信息
             findStuinfo(AStuID, isEdit) {
+              if (isEdit == 2 && this.checkPermission != 1){
+                this.$message.warning("暂无权限！");
+                return;
+              }
+              if (isEdit == 1 && this.editPermission != 1){
+                this.$message.warning("暂无权限！");
+                return;
+              }
                 this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:AStuID
                 },{}).then((response) => {
-                    console.log(JSON.parse(response.bodyText)[0].IsTargetInitialized);
+                    // console.log(JSON.parse(response.bodyText)[0].IsTargetInitialized);
                     if(JSON.parse(response.bodyText)[0].IsTargetInitialized === 0){
                         this.addTarget('医学诊断', AStuID);
                         this.addTarget('家庭基础信息（家长自评）', AStuID);
@@ -181,8 +197,9 @@
                                 AStuID:AStuID
                             },{}).then((response) => {
                                 this.$store.dispatch("setstuinfo", response.bodyText);
-                                console.log(this.$store.state.stuinfo[0]);
-                                this.$router.push({path:'/checkNEdit', query:{isEdit:isEdit, currentPage: this.currentPage1},})
+                                //console.log(isEdit);
+                                this.$router.push({path:'/checkNEdit', query:{isEdit: isEdit, currentPage: this.currentPage1},})
+                              return;
                             });
                         });
                     }
@@ -191,8 +208,8 @@
                             AStuID:AStuID
                         },{}).then((response) => {
                             this.$store.dispatch("setstuinfo", response.bodyText);
-                            console.log(this.$store.state.stuinfo[0]);
-                            this.$router.push({path:'/checkNEdit', query:{currentPage: this.currentPage1}})
+                            // console.log(this.$store.state.stuinfo[0]);
+                            this.$router.push({path:'/checkNEdit', query:{isEdit: isEdit, currentPage: this.currentPage1}})
                         });
                     }
                 });
@@ -212,7 +229,7 @@
                         this.bli();    //执行遍历函数
                     }
                 }
-                console.log(this.targetIni);
+                // console.log(this.targetIni);
 
                 switch (targetName) {
                     case '医学诊断':
@@ -294,11 +311,11 @@
             handleCurrentChange1: function(currentPage) {//页码切换
                 this.currentPage1 = currentPage;
                 this.currentChangePage(currentPage);
-                console.log(currentPage)
+                // console.log(currentPage)
             },
             //分页方法（重点）
             currentChangePage(currentPage) {
-                console.log(this.$store.state.stuNNS);
+                // console.log(this.$store.state.stuNNS);
                 var from = (currentPage - 1) * this.pageSize;
                 var to = currentPage * this.pageSize;
                 this.tempList = [];
@@ -312,6 +329,10 @@
 
 
             whetherDel(ID,Name){
+                if (this.editPermission != 1){
+                  this.$message.warning("暂无权限！");
+                  return;
+                }
                 this.delID = ID;
                 this.delName = Name;
                 this.dialogVisible = true;

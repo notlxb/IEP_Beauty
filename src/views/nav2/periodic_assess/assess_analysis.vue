@@ -62,6 +62,9 @@
     export default {
        data(){
            return{
+               checkPermission:localStorage.getItem('Permission')[13],
+               editPermission:localStorage.getItem('Permission')[14],
+
                dialogVisible:false,
                delID:-1,
 
@@ -101,6 +104,18 @@
         methods:{
            //跳转至课程评量界面
            to_edit(id,isEdit){
+               if (isEdit == 0 && this.editPermission != 1){
+                   this.$message.warning("暂无权限！");
+                   return;
+               }
+               if (isEdit == 1 && this.editPermission != 1){
+                   this.$message.warning("暂无权限！");
+                   return;
+               }
+               if (isEdit == 2 && this.checkPermission != 1){
+                   this.$message.warning("暂无权限！");
+                   return;
+               }
                if (isEdit === 1 || isEdit === 2) {
                    this.$http.post('/api/stu/quePA', {
                        id: id
@@ -143,6 +158,10 @@
             },
 
             whetherDel(id){
+                if (this.editPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
                 this.delID = id;
                 this.dialogVisible = true;
             },

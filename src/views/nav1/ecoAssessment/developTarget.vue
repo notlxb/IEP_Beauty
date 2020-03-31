@@ -19,12 +19,12 @@
                     :label="data23[index]"
                     :key="domain.key"
                     :prop="'domains2.' + index + '.value'">
-        <el-input @focus="open2(domain.key)" @focusout.native="close2()" v-model="domain.value"></el-input>
+        <el-input :disabled="disabled" @focus="open2(domain.key)" @focusout.native="close2()" v-model="domain.value"></el-input>
         <a class="remove-item" v-show="formData2.domains2.length>1" @click.prevent="removeDomain2(domain)"></a>
       </el-form-item>
 
       <el-form-item class="submit-btn">
-        <el-button type="danger" @click="submitForm2()">提交</el-button>
+        <el-button type="danger" :disabled="disabled" @click="submitForm2()">提交</el-button>
         <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
@@ -37,6 +37,8 @@
         name: "develop_target",
         data() {
             return{
+              editPermission:localStorage.getItem('Permission')[9],
+
                 ATI:{},
                 HomeBasicInfo:{},
                 data21:'',
@@ -47,10 +49,14 @@
                 },
 
                 relevanceID: {},
+
+              disabled:false,
             };
         },
 
         mounted(){
+            if (this.editPermission != 1 || this.$route.query.isEdit == 2)
+              this.disabled = true;
             this.ATI = JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo);
             this.HomeBasicInfo = JSON.parse(this.$store.state.stuinfo[0].HomeBasicInfo);
             this.addDomain21();
