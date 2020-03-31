@@ -84,7 +84,12 @@ var IEPm = multipart({
 var CEE = multipart({
   uploadDir:'../../uploadPic/uploadPic_CourseEvaluation/'
 });
-
+var PA = multipart({
+  uploadDir:'../../uploadPic/uploadPic_PeriodicAccess/'
+});
+var EA = multipart({
+  uploadDir:'../../uploadPic/uploadPic_ecoAssessment/'
+});
 
 
 
@@ -286,83 +291,50 @@ router.post('/picture_CEE', CEE, (req, res) => {
     }
   });
 });
-
-
-
-// //jwt
-// var secretOrPrivateKey = "iep+career";
-// var tokenIssuer = "njupt@kk";
-// var tokenExpire = 60*60*1000;
-// //加密
-// var jwt = require("jsonwebtoken");
-// router.post('/jwt_sign',(req,res)=>{
-//   var params = req.body;
-//   console.log(params);
-//   var content = params.content;
-//   var token = jwt.sign(content, secretOrPrivateKey, {
-//     expiresIn:tokenExpire,
-//     issuer:tokenIssuer,
-//     algorithm:'HS256'
-//   });
-//   console.log("token ：" +token );
-//   jsonWrite(res, token);
-// });
-// //解密
-// router.post('/jwt_verify',(req,res)=>{
-//   var params = req.body;
-//   var token = params.token;
-//   console.log(token);
-//   var ans = jwt.verify(token, secretOrPrivateKey, {
-//    algorithms:['HS256']
-//   },function (err, data) {
-//     if (err)
-//       console.log(err);
-//     else {
-//       console.log('解析的数据:', data);
-//       jsonWrite(res, data);
-//     }
-//   });
-// });
-//
-//
-//
-// //连接redis数据库
-// var redis   = require('redis');
-// var client  = redis.createClient('6379', '127.0.0.1');
-// // redis 链接错误
-// client.on("error", function(error) {
-//   console.log(error);
-// });
-// //存入数据
-// router.post('/RDS_set', (req, res) => {
-//   var params = req.body;
-//   var key = params.key;
-//   var value = params.value;
-//   console.log(params);
-//   client.hmset(key, value, function (err, result) {
-//     if (err) {
-//       console.log(err);
-//     }
-//     if (result) {
-//       jsonWrite(res, result);
-//     }
-//   })
-// });
-// //读取数据
-// router.post('/RDS_get', (req, res) => {
-//   var params = req.body;
-//   var key = params.key;
-//   console.log(params);
-//   client.hgetall(key, function (err, result) {
-//     if (err) {
-//       console.log(err);
-//     }
-//     if (result) {
-//       jsonWrite(res, result);
-//     }
-//   })
-//});
-
+router.post('/picture_PA', PA, (req, res) => {
+  var newName = '';
+  for (var i = 0; i < 24; i++){
+    newName += getCharacter(Math.round(Math.random()*3));
+  }
+  newName += '_'+getDate();
+  console.log(req.files);
+  var files = req.files.upload;
+  files.name = newName+'.'+files.type.split('/')[1];
+  let oldpath=files.path;
+  let newpath= `../../uploadPic/uploadPic_PeriodicAccess`+"/"+ files.name;
+  let fileName = files.name;
+  fs.rename(oldpath, newpath, (err) => {
+    if (!err) {
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_PeriodicAccess/${fileName}`;
+      res.json({
+        "uploaded": true,
+        "url": fangStr
+      });
+    }
+  });
+});
+router.post('/picture_EA', EA, (req, res) => {
+  var newName = '';
+  for (var i = 0; i < 24; i++){
+    newName += getCharacter(Math.round(Math.random()*3));
+  }
+  newName += '_'+getDate();
+  console.log(req.files);
+  var files = req.files.upload;
+  files.name = newName+'.'+files.type.split('/')[1];
+  let oldpath=files.path;
+  let newpath= `../../uploadPic/uploadPic_ecoAssessment`+"/"+ files.name;
+  let fileName = files.name;
+  fs.rename(oldpath, newpath, (err) => {
+    if (!err) {
+      let fangStr = `http://47.110.134.247/integration/uploadPic/uploadPic_ecoAssessment/${fileName}`;
+      res.json({
+        "uploaded": true,
+        "url": fangStr
+      });
+    }
+  });
+});
 
 
 // 连接mysql数据库
@@ -396,7 +368,7 @@ router.post('/addStu', (req, res) => {
   conn.query(sql, [params.sStuID, params.sClass, params.sName, params.sSex, params.sBirthday, params.sID, params.sOrigin, params.sPermanentAddress, params.sHomeAddress,
     params.sGraduatedSchool_name, params.sGraduatedSchool_address, params.sLastSchool_name, params.sLastSchool_address, params.sDisabilityCertificate_issueDate, params.sDisabilityCertificate_number,
     params.sDisabilityCertificate_validity, JSON.stringify(params.sDisability_type), params.sDisability_level, JSON.stringify(params.sEducationalSetting), JSON.stringify(params.sSpecialIllnessOrOthers), JSON.stringify(params.sMainCaregiver),
-    JSON.stringify(params.sParentsPS), /*params.sParentsPS_proofMaterials,*/ params.sRelativesPS,
+    JSON.stringify(params.sParentsPS), params.sParentsPS_proofMaterials, params.sRelativesPS,
     params.sStuResident, params.sSojournRela,  params.sEmergencyContact1_name, params.sEmergencyContact1_rela, params.sEmergencyContact1_birth, params.sEmergencyContact1_degree, params.sEmergencyContact1_job, params.sEmergencyContact1_health, params.sEmergencyContact1_tel,
     params.sEmergencyContact2_name, params.sEmergencyContact2_rela, params.sEmergencyContact2_birth, params.sEmergencyContact2_degree, params.sEmergencyContact2_job, params.sEmergencyContact2_health, params.sEmergencyContact2_tel,
     params.sEmergencyContact3_name, params.sEmergencyContact3_rela, params.sEmergencyContact3_birth, params.sEmergencyContact3_degree, params.sEmergencyContact3_job, params.sEmergencyContact3_health, params.sEmergencyContact3_tel,
@@ -440,7 +412,7 @@ router.post('/upStu', (req, res) => {
   conn.query(sql, [params.sStuID, params.sClass, params.sName, params.sSex, params.sBirthday, params.sID, params.sOrigin, params.sPermanentAddress, params.sHomeAddress,
     params.sGraduatedSchool_name, params.sGraduatedSchool_address, params.sLastSchool_name, params.sLastSchool_address, params.sDisabilityCertificate_issueDate, params.sDisabilityCertificate_number,
     params.sDisabilityCertificate_validity, JSON.stringify(params.sDisability_type), params.sDisability_level, JSON.stringify(params.sEducationalSetting), JSON.stringify(params.sSpecialIllnessOrOthers), JSON.stringify(params.sMainCaregiver),
-    JSON.stringify(params.sParentsPS), /*params.sParentsPS_proofMaterials,*/ params.sRelativesPS,
+    JSON.stringify(params.sParentsPS), params.sParentsPS_proofMaterials, params.sRelativesPS,
     params.sStuResident, params.sSojournRela, params.sEmergencyContact1_name, params.sEmergencyContact1_rela, params.sEmergencyContact1_birth, params.sEmergencyContact1_degree, params.sEmergencyContact1_job, params.sEmergencyContact1_health, params.sEmergencyContact1_tel,
     params.sEmergencyContact2_name, params.sEmergencyContact2_rela, params.sEmergencyContact2_birth, params.sEmergencyContact2_degree, params.sEmergencyContact2_job, params.sEmergencyContact2_health, params.sEmergencyContact2_tel,
     params.sEmergencyContact3_name, params.sEmergencyContact3_rela, params.sEmergencyContact3_birth, params.sEmergencyContact3_degree, params.sEmergencyContact3_job, params.sEmergencyContact3_health, params.sEmergencyContact3_tel,
@@ -618,7 +590,7 @@ router.post('/queSchedule',(req, res) => {
   var sql = $sql.stu.queSchedule;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [], function (err, result) {
+  conn.query(sql, [params.student_id, params.year, params.semester], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -1348,6 +1320,83 @@ router.post('/queFullTSP4LR',(req, res) => {
   var params = req.body;
   console.log(params);
   conn.query(sql, [params.schoolYear, params.term, params.class, params.stuName], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+/***********************************************/
+
+/****************定期评估分析********************/
+//添加定期评估分析
+router.post('/addPA',(req, res) => {
+  var sql = $sql.stu.addPeriodicAccess;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuName, params.stuID, params.term, params.schoolYear, params.class, params.teacher, params.analysisTime, params.targetResult, params.subjectResult, params.courseResult, params.treatmentResult, params.lifeDes, params.mainProblem, params.mainDemand, params.eduFocus, params.moreTarget, params.teachingStrategy, params.relatedService], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
+//删除定期评估分析
+router.post('/delPA',(req, res) => {
+  var sql = $sql.stu.delPeriodicAccess;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.id], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
+//修改定期评估分析
+router.post('/upPA',(req, res) => {
+  var sql = $sql.stu.upPeriodicAccess;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuName, params.stuID, params.term, params.schoolYear, params.class, params.teacher, params.analysisTime, params.targetResult, params.subjectResult, params.courseResult, params.treatmentResult, params.lifeDes, params.mainProblem, params.mainDemand, params.eduFocus, params.moreTarget, params.teachingStrategy, params.relatedService, params.id], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
+//获取定期评估分析列表
+router.post('/quePAList',(req, res) => {
+  var sql = $sql.stu.quePeriodicAccessList;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.id], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
+//获取单条定期评估分析的完整信息
+router.post('/quePA',(req, res) => {
+  var sql = $sql.stu.quePeriodicAccess;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.id], function (err, result) {
     if (err) {
       console.log(err);
     }

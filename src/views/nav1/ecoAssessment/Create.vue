@@ -71,8 +71,15 @@
           <input type="checkbox" v-model="getstu.EducationalSetting"  value="民办特殊学校"/>民办特殊学校
           <input type="checkbox" v-model="getstu.EducationalSetting"  value="送教上门"/>送教上门
           <input type="checkbox" v-model="getstu.EducationalSetting"  value="其他"/>其他
-          <el-form-item label="详情（补充）">
-            <el-input v-model="getstu.Class" placeholder="学校/班级/所属地区/补充"></el-input>
+          <el-form-item label="班级">
+            <el-select v-model="getstu.Class" placeholder="请选择" :disabled="disabled">
+              <el-option
+                      v-for="item in class_options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+              </el-option>
+            </el-select>
           </el-form-item>
         </el-form-item>
       </template><br>
@@ -141,27 +148,10 @@
           </el-form-item>
         </template>
         <template style="width:500px; height:400px;float:left;">
-          <el-form v-model="getstu.ParentsPS_proofMaterials">
+          <el-form>
             <el-form-item label="家庭状况材料证明" :label-width="formLabelWidth">
-              <el-upload
-                  ref="upload"
-                  action="#"
-                  accept="image/png,image/gif,image/jpg,image/jpeg"
-                  list-type="picture-card"
-                  :limit=limitNum
-                  :auto-upload="false"
-                  :on-exceed="handleExceed"
-                  :before-upload="handleBeforeUpload"
-                  :on-preview="handlePictureCardPreview"
-                  :on-remove="handleRemove">
-                <i class="el-icon-plus"></i>
-              </el-upload>
-              <el-dialog :visible.sync="dialogVisible">
-                <img width="50%" :src="dialogImageUrl" alt="">
-              </el-dialog>
-            </el-form-item>
-            <el-form-item>
-              <el-button size="small" type="danger" @click="uploadFile">立即上传</el-button>
+              <vue-ckeditor style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)" type="classic"  v-model="getstu.ParentsPS_proofMaterials" :editors="editors1"
+                            :config='config'></vue-ckeditor>
             </el-form-item>
           </el-form>
         </template><br>
@@ -270,8 +260,12 @@
 
 
 <script>
+  import VueCkeditor from 'vue-ckeditor5'
+  import ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'
+  import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'
     export default {
         name: "Create",
+      components:{'vue-ckeditor': VueCkeditor.component},
         data() {
             return {
                 obro_visible:false,
@@ -305,7 +299,7 @@
                     SpecialIllnessOrOthers: [],
                     MainCaregiver: [],
                     ParentsPS: [],
-                    ParentsPS_proofMaterials: { },
+                    ParentsPS_proofMaterials: '',
                     StuResident: '',
                     SojournRela: '',
                     EmergencyContact1_name: '',
@@ -373,6 +367,19 @@
                     LivingHabit: '',
                 },
                 class_options:[],
+
+              edt: ClassicEditor,
+              disabled:false,
+              editors1: {
+                classic: ClassicEditor,
+              },
+              config:{
+                language:'zh-cn',
+                placeholder:'点击此处上传相关资料',
+                ckfinder: {
+                  uploadUrl: '/api/stu/picture_EA'
+                },
+              },
             }
         },
         mounted(){
@@ -450,7 +457,7 @@
                 var SpecialIllnessOrOthers = {伴随障碍或疾病:this.getstu.SpecialIllnessOrOthers};
                 var MainCaregiver = {主要照顾人:this.getstu.MainCaregiver};
                 var ParentsPS = {家长现状:this.getstu.ParentsPS};
-                // var ParentsPS_proofMaterials = this.getstu.ParentsPS_proofMaterials;
+                var ParentsPS_proofMaterials = this.getstu.ParentsPS_proofMaterials;
                 var RelativesPS = this.getstu.RelativesPS;
                 var StuResident = this.getstu.StuResident;
                 var SojournRela = this.getstu.SojournRela;
@@ -539,7 +546,7 @@
                     sSpecialIllnessOrOthers:SpecialIllnessOrOthers,
                     sMainCaregiver:MainCaregiver,
                     sParentsPS:ParentsPS,
-                    // sParentsPS_proofMaterials:ParentsPS_proofMaterials,
+                    sParentsPS_proofMaterials:ParentsPS_proofMaterials,
                     sRelativesPS:RelativesPS,
                     sStuResident:StuResident,
                     sSojournRela:SojournRela,

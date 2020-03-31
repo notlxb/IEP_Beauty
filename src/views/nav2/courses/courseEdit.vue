@@ -70,6 +70,7 @@
             <el-button icon="el-icon-caret-top" v-if="radioes.length>0" type="primary" round @click="last_project"></el-button>
             <el-button icon="el-icon-caret-bottom" v-if="radioes.length>0" type="primary" round @click="next_project"></el-button>
             <el-button v-if="radioes.length>0" type="danger" :disabled="disabled" @click="eval_submit()" plain round>修改提交</el-button>
+            <el-button v-if="radioes.length>0" type="danger" :disabled="disabled" @click="cancel()" plain round>取消评量</el-button>
           </el-button-group>
         </el-form-item>
       </el-form>
@@ -125,6 +126,7 @@
         radio_title:[],
         radioes:[],
         radioarray:[],
+
         evaDate:'',
         evaluation:{},
         termTarget:{},
@@ -133,17 +135,27 @@
     },
     mounted(){
       this.init();
+      console.log(JSON.parse(this.$store.state.stuinfo[0].Courses)[0].progress);
     },
     methods:{
-      init(){
+      async init(){
+        //获取次领域、项目选项内容
+        await  this.$http.post('/api/stu/queCourse', {
+        }, {}).then((response) => {
+          this.$store.dispatch("setcourse", response.bodyText);
+        });
+
+        //判断是否可以编辑
         if (this.$route.query.isEdit == 1)
           this.disabled = false;
         else
           this.disabled = true;
+
         this.field1_traverse();
         this.evaDate = this.getDate();
         this.getStuAppraisal();
       },
+
       //获取评量分析的文字描述
       getStuAppraisal(){
         var courses = JSON.parse(this.$store.state.stuinfo[0].Courses);
@@ -179,8 +191,8 @@
         {
           if(this.$store.state.course[i].show_type=='1')
           {
-            this.field1.push({label:this.$store.state.course[i].label,value:this.$store.state.course[i].id});
-            //value_nub++;
+                this.field1.push({label: this.$store.state.course[i].label, value: this.$store.state.course[i].id});
+                //value_nub++;
           }
         }
       },
@@ -303,7 +315,15 @@
       go_back(){
         this.$router.replace({path:'/courseEvaluation', query:{currentPage: this.$route.query.currentPage}});
       },
+      cancel(){
+        this.radioarray = [];
+      },
       async eval_submit(){
+        if (this.radioarray.length == 0){
+          this.$message.warning("您还没有对该项目进行评量！");
+          return ;
+        }
+
         var status;
         for (var i = 0; i < this.radio_title.length; i++){
           for (var j = 0; j < this.radioes[i].length; j++){
@@ -342,6 +362,29 @@
                 Courses[i].evaDate = this.evaDate;
                 for (var n = 0; n < this.appraisal.length; n++)
                   Courses[i].appraisal.push(this.appraisal[n])
+
+                var num=0;
+                for (var p = 0; p < this.project.length; p++)
+                  for (var n = 0; n < Courses[i].evaluation.length; n++)
+                    if (this.project[p].label == Courses[i].evaluation[n].项目 && this.evaluation.次领域 == Courses[i].evaluation[n].次领域 && this.evaluation.领域 == Courses[i].evaluation[n].领域){
+                      num++;
+                      continue;
+                    }
+                if (num == this.project.length) {
+                  if (Courses[i].completedCourses.length == 0)
+                    Courses[i].completedCourses.push(this.evaluation.领域);
+                  else
+                    for (var n = 0; n < Courses[i].completedCourses.length; n++)
+                      if (Courses[i].completedCourses[n] != this.evaluation.领域 && n+1 == Courses[i].completedCourses.length)
+                        Courses[i].completedCourses.push(this.evaluation.领域);
+                }
+                var progress = (Courses[i].completedCourses.length / this.field1.length).toFixed(2) * 100;
+                Courses[i].progress = progress;
+                if (Courses[i].progress == 100)
+                  Courses[i].status = 'success';
+                else
+                  Courses[i].status = 'warning';
+
                 await this.$http.post('/api/stu/upStuCourse', {
                   Course:Courses,
                   stuID:this.$store.state.stuinfo[0].student_id
@@ -368,6 +411,29 @@
                 Courses[i].appraisal = [];
                 for (var n = 0; n < this.appraisal.length; n++)
                   Courses[i].appraisal.push(this.appraisal[n]);
+
+                var num=0;
+                for (var p = 0; p < this.project.length; p++)
+                  for (var n = 0; n < Courses[i].evaluation.length; n++)
+                    if (this.project[p].label == Courses[i].evaluation[n].项目 && this.evaluation.次领域 == Courses[i].evaluation[n].次领域 && this.evaluation.领域 == Courses[i].evaluation[n].领域){
+                      num++;
+                      continue;
+                    }
+                if (num == this.project.length) {
+                  if (Courses[i].completedCourses.length == 0)
+                    Courses[i].completedCourses.push(this.evaluation.领域);
+                  else
+                    for (var n = 0; n < Courses[i].completedCourses.length; n++)
+                      if (Courses[i].completedCourses[n] != this.evaluation.领域 && n+1 == Courses[i].completedCourses.length)
+                        Courses[i].completedCourses.push(this.evaluation.领域);
+                }
+                var progress = (Courses[i].completedCourses.length / this.field1.length).toFixed(2) * 100;
+                Courses[i].progress = progress;
+                if (Courses[i].progress == 100)
+                  Courses[i].status = 'success';
+                else
+                  Courses[i].status = 'warning';
+
                 break;
               }
             Courses[i].evaDate = this.evaDate;
