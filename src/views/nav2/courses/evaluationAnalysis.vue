@@ -138,6 +138,9 @@
         data() {
             return {
                 //filters1:[{text:'2016/2017',value:'2016/2017'},{text:'2018/2019',value:'2018/2019'}],
+                checkPermission:localStorage.getItem('Permission')[6],
+                editPermission:localStorage.getItem('Permission')[14],
+
                 schYear:[],
                 class_a:[],
                 course_name:[],
@@ -721,6 +724,14 @@
 
             //跳转至课程评量界面
             to_edit(stuID,schoolYear,term,isEdit){
+                if (isEdit == 1 && this.editPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
+                if (isEdit == 2 && this.checkPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
                 this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:stuID
                 },{}).then((response) => {

@@ -67,6 +67,9 @@
         name: "xuexibaobiao",
         data(){
             return{
+                checkPermission:localStorage.getItem('Permission')[25],
+                editPermission:localStorage.getItem('Permission')[26],
+
                 tempList:[],
                 total:0,
                 pageSize:10,
@@ -122,6 +125,10 @@
 
             //删除信息
             whetherDel(ID){
+                if (this.editPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
                 this.delID = ID;
                 this.dialogVisible = true;
             },
@@ -141,6 +148,18 @@
 
             //跳转至学习报表编辑界面
             to_edit(id, isEdit){
+                if (isEdit == 0 && this.editPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
+                if (isEdit == 1 && this.editPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
+                if (isEdit == 2 && this.checkPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
                 if (isEdit == 1 || isEdit == 2) {
                     this.$http.post('/api/stu/queFullLR', {
                         id: id

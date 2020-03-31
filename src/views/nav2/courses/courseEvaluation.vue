@@ -163,6 +163,9 @@
   export default {
     data() {
       return {
+        checkPermission:localStorage.getItem('Permission')[13],
+        editPermission:localStorage.getItem('Permission')[14],
+
         schYear:[],
         class_a:[],
         course_name:[],
@@ -297,6 +300,14 @@
 
       //跳转至课程评量界面
       to_edit(stuID,schoolYear,term,isEdit){
+        if (isEdit == 1 && this.editPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
+        if (isEdit == 2 && this.checkPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
         this.$http.post('/api/stu/queryStuinfo',{
           AStuID:stuID
         },{}).then((response) => {
@@ -307,6 +318,10 @@
 
       //新增课程评量
       async addStuCE(){
+        if (this.editPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
         this.dialogVisible = true;
       },
       async dialogConfirm(){
@@ -462,6 +477,10 @@
 
       //删除评量
       whetherDel(del_year, del_term, del_course, del_stuID){
+        if (this.editPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
         this.del_form.del_year = del_year;
         this.del_form.del_course = del_course;
         this.del_form.del_stuID = del_stuID;
