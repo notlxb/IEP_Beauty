@@ -117,7 +117,7 @@ export default {
             //弹框表单内
             dialogFormVisible: false,
             form: {
-                year: '2019/2020',
+                year: '2019-2020',
                 semester: '1',
             },
             formLabelWidth: '120px',
@@ -142,13 +142,13 @@ export default {
                 params: {
                     /*'year': this.form.year,
                     'semester': this.form.semester,*/
-                    'year': '2019/2020',
+                    'year': '2019-2020',
                     'semester': '1',
                     'studentId': this.$route.query.row.studentId
                 }
             }).then((res) => {
                 if (res.data.data === null) {
-                    alert('该学生暂无' + '2019/2020学年 第 1 学期 ' + '课表！请查看其他学期课表！');
+                    alert('该学生暂无' + '2019-2020学年 第 1 学期 ' + '课表！请查看其他学期课表！');
                     return
                 }
                 //console.log(res.data.data)
@@ -179,16 +179,16 @@ export default {
                 const y = current.getFullYear();
                 this.yearOptions.push(
                     {
-                        value: (y - 1) + "/" + y,
-                        label: (y - 1) + "/" + y + "学年",
+                        value: (y - 1) + "-" + y,
+                        label: (y - 1) + "-" + y + "学年",
                     },
                     {
-                        value: y + "/" + (y + 1),
-                        label: y + "/" + (y + 1) + "学年",
+                        value: y + "-" + (y + 1),
+                        label: y + "-" + (y + 1) + "学年",
                     },
                     {
-                        value: y + 1 + "/" + (y + 2),
-                        label: y + 1 + "/" + (y + 2) + "学年",
+                        value: y + 1 + "-" + (y + 2),
+                        label: y + 1 + "-" + (y + 2) + "学年",
                     },
                 )
             })
