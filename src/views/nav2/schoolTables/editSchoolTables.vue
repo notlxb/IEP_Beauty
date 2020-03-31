@@ -161,7 +161,7 @@ export default {
             ],
             dialogFormVisible2: false,
             form: {
-                year: '2018/2019',
+                year: '2019-2020',
                 semester: '1',
             },
         }
@@ -178,7 +178,7 @@ export default {
                 params: {
                     /*'year': this.year,
                     'semester': this.semester,*/
-                    'year': '2019/2020',//默认值
+                    'year': '2019-2020',//默认值
                     'semester': 1,//默认值
                     'studentId': this.studentId,
                 }
@@ -194,8 +194,6 @@ export default {
                 //console.log(typeof (this.heads[0].label))
                 this.heads[1].type = '';
                 this.heads[1].label = '第 ' + res.data.data.semester + ' 学期';
-                //console.log("semester is: ")
-                //console.log(typeof (this.heads[1].label))
                 //console.log(temp)
                 for (let item in temp) {
                     if (temp.hasOwnProperty(item)) {
@@ -230,8 +228,23 @@ export default {
                     cour.push(result[i].subjectName);
                 }
                 this.options = cour;
-                this.mockTest();
-
+                // this.mockTest();
+                const current = new Date();
+                const y = current.getFullYear();
+                this.yearOptions.push(
+                    {
+                        value: (y - 1) + "-" + y,
+                        label: (y - 1) + "-" + y + "学年",
+                    },
+                    {
+                        value: y + "-" + (y + 1),
+                        label: y + "-" + (y + 1) + "学年",
+                    },
+                    {
+                        value: y + 1 + "-" + (y + 2),
+                        label: y + 1 + "-" + (y + 2) + "学年",
+                    },
+                )
             })
         },
 
@@ -296,7 +309,7 @@ export default {
                     'courses': JSON.stringify(map),
                 }
             }).then((res) => {
-                if (res.data.message==="success"){
+                if (res.data.message === "success") {
                     alert('保存成功！')
                 }
 
@@ -312,6 +325,7 @@ export default {
         },
 
         confirmYears() {
+            this.getParams();
             this.heads[0].label = this.form.year + ' 学年';
             this.heads[1].label = '第 ' + this.form.semester + ' 学期';
             this.dialogFormVisible2 = false;
@@ -326,8 +340,14 @@ export default {
                     'studentId': this.studentId,
                 }
             }).then((res) => {
+                if (res.data.data === null) {
+                    alert('该学生暂无' + '2019-2020学年 第 1 学期 ' + '课表！请查看其他学期课表！');
+                    return
+                }
                 this.coursesNames = [];
+                console.log(res.data);
                 this.test = res.data.data.courses;
+                //
                 let temp = JSON.parse(res.data.data.courses);
                 this.heads[0].type = 'success';
                 this.heads[0].label = res.data.data.year;
@@ -340,6 +360,7 @@ export default {
                     }
                 }
                 this.reformList(this.coursesNames);
+
             })
 
 

@@ -112,7 +112,7 @@
                                 localStorage.setItem('Permission', permission);
                                 localStorage.setItem('rank', rank);
                                 //document.cookie = `Authorization=${res.headers.authorization}`;
-                                this.$router.push({path: '/schoolTables'});
+                                this.$router.push({path: '/newContact'});
                             }
                         });
                     } else {

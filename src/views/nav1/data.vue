@@ -75,6 +75,7 @@ let nodeData = [];
 export default {
     data() {
         this.getSchoolData();
+        this.getUserId();
         return {
             selectedOptions2: [],//默认选择
             //设置别名
@@ -117,6 +118,9 @@ export default {
     },
     components: {ElSelectDropdown},
     methods: {
+        getUserId(){
+            return localStorage.getItem('userId');
+        },
 
         /*迭代查找children对应的结点*/
         /**
@@ -186,7 +190,7 @@ export default {
             const nodes = [];
             const url = 'http://47.110.134.247/group2_b/schoolStandardDataForm/getData';
             //const url= 'http://er58rm.natappfree.cc/schoolStandardDataForm/getData'
-            axios.post(url, qs.stringify({schoolId: 1}))
+            axios.post(url, qs.stringify({userId: this.getUserId()}))
             /*axios({
               method: 'post',
               url: 'http://er58rm.natappfree.cc/schoolStandardDataForm/getData',
@@ -277,7 +281,7 @@ export default {
                 return;
             }
             var d = {
-                'schoolId': 1,
+                'userId': this.getUserId(),
                 'updateTarget': edit,
                 'addTarget': this.selfCreat
             }
@@ -314,7 +318,7 @@ export default {
                 url: 'http://47.110.134.247/group2_b/schoolStandardDataForm/createSchoolDataForm',
                 //url: 'http://er58rm.natappfree.cc/schoolStandardDataForm/createSchoolDataForm',
                 data: {
-                    "schoolId": 1,
+                    "userId": this.getUserId(),
                     "schoolData": combined,
                 }
             }).then((response) => {

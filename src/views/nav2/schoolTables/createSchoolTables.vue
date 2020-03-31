@@ -135,7 +135,7 @@ export default {
             courseName: {mes: '暂无课程'},//存放学生课表
             //存放题头---学年  学期
             heads: [
-                {type: '', label: '20xx/20xx 学年', key: 0},
+                {type: '', label: '20xx-20xx 学年', key: 0},
                 {type: 'success', label: '第 x 学期', key: 1},
             ],
             options: [],//存放可选课程
@@ -158,7 +158,7 @@ export default {
             //弹框表单内
             dialogFormVisible2: false,
             form: {
-                year: '2019/2020',
+                year: '2019-2020',
                 semester: '1',
             },
             formLabelWidth: '120px'
@@ -208,16 +208,16 @@ export default {
                 const y = current.getFullYear();
                 this.yearOptions.push(
                     {
-                        value: (y - 1) + "/" + y,
-                        label: (y - 1) + "/" + y + "学年",
+                        value: (y - 1) + "-" + y,
+                        label: (y - 1) + "-" + y + "学年",
                     },
                     {
-                        value: y + "/" + (y + 1),
-                        label: y + "/" + (y + 1) + "学年",
+                        value: y + "-" + (y + 1),
+                        label: y + "-" + (y + 1) + "学年",
                     },
                     {
-                        value: y + 1 + "/" + (y + 2),
-                        label: y + 1 + "/" + (y + 2) + "学年",
+                        value: y + 1 + "-" + (y + 2),
+                        label: y + 1 + "-" + (y + 2) + "学年",
                     },
                 )
             })
