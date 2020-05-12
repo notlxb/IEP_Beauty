@@ -3,7 +3,6 @@
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/newContact' , query:{currentPage:this.$route.query.currentPage}}">生态评量</el-breadcrumb-item>
       <el-breadcrumb-item>学生信息</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage}}">医学诊断</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage}}">家长自评</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage}}">专项评估</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
@@ -61,6 +60,10 @@
           <input type="checkbox" v-model="getstu.Disability_type" name="item405"  value="多重残疾"/>多重残疾
           <input type="checkbox" v-model="getstu.Disability_type" name="item405"  value="学习困难"/>学习困难
           <input type="checkbox" v-model="getstu.Disability_type" name="item405"  value="其他"/>其他
+          <vue-ckeditor style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)" type="classic"  v-model="CJZ" :editors="editors1"
+                        :config='config2'></vue-ckeditor>
+          <vue-ckeditor style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)" type="classic"  v-model="ZDZS" :editors="editors1"
+                        :config='config3'></vue-ckeditor>
         </el-form-item>
       </template>
       <template style="width:200px; height:200px;float:left;">
@@ -277,6 +280,10 @@
                 dialogVisible: false,
                 formLabelWidth: '80px',
                 limitNum: 1,
+
+                ATI:{},
+                ZDZS:'',
+                CJZ:'',
                 getstu: {
                     name: '',
                     StuID: '',
@@ -378,6 +385,20 @@
                 placeholder:'点击此处上传相关资料',
                 ckfinder: {
                   uploadUrl: '/api/stu/picture_EA'
+                },
+              },
+              config2:{
+                language:'zh-cn',
+                placeholder:'点击上传残疾证',
+                ckfinder: {
+                  uploadUrl: '/api/stu/picture_ZhenDuan'
+                },
+              },
+              config3:{
+                language:'zh-cn',
+                placeholder:'点击上传诊断证书',
+                ckfinder: {
+                  uploadUrl: '/api/stu/picture_ZhenDuan'
                 },
               },
             }
@@ -508,6 +529,10 @@
                 this.getstu.FamilyAttitude2Stu=this.$store.state.stuinfo[0].FamilyAttitude2Stu;
                 this.getstu.SleepPattern=this.$store.state.stuinfo[0].SleepPattern;
                 this.getstu.LivingHabit=this.$store.state.stuinfo[0].LivingHabit;
+
+                this.ATI = JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo);
+                this.ZDZS = JSON.parse(this.$store.state.stuinfo[0].MedicalDiagnosis).诊断证书;
+                this.CJZ = JSON.parse(this.$store.state.stuinfo[0].MedicalDiagnosis).残疾证;
 
                 if (this.getstu.FamilyMember_obro.length != 0)
                     this.obro_visible = true;
@@ -737,6 +762,18 @@
                 },{}).then((response)=>{
                     console.log(response);
                 });
+
+              var MD = {诊断证书:this.ZDZS, 残疾证:this.CJZ};
+              this.$http.post('/api/stu/MDini',{
+                MD:MD,
+                MDID:this.$store.state.stuinfo[0].student_id
+              },{}).then((response) => {});
+              this.$http.post('/api/stu/ATIini',{
+                ATI:this.ATI,
+                ATIID:this.$store.state.stuinfo[0].student_id
+              },{}).then((response) => {});
+              console.log(this.MedicalDiagnosis);
+
                 console.log('submit!');
                 this.$http.post('/api/stu/queStuNNS',{
                 },{}).then((response) => {
