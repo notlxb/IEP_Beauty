@@ -441,6 +441,8 @@
 
 
             readStuinfo:function(){
+                this.queryClasstable();
+
                 this.getstu.name=this.$store.state.stuinfo[0].name;
                 this.getstu.StuID=this.$store.state.stuinfo[0].student_id;
                 this.getstu.sex=this.$store.state.stuinfo[0].Sex;
@@ -542,10 +544,10 @@
                     this.osis_visible = true;
                 if (this.getstu.FamilyMember_ysis.length != 0)
                     this.ysis_visible = true;
-                this.queryClasstable();
             },
 
             queryClasstable(){
+              console.log("123123")
                 this.class_options = [];
                 this.$http.post('/api/stu/queClasstable', {
                     schoolName: "苏州工业园区仁爱学校",

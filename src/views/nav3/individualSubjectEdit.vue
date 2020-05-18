@@ -132,8 +132,7 @@
                 align='center'
                 fixed
                 prop="ss"
-                label="课标"
-                width="100">
+                label="课标">
             </el-table-column>
             <el-table-column
                 prop="des"
@@ -153,8 +152,7 @@
             </el-table-column>
             <el-table-column
                 fixed="right"
-                label="操作"
-                width="100">
+                label="操作">
               <template slot-scope="scope">
                 <el-button
                     :disabled="disabled"
@@ -513,7 +511,7 @@
             },
             dialogConfirm(){
                 for (var i = 0; i < this.jxmb_opts.length; i++){
-                    this.tableData.push({ss:this.jxmb_opts[i][5], des:''});
+                    this.tableData.push({ss:this.jxmb_opts[i][4], des:''});
                 }
                 this.dialogFormVisible = false;
                 this.jxmb_opts = [];
