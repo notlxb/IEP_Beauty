@@ -1,7 +1,7 @@
 <template>
   <section>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/teaTheme', query:{currentPage:this.$route.query.currentPage} }">长短期目标</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/teaTheme', query:{currentPage:this.$route.query.currentPage} }">单元目标</el-breadcrumb-item>
       <el-breadcrumb-item>查看|编辑</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>

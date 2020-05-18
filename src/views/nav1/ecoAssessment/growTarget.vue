@@ -84,8 +84,6 @@
             this.ATI = JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo);
             this.ZDZS = JSON.parse(this.$store.state.stuinfo[0].MedicalDiagnosis).诊断证书;
             this.CJZ = JSON.parse(this.$store.state.stuinfo[0].MedicalDiagnosis).残疾证;
-            // this.addDomain1();
-            console.log(this.MedicalDiagnosis)
         },
 
         methods: {
