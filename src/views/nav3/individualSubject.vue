@@ -13,7 +13,7 @@
           <template slot="prepend">模糊搜索</template>
         </el-input>
       </div>
-      <el-table v-loading="loading" :data=this.tempList align="left" stripe>
+      <el-table v-loading="loading" :data="tables" align="left" stripe>
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="schoolYear" label="学年"></el-table-column>
         <el-table-column prop="term" label="学期"></el-table-column>

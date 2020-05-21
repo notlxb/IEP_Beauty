@@ -50,15 +50,12 @@ var sqlMap = {
     upPeriodicAccess:'update periodicaccess set stuName=?, stuID=?, term=?, schoolYear=?, class=?, teacher=?, analysisTime=?, targetResult=?, subjectResult=?, courseResult=?, treatmentResult=?, lifeDes=?, mainProblem=?, mainDemand=?, eduFocus=?, moreTarget=?, teachingStrategy=?, relatedService=? where id = ? and isDel = 0',
 
     //查
-    queSch: 'select * from school_target where target_status = 1', 
-    // queSch: 'select * from schoolTable', 
+    queSch: 'select * from school_target where target_status = 1',
     queStu: 'select * from t_studentinfo where Deleted = 0', 
     queStuinfo: 'SELECT * FROM t_studentinfo WHERE student_id = ? AND Deleted = 0',
     queClass:'select student_id,name from t_studentinfo where class_id = ? and Deleted = 0',
     queCourse:'SELECT * FROM coursemanagement WHERE delete_status = 0',
     queCourseCategeories:'SELECT * FROM coursemanagement WHERE show_type = 0 AND father = 0 AND delete_status = 0 AND producerId = ?',
-    //queSS:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ? and father = ? and producerID = ?',
-    //queSS_ST:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ? and producerID = ?',
     queSS:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ? and father = ?',
     queSS_ST:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ?',
     queName: 'select student_id, name, sex from t_studentinfo where name = ? and Deleted = 0',
