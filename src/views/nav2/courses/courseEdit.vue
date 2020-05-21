@@ -189,7 +189,7 @@
         // var value_nub=0;
         for(var i=0; i<this.$store.state.course.length;i++)
         {
-          if(this.$store.state.course[i].show_type=='1')
+          if(this.$store.state.course[i].show_type=='1' && this.$store.state.course[i].father=='1')
           {
                 this.field1.push({label: this.$store.state.course[i].label, value: this.$store.state.course[i].id});
                 //value_nub++;
