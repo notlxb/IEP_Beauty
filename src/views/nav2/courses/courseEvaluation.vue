@@ -395,7 +395,8 @@
           schoolYear:this.form.schoolYear,
           progress:0,
           status:'warning',
-          completedCourses:[]
+          completedCourses:[],
+          evaluatedCourses:[]
         });
 
         //将初始化好的课程评量上传至服务器的数据库中，并跳转至课程评量编辑页面

@@ -52,6 +52,8 @@
                        :label="item.label"
                        :key="item.value"
                        :value="item.value" @click="change(item.label)">
+              <span style="float: left">{{ item.label }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px">{{ item.isEvaluated }}</span>
             </el-option>
           </el-select>
         </el-form-item><br>
@@ -61,6 +63,8 @@
                        :label="item.label"
                        :key="item.value"
                        :value="item.value" @click.native="set_project_index(index)">
+              <span style="float: left">{{ item.label }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px">{{ item.isEvaluated }}</span>
             </el-option>
           </el-select>
         </el-form-item>
@@ -135,7 +139,7 @@
     },
     mounted(){
       this.init();
-      console.log(JSON.parse(this.$store.state.stuinfo[0].Courses)[0].progress);
+      console.log(JSON.parse(this.$store.state.stuinfo[0].Courses));
     },
     methods:{
       async init(){
@@ -204,19 +208,46 @@
         this.radioes=[];
         this.second_field=[];
         this.se_field_value='';
+
+        for (var i = 0; i < this.$store.state.course.length; i++)
+          if(this.$store.state.course[i].id == this.field_value)
+            this.field_label = this.$store.state.course[i].label;
+
+        var Courses = JSON.parse(this.$store.state.stuinfo[0].Courses);
+        var evaluatedCourses;
+        var evaluatedSe;
+        for (var i = 0; i < Courses.length; i++)
+          if (Courses[i].schoolYear == this.$route.query.schoolYear && Courses[i].term == this.$route.query.term)
+            evaluatedCourses = Courses[i].evaluatedCourses;
+        if (evaluatedCourses == undefined)
+          evaluatedCourses = [];
+
+        for(var j = 0; j < evaluatedCourses.length; j++)
+          if(evaluatedCourses[j].领域 == this.field_label)
+            evaluatedSe = evaluatedCourses[j].child;
+        if (evaluatedSe == undefined)
+          evaluatedSe = [];
+
         for (var i = 0; i < this.$store.state.course.length; i++) {
           if (this.$store.state.course[i].father == this.field_value) {
-            // var s = this.$store.state.course[i].children_id;
-            // var shuzu = [];
-            // var str1 = s.substring(1, s.length - 1);
-            // shuzu = str1.split(",");
-            // for (var j = 0; j < shuzu.length; j++) {
-            //   var c = parseInt(shuzu[j]);
+            var isAdded = false;
+            for(var j = 0; j < evaluatedSe.length; j++)
+              if(evaluatedSe[j].次领域 == this.$store.state.course[i].label && evaluatedSe[j].allComplete) {
+                this.second_field.push({
+                  label: this.$store.state.course[i].label,
+                  value: this.$store.state.course[i].id,
+                  isEvaluated: "√"
+                });
+                isAdded = true;
+                break;
+              }
+
+            if(!isAdded)
             this.second_field.push({
               label: this.$store.state.course[i].label,
-              value: this.$store.state.course[i].id
+              value: this.$store.state.course[i].id,
+              isEvaluated: ""
             });
-            // }
           }
         }
       },
@@ -226,21 +257,52 @@
         this.project_value='';
         this.radio_title=[];
         this.radioes=[];
+
+        for (var i = 0; i < this.$store.state.course.length; i++){
+          if(this.$store.state.course[i].id == this.field_value)
+            this.field_label = this.$store.state.course[i].label;
+          else if(this.$store.state.course[i].id == this.se_field_value)
+            this.se_field_label = this.$store.state.course[i].label;
+        }
+
+        var Courses = JSON.parse(this.$store.state.stuinfo[0].Courses);
+        var evaluatedCourses;
+        var evaluatedProjects;
+        for (var i = 0; i < Courses.length; i++)
+          if (Courses[i].schoolYear == this.$route.query.schoolYear && Courses[i].term == this.$route.query.term)
+            evaluatedCourses = Courses[i].evaluatedCourses;
+        if (evaluatedCourses == undefined)
+          evaluatedCourses = [];
+
+        for(var j = 0; j < evaluatedCourses.length; j++)
+          if(evaluatedCourses[j].领域 == this.field_label)
+            for (var k = 0; k < evaluatedCourses[j].child.length; k++)
+              if(evaluatedCourses[j].child[k].次领域 == this.se_field_label)
+                evaluatedProjects = evaluatedCourses[j].child[k].child;
+        if (evaluatedProjects == undefined)
+          evaluatedProjects = [];
+
         for(var i =0 ;i<this.$store.state.course.length;i++)
         {
           if(this.$store.state.course[i].father== this.se_field_value)
           {
-            // var s = this.$store.state.course[i].children_id;
-            // var shuzu=[];
-            // var str1 = s.substring(1,s.length-1);
-            // shuzu = str1.split(",");
-            // for (var j = 0; j < shuzu.length ; j++)
-            // {
-            //   var c = parseInt(shuzu[j]);
-            this.project.push({
-              label:this.$store.state.course[i].label,
-              value:this.$store.state.course[i].id});
-            // }
+            var isAdded = false;
+            for(var j = 0; j < evaluatedProjects.length; j++)
+              if(this.$store.state.course[i].label == evaluatedProjects[j]) {
+                this.project.push({
+                  label: this.$store.state.course[i].label,
+                  value: this.$store.state.course[i].id,
+                  isEvaluated: "√"
+                });
+                isAdded = true;
+                break;
+              }
+
+            if(!isAdded)
+              this.project.push({
+                label:this.$store.state.course[i].label,
+                value:this.$store.state.course[i].id,
+                isEvaluated:""});
           }
         }
       },
@@ -253,20 +315,9 @@
         {
           if(this.$store.state.course[i].father == this.project_value)
           {
-            // var s = this.$store.state.course[i].children_id;
-            // var shuzu=[];
-            // var str1 = s.substring(1,s.length-1);
-            // shuzu = str1.split(",");
-            // for (var j = 0; j < shuzu.length ; j++)
-            // {
-            // var c = parseInt(shuzu[j]);
             this.radio_title.push({
               label:this.$store.state.course[i].label,
               value:this.$store.state.course[i].id});
-            // var s2 = this.$store.state.course[c-1].children_id;
-            // var arr=[];
-            // var str2 = s2.substring(1,s2.length-1);
-            // arr = str2.split(",");
             var arr1=[];
             for(var j = 0;j<this.$store.state.course.length;j++) {
               if (this.$store.state.course[j].father == this.$store.state.course[i].id) {
@@ -353,6 +404,51 @@
         for (var i = 0; i < Courses.length; i++){
           if (Courses[i].schoolYear == this.$route.query.schoolYear && Courses[i].term == this.$route.query.term)
           {
+            //更新已完成评量的课程数据
+            var isAdded = false;
+            if(Courses[i].evaluatedCourses.length == 0)
+            {
+              Courses[i].evaluatedCourses.push({领域:this.field_label, child:[]});
+              Courses[i].evaluatedCourses[0].child.push({次领域:this.se_field_label, child:[], allComplete:false});
+              Courses[i].evaluatedCourses[0].child[0].child.push(this.project_label);
+              isAdded = true;
+            }else {
+              for (var j = 0; j < Courses[i].evaluatedCourses.length; j++) {
+                if (Courses[i].evaluatedCourses[j].领域 == this.field_label) {
+                  for (var k = 0; k < Courses[i].evaluatedCourses[j].child.length; k++) {
+                    if (Courses[i].evaluatedCourses[j].child[k].次领域 == this.se_field_label) {
+                      for (var n = 0; n < Courses[i].evaluatedCourses[j].child[k].child.length; n++)
+                        if (isAdded || Courses[i].evaluatedCourses[j].child[k].child[n] == this.project_label) {
+                          isAdded = true;
+                          break;
+                        } else if (n == Courses[i].evaluatedCourses[j].child[k].child.length - 1) {
+                          Courses[i].evaluatedCourses[j].child[k].child.push(this.project_label)
+                          isAdded = true;
+                          if (Courses[i].evaluatedCourses[j].child[k].child.length == this.project.length)
+                            Courses[i].evaluatedCourses[j].child[k].allComplete = true;
+                          break;
+                        } else if (isAdded)
+                          break;
+                    } else if (k == Courses[i].evaluatedCourses[j].child.length - 1) {
+                      Courses[i].evaluatedCourses[j].child.push({次领域: this.se_field_label, child: []});
+                      Courses[i].evaluatedCourses[j].child[k + 1].child.push(this.project_label);
+                      isAdded = true;
+                      break;
+                    } else if (isAdded)
+                      break;
+                  }
+                } else if (j == Courses[i].evaluatedCourses.length - 1) {
+                  Courses[i].evaluatedCourses.push({领域: this.field_label, child: []});
+                  Courses[i].evaluatedCourses[j + 1].child.push({次领域: this.se_field_label, child: []});
+                  Courses[i].evaluatedCourses[j + 1].child[0].child.push(this.project_label);
+                  isAdded = true;
+                  break;
+                } else if (isAdded)
+                  break;
+              }
+            }
+            console.log(Courses);
+
             for (var j = 0; ; j++){
               if (Courses[i].evaluation[j] == undefined)
                 break;
