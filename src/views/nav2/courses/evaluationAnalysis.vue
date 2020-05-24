@@ -62,7 +62,6 @@
                                 <el-dropdown-menu>
                                     <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,1)">编辑</el-dropdown-item>
                                     <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,2)">查看</el-dropdown-item>
-                                    <el-dropdown-item>删除</el-dropdown-item>
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </template>
@@ -139,6 +138,9 @@
         data() {
             return {
                 //filters1:[{text:'2016/2017',value:'2016/2017'},{text:'2018/2019',value:'2018/2019'}],
+                checkPermission:localStorage.getItem('Permission')[6],
+                editPermission:localStorage.getItem('Permission')[14],
+
                 schYear:[],
                 class_a:[],
                 course_name:[],
@@ -722,6 +724,14 @@
 
             //跳转至课程评量界面
             to_edit(stuID,schoolYear,term,isEdit){
+                if (isEdit == 1 && this.editPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
+                if (isEdit == 2 && this.checkPermission != 1){
+                    this.$message.warning("暂无权限！");
+                    return;
+                }
                 this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:stuID
                 },{}).then((response) => {
@@ -766,6 +776,8 @@
                             }
                         }
                     }
+                    this.$store.state.stucourseslist.reverse(); //倒置列表，使最新添加的信息显示在在前面
+
                     let schoolYear_a = schoolYear_array.filter(function (ele,index,self) {
                         return self.indexOf(ele) === index;
                     });

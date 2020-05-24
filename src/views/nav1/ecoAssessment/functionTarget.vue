@@ -3,8 +3,7 @@
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/newContact', query:{currentPage:this.$route.query.currentPage} }">生态评量</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">学生信息</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">医学诊断</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家庭基础信息（家长自评）</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家长自评</el-breadcrumb-item>
       <el-breadcrumb-item>专项评估</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -16,7 +15,7 @@
                     :prop="'domains3.' + index + '.value'">
         <!--        <el-input  @focus="open3(domain.key)" @focusout.native="close3()" v-model="domain.value"></el-input>-->
         <!--        <el-input placeholder="请输入内容" @focus="open3(domain.key)" @focusout.native="close3()" v-model="domain.value"></el-input>-->
-        <vue-ckeditor type="classic" @focus.native="open3(domain.key)" v-model="domain.value" :editors="editors1" :config='config'></vue-ckeditor>
+        <vue-ckeditor :readonly="disabled" type="classic" @focus.native="open3(domain.key)" v-model="domain.value" :editors="editors1" :config='config'></vue-ckeditor>
         <el-input placeholder="请输对应年龄(0至18岁)" @focus="open3(domain.key)" v-model="domain.age">
           <template slot="prepend">对应年龄</template>
           <template slot="append">岁</template>
@@ -25,7 +24,7 @@
         <!--        <a class="remove-item" v-show="formData3.domains3.length>1" @click.prevent="removeDomain3(domain)"><i class="el-icon-close"></i></a>-->
       </el-form-item>
       <el-form-item class="submit-btn">
-        <el-button type="danger" @click="submitForm3">提交</el-button>
+        <el-button type="danger" :disabled="disabled" @click="submitForm3">提交</el-button>
         <el-button type="danger" @click.native="go_back()">返回</el-button>
         <el-button type="danger" @click="drawChart">雷达图</el-button>
         <!--        <el-button @click="addDomain31">新增一项</el-button>-->
@@ -55,6 +54,8 @@
         name: "function_target",
         data(){
             return{
+              editPermission:localStorage.getItem('Permission')[10],
+
                 Evaluation:{},
                 ATI:{},
 
@@ -83,9 +84,13 @@
                         uploadUrl: '/api/stu/picture_ZhuanXiang'
                     },
                 },
+
+              disabled: false,
             };
         },
         mounted(){
+            if (this.editPermission != 1 || this.$route.query.isEdit == 2)
+              this.disabled = true;
             this.ATI = JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo);
             this.Evaluation = JSON.parse(this.$store.state.stuinfo[0].Evaluation);
             this.addDomain31();

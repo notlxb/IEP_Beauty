@@ -44,6 +44,16 @@
             :filter-method="filterHandler"></el-table-column>
           <el-table-column prop="stuName" label="学生"></el-table-column>
           <el-table-column prop="stuID" label="学号" sortable></el-table-column>
+          <el-table-column label="进度">
+            <template slot-scope='scope'>
+              <el-progress
+                      :text-inside="true"
+                      :stroke-width="18"
+                      :percentage="scope.row.progress"
+                      :status="scope.row.status">
+              </el-progress>
+            </template>
+          </el-table-column>
           <el-table-column prop="evaDate" label="评量日期" sortable></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
@@ -54,7 +64,7 @@
                 <el-dropdown-menu>
                   <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,1)">编辑</el-dropdown-item>
                   <el-dropdown-item  @click.native="to_edit(scope.row.stuID,scope.row.schoolYear,scope.row.term,2)">查看</el-dropdown-item>
-                  <el-dropdown-item>删除</el-dropdown-item>
+                  <el-dropdown-item  @click.native="whetherDel(scope.row.schoolYear,scope.row.term,scope.row.courseName,scope.row.stuID)">删除</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </template>
@@ -133,6 +143,18 @@
         <el-button type="primary" @click="dialogConfirm()">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog
+            title="提示"
+            :visible.sync="deldialogVisible"
+            width="30%"
+            :show-close="false"
+            @close="delCancel">
+      是否要删除此条信息？
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="delCancel">取消</el-button>
+        <el-button type="danger" icon="el-icon-delete" @click="delconfirm">确认删除</el-button>
+      </span>
+    </el-dialog>
   </section>
 </template>
 
@@ -141,6 +163,9 @@
   export default {
     data() {
       return {
+        checkPermission:localStorage.getItem('Permission')[13],
+        editPermission:localStorage.getItem('Permission')[14],
+
         schYear:[],
         class_a:[],
         course_name:[],
@@ -171,6 +196,14 @@
           term:'',
         },
         dialogVisible:false,
+
+        del_form:{
+          del_year:'',
+          del_term:'',
+          del_course:'',
+          del_stuID:''
+        },
+        deldialogVisible:false,
 
         loading:true,
       }
@@ -243,7 +276,6 @@
         await this.$http.post('/api/stu/queryClass',{
           class_id:this.form.stu_class
         },{}).then((response) => {
-          console.log(response)
           for (var i = 0; i < response.body.length; i++)
             this.form.student_options.push({key:i, label:response.body[i].name, value:response.body[i].student_id});
         })
@@ -268,6 +300,14 @@
 
       //跳转至课程评量界面
       to_edit(stuID,schoolYear,term,isEdit){
+        if (isEdit == 1 && this.editPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
+        if (isEdit == 2 && this.checkPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
         this.$http.post('/api/stu/queryStuinfo',{
           AStuID:stuID
         },{}).then((response) => {
@@ -278,11 +318,32 @@
 
       //新增课程评量
       async addStuCE(){
+        if (this.editPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
         this.dialogVisible = true;
       },
       async dialogConfirm(){
         var id = 1;
         var Courses;
+
+        var lastSchoolYear;
+        var lastTerm;
+        var lastEvaluation;
+        var lastAppraisal;
+
+        //判断上一学期的学年和学期
+        if (this.form.term == '上学期'){
+          lastSchoolYear = (this.form.schoolYear.split('-')[0]-1) + '-' + (this.form.schoolYear.split('-')[1]-1);
+          lastTerm = '下学期';
+        }else if (this.form.term == '下学期'){
+          lastSchoolYear = this.form.schoolYear;
+          lastTerm = '上学期';
+        }
+        console.log(lastSchoolYear+lastTerm);
+
+        //获取当前学生已有的课程评量的JSON数据赋给Courses，若没有，则Courses=[]
         await this.$http.post('/api/stu/queryStuinfo',{
           AStuID:this.form.stu_id
         },{}).then((response) => {
@@ -292,13 +353,25 @@
             Courses = [];
         });
 
+        //判断当前所要创建的评量是否已经存在，若存在，则提醒用户并退出创建
         for (var i = 0; i < Courses.length; i++)
-          if (Courses[i].term == this.form.term && Courses[i].class == this.form.stu_class && Courses[i].stuID == this.form.stu_id && Courses[i].courseName == this.form.course_category && Courses[i].schoolYear == this.form.schoolYear) {
-            this.$message.error('该课程评量已存在！');
-            this.dialogVisible = false;
-            return;
-          }
+          if (Courses[i].class == this.form.stu_class && Courses[i].stuID == this.form.stu_id && Courses[i].courseName == this.form.course_category)
+            if (Courses[i].term == this.form.term && Courses[i].schoolYear == this.form.schoolYear) {
+              this.$message.error('该课程评量已存在！');
+              this.dialogVisible = false;
+              return;
+            }else if (Courses[i].term == lastTerm && Courses[i].schoolYear == lastSchoolYear){
+              //判断之前一学期的评量是否存在，若存在，则继承评量内容
+              lastEvaluation = Courses[i].evaluation;
+              lastAppraisal = Courses[i].appraisal;
+            }
 
+        if (lastAppraisal == undefined && lastEvaluation == undefined){
+          lastEvaluation = [];
+          lastAppraisal = [];
+        }
+
+        //为当前要创建的课程评量生成id
         if (Courses.length > 0) {
           id = parseInt(Courses[Courses.length-1].id) + 1;
           for (var i = 0; i < Courses.length; i++)
@@ -307,23 +380,34 @@
               i = -1;
             }
         }
+
+        //初始化即将要创建的课程评量
         Courses.push({
           id:id,
           term:this.form.term,
           class:this.form.stu_class,
-          stuID:this.form.stu_id, evaDate:'',
+          stuID:this.form.stu_id,
+          evaDate:'',
           stuName:this.form.stu_name,
           courseName:this.form.course_category,
-          evaluation:[],
-          appraisal:[],
-          schoolYear:this.form.schoolYear
+          evaluation:lastEvaluation,
+          appraisal:lastAppraisal,
+          schoolYear:this.form.schoolYear,
+          progress:0,
+          status:'warning',
+          completedCourses:[],
+          evaluatedCourses:[]
         });
+
+        //将初始化好的课程评量上传至服务器的数据库中，并跳转至课程评量编辑页面
         await this.$http.post('/api/stu/upStuCourse',{
           Course:Courses,
           stuID:this.form.stu_id
         },{}).then((response) => {
-          if (response.status == 200)
+          if (response.status == 200) {
+            this.dialogVisible = false;
             this.to_edit(this.form.stu_id, this.form.schoolYear, this.form.term, 1);
+          }
           else
             this.$message.error('错误！');
         });
@@ -332,24 +416,20 @@
 
       //更新课程信息
       async updateCourse(){
-        await  this.$http.post('/api/stu/queCourse', {
-        }, {}).then((response) => {
-          this.$store.dispatch("setcourse", response.bodyText);
-          // console.log(this.$store.state.course);
-        });
-
         await this.$http.post('/api/stu/queStuCourse', {
         }, {}).then((response) => {
-          this.$store.dispatch("setstucourses", null);
+          //清空课程评量列表以便获取课程列表最新数据
           this.$store.dispatch("setstucourseslist", null);
+
           let schoolYear_array=[];
           let class_array=[];
           let courseName_array=[];
+
+          //获取课程评量列表最新数据
           for (var i = 0; i < JSON.parse(response.bodyText).length; i++) {
             if (JSON.parse(response.bodyText)[i].Courses!=null) {
               for (var j = 0; j < JSON.parse(JSON.parse(response.bodyText)[i].Courses).length; j++) {
                 var t = [];
-                this.$store.dispatch("addstucourses", JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j]);
                 t.schoolYear = JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j].schoolYear;
                 schoolYear_array.push(t.schoolYear);
                 t.term = JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j].term;
@@ -360,10 +440,14 @@
                 t.stuName = JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j].stuName;
                 t.evaDate = JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j].evaDate;
                 t.stuID = JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j].stuID;
+                t.progress = JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j].progress;
+                t.status = JSON.parse(JSON.parse(response.bodyText)[i].Courses)[j].status;
                 this.$store.dispatch("addstucourseslist", t);
               }
             }
           }
+          this.$store.state.stucourseslist.reverse(); //倒置列表，使最新添加的信息显示在在前面
+
           let schoolYear_a = schoolYear_array.filter(function (ele,index,self) {
             return self.indexOf(ele) === index;
           });
@@ -392,7 +476,56 @@
       },
 
 
+      //删除评量
+      whetherDel(del_year, del_term, del_course, del_stuID){
+        if (this.editPermission != 1){
+          this.$message.warning("暂无权限！");
+          return;
+        }
+        this.del_form.del_year = del_year;
+        this.del_form.del_course = del_course;
+        this.del_form.del_stuID = del_stuID;
+        this.del_form.del_term = del_term;
+        this.deldialogVisible = true;
+      },
+      delCancel(){
+        this.del_form.del_year = '';
+        this.del_form.del_course = '';
+        this.del_form.del_stuID = '';
+        this.del_form.del_term = '';
+        this.deldialogVisible = false;
+      },
+      async delconfirm(){
+        var courses = []; //用来存放删除此条评量后的学生的课程评量
 
+        //获取当前学生的课程评量Json数据存入course_tmp
+        await this.$http.post('/api/stu/queryStuinfo',{
+          AStuID:this.del_form.del_stuID
+        }).then((response) => {
+          var course_tmp = JSON.parse(response.body[0].Courses);
+          //逐条对比，若课程评量的信息与当前要删除的相符时，则舍弃，不放入courses中
+          for (var i = 0; i < course_tmp.length; i++)
+            if (course_tmp[i].schoolYear == this.del_form.del_year && course_tmp[i].term == this.del_form.del_term && course_tmp[i].courseName == this.del_form.del_course)
+              continue;
+            else
+              courses.push(course_tmp[i]);
+        });
+
+        if (courses.length == 0)
+          //设置学生的课程评量为NULL
+          await this.$http.post('/api/stu/stuCourseCl',{
+            stuID:this.del_form.del_stuID
+          });
+        else
+          //将courses更新到数据库中保存
+          await this.$http.post('/api/stu/upStuCourse',{
+            Course:courses,
+            stuID:this.del_form.del_stuID
+          });
+
+        this.delCancel();
+        this.updateCourse();
+      },
 
       //分页
       handleSizeChange1: function(pageSize) { // 每页条数切换
@@ -407,7 +540,6 @@
       },
       //分页方法（重点）
       currentChangePage(currentPage) {
-        console.log(this.$store.state.stucourseslist)
         var from = (currentPage - 1) * this.pageSize;
         var to = currentPage * this.pageSize;
         this.tempList = [];

@@ -135,7 +135,7 @@ export default {
             courseName: {mes: '暂无课程'},//存放学生课表
             //存放题头---学年  学期
             heads: [
-                {type: '', label: '20xx/20xx 学年', key: 0},
+                {type: '', label: '20xx-20xx 学年', key: 0},
                 {type: 'success', label: '第 x 学期', key: 1},
             ],
             options: [],//存放可选课程
@@ -145,24 +145,7 @@ export default {
             },
             test: {},
             //学年学期选择
-            yearOptions: [
-                {
-                    value: '2016/2017',
-                    label: '2016/2017学年'
-                },
-                {
-                    value: '2017/2018',
-                    label: '2017/2018学年'
-                },
-                {
-                    value: '2018/2019',
-                    label: '2018/2019学年'
-                },
-                {
-                    value: '2019/2020',
-                    label: '2019/2020学年'
-                },
-            ],
+            yearOptions: [],
             semesterOptions: [
                 {
                     value: '1',
@@ -170,18 +153,12 @@ export default {
                 }, {
                     value: '2',
                     label: '第二学期'
-                }, {
-                    value: '3',
-                    label: '第三学期'
-                }, {
-                    value: '4',
-                    label: '第四学期'
-                },
+                }
             ],
             //弹框表单内
             dialogFormVisible2: false,
             form: {
-                year: '2018/2019',
+                year: '2019-2020',
                 semester: '1',
             },
             formLabelWidth: '120px'
@@ -226,7 +203,23 @@ export default {
                     cour.push(result[i].subjectName);
                 }
                 this.options = cour;
-                this.mockTest()
+                this.mockTest();
+                const current = new Date();
+                const y = current.getFullYear();
+                this.yearOptions.push(
+                    {
+                        value: (y - 1) + "-" + y,
+                        label: (y - 1) + "-" + y + "学年",
+                    },
+                    {
+                        value: y + "-" + (y + 1),
+                        label: y + "-" + (y + 1) + "学年",
+                    },
+                    {
+                        value: y + 1 + "-" + (y + 2),
+                        label: y + 1 + "-" + (y + 2) + "学年",
+                    },
+                )
             })
         },
         chooseLesson(buttonId) {
@@ -296,6 +289,7 @@ export default {
                     this.coursesNames[i].mes = "暂无课程";
                 }
             }
+
         },
         confirmYears() {
             this.heads[0].label = this.form.year + ' 学年';

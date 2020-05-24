@@ -4,22 +4,26 @@
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/newContact', query:{currentPage:this.$route.query.currentPage} }">生态评量</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage },}">学生信息</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/growTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">医学诊断</el-breadcrumb-item>
-      <el-breadcrumb-item>家庭基础信息（家长自评）</el-breadcrumb-item>
+      <el-breadcrumb-item>家长自评</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
+    <div style="margin-top: 1%">
+      <a href="http://47.110.134.247/group1/babytable.html" target="_blank"><el-button type="danger">生活能力量表填写</el-button></a>
+      <a href="http://47.110.134.247/group1/gantongliangbiao.html" target="_blank"><el-button type="danger">感统量表填写</el-button></a>
+    </div>
     <el-form :model="formData2" ref="formData2" label-width="200px" class="form-dynamic">
       <el-form-item v-for="(domain, index) in formData2.domains2"
                     :label="data23[index]"
                     :key="domain.key"
                     :prop="'domains2.' + index + '.value'">
-        <el-input @focus="open2(domain.key)" @focusout.native="close2()" v-model="domain.value"></el-input>
+        <el-input :disabled="disabled" @focus="open2(domain.key)" @focusout.native="close2()" v-model="domain.value"></el-input>
         <a class="remove-item" v-show="formData2.domains2.length>1" @click.prevent="removeDomain2(domain)"></a>
       </el-form-item>
+
       <el-form-item class="submit-btn">
-        <el-button type="danger" @click="submitForm2()">提交</el-button>
+        <el-button type="danger" :disabled="disabled" @click="submitForm2()">提交</el-button>
         <el-button type="danger" @click.native="go_back()">返回</el-button>
       </el-form-item>
     </el-form>
@@ -32,6 +36,8 @@
         name: "develop_target",
         data() {
             return{
+              editPermission:localStorage.getItem('Permission')[9],
+
                 ATI:{},
                 HomeBasicInfo:{},
                 data21:'',
@@ -42,10 +48,14 @@
                 },
 
                 relevanceID: {},
+
+              disabled:false,
             };
         },
 
         mounted(){
+            if (this.editPermission != 1 || this.$route.query.isEdit == 2)
+              this.disabled = true;
             this.ATI = JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo);
             this.HomeBasicInfo = JSON.parse(this.$store.state.stuinfo[0].HomeBasicInfo);
             this.addDomain21();

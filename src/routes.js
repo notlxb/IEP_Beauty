@@ -52,7 +52,6 @@ import research from './views/nav1/research.vue'
 import analysis from './views/nav1/analysis.vue'
 
 
-
 let routes = [
     {
         path: '/login',
@@ -72,17 +71,23 @@ let routes = [
     {
         path: '/',
         component: Home,
-        name: '多元评估',
+        name: '评估管理',
         iconCls: 'fa fa-list-alt',//图标样式class
         authority: [1, 1, 1, 1, 1],
         children: [
             {path: '/main', component: Main, name: '主页', authority: [1, 1, 1, 1, 1], hidden: true},
-            {path: '/data', component: data, name: '指标选择', authority: [1, 1, 1, 1, 1],},
+            {path: '/data', component: data, name: '指标选择', authority: [1, 1, 1, 1, 1], iconCls: 'el-icon-edit'},
             /*{path: '/table', component: Table, name: '生态评量', authority: [1, 1, 1, 1, 1], hidden: true},*/
             {path: '/page6', component: Page6, name: '指标选择test', authority: [1, 1, 1, 1, 1], hidden: true},
-            {path: '/studentManagement', component: studentManagement, authority: [1, 1, 1, 1, 1], name: '学生管理'},
-            {path: '/classManagement', component: classManagement, authority: [1, 1, 1, 1, 1], name: '班级管理'},
-            {path: '/newContact', component: newContact, name: '生态评量', authority: [1, 1, 1, 1, 1]},
+            // {path: '/studentManagement', component: studentManagement, authority: [1, 1, 1, 1, 1], name: '学生管理'},
+
+            {
+                path: '/newContact',
+                component: newContact,
+                name: '多元评估',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-document'
+            },
             {path: '/checkNEdit', component: CheckNEdit, name: '查询/编辑', authority: [1, 1, 1, 1, 1], hidden: true},
             {
                 path: '/checkNEdit/devTarget',
@@ -106,8 +111,20 @@ let routes = [
                 hidden: true
             },
             {path: '/createAssess', component: createAssess, name: '创建学生', authority: [1, 1, 1, 1, 1], hidden: true},
-            {path: '/research', component: research, name: '问卷填写', authority: [1, 1, 1, 1, 1]},
-            {path: '/analysis', component: analysis, name: '问卷分析', authority: [1, 1, 1, 1, 1]},
+            {
+                path: '/research',
+                component: research,
+                name: '问卷填写',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-edit-outline'
+            },
+            {
+                path: '/analysis',
+                component: analysis,
+                name: '问卷分析',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-receiving'
+            },
         ]
     },
     {
@@ -118,10 +135,61 @@ let routes = [
         authority: [1, 1, 1, 1, 1],
         children: [
             {
+                path: '/courseEdit',
+                component: courseEdit,
+                name: '课程设置',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/courseEvaluation',
+                component: courseEvaluation,
+                name: '课程评量',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-s-claim',
+            },
+            {
+                path: '/analysisEdit',
+                component: analysisEdit,
+                name: '分析编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/evaluationAnalysis',
+                component: evaluationAnalysis,
+                name: '评量分析',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-s-marketing',
+            },
+            {
+                path: '/iepMeeting',
+                component: iepMeeting,
+                name: 'IEP会议',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-s-flag',
+
+            },
+            {
+                path: '/iepMeetingEdit',
+                component: iepMeetingEdit,
+                name: 'IEP编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/iepMeetingCreate',
+                component: iepMeetingCreate,
+                name: 'IEP新建',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
                 path: '/schoolTables',
                 component: schoolTables,
                 name: '课程表主页',
                 authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-date',
             },
             {
                 path: '/showSchoolTables',
@@ -145,56 +213,11 @@ let routes = [
                 hidden: true
             },
             {
-                path: '/courseEdit',
-                component: courseEdit,
-                name: '课程设置',
-                authority: [1, 1, 1, 1, 1],
-                hidden: true
-            },
-            {
-                path: '/courseEvaluation',
-                component: courseEvaluation,
-                name: '课程评量',
-                authority: [1, 1, 1, 1, 1],
-            },
-            {
-                path: '/analysisEdit',
-                component: analysisEdit,
-                name: '分析编辑',
-                authority: [1, 1, 1, 1, 1],
-                hidden: true
-            },
-            {
-                path: '/evaluationAnalysis',
-                component: evaluationAnalysis,
-                name: '评量分析',
-                authority: [1, 1, 1, 1, 1],
-            },
-            {
-                path: '/iepMeeting',
-                component: iepMeeting,
-                name: 'IEP会议',
-                authority: [1, 1, 1, 1, 1],
-            },
-            {
-                path: '/iepMeetingEdit',
-                component: iepMeetingEdit,
-                name: 'IEP编辑',
-                authority: [1, 1, 1, 1, 1],
-                hidden: true
-            },
-            {
-                path: '/iepMeetingCreate',
-                component: iepMeetingCreate,
-                name: 'IEP新建',
-                authority: [1, 1, 1, 1, 1],
-                hidden: true
-            },
-            {
                 path:'/periodicAnalysis',
                 component:assess_analysis,
                 name:'定期评估分析',
                 authority:[1, 1, 1, 1, 1],
+                iconCls: 'el-icon-s-flag',
             },
             {
                 path:'/assessEdit',
@@ -225,25 +248,91 @@ let routes = [
                     //{path: '/user', component: user, name: '列表'},
                 ],
             },*/
-            {path: '/groupSubject', component: groupSubject, name: '集体学科计划', authority: [1, 1, 1, 1, 1]},
-            {path: '/groupSubjectEdit', component: groupSubjectEdit, name: '集体学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {
+                path: '/groupSubject',
+                component: groupSubject,
+                name: '集体学科计划',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-data-line'
+            },
+            {
+                path: '/groupSubjectEdit',
+                component: groupSubjectEdit,
+                name: '集体学科计划编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
 
-            {path: '/indSubject', component: indSubject, name: '个训学科计划', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectEdit', component: indSubjectEdit, name: '个训学科计划编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {
+                path: '/indSubject',
+                component: indSubject,
+                name: '个训学科计划',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-data-line'
+            },
+            {
+                path: '/indSubjectEdit',
+                component: indSubjectEdit,
+                name: '个训学科计划编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
 
-            {path: '/teaTheme', component: teaTheme, name: '长短期目标', authority: [1, 1, 1, 1, 1]},
-            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {
+                path: '/teaTheme',
+                component: teaTheme,
+                name: '单元目标',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-data-analysis'
+            },
+            {path: '/teaThemeEdit', component: teaThemeEdit, name: '单元目标编辑', authority: [1, 1, 1, 1, 1], hidden: true},
 
             //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
 
-            {path: '/groupSubjectTea', component: groupSubjectTea, name: '集体学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/groupSubjectTeaEdit', component: groupSubjectTeaEdit, name: '集体学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {
+                path: '/groupSubjectTea',
+                component: groupSubjectTea,
+                name: '集体学科教学设计',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-collection-tag'
+            },
+            {
+                path: '/groupSubjectTeaEdit',
+                component: groupSubjectTeaEdit,
+                name: '集体学科教学设计编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
 
-            {path: '/indSubjectTea', component: indSubjectTea, name: '个训学科教学', authority: [1, 1, 1, 1, 1]},
-            {path: '/indSubjectTeaEdit', component: indSubjectTeaEdit, name: '个训学科教学编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {
+                path: '/indSubjectTea',
+                component: indSubjectTea,
+                name: '个训学科教学设计',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-collection-tag'
+            },
+            {
+                path: '/indSubjectTeaEdit',
+                component: indSubjectTeaEdit,
+                name: '个训学科教学设计编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
 
-            {path: '/learningReport', component: learningReport, name: '学习报表', authority: [1, 1, 1, 1, 1]},
-            {path: '/learningReportEdit', component: learningReportEdit, name: '学习报表编辑', authority: [1, 1, 1, 1, 1], hidden:true},
+            {
+                path: '/learningReport',
+                component: learningReport,
+                name: '学业评鉴报告',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-s-data'
+            },
+            {
+                path: '/learningReportEdit',
+                component: learningReportEdit,
+                name: '学习报表编辑',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
         ]
     },
     {
@@ -254,11 +343,48 @@ let routes = [
         iconCls: 'fa fa-bar-chart',
         children: [
             {path: '/echarts', component: echarts, name: '图标', authority: [1, 1, 1, 1, 1], hidden: true},
-            {path: '/schoolManagement', component: schoolManagement, name: '学校管理', authority: [1, 1, 1, 1, 0],},
-            {path: '/userManagement', component: userManagement, name: '用户管理', authority: [1, 1, 1, 1, 0],},
-            {path: '/dataManagement', component: dataManagement, name: '指标管理', authority: [1, 1, 1, 1, 0],},
-            {path: '/subjectManagement', component: subjectManagement, name: '课标管理', authority: [1, 1, 1, 1, 0],},
-            {path: '/courseManagement', component: courseManagement, name: '课程设置', authority: [1, 1, 1, 1, 0],},
+            {
+                path: '/schoolManagement',
+                component: schoolManagement,
+                name: '学校管理',
+                authority: [1, 1, 1, 1, 0],
+                iconCls: 'el-icon-school',
+            },
+            {
+                path: '/classManagement',
+                component: classManagement,
+                authority: [1, 1, 1, 1, 1],
+                name: '班级管理',
+                iconCls: 'el-icon-s-home',
+            },
+            {
+                path: '/userManagement',
+                component: userManagement,
+                name: '用户管理',
+                authority: [1, 1, 1, 1, 0],
+                iconCls: 'el-icon-user',
+            },
+            {
+                path: '/dataManagement',
+                component: dataManagement,
+                name: '指标管理',
+                authority: [1, 1, 1, 1, 0],
+                iconCls: 'el-icon-notebook-1',
+            },
+            {
+                path: '/subjectManagement',
+                component: subjectManagement,
+                name: '课标管理',
+                authority: [1, 1, 1, 1, 0],
+                iconCls: 'el-icon-notebook-2',
+            },
+            {
+                path: '/courseManagement',
+                component: courseManagement,
+                name: '课程设置',
+                authority: [1, 1, 1, 1, 0],
+                iconCls: 'el-icon-collection',
+            },
 
         ]
     },

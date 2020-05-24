@@ -34,10 +34,10 @@
     export default {
         data() {
             return {
-                //icon: 'static/icon.jpg',
-                //logo: 'static/lgon.jpg',
-                icon: 'http://47.110.134.247/family_members/icon.jpg',
-                logo: 'http://47.110.134.247/family_members/lgon.jpg',
+                icon: 'static/icon.jpg',
+                logo: 'static/lgon.jpg',
+                // icon: 'http://47.110.134.247/family_members/icon.jpg',
+                // logo: 'http://47.110.134.247/family_members/lgon.jpg',
                 logining: false,
                 ruleForm2: {
                     // account: 'admin',
@@ -112,7 +112,7 @@
                                 localStorage.setItem('Permission', permission);
                                 localStorage.setItem('rank', rank);
                                 //document.cookie = `Authorization=${res.headers.authorization}`;
-                                this.$router.push({path: '/schoolTables'});
+                                this.$router.push({path: '/newContact'});
                             }
                         });
                     } else {

@@ -4,7 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/newContact', query:{currentPage:this.$route.query.currentPage} }">生态评量</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">学生信息</el-breadcrumb-item>
       <el-breadcrumb-item>医学诊断</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家庭基础信息（家长自评）</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家长自评</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
@@ -16,7 +16,7 @@
                 诊断证书
               </span><i class="header-icon el-icon-info"></i>
       </div>
-      <vue-ckeditor type="classic" :editors="editors1" v-model="ZDZS" :config='config'></vue-ckeditor>
+      <vue-ckeditor :readonly="disabled" type="classic" :editors="editors1" v-model="ZDZS" :config='config'></vue-ckeditor>
     </el-card>
 
     <br/>
@@ -27,12 +27,12 @@
                 残疾证
               </span><i class="header-icon el-icon-info"></i>
       </div>
-      <vue-ckeditor type="classic" :editors="editors1" v-model="CJZ" :config='config'></vue-ckeditor>
+      <vue-ckeditor :readonly="disabled" type="classic" :editors="editors1" v-model="CJZ" :config='config'></vue-ckeditor>
     </el-card>
 
     <el-divider content-position="center"></el-divider>
     <el-form align="center">
-      <el-button type="danger" @click="submitForm()">提交</el-button>
+      <el-button type="danger" :disabled="disabled" @click="submitForm()">提交</el-button>
       <el-button type="danger" @click.native="go_back()">返回</el-button>
     </el-form>
   </section>
@@ -47,6 +47,8 @@
         components: {'vue-ckeditor': VueCkeditor.component},
         data() {
             return{
+              editPermission:localStorage.getItem('Permission')[8],
+
                 ATI:{},
                 ZDZS:'',
                 CJZ:'',
@@ -71,15 +73,17 @@
                         uploadUrl: '/api/stu/picture_ZhenDuan'
                     },
                 },
+
+              disabled:false,
             };
         },
 
         mounted(){
+            if (this.editPermission != 1 || this.$route.query.isEdit == 2)
+              this.disabled = true;
             this.ATI = JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo);
             this.ZDZS = JSON.parse(this.$store.state.stuinfo[0].MedicalDiagnosis).诊断证书;
             this.CJZ = JSON.parse(this.$store.state.stuinfo[0].MedicalDiagnosis).残疾证;
-            // this.addDomain1();
-            console.log(this.MedicalDiagnosis)
         },
 
         methods: {
