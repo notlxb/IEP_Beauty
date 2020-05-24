@@ -406,6 +406,8 @@
           {
             //更新已完成评量的课程数据
             var isAdded = false;
+            if (Courses[i].evaluatedCourses == undefined)
+              Courses[i].evaluatedCourses = [];
             if(Courses[i].evaluatedCourses.length == 0)
             {
               Courses[i].evaluatedCourses.push({领域:this.field_label, child:[]});
