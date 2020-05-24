@@ -21,7 +21,7 @@
         <el-image
             style="width: 190px; height: 190px"
             src="http://47.110.134.247/QRCode/babytable.png"
-            :fit="fit"></el-image>
+            fit="fit"></el-image>
         <el-button slot="reference" type="danger">生活能力量表填写</el-button>
       </el-popover>
 
@@ -34,7 +34,7 @@
         <el-image
             style="width: 190px; height: 190px"
             src="http://47.110.134.247/QRCode/gantong.png"
-            :fit="fit"></el-image>
+            fit="fit"></el-image>
         <el-button slot="reference" type="danger">感统量表填写</el-button>
       </el-popover>
 
