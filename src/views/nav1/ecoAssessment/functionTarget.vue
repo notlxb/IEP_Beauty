@@ -58,7 +58,6 @@
 
                 Evaluation:{},
                 ATI:{},
-
                 data31:'',
                 data32:'',
                 data33:[],
@@ -94,80 +93,161 @@
             this.ATI = JSON.parse(this.$store.state.stuinfo[0].AllTargetInfo);
             this.Evaluation = JSON.parse(this.$store.state.stuinfo[0].Evaluation);
             this.addDomain31();
-            console.log(this.formData3.domains3[1].value)
         },
         methods:{
             bianli3:function() {
-                var i = parseInt(this.data31); //将string类型的data31转成int型，并赋值给i
-
-
-                if(!this.$store.state.schooltables[i].target_show_type) //检查下标为i的schooltable[i]是否为空
-                {
-                    var s = this.$store.state.schooltables[i].target_children;  //将schooltables[i]的target_children字符串赋值给s
-                    var shuzu=[];     //用来存放childrenID中的数
-                    var str1 = s.substring(1,s.length-1); //截取字符串s,例如s的内容为[1,2,3],截取s使得str1为1,2,3
-                    shuzu = str1.split(",");   //以","为界，将str1转变为数组，并赋值给str2
-                    let shuzu_id = [];
-                    for(let j = 0;j < shuzu.length;j++) {
-                        for (let i = 0; i < this.$store.state.schooltables.length; i++) {
-                            if(this.$store.state.schooltables[i].target_id ===  parseInt(shuzu[j])) {
-                                shuzu_id.push(i);
-                            }
-                        }
+                let i = parseInt(this.data31); //将string类型的data31转成int型，并赋值给i
+                if(JSON.parse(this.$store.state.schooltables[i].target_children).length > 0) {
+                  let s = JSON.parse(this.$store.state.schooltables[i].target_children);  //将schooltables[i]的target_children字符串赋值给s
+                  let array_index = [];
+                  for (let j = 0; j < s.length; j++) {
+                    for (let i = 0; i < this.$store.state.schooltables.length; i++) {
+                      if (this.$store.state.schooltables[i].target_id == s[j]) //查找对应的Id
+                        array_index.push(i);
                     }
-                    shuzu = shuzu_id;
-                    console.log(shuzu);
-                    for (var j = 0; j < shuzu.length ; j++)
-                    {
+                  }
 
-                        var c = shuzu[j]; //将字符串转为Int型
-                        if (this.$store.state.schooltables[c].target_show_type == 'text')
-                        {
-                            this.data33.push(this.$store.state.schooltables[c].target_description); //将describeDataForm赋值给data33数组
-                            this.formData3.domains3.push({
-                                // value:'',
-                                value: this.Evaluation[this.$store.state.schooltables[c].target_description].description,
-                                key:this.$store.state.schooltables[c].target_description,
-                                age:this.Evaluation[this.$store.state.schooltables[c].target_description].age
-                            });
-                            this.chartItems.push({
-                                name:this.$store.state.schooltables[c].target_description,
-                                value:this.Evaluation[this.$store.state.schooltables[c].target_description].age,
-                                max:'18'
-                            });
-                            if(JSON.parse(this.$store.state.schooltables[c].target_relevance).length > 0){
-                                this.relevanceID[this.$store.state.schooltables[c].target_description] = this.$store.state.schooltables[c].target_relevance;
-                            }
-                        }
-                        else
-                        {
-                            this.data31 = c;
-                            this.bianli3();
-                        }
+                  for (let k = 0; k < array_index.length; k++) {
+                    if (JSON.parse(this.$store.state.schooltables[array_index[k]].target_children).length === 0) {
+                     if(this.Evaluation.hasOwnProperty(this.$store.state.schooltables[array_index[k]].target_description) == false){
+                       this.Evaluation[this.$store.state.schooltables[array_index[k]].target_description] = {description:"",age:""};
+                     }
+                      this.data33.push(this.$store.state.schooltables[array_index[k]].target_description); //将describeDataForm赋值给data33数组
+                      this.formData3.domains3.push({
+                        value: this.Evaluation[this.$store.state.schooltables[array_index[k]].target_description].description,
+                        key: this.$store.state.schooltables[array_index[k]].target_description,
+                        age: this.Evaluation[this.$store.state.schooltables[array_index[k]].target_description].age
+                      });
+                      this.chartItems.push({
+                        name: this.$store.state.schooltables[array_index[k]].target_description,
+                        value: this.Evaluation[this.$store.state.schooltables[array_index[k]].target_description].age,
+                        max: '18'
+                      });
+                      if (JSON.parse(this.$store.state.schooltables[array_index[k]].target_relevance).length > 0) {
+                        this.relevanceID[this.$store.state.schooltables[array_index[k]].target_description] = this.$store.state.schooltables[array_index[k]].target_relevance;
+                      }
+                    }else {
+                      {
+                        this.data31 = array_index[k];
+                        this.bianli3();
+                      }
                     }
+                  }
+                }else //如果下标为i的schooltable[i]不为空，则生成text文本框
+              {
+                if(this.Evaluation.hasOwnProperty(this.$store.state.schooltables[i].target_description) == false){
+                  this.Evaluation[this.$store.state.schooltables[i].target_description] = {description:"",age:""};
                 }
-                else //如果下标为i的schooltable[i]不为空，则生成text文本框
-                {
-                    this.data33.push(this.$store.state.schooltables[i].target_description)//将describeDataForm赋值给data33数组
-                    this.formData3.domains3.push({
-                        // value:''
-                        value: this.Evaluation[this.$store.state.schooltables[i].target_description].description,
-                        key:this.$store.state.schooltables[i].target_description,
-                        age:this.Evaluation[this.$store.state.schooltables[i].target_description].age
-                    });
-                    this.chartItems.push({
-                        name: this.$store.state.schooltables[i].target_description,
-                        value: this.Evaluation[this.$store.state.schooltables[i].target_description].age,
-                        max:'18'
-                    });
-                    if(JSON.parse(this.$store.state.schooltables[i].target_relevance).length > 0){
-                        this.relevanceID[this.$store.state.schooltables[i].target_description] = this.$store.state.schooltables[i].target_relevance;
-                    }
-                }
+                  this.data33.push(this.$store.state.schooltables[i].target_description)//将describeDataForm赋值给data33数组
+                  this.formData3.domains3.push({
+                      value: this.Evaluation[this.$store.state.schooltables[i].target_description].description,
+                      key:this.$store.state.schooltables[i].target_description,
+                      age:this.Evaluation[this.$store.state.schooltables[i].target_description].age
+                  });
+                  this.chartItems.push({
+                      name: this.$store.state.schooltables[i].target_description,
+                      value: this.Evaluation[this.$store.state.schooltables[i].target_description].age,
+                      max:'18'
+                  });
+                  if(JSON.parse(this.$store.state.schooltables[i].target_relevance).length > 0){
+                      this.relevanceID[this.$store.state.schooltables[i].target_description] = this.$store.state.schooltables[i].target_relevance;
+                  }
+              }
+                  //   if (JSON.parse(this.$store.state.schooltables[s[j]].target_children).length == 0) {
+                  //     this.data33.push(this.$store.state.schooltables[s[j]].target_description); //将describeDataForm赋值给data33数组
+                  //     this.formData3.domains3.push({
+                  //       value: this.Evaluation[this.$store.state.schooltables[s[j]].target_description].description,
+                  //       key: this.$store.state.schooltables[s[j]].target_description,
+                  //       age: this.Evaluation[this.$store.state.schooltables[s[j]].target_description].age
+                  //     });
+                  //     this.chartItems.push({
+                  //       name: this.$store.state.schooltables[s[j]].target_description,
+                  //       value: this.Evaluation[this.$store.state.schooltables[s[j]].target_description].age,
+                  //       max: '18'
+                  //     });
+                  //     if (JSON.parse(this.$store.state.schooltables[s[j]].target_relevance).length > 0) {
+                  //       this.relevanceID[this.$store.state.schooltables[s[j]].target_description] = this.$store.state.schooltables[c].target_relevance;
+                  //     }
+                  //   } else {
+                  //     {
+                  //       this.data31 = s[j];
+                  //       this.bianli3();
+                  //     }
+                  //   }
+                  // }
+                // }
+              // else //如果下标为i的schooltable[i]不为空，则生成text文本框
+              // {
+              //     this.data33.push(this.$store.state.schooltables[i].target_description)//将describeDataForm赋值给data33数组
+              //     this.formData3.domains3.push({
+              //         // value:''
+              //         value: this.Evaluation[this.$store.state.schooltables[i].target_description].description,
+              //         key:this.$store.state.schooltables[i].target_description,
+              //         age:this.Evaluation[this.$store.state.schooltables[i].target_description].age
+              //     });
+              //     this.chartItems.push({
+              //         name: this.$store.state.schooltables[i].target_description,
+              //         value: this.Evaluation[this.$store.state.schooltables[i].target_description].age,
+              //         max:'18'
+              //     });
+              //     if(JSON.parse(this.$store.state.schooltables[i].target_relevance).length > 0){
+              //         this.relevanceID[this.$store.state.schooltables[i].target_description] = this.$store.state.schooltables[i].target_relevance;
+              //     }
+              // }
+                // if(!this.$store.state.schooltables[i].target_show_type) //检查下标为i的schooltable[i]是否为空
+                // {
+                //     for (var j = 0; j < shuzu.length ; j++)
+                //     {
+                //
+                //         var c = shuzu[j]; //将字符串转为Int型
+                //         if (this.$store.state.schooltables[c].target_show_type == 'text')
+                //         {
+                //             this.data33.push(this.$store.state.schooltables[c].target_description); //将describeDataForm赋值给data33数组
+                //             this.formData3.domains3.push({
+                //                 // value:'',
+                //                 value: this.Evaluation[this.$store.state.schooltables[c].target_description].description,
+                //                 key:this.$store.state.schooltables[c].target_description,
+                //                 age:this.Evaluation[this.$store.state.schooltables[c].target_description].age
+                //             });
+                //             this.chartItems.push({
+                //                 name:this.$store.state.schooltables[c].target_description,
+                //                 value:this.Evaluation[this.$store.state.schooltables[c].target_description].age,
+                //                 max:'18'
+                //             });
+                //             if(JSON.parse(this.$store.state.schooltables[c].target_relevance).length > 0){
+                //                 this.relevanceID[this.$store.state.schooltables[c].target_description] = this.$store.state.schooltables[c].target_relevance;
+                //             }
+                //         }
+                //         else
+                //         {
+                //             this.data31 = c;
+                //             this.bianli3();
+                //         }
+                //     }
+                // }
+                // else //如果下标为i的schooltable[i]不为空，则生成text文本框
+                // {
+                //     this.data33.push(this.$store.state.schooltables[i].target_description)//将describeDataForm赋值给data33数组
+                //     this.formData3.domains3.push({
+                //         // value:''
+                //         value: this.Evaluation[this.$store.state.schooltables[i].target_description].description,
+                //         key:this.$store.state.schooltables[i].target_description,
+                //         age:this.Evaluation[this.$store.state.schooltables[i].target_description].age
+                //     });
+                //     this.chartItems.push({
+                //         name: this.$store.state.schooltables[i].target_description,
+                //         value: this.Evaluation[this.$store.state.schooltables[i].target_description].age,
+                //         max:'18'
+                //     });
+                //     if(JSON.parse(this.$store.state.schooltables[i].target_relevance).length > 0){
+                //         this.relevanceID[this.$store.state.schooltables[i].target_description] = this.$store.state.schooltables[i].target_relevance;
+                //     }
+                // }
             },
 
             /*增加表单项*/
             addDomain31(){
+              //console.log(this.$store.state.schooltables[0]);
                 for(let i = 0;i < this.$store.state.schooltables.length; i++)
                 {
                     if(this.$store.state.schooltables[i].target_description == '专项评估') //查找对应的Id
