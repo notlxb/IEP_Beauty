@@ -10,8 +10,34 @@
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
     <div style="margin-top: 1%">
-      <a href="http://47.110.134.247/group1/babytable.html" target="_blank"><el-button type="danger">生活能力量表填写</el-button></a>
-      <a href="http://47.110.134.247/group1/gantongliangbiao.html" target="_blank"><el-button type="danger">感统量表填写</el-button></a>
+<!--      <a href="http://47.110.134.247/group1/babytable.html" target="_blank"><el-button type="danger">生活能力量表填写</el-button></a>-->
+<!--      <a href="http://47.110.134.247/group1/gantongliangbiao.html" target="_blank"><el-button type="danger">感统量表填写</el-button></a>-->
+      <el-popover
+          placement="bottom-end"
+          title="扫码填写生活能力量表"
+          width="190"
+          trigger="click"
+          >
+        <el-image
+            style="width: 190px; height: 190px"
+            src="http://47.110.134.247/QRCode/babytable.png"
+            fit="fit"></el-image>
+        <el-button slot="reference" type="danger">生活能力量表填写</el-button>
+      </el-popover>
+
+      <el-popover
+          placement="bottom-end"
+          title="扫码填写感统量表"
+          width="190"
+          trigger="click"
+      >
+        <el-image
+            style="width: 190px; height: 190px"
+            src="http://47.110.134.247/QRCode/gantong.png"
+            fit="fit"></el-image>
+        <el-button slot="reference" type="danger">感统量表填写</el-button>
+      </el-popover>
+
     </div>
     <el-form :model="formData2" ref="formData2" label-width="200px" class="form-dynamic">
       <el-form-item v-for="(domain, index) in formData2.domains2"
