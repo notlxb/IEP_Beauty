@@ -6,6 +6,11 @@
       <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage },}">学生信息</el-breadcrumb-item>
       <el-breadcrumb-item>家长自评</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
