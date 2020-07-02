@@ -582,7 +582,319 @@ router.post('/setIni1', (req, res) => {
 });
 
 
+/******************生态评量附表**********************/
 
+//设置可见的附表
+router.post('/setStuFuBiao',(req, res) => {
+  var sql = $sql.stu.setStuFuBiao;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.FuBiao,params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
+      /************母亲孕史*************/
+//新增学生的母亲孕史信息
+router.post('/addMPH',(req, res) => {
+  var sql = $sql.stu.addMPH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//删除学生的母亲孕史信息
+router.post('/delMPH',(req, res) => {
+  var sql = $sql.stu.delMPH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//更新学生的母亲孕史信息
+router.post('/upMPH',(req, res) => {
+  var sql = $sql.stu.upMPH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.PregnancyHistory1,params.PregnancyHistory2,params.PregnancyHistory2Other,params.PregnancyHistory3,params.PregnancyHistory4,params.PregnancyHistory5,params.PregnancyHistory5Other,params.ChildDevelopment1,params.ChildDevelopment2,params.ChildDevelopment3,params.MedicalHistory1,params.MedicalHistory2,params.MedicalHistory3,params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//查看学生的母亲孕史信息
+router.post('/queMPH',(req, res) => {
+  var sql = $sql.stu.queMPH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+      /********************************/
+
+      /************学生偏好*************/
+//新增学生偏好信息
+router.post('/addSP',(req, res) => {
+  var sql = $sql.stu.addSP;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//删除学生偏好信息
+router.post('/delSP',(req, res) => {
+  var sql = $sql.stu.delSP;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//更新学生偏好信息
+router.post('/upSP',(req, res) => {
+  var sql = $sql.stu.upSP;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.FavoriteFood,params.FoodOther,params.FavoriteDrink,params.DrinkOther,params.FavoriteThings,params.ThingsOther,params.FavoriteSports,params.SportsOther,params.FavoriteActivities,params.ActivitiesOther,params.FavoriteEnhance,params.EnhanceOther,params.OtherHappyReasons,params.FavoritePerson,params.AnnoyingPerson,params.AnnoyingFood,params.AnnoyingActivities,params.AnnoyingThings,params.OtherUnhappyReasons,params.SpecialEatingHabits,params.EatingHabitsExplanation,params.SpecialHobbiesOrBehaviors,params.OtherAdvices,params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//查看学生偏好信息
+router.post('/queSP',(req, res) => {
+  var sql = $sql.stu.queSP;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+      /********************************/
+
+      /************学生健康*************/
+//新增学生健康信息
+router.post('/addSOH',(req, res) => {
+  var sql = $sql.stu.addSOH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//删除学生健康信息
+router.post('/delSOH',(req, res) => {
+  var sql = $sql.stu.delSOH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//更新学生健康信息
+router.post('/upSOH',(req, res) => {
+  var sql = $sql.stu.upSOH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.Height,params.Weight,params.Vision,params.NakedSightL,params.NakedSightR,params.CorrectedSightL,params.CorrectedSightR,params.VisualImpairmentL,params.VisualImpairmentR,params.VisualImpairmentReason,params.VisualImpairmentReasonOther,params.Hearing,params.HearingImpairmentL,params.HearingImpairmentR,params.HearingImpairmentReason,params.HearingImpairmentReasonOther,params.Language,params.LanguageDisability,params.LanguageDisabilityReason,params.LanguageDisabilityReasonOther,params.PhysicalStatus,params.PhysicalDisability,params.PhysicalDisabilityReason,params.PhysicalDisabilityReasonOther,params.PhysicalDisabilityType,params.PhysicalDisabilityTypeOther,params.SpecialDisease,params.SpecialDiseaseName,params.MedicationStatus,params.MentalStatus,params.MentalStatusOther,params.Other,params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//查看学生健康信息
+router.post('/queSOH',(req, res) => {
+  var sql = $sql.stu.queSOH;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+      /********************************/
+
+      /************能力现状1*************/
+//新增能力现状1信息
+router.post('/addAS1',(req, res) => {
+  var sql = $sql.stu.addAS1;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//删除能力现状1信息
+router.post('/delAS1',(req, res) => {
+  var sql = $sql.stu.delAS1;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//更新能力现状1信息
+router.post('/upAS1',(req, res) => {
+  var sql = $sql.stu.upAS1;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.Cognition,params.CognitionOther,params.OralCavity,params.SwallowFunction,params.SwallowFunctionOther,params.LanguageComprehension,params.LanguageComprehensionOther,params.LanguageExpression,params.LanguageExpression1,params.LanguageExpression2,params.LanguageExpression3,params.LanguageExpression4,params.LanguageExpression5,params.LanguageExpression6,params.LanguageExpressionOther,params.Chinese,params.ChineseOther,params.Math,params.MathOther,params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//查看能力现状1信息
+router.post('/queAS1',(req, res) => {
+  var sql = $sql.stu.queAS1;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+      /********************************/
+
+      /************能力现状2*************/
+//新增能力现状2信息
+router.post('/addAS2',(req, res) => {
+  var sql = $sql.stu.addAS2;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//删除能力现状2信息
+router.post('/delAS2',(req, res) => {
+  var sql = $sql.stu.delAS2;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//更新能力现状2信息
+router.post('/upAS2',(req, res) => {
+  var sql = $sql.stu.upAS2;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.Eating,params.EatingOther,params.DressAndUndress,params.DressAndUndressOther,params.PoopAndPee,params.PoopAndPeeOther,params.Cleanliness,params.CleanlinessFemale,params.CleanlinessFemaleOther,params.HaveMenstruation,params.CleanlinessOther,params.CleanOther,params.CleanOtherOther,params.SocializationAndBehavior,params.SocializationAndBehaviorOther,params.ActionDevelopmentBig,params.ActionDevelopmentBigOther,params.ActionDevelopmentSmall,params.ActionDevelopmentSmallOther,params.OtherAbilities,params.OtherAbilitiesOther,params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+//查看能力现状2信息
+router.post('/queAS2',(req, res) => {
+  var sql = $sql.stu.queAS2;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+      /********************************/
+
+/***************************************************/
 
 /******************课程评量**********************/
 //获取学生课表

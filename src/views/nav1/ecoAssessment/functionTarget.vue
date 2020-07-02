@@ -12,6 +12,11 @@
         家长自评
       </el-breadcrumb-item>
       <el-breadcrumb-item>专项评估</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[0] == 'true' " :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[1] == 'true' " :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[2] == 'true' " :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[3] == 'true' " :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[4] == 'true' " :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
@@ -44,20 +49,48 @@
         name: "function_target",
         data() {
             return {
-                checked: [1, 2],
-                tables: [1, 2, 3, 4, 5, 6],
+                checked: [],
+                tables: [1, 2, 3, 4, 5],
             };
         },
         mounted() {
-
+          this.checked = this.getFuBiao();
+          console.log(this.checked)
         },
         methods: {
             handleChecked() {
                 // console.log(this.checked);
             },
 
-            beginAssess() {
+            getFuBiao(){
+              var c = [];
+              if(this.$store.state.stuinfo[0].FuBiao != null) {
+                var FuBiao = this.$store.state.stuinfo[0].FuBiao.split('(^o~)');
+                var index = 0;
+                for (var i = 0; i < FuBiao.length; i++)
+                  if(FuBiao[i] == "true")
+                    c[index++] = parseInt(i+1);
+              }
+              return c;
+            },
+
+            async beginAssess() {
                 console.log(this.checked);
+                var FuBiao = [];
+                for(var i = 0; i < 5; i++)
+                  FuBiao[i] = false;
+                for (var i = 0; i < this.checked.length; i++)
+                  FuBiao[this.checked[i]-1] = true;
+
+                await this.$http.post('/api/stu/setStuFuBiao', {
+                  FuBiao:FuBiao.join('(^o~)'),
+                  stuID:this.$store.state.stuinfo[0].student_id
+                });
+                await this.$http.post('/api/stu/queryStuinfo',{
+                  AStuID:this.$store.state.stuinfo[0].student_id
+                },{}).then((response) => {
+                  this.$store.dispatch("setstuinfo", response.bodyText);
+                });
             },
 
         }

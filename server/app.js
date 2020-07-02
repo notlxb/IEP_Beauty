@@ -21,6 +21,8 @@ var opt = {
 // var multipart = require('connect-multiparty');
 
 var app = express();
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 // app.use(multiparty({uploadDir:'./storage' }));
 var cors = require('cors')
 

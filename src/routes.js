@@ -36,6 +36,11 @@ import funcTarget from './views/nav1/ecoAssessment/functionTarget.vue'
 import growTarget from './views/nav1/ecoAssessment/growTarget.vue'
 import createAssess from './views/nav1/ecoAssessment/Create.vue'
 import CheckNEdit from './views/nav1/ecoAssessment/CheckNEdit.vue';
+import MaterPreHis from "./views/nav1/ecoAssessment/MaterPreHis";
+import StuInterest from "./views/nav1/ecoAssessment/StuInterest";
+import HealthStatus from "./views/nav1/ecoAssessment/HealthStatus";
+import CapacityStatus_1 from "./views/nav1/ecoAssessment/CapacityStatus_1";
+import CapacityStatus_2 from "./views/nav1/ecoAssessment/CapacityStatus_2";
 import teaTheme from './views/nav3/longShortGoal/teaTheme.vue'
 import teaThemeEdit from './views/nav3/longShortGoal/teaThemeEdit.vue'
 import indSubjectTea from './views/nav3/individualSubjectTea.vue'
@@ -168,6 +173,41 @@ let routes = [
                 path: '/checkNEdit/growTarget',
                 component: growTarget,
                 name: '成长性指标',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/checkNEdit/materprehis',
+                component: MaterPreHis,
+                name: '母亲孕史情况',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/checkNEdit/stuInterest',
+                component: StuInterest,
+                name: '学生兴趣爱好',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/checkNEdit/healthstatus',
+                component: HealthStatus,
+                name: '学生健康情况',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/checkNEdit/capacitystatus_1',
+                component: CapacityStatus_1,
+                name: '学生能力现状_1',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
+            },
+            {
+                path: '/checkNEdit/capacitystatus_2',
+                component: CapacityStatus_2,
+                name: '学生能力现状_2',
                 authority: [1, 1, 1, 1, 1],
                 hidden: true
             },
@@ -350,11 +390,11 @@ let routes = [
             {
                 path: '/teaTheme',
                 component: teaTheme,
-                name: '长短期目标',
+                name: '单元目标',
                 authority: [1, 1, 1, 1, 1],
                 iconCls: 'el-icon-data-analysis'
             },
-            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden: true},
+            {path: '/teaThemeEdit', component: teaThemeEdit, name: '单元目标编辑', authority: [1, 1, 1, 1, 1], hidden: true},
 
             //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
 
