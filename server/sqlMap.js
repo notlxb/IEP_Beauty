@@ -23,6 +23,11 @@ var sqlMap = {
     addTrainingSbjIns:'insert into trainingsubjectinstruction(schoolYear, term, class, stuName, subject, teacher, createDate, week, section, topic, content) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
     addLearningReports:'insert into learningreports(schoolYear, term, class, stuName, stuInfo, months) values(?, ?, ?, ?, ?, ?)',
     addPeriodicAccess:'insert into periodicaccess(stuName, stuID, term, schoolYear, class, teacher, analysisTime, targetResult, subjectResult, courseResult, treatmentResult, lifeDes, mainProblem, mainDemand, eduFocus, moreTarget, teachingStrategy, relatedService) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    addMPH:'insert into t_motherpregnancyhistory(stuID) values (?)',
+    addSP:'insert into t_studentpreferences(stuID) values (?)',
+    addSOH:'insert into t_stateofhealth(stuID) values (?)',
+    addAS1:'insert into t_abilitystatus1(stuID) values (?)',
+    addAS2:'insert into t_abilitystatus2(stuID) values (?)',
 
     //删
     delStu: 'update t_studentinfo set Deleted = 1 where student_id = ?',
@@ -34,6 +39,11 @@ var sqlMap = {
     delTrainingSbjIns:'update trainingsubjectinstruction set isDel = 1 where id = ?',
     delLearningReports:'update learningreports set isDel = 1 where id = ?',
     delPeriodicAccess:'update periodicaccess set isDel = 1 where id = ?',
+    delMPH:'delete from t_motherpregnancyhistory where stuID = ?',
+    delSP:'delete from t_studentpreferences where stuID=?',
+    delSOH:'delete from t_stateofhealth where stuID=?',
+    delAS1:'delete from t_abilitystatus1 where stuID=?',
+    delAS2:'delete from t_abilitystatus2 where stuID=?',
 
     //改
     updateStu: 'update t_studentinfo set student_id=?, class_id=?, name=?, Sex=?, Birthday=?, IdNum=?, Origin=?, PermanentAddress=?, HomeAddress=?, GraduatedSchool_name=?, GraduatedSchool_address=?, LastSchool_name=?, LastSchool_address=?, DisabilityCertificate_issueDate=?, DisabilityCertificate_number=?, DisabilityCertificate_validity=?, Disability_type=?, Disability_level=?, EducationalSetting=?, SpecialIllnessOrOthers=?, MainCaregiver=?, ParentsPS=?, ParentsPS_proofMaterials=?, RelativesPS=?, StuResident=?, SojournRela=?, EmergencyContact1_name=?, EmergencyContact1_rela=?, EmergencyContact1_birth=?, EmergencyContact1_degree=?, EmergencyContact1_job=?, EmergencyContact1_health=?, EmergencyContact1_tel=?, EmergencyContact2_name=?, EmergencyContact2_rela=?, EmergencyContact2_birth=?, EmergencyContact2_degree=?, EmergencyContact2_job=?, EmergencyContact2_health=?, EmergencyContact2_tel=?, EmergencyContact3_name=?, EmergencyContact3_rela=?, EmergencyContact3_birth=?, EmergencyContact3_degree=?, EmergencyContact3_job=?, EmergencyContact3_health=?, EmergencyContact3_tel=?, FamilyFinancialSituation=?, ParentsMarriageSituation=?, UsualLanguage=?, ResidentialEnvironment=?, FamilyEnvironment=?, FamilyAttitude2Stu=?, SleepPattern=?, LivingHabit=?, IQ=?, FamilyMember=?, FamilyMember_obro=?, FamilyMember_ybro=?, FamilyMember_osis=?, FamilyMember_ysis=?, FamilyMember_livetogether=?, WorkChance1_name=?, WorkChance1_address=?, WorkChance1_tel=?, WorkChance1_jobDescription=?, WorkChance1_transport=?, WorkChance2_name=?, WorkChance2_address=?, WorkChance2_tel=?, WorkChance2_jobDescription=?, WorkChance2_transport=?, WorkChance3_name=?, WorkChance3_address=?, WorkChance3_tel=?, WorkChance3_jobDescription=?, WorkChance3_transport=?, WorkChance4_name=?, WorkChance4_address=?, WorkChance4_tel=?, WorkChance4_jobDescription=?, WorkChance4_transport=?, WorkChance5_name=?, WorkChance5_address=?, WorkChance5_tel=?, WorkChance5_jobDescription=?, WorkChance5_transport=?, RelProject=? where id = ? and Deleted = 0',
@@ -48,6 +58,11 @@ var sqlMap = {
     upTrainingSbjIns:'update trainingsubjectinstruction set schoolYear=?, term=?, class=?, stuName=?, subject=?, teacher=?, createDate=?, week=?, section=?, topic=?, content=? where id = ? and isDel = 0',
     upLearningReports:'update learningreports set schoolYear=?, term=?, class=?, stuName=?, stuInfo=?, months=? where id = ? and isDel = 0',
     upPeriodicAccess:'update periodicaccess set stuName=?, stuID=?, term=?, schoolYear=?, class=?, teacher=?, analysisTime=?, targetResult=?, subjectResult=?, courseResult=?, treatmentResult=?, lifeDes=?, mainProblem=?, mainDemand=?, eduFocus=?, moreTarget=?, teachingStrategy=?, relatedService=? where id = ? and isDel = 0',
+    upMPH:'update t_motherpregnancyhistory set PregnancyHistory1=?,PregnancyHistory2=?,PregnancyHistory2Other=?,PregnancyHistory3=?,PregnancyHistory4=?,PregnancyHistory5=?,PregnancyHistory5Other=?,ChildDevelopment1=?,ChildDevelopment2=?,ChildDevelopment3=?,MedicalHistory1=?,MedicalHistory2=?,MedicalHistory3=? where stuID = ?',
+    upSP:'update t_studentpreferences set FavoriteFood=?,FoodOther=?,FavoriteDrink=?,DrinkOther=?,FavoriteThings=?,ThingsOther=?,FavoriteSports=?,SportsOther=?,FavoriteActivities=?,ActivitiesOther=?,FavoriteEnhance=?,EnhanceOther=?,OtherHappyReasons=?,FavoritePerson=?,AnnoyingPerson=?,AnnoyingFood=?,AnnoyingActivities=?,AnnoyingThings=?,OtherUnhappyReasons=?,SpecialEatingHabits=?,EatingHabitsExplanation=?,SpecialHobbiesOrBehaviors=?,OtherAdvices=? where stuID=?',
+    upSOH:'update t_stateofhealth set Height=?,Weight=?,Vision=?,NakedSightL=?,NakedSightR=?,CorrectedSightL=?,CorrectedSightR=?,VisualImpairmentL=?,VisualImpairmentR=?,VisualImpairmentReason=?,VisualImpairmentReasonOther=?,Hearing=?,HearingImpairmentL=?,HearingImpairmentR=?,HearingImpairmentReason=?,HearingImpairmentReasonOther=?,Language=?,LanguageDisability=?,LanguageDisabilityReason=?,LanguageDisabilityReasonOther=?,PhysicalStatus=?,PhysicalDisability=?,PhysicalDisabilityReason=?,PhysicalDisabilityReasonOther=?,PhysicalDisabilityType=?,PhysicalDisabilityTypeOther=?,SpecialDisease=?,SpecialDiseaseName=?,MedicationStatus=?,MentalStatus=?,MentalStatusOther=?,Other=? where stuID=?',
+    upAS1:'update t_abilitystatus1 set Cognition=?,CognitionOther=?,OralCavity=?,SwallowFunction=?,SwallowFunctionOther=?,LanguageComprehension=?,LanguageComprehensionOther=?,LanguageExpression=?,LanguageExpression1=?,LanguageExpression2=?,LanguageExpression3=?,LanguageExpression4=?,LanguageExpression5=?,LanguageExpression6=?,LanguageExpressionOther=?,Chinese=?,ChineseOther=?,Math=?,MathOther=? where stuID=?',
+    upAS2:'update t_abilitystatus2 set Eating=?,EatingOther=?,DressAndUndress=?,DressAndUndressOther=?,PoopAndPeeSelf=?,PoopAndPeeHelp=?,PoopAndPee=?,PoopAndPeeOther=?,Cleanliness=?,CleanlinessMale=?,CleanlinessFemale=?,HavnMenstruation=?,HaveMenstruation=?,CleanlinessOther=?,CleanOther=?,CleanOtherOther=?,SocializationAndBehavior=?,SocializationAndBehaviorOther=?,ActionDevelopmentBig=?,ActionDevelopmentBigOther=?,ActionDevelopmentSmall=?,ActionDevelopmentSmallOther=?,OtherAbilities=?,OtherAbilitiesOther=? where stuID=?',
 
     //查
     queSch: 'select * from school_target where target_status = 1',
@@ -84,6 +99,11 @@ var sqlMap = {
     queClasstable:'select * from classtable where schoolName = ? and `default` = 1',
     quePeriodicAccess:'select * from periodicaccess where id = ? and isDel = 0',
     quePeriodicAccessList:'select id, schoolYear, term, class, stuName, analysisTime from periodicaccess where isDel = 0',
+    queMPH:'select * from t_motherpregnancyhistory where stuID=?',
+    queSP:'select * from t_studentpreferences where stuID=?',
+    queSOH:'select * from t_stateofhealth where stuID=?',
+    queAS1:'select * from t_abilitystatus1 where stuID=?',
+    queAS2:'select * from t_abilitystatus2 where stuID=?',
   }
 };
 

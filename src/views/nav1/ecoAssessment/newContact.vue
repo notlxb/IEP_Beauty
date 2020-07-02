@@ -167,7 +167,60 @@
                     // console.log(this.$store.state.stuNNS);
                 });
             },
+            //初始化生态评量5张附表的信息
+            async iniFuBiao(stuID){
+              var MPH;
+              var SP;
+              var SOH;
+              var AS1;
+              var AS2;
+              await this.$http.post('/api/stu/queMPH',{
+                stuID:stuID
+              },{}).then((response) => {
+                MPH = response.body;
+              });
+              await this.$http.post('/api/stu/queSP',{
+                stuID:stuID
+              },{}).then((response) => {
+                SP = response.body;
+              });
+              await this.$http.post('/api/stu/queSOH',{
+                stuID:stuID
+              },{}).then((response) => {
+                SOH = response.body;
+              });
+              await this.$http.post('/api/stu/queAS1',{
+                stuID:stuID
+              },{}).then((response) => {
+                AS1 = response.body;
+              });
+              await this.$http.post('/api/stu/queAS2',{
+                stuID:stuID
+              },{}).then((response) => {
+                AS2 = response.body;
+              });
 
+              if(MPH.length == 0)
+                await this.$http.post('/api/stu/addMPH',{
+                  stuID:stuID
+                },{})
+              if(SP.length == 0)
+                await this.$http.post('/api/stu/addSP',{
+                  stuID:stuID
+                },{})
+              if(SOH.length == 0)
+                await this.$http.post('/api/stu/addSOH',{
+                  stuID:stuID
+                },{})
+              if(AS1.length == 0)
+                await this.$http.post('/api/stu/addAS1',{
+                  stuID:stuID
+                },{})
+              if(AS2.length == 0)
+                await this.$http.post('/api/stu/addAS2',{
+                  stuID:stuID
+                },{})
+            },
             //查询指定学生所有信息
             findStuinfo(AStuID, isEdit) {
               if (isEdit == 2 && this.checkPermission != 1){
@@ -178,6 +231,7 @@
                 this.$message.warning("暂无权限！");
                 return;
               }
+                this.iniFuBiao(AStuID);
                 this.$http.post('/api/stu/queryStuinfo',{
                     AStuID:AStuID
                 },{}).then((response) => {
