@@ -5,10 +5,10 @@
             <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage },}">学生信息</el-breadcrumb-item>
             <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家长自评</el-breadcrumb-item>
             <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[0] == 'true' " :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[1] == 'true' " :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[2] == 'true' " :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[3] == 'true' " :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
             <el-breadcrumb-item>能力现状-2</el-breadcrumb-item>
             <el-breadcrumb-item></el-breadcrumb-item>
         </el-breadcrumb>
@@ -100,7 +100,7 @@
                     <label><input type="radio" v-model="getstu.CleanlinessFemale"  name="item6"  value="需人协助"/></label>需人协助<br>
                     <label><input type="radio" v-model="getstu.CleanlinessFemale"  name="item6"  value="不会处理，完全需要协助"/></label>不会处理，完全需要协助<br>
                     <el-form-item label="其他/补充说明">
-                        <el-input v-model="getstu. CleanlinessFemaleOther"></el-input>
+                        <el-input v-model="getstu.CleanlinessFemaleOther"></el-input>
                     </el-form-item>
                 </el-form-item>
             </template><br>
@@ -195,7 +195,9 @@
                 </el-form-item>
             </template><br>
         </el-form>
-
+        <el-form align="center">
+            <el-button type="danger" :disabled="false" @click="submitForm()">保存</el-button>
+        </el-form>
     </section>
 </template>
 
@@ -228,6 +230,93 @@
                     OtherAbilitiesOther:'',
                 }
             }
+        },
+        async mounted(){
+            await this.getAS2();
+        },
+        methods: {
+            async getAS2(){
+                var AS2;
+                await this.$http.post('/api/stu/queAS2', {
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    AS2 = response.body[0];
+                });
+                if(AS2.Eating != null)
+                    this.getstu.Eating = AS2.Eating.split('(^o~)');
+                if(AS2.EatingOther != null)
+                    this.getstu.EatingOther = AS2.EatingOther;
+                if(AS2.DressAndUndress != null)
+                    this.getstu.DressAndUndress = AS2.DressAndUndress.split('(^o~)');
+                if(AS2.DressAndUndressOther != null)
+                    this.getstu.DressAndUndressOther = AS2.DressAndUndressOther;
+                if(AS2.PoopAndPee != null)
+                    this.getstu.PoopAndPee = AS2.PoopAndPee.split('(^o~)');
+                if(AS2.PoopAndPeeOther != null)
+                    this.getstu.PoopAndPeeOther = AS2.PoopAndPeeOther;
+                if(AS2.Cleanliness != null)
+                    this.getstu.Cleanliness = AS2.Cleanliness.split('(^o~)');
+                if(AS2.CleanlinessOther != null)
+                    this.getstu.CleanlinessOther = AS2.CleanlinessOther;
+                if(AS2.HaveMenstruation != null)
+                    this.getstu.HaveMenstruation = AS2.HaveMenstruation;
+                if(AS2.CleanlinessFemale != null)
+                    this.getstu.CleanlinessFemale = AS2.CleanlinessFemale;
+                if(AS2.CleanlinessFemaleOther != null)
+                    this.getstu.CleanlinessFemaleOther = AS2.CleanlinessFemaleOther;
+                if(AS2.CleanOther != null)
+                    this.getstu.CleanOther = AS2.CleanOther.split('(^o~)');
+                if(AS2.CleanOtherOther != null)
+                    this.getstu.CleanOtherOther = AS2.CleanOtherOther;
+                if(AS2.SocializationAndBehavior != null)
+                    this.getstu.SocializationAndBehavior = AS2.SocializationAndBehavior.split('(^o~)');
+                if(AS2.SocializationAndBehaviorOther != null)
+                    this.getstu.SocializationAndBehaviorOther = AS2.SocializationAndBehaviorOther;
+                if(AS2.ActionDevelopmentBig != null)
+                    this.getstu.ActionDevelopmentBig = AS2.ActionDevelopmentBig.split('(^o~)');
+                if(AS2.ActionDevelopmentBigOther != null)
+                    this.getstu.ActionDevelopmentBigOther = AS2.ActionDevelopmentBigOther;
+                if(AS2.ActionDevelopmentSmall != null)
+                    this.getstu.ActionDevelopmentSmall = AS2.ActionDevelopmentSmall.split('(^o~)');
+                if(AS2.ActionDevelopmentSmallOther != null)
+                    this.getstu.ActionDevelopmentSmallOther = AS2.ActionDevelopmentSmallOther;
+                if(AS2.OtherAbilities != null)
+                    this.getstu.OtherAbilities = AS2.OtherAbilities.split('(^o~)');
+                if(AS2.OtherAbilitiesOther != null)
+                    this.getstu.OtherAbilitiesOther = AS2.OtherAbilitiesOther;
+            },
+
+            async submitForm(){
+                await this.$http.post('/api/stu/upAS2', {
+                    Eating:this.getstu.Eating.join('(^o~)'),
+                    EatingOther:this.getstu.EatingOther,
+                    DressAndUndress:this.getstu.DressAndUndress.join('(^o~)'),
+                    DressAndUndressOther:this.getstu.DressAndUndressOther,
+                    PoopAndPee:this.getstu.PoopAndPee.join('(^o~)'),
+                    PoopAndPeeOther:this.getstu.PoopAndPeeOther,
+                    Cleanliness:this.getstu.Cleanliness.join('(^o~)'),
+                    CleanlinessFemale:this.getstu.CleanlinessFemale,
+                    CleanlinessFemaleOther:this.getstu.CleanlinessFemaleOther,
+                    HaveMenstruation:this.getstu.HaveMenstruation,
+                    CleanlinessOther:this.getstu.CleanlinessOther,
+                    CleanOther:this.getstu.CleanOther.join('(^o~)'),
+                    CleanOtherOther:this.getstu.CleanOtherOther,
+                    SocializationAndBehavior:this.getstu.SocializationAndBehavior.join('(^o~)'),
+                    SocializationAndBehaviorOther:this.getstu.SocializationAndBehaviorOther,
+                    ActionDevelopmentBig:this.getstu.ActionDevelopmentBig.join('(^o~)'),
+                    ActionDevelopmentBigOther:this.getstu.ActionDevelopmentBigOther,
+                    ActionDevelopmentSmall:this.getstu.ActionDevelopmentSmall.join('(^o~)'),
+                    ActionDevelopmentSmallOther:this.getstu.ActionDevelopmentSmallOther,
+                    OtherAbilities:this.getstu.OtherAbilities.join('(^o~)'),
+                    OtherAbilitiesOther:this.getstu.OtherAbilitiesOther,
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    if(response.status == 200)
+                        this.$message.success("保存成功！");
+                    else
+                        this.$message.warning("保存失败...");
+                });
+            },
         }
     }
 </script>

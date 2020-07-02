@@ -390,11 +390,11 @@ let routes = [
             {
                 path: '/teaTheme',
                 component: teaTheme,
-                name: '长短期目标',
+                name: '单元目标',
                 authority: [1, 1, 1, 1, 1],
                 iconCls: 'el-icon-data-analysis'
             },
-            {path: '/teaThemeEdit', component: teaThemeEdit, name: '长短期目标编辑', authority: [1, 1, 1, 1, 1], hidden: true},
+            {path: '/teaThemeEdit', component: teaThemeEdit, name: '单元目标编辑', authority: [1, 1, 1, 1, 1], hidden: true},
 
             //{path:'/teachingPlan', name:'教学计划', goon:true, authority: [1, 1, 1, 1, 1], children: [],},
 

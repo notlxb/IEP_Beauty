@@ -6,10 +6,10 @@
             <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家长自评</el-breadcrumb-item>
             <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
             <el-breadcrumb-item>母亲孕史</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[1] == 'true' " :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[2] == 'true' " :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[3] == 'true' " :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[4] == 'true' " :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
             <el-breadcrumb-item></el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider content-position="center"></el-divider>
@@ -25,9 +25,9 @@
                     <tr>
                         <td style="text-align: center;font-size:medium">孕期是否有异常</td>
                         <td>
-                            <el-form-item >
+                            <el-form-item>
                                 <label><input type="radio" v-model="getstu.PregnancyHistory1"  name="item1"  value="有异常"/></label>有异常
-                                <label><input type="radio" v-model="getstu.PregnancyHistory1"  name="item1"  value="无异常"/></label>有异常
+                                <label><input type="radio" v-model="getstu.PregnancyHistory1"  name="item1"  value="无异常"/></label>无异常
                             </el-form-item>
                         </td>
                     </tr>
@@ -56,8 +56,8 @@
                         <td style="text-align: center;font-size:medium">有异常后是否在医院接受过治疗? </td>
                         <td>
                             <el-form-item>
-                                <label><input type="radio" v-model="getstu.PregnancyHistory3"  name="item1"  value="有"/></label>有
-                                <label><input type="radio" v-model="getstu.PregnancyHistory3"  name="item1"  value="没有"/></label>没有
+                                <label><input type="radio" v-model="getstu.PregnancyHistory3"  name="item3"  value="有"/></label>有
+                                <label><input type="radio" v-model="getstu.PregnancyHistory3"  name="item3"  value="没有"/></label>没有
                             </el-form-item>
                         </td>
                     </tr>
@@ -75,12 +75,12 @@
                         <td style="text-align: center;font-size:medium">分娩时的状况是?</td>
                         <td>
                             <el-form-item>
-                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item3"  value="正常分娩　（顺产）"/></label>正常分娩　（顺产）<br>
-                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item3"  value="身体没有异常,自己主动要求破腹产"/></label>身体没有异常,自己主动要求破腹产<br>
-                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item3"  value="身体有异常,医生要求破腹产"/></label>身体有异常,医生要求破腹产<br>
-                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item3"  value="吸盘分娩"/></label>吸盘分娩<br>
-                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item3"  value="脐带绕颈"/></label>脐带绕颈<br>
-                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item3"  value="阵痛微弱"/></label>阵痛微弱<br>
+                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item4"  value="正常分娩　（顺产）"/></label>正常分娩　（顺产）<br>
+                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item4"  value="身体没有异常,自己主动要求破腹产"/></label>身体没有异常,自己主动要求破腹产<br>
+                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item4"  value="身体有异常,医生要求破腹产"/></label>身体有异常,医生要求破腹产<br>
+                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item4"  value="吸盘分娩"/></label>吸盘分娩<br>
+                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item4"  value="脐带绕颈"/></label>脐带绕颈<br>
+                                <label><input type="checkbox" v-model="getstu.PregnancyHistory5"  name="item4"  value="阵痛微弱"/></label>阵痛微弱<br>
                                 <el-form-item label="其他">
                                     <el-input v-model="getstu.PregnancyHistory5Other"></el-input>
                                 </el-form-item>
@@ -98,12 +98,12 @@
                         <td style="text-align: center;font-size:medium">孩子出生时状况：</td>
                         <td>
                             <el-form-item>
-                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item4"  value="正常"/></label>1.正常<br>
-                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item4"  value="窒息"/></label>2.窒息<br>
-                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item4"  value="超重体重儿(在4000克以上)"/></label>3.超重体重儿(在4000克以上)<br>
-                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item4"  value="低体重儿(低于2500克)"/></label>4.低体重儿(低于2500克)<br>
-                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item4"  value="极低体重儿(低于1500克)"/></label>5.极低体重儿(低于1500克)<br>
-                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item4"  value="重度新生儿黄疸"/></label>6.重度新生儿黄疸<br>
+                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item5"  value="正常"/></label>1.正常<br>
+                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item5"  value="窒息"/></label>2.窒息<br>
+                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item5"  value="超重体重儿(在4000克以上)"/></label>3.超重体重儿(在4000克以上)<br>
+                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item5"  value="低体重儿(低于2500克)"/></label>4.低体重儿(低于2500克)<br>
+                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item5"  value="极低体重儿(低于1500克)"/></label>5.极低体重儿(低于1500克)<br>
+                                <label><input type="checkbox" v-model="getstu.ChildDevelopment1"  name="item5"  value="重度新生儿黄疸"/></label>6.重度新生儿黄疸<br>
                                 <el-form-item label="7.在暖箱中放的天数">
                                     <el-input v-model="getstu.ChildDevelopment2[0]"></el-input>
                                 </el-form-item><br>
@@ -161,15 +161,15 @@
                                 </el-form-item>
                                 <el-form-item label="个月开始能说一些“妈妈”“汪汪”“车车”等有简单含义的词吗？"></el-form-item><br>
                                 <el-form-item label="7.孩子是从">
-                                    <el-input v-model="getstu.ChildDevelopment3[6]"></el-input>
+                                    <el-input v-model="getstu.ChildDevelopment3[8]"></el-input>
                                 </el-form-item>
                                 <el-form-item label="岁"></el-form-item>
                                 <el-form-item>
-                                    <el-input v-model="getstu.ChildDevelopment3[7]"></el-input>
+                                    <el-input v-model="getstu.ChildDevelopment3[9]"></el-input>
                                 </el-form-item>
                                 <el-form-item label="个月时候开口说话的?，最初出现的语言（单词）是"></el-form-item>
                                 <el-form-item>
-                                    <el-input v-model="getstu.ChildDevelopment3[8]"></el-input>
+                                    <el-input v-model="getstu.ChildDevelopment3[10]"></el-input>
                                 </el-form-item>
 
                             </el-form>
@@ -226,6 +226,9 @@
                 </table>
             </el-form-item>
         </el-form>
+        <el-form align="center">
+            <el-button type="danger" :disabled="false" @click="submitForm()">保存</el-button>
+        </el-form>
     </section>
 </template>
 
@@ -251,6 +254,69 @@
 
                 }
             }
+        },
+        async mounted(){
+            await this.getMPH();
+        },
+        methods: {
+            async getMPH(){
+                var MPH;
+                await this.$http.post('/api/stu/queMPH', {
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    MPH = response.body[0];
+                });
+                if(MPH.PregnancyHistory1 != null)
+                    this.getstu.PregnancyHistory1 = MPH.PregnancyHistory1;
+                if(MPH.PregnancyHistory2 != null)
+                    this.getstu.PregnancyHistory2 = MPH.PregnancyHistory2.split('(^o~)');
+                if(MPH.PregnancyHistory2Other != null)
+                    this.getstu.PregnancyHistory2Other = MPH.PregnancyHistory2Other;
+                if(MPH.PregnancyHistory3 != null)
+                    this.getstu.PregnancyHistory3 = MPH.PregnancyHistory3;
+                if(MPH.PregnancyHistory4 != null)
+                    this.getstu.PregnancyHistory4 = MPH.PregnancyHistory4;
+                if(MPH.PregnancyHistory5 != null)
+                    this.getstu.PregnancyHistory5 = MPH.PregnancyHistory5.split('(^o~)');
+                if(MPH.PregnancyHistory5Other != null)
+                    this.getstu.PregnancyHistory5Other = MPH.PregnancyHistory5Other;
+                if(MPH.ChildDevelopment1 != null)
+                    this.getstu.ChildDevelopment1 = MPH.ChildDevelopment1.split('(^o~)');
+                if(MPH.ChildDevelopment2 != null)
+                    this.getstu.ChildDevelopment2 = MPH.ChildDevelopment2.split('(^o~)');
+                if(MPH.ChildDevelopment3 != null)
+                    this.getstu.ChildDevelopment3 = MPH.ChildDevelopment3.split('(^o~)');
+                if(MPH.MedicalHistory1 != null)
+                    this.getstu.MedicalHistory1 = MPH.MedicalHistory1.split('(^o~)');
+                if(MPH.MedicalHistory2 != null)
+                    this.getstu.MedicalHistory2 = MPH.MedicalHistory2.split('(^o~)');
+                if(MPH.MedicalHistory3 != null)
+                    this.getstu.MedicalHistory3 = MPH.MedicalHistory3.split('(^o~)');
+            },
+
+            async submitForm(){
+                await this.$http.post('/api/stu/upMPH', {
+                    PregnancyHistory1:this.getstu.PregnancyHistory1,
+                    PregnancyHistory2:this.getstu.PregnancyHistory2.join('(^o~)'),
+                    PregnancyHistory2Other:this.getstu.PregnancyHistory2Other,
+                    PregnancyHistory3:this.getstu.PregnancyHistory3,
+                    PregnancyHistory4:this.getstu.PregnancyHistory4,
+                    PregnancyHistory5:this.getstu.PregnancyHistory5.join('(^o~)'),
+                    PregnancyHistory5Other:this.getstu.PregnancyHistory5Other,
+                    ChildDevelopment1:this.getstu.ChildDevelopment1.join('(^o~)'),
+                    ChildDevelopment2:this.getstu.ChildDevelopment2.join('(^o~)'),
+                    ChildDevelopment3:this.getstu.ChildDevelopment3.join('(^o~)'),
+                    MedicalHistory1:this.getstu.MedicalHistory1.join('(^o~)'),
+                    MedicalHistory2:this.getstu.MedicalHistory2.join('(^o~)'),
+                    MedicalHistory3:this.getstu.MedicalHistory3.join('(^o~)'),
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    if(response.status == 200)
+                        this.$message.success("保存成功！");
+                    else
+                        this.$message.warning("保存失败...");
+                });
+            },
         }
     }
 </script>

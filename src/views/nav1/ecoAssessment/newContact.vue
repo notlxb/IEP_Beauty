@@ -152,13 +152,26 @@
             },
 
             //删除学生信息
-            delStuinfo(id) {
-                this.$http.post('/api/stu/delStu',{
+            async delStuinfo(id) {
+                await this.$http.post('/api/stu/delStu',{
                     dStuID:id
-                },{}).then((response) => {
-                    console.log('ok');
                 });
-                this.$http.post('/api/stu/queStuNNS',{
+              await this.$http.post('/api/stu/delMPH',{
+                stuID:id
+              });
+              await this.$http.post('/api/stu/delSP',{
+                stuID:id
+              });
+              await this.$http.post('/api/stu/delSOH',{
+                stuID:id
+              });
+              await this.$http.post('/api/stu/delAS1',{
+                stuID:id
+              });
+              await this.$http.post('/api/stu/delAS2',{
+                stuID:id
+              });
+               await this.$http.post('/api/stu/queStuNNS',{
                 },{}).then((response) => {
                     this.$store.dispatch("setstuNNS", response.bodyText);
                     this.currentChangePage(this.currentPage1);

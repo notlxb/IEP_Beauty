@@ -584,6 +584,21 @@ router.post('/setIni1', (req, res) => {
 
 /******************生态评量附表**********************/
 
+//设置可见的附表
+router.post('/setStuFuBiao',(req, res) => {
+  var sql = $sql.stu.setStuFuBiao;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.FuBiao,params.stuID], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
       /************母亲孕史*************/
 //新增学生的母亲孕史信息
 router.post('/addMPH',(req, res) => {
@@ -854,7 +869,7 @@ router.post('/upAS2',(req, res) => {
   var sql = $sql.stu.upAS2;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [params.Eating,params.EatingOther,params.DressAndUndress,params.DressAndUndressOther,params.PoopAndPeeSelf,params.PoopAndPeeHelp,params.PoopAndPee,params.PoopAndPeeOther,params.Cleanliness,params.CleanlinessMale,params.CleanlinessFemale,params.HavnMenstruation,params.HaveMenstruation,params.CleanlinessOther,params.CleanOther,params.CleanOtherOther,params.SocializationAndBehavior,params.SocializationAndBehaviorOther,params.ActionDevelopmentBig,params.ActionDevelopmentBigOther,params.ActionDevelopmentSmall,params.ActionDevelopmentSmallOther,params.OtherAbilities,params.OtherAbilitiesOther,params.stuID], function (err, result) {
+  conn.query(sql, [params.Eating,params.EatingOther,params.DressAndUndress,params.DressAndUndressOther,params.PoopAndPee,params.PoopAndPeeOther,params.Cleanliness,params.CleanlinessFemale,params.CleanlinessFemaleOther,params.HaveMenstruation,params.CleanlinessOther,params.CleanOther,params.CleanOtherOther,params.SocializationAndBehavior,params.SocializationAndBehaviorOther,params.ActionDevelopmentBig,params.ActionDevelopmentBigOther,params.ActionDevelopmentSmall,params.ActionDevelopmentSmallOther,params.OtherAbilities,params.OtherAbilitiesOther,params.stuID], function (err, result) {
     if (err) {
       console.log(err);
     }

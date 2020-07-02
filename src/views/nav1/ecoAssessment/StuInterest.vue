@@ -5,11 +5,11 @@
             <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage },}">学生信息</el-breadcrumb-item>
             <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家长自评</el-breadcrumb-item>
             <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[0] == 'true' " :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
             <el-breadcrumb-item>兴趣爱好</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[2] == 'true' " :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[3] == 'true' " :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[4] == 'true' " :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
             <el-breadcrumb-item></el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider content-position="center"></el-divider>
@@ -115,7 +115,7 @@
                      <label><input type="checkbox" v-model="getstu.FavoriteActivities"  name="item5"  value="爬山"/></label>爬山<br>
                      <label><input type="checkbox" v-model="getstu.FavoriteActivities"  name="item5"  value="唱卡拉OK"/></label>唱卡拉OK<br>
                     <el-form-item label="其他/补充说明">
-                        <el-input v-model="getstu.ActivitiesOtherr"></el-input>
+                        <el-input v-model="getstu.ActivitiesOther"></el-input>
                     </el-form-item>
                 </el-form-item>
             </template><br>
@@ -143,17 +143,17 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><el-input v-model="getstu.FavoritePerson"></el-input></td>
+                        <td><el-input v-model="getstu.FavoritePerson[0]"></el-input></td>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
-                        <td><el-input v-model="getstu.FavoritePerson"></el-input></td>
+                        <td><el-input v-model="getstu.FavoritePerson[1]"></el-input></td>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
-                        <td><el-input v-model="getstu.FavoritePerson"></el-input></td>
+                        <td><el-input v-model="getstu.FavoritePerson[2]"></el-input></td>
                     </tr>
                     </tbody>
                 </table>
@@ -167,17 +167,17 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><el-input v-model="getstu.AnnoyingPerson"></el-input></td>
+                        <td><el-input v-model="getstu.AnnoyingPerson[0]"></el-input></td>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
-                        <td><el-input v-model="getstu.AnnoyingPerson"></el-input></td>
+                        <td><el-input v-model="getstu.AnnoyingPerson[1]"></el-input></td>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
-                        <td><el-input v-model="getstu.AnnoyingPerson"></el-input></td>
+                        <td><el-input v-model="getstu.AnnoyingPerson[2]"></el-input></td>
                     </tr>
                     </tbody>
                 </table>
@@ -204,7 +204,7 @@
             </el-form-item>
             <template style="width:200px; height:200px;float:left;">
                 <el-form-item label="特殊饮食习惯">
-                    <lebel><input type="radio" v-model="getstu.SpecialEatingHabits"  name="item7"  value="无"/></lebel>无
+                    <label><input type="radio" v-model="getstu.SpecialEatingHabits"  name="item7"  value="无"/></label>无
                     <label><input type="radio" v-model="getstu.SpecialEatingHabits"  name="item7"  value="有"/></label>有
                     <el-form-item label="若有，请说明说明">
                         <el-input v-model="getstu.EatingHabitsExplanation"></el-input>
@@ -221,6 +221,9 @@
                     </el-form-item>
                 </el-form-item>
             </template><br>
+        </el-form>
+        <el-form align="center">
+            <el-button type="danger" :disabled="false" @click="submitForm()">保存</el-button>
         </el-form>
     </section>
 </template>
@@ -256,6 +259,99 @@
                     OtherAdvices:''
                 }
             }
+        },
+        async mounted(){
+            await this.getSP();
+        },
+        methods: {
+            async getSP(){
+                var SP;
+                await this.$http.post('/api/stu/queSP', {
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    SP = response.body[0];
+                });
+                if(SP.FavoriteFood != null)
+                    this.getstu.FavoriteFood = SP.FavoriteFood.split('(^o~)');
+                if(SP.FoodOther != null)
+                    this.getstu.FoodOther = SP.FoodOther;
+                if(SP.FavoriteDrink != null)
+                    this.getstu.FavoriteDrink = SP.FavoriteDrink.split('(^o~)');
+                if(SP.DrinkOther != null)
+                    this.getstu.DrinkOther = SP.DrinkOther;
+                if(SP.FavoriteThings != null)
+                    this.getstu.FavoriteThings = SP.FavoriteThings.split('(^o~)');
+                if(SP.ThingsOther != null)
+                    this.getstu.ThingsOther = SP.ThingsOther;
+                if(SP.FavoriteSports != null)
+                    this.getstu.FavoriteSports = SP.FavoriteSports.split('(^o~)');
+                if(SP.SportsOther != null)
+                    this.getstu.SportsOther = SP.SportsOther;
+                if(SP.FavoriteActivities != null)
+                    this.getstu.FavoriteActivities = SP.FavoriteActivities.split('(^o~)');
+                if(SP.ActivitiesOther != null)
+                    this.getstu.ActivitiesOther = SP.ActivitiesOther;
+                if(SP.FavoriteEnhance != null)
+                    this.getstu.FavoriteEnhance = SP.FavoriteEnhance.split('(^o~)');
+                if(SP.EnhanceOther != null)
+                    this.getstu.EnhanceOther = SP.EnhanceOther;
+                if(SP.OtherHappyReasons != null)
+                    this.getstu.OtherHappyReasons = SP.OtherHappyReasons;
+                if(SP.FavoritePerson != null)
+                    this.getstu.FavoritePerson = SP.FavoritePerson.split('(^o~)');
+                if(SP.AnnoyingPerson != null)
+                    this.getstu.AnnoyingPerson = SP.AnnoyingPerson.split('(^o~)');
+                if(SP.AnnoyingFood != null)
+                    this.getstu.AnnoyingFood = SP.AnnoyingFood;
+                if(SP.AnnoyingActivities != null)
+                    this.getstu.AnnoyingActivities = SP.AnnoyingActivities;
+                if(SP.AnnoyingThings != null)
+                    this.getstu.AnnoyingThings = SP.AnnoyingThings;
+                if(SP.OtherUnhappyReasons != null)
+                    this.getstu.OtherUnhappyReasons = SP.OtherUnhappyReasons;
+                if(SP.SpecialEatingHabits != null)
+                    this.getstu.SpecialEatingHabits = SP.SpecialEatingHabits;
+                if(SP.EatingHabitsExplanation != null)
+                    this.getstu.EatingHabitsExplanation = SP.EatingHabitsExplanation;
+                if(SP.SpecialHobbiesOrBehaviors != null)
+                    this.getstu.SpecialHobbiesOrBehaviors = SP.SpecialHobbiesOrBehaviors;
+                if(SP.OtherAdvices != null)
+                    this.getstu.OtherAdvices = SP.OtherAdvices;
+            },
+
+            async submitForm(){
+                await this.$http.post('/api/stu/upSP', {
+                    FavoriteFood:this.getstu.FavoriteFood.join('(^o~)'),
+                    FoodOther:this.getstu.FoodOther,
+                    FavoriteDrink:this.getstu.FavoriteDrink.join('(^o~)'),
+                    DrinkOther:this.getstu.DrinkOther,
+                    FavoriteThings:this.getstu.FavoriteThings.join('(^o~)'),
+                    ThingsOther:this.getstu.ThingsOther,
+                    FavoriteSports:this.getstu.FavoriteSports.join('(^o~)'),
+                    SportsOther:this.getstu.SportsOther,
+                    FavoriteActivities:this.getstu.FavoriteActivities.join('(^o~)'),
+                    ActivitiesOther:this.getstu.ActivitiesOther,
+                    FavoriteEnhance:this.getstu.FavoriteEnhance.join('(^o~)'),
+                    EnhanceOther:this.getstu.EnhanceOther,
+                    OtherHappyReasons:this.getstu.OtherHappyReasons,
+                    FavoritePerson:this.getstu.FavoritePerson.join('(^o~)'),
+                    AnnoyingPerson:this.getstu.AnnoyingPerson.join('(^o~)'),
+                    AnnoyingFood:this.getstu.AnnoyingFood,
+                    AnnoyingActivities:this.getstu.AnnoyingActivities,
+                    AnnoyingThings:this.getstu.AnnoyingThings,
+                    OtherUnhappyReasons:this.getstu.OtherUnhappyReasons,
+                    SpecialEatingHabits:this.getstu.SpecialEatingHabits,
+                    EatingHabitsExplanation:this.getstu.EatingHabitsExplanation,
+                    SpecialHobbiesOrBehaviors:this.getstu.SpecialHobbiesOrBehaviors,
+                    OtherAdvices:this.getstu.OtherAdvices,
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    if(response.status == 200)
+                        this.$message.success("保存成功！");
+                    else
+                        this.$message.warning("保存失败...");
+                });
+            },
         }
     }
 </script>
