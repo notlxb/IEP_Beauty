@@ -67,7 +67,9 @@ var sqlMap = {
 
     //查
     queSch: 'select * from school_target where target_status = 1',
-    queStu: 'select * from t_studentinfo where Deleted = 0', 
+    queStu: 'select id, class_id, student_id, name, Sex from t_studentinfo where Deleted = 0',
+    queStuWithCourse: "SELECT * FROM t_studentinfo WHERE Deleted = 0 AND class_id != ''",
+    isStuExist:'select count(*) as NUM from t_studentinfo where student_id = ? and Deleted = 0',
     queStuinfo: 'SELECT * FROM t_studentinfo WHERE student_id = ? AND Deleted = 0',
     queClass:'select student_id,name from t_studentinfo where class_id = ? and Deleted = 0',
     queCourse:'SELECT * FROM coursemanagement WHERE delete_status = 0',
@@ -75,7 +77,7 @@ var sqlMap = {
     queSS:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ? and father = ?',
     queSS_ST:'SELECT * FROM coursemanagement WHERE delete_status = 0 and show_type = ?',
     queName: 'select student_id, name, sex from t_studentinfo where name = ? and Deleted = 0',
-    queStuCourse:'SELECT Courses FROM t_studentinfo WHERE Deleted = 0', 
+    queStuCourse:'SELECT Courses FROM t_studentinfo WHERE Deleted = 0 AND student_id = ?',
     queIepMeeting:'select id, schoolYear, term, stuID, stuName, creator, date from iepmeeting where isDel = 0', 
     queFullIepMeeting:'select * from iepmeeting where isDel = 0 and id = ?', 
     queGroupSbjPlan:'select id, schoolYear, term, class, subject, teacher, createDate, updateDate from groupsubjectplan where isDel = 0', 

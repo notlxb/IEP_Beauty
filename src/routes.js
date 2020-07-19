@@ -23,6 +23,7 @@ import dataManagement from './views/nav4/dataManagement.vue'
 import courseManagement from './views/nav4/courseManagement.vue'
 import subjectManagement from './views/nav4/subjectManagement.vue'
 import courseEvaluation from './views/nav2/courses/courseEvaluation.vue'
+import stuEvalList from './views/nav2/courses/stuEvalList.vue'
 import evaluationAnalysis from './views/nav2/courses/evaluationAnalysis.vue'
 import analysisEdit from './views/nav2/courses/analysisEdit.vue'
 import iepMeeting from './views/nav2/IEP/iep_meeting.vue'
@@ -243,6 +244,13 @@ let routes = [
                 name: '课程评量',
                 authority: [1, 1, 1, 1, 1],
                 iconCls: 'el-icon-s-claim',
+            },
+            {
+                path: '/stuEvalList',
+                component: stuEvalList,
+                name: '学生课程评量',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
             },
             {
                 path: '/analysisEdit',

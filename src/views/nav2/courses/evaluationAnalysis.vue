@@ -4,6 +4,7 @@
         <!--列表-->
         <div class="table">
             <div style="display: inline-block;margin-bottom: 1%">
+                <el-button  type="danger" @click="back2list()" >返回列表</el-button>
                 <el-button  type="danger" v-show="show3" @click="Tocompare()" >评量对比</el-button>
                 <el-button  type="danger" v-show="show4" @click="cancel_com()" >取消对比</el-button>
             </div>
@@ -740,6 +741,9 @@
                 });
             },
 
+            back2list(){
+                this.$router.push({path:'/courseEvaluation',query:{currentPage: this.currentPage1}});
+            },
             //更新课程信息
             async updateCourse(){
 
@@ -751,6 +755,7 @@
                 });
 
                 await this.$http.post('/api/stu/queStuCourse', {
+                    stuID:this.$route.query.stuID
                 }, {}).then((response) => {
                     this.$store.dispatch("setstucourses", null);
                     this.$store.dispatch("setstucourseslist", null);

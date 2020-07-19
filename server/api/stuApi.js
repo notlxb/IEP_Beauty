@@ -508,6 +508,21 @@ router.post('/queStuNNS', (req, res) => {
   })
 });
 
+//获取有班级信息的学生信息
+router.post('/queStuWithCourse', (req, res) => {
+  var sql = $sql.stu.queStuWithCourse;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
 // 初始化医学诊断
 router.post('/MDini', (req, res) => {
   var sql = $sql.stu.addMD;
@@ -977,7 +992,7 @@ router.post('/queStuCourse',(req, res) => {
   var sql = $sql.stu.queStuCourse;
   var params = req.body;
   console.log(params);
-  conn.query(sql, [], function (err, result) {
+  conn.query(sql, [params.stuID], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -1756,6 +1771,21 @@ router.post('/queClasstable',(req, res) => {
   var params = req.body;
   console.log(params);
   conn.query(sql, [params.schoolName], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    if (result) {
+      jsonWrite(res, result);
+    }
+  })
+});
+
+//查询学号是否存在
+router.post('/isStuExist',(req, res) => {
+  var sql = $sql.stu.isStuExist;
+  var params = req.body;
+  console.log(params);
+  conn.query(sql, [params.StuID], function (err, result) {
     if (err) {
       console.log(err);
     }
