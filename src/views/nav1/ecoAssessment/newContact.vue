@@ -118,7 +118,7 @@
         },
         mounted(){
             this.updatestuNNS();
-            console.log(this.checkPermission)
+            console.log(this.checkPermission);
         },
         methods:{
             //页面刷新
