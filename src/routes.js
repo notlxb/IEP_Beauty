@@ -24,7 +24,8 @@ import courseManagement from './views/nav4/courseManagement.vue'
 import subjectManagement from './views/nav4/subjectManagement.vue'
 import courseEvaluation from './views/nav2/courses/courseEvaluation.vue'
 import stuEvalList from './views/nav2/courses/stuEvalList.vue'
-import evaluationAnalysis from './views/nav2/courses/evaluationAnalysis.vue'
+import evalAnaList from './views/nav2/courses/evalAnaList.vue'
+import evaluationAnalysis from "./views/nav2/courses/evaluationAnalysis";
 import analysisEdit from './views/nav2/courses/analysisEdit.vue'
 import iepMeeting from './views/nav2/IEP/iep_meeting.vue'
 import iepMeetingEdit from './views/nav2/IEP/iepmeeting_edit.vue'
@@ -265,6 +266,13 @@ let routes = [
                 name: '评量分析',
                 authority: [1, 1, 1, 1, 1],
                 iconCls: 'el-icon-s-marketing',
+            },
+            {
+                path: '/evalAnaList',
+                component: evalAnaList,
+                name: '学生评量分析',
+                authority: [1, 1, 1, 1, 1],
+                hidden: true
             },
             {
                 path: '/schoolTables',

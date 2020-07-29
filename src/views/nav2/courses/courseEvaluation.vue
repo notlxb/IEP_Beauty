@@ -21,7 +21,6 @@
                 </el-button>
                 <el-dropdown-menu>
                   <el-dropdown-item  @click.native="viewAllEval(scope.row.student_id)">进入评量</el-dropdown-item>
-                  <el-dropdown-item  @click.native="viewAllAna(scope.row.student_id)">评量分析</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </template>
@@ -108,7 +107,7 @@
       },
       //跳转至学生的评量分析列表界面
       viewAllAna(stuID){
-        this.$router.push({path:'/evaluationAnalysis',query:{stuID: stuID, currentPage: this.currentPage1}})
+        this.$router.push({path:'/evalAnaList',query:{stuID: stuID, currentPage: this.currentPage1}})
       },
 
       //更新课程信息
