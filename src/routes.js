@@ -13,6 +13,25 @@ let routes = [
         authority: [1, 1, 1, 1, 1],
         hidden: true
     },
+
+    {
+        path: '/',
+        component:() => import('./views/Home.vue') ,
+        name: '首页',
+        hidden:true,
+        authority: [1, 1, 1, 1, 1],
+        iconCls: 'fa fa-list-alt',
+        children: [
+            {
+                path: '/HomePage',
+                component:() => import('./views/HomePage.vue'),
+                name: '首页',
+                authority: [1, 1, 1, 1, 1],
+                iconCls: 'el-icon-school',
+            },
+        ]
+    },
+
     //{ path: '/main', component:() => import('.views/') Main },
     //原来的nav4
     {
