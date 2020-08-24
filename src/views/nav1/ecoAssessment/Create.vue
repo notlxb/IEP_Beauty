@@ -11,7 +11,7 @@
         <el-input v-model="getstu.name"></el-input>
       </el-form-item>
       <el-form-item label="学籍号">
-        <el-input v-model="getstu.StuID" ></el-input>
+        <el-input v-model="getstu.StuID" @blur="checkID()"></el-input>
       </el-form-item>
       <el-form-item label="性别">
         <label>
@@ -420,197 +420,128 @@
               this.$router.replace({path:'/newContact', query:{currentPage: this.$route.query.currentPage}});
             },
 
-            addStu() {
-                if (this.getstu.StuID.length == 0){
-                    this.$message({
-                        message: '请输入学生学号！',
-                        type: 'warning'
-                    });
-                    return;
+            async addStu() {
+              var isLegal = true;
+              this.getstu.StuID = this.getstu.StuID.replace(/[ ]/g,""); //去除学籍号中的空格
+              if (this.getstu.StuID.length == 0)
+              {
+                this.$alert('学籍号不能为空！', '提示');
+                isLegal = false;
+              }
+              await this.$http.post('/api/stu/isStuExist',{
+                StuID:this.getstu.StuID
+              }).then((response) => {
+                if(parseInt(response.body[0].NUM) > 0)
+                {
+                  this.$alert("学籍号："+this.getstu.StuID+" 已存在！",'提示');
+                  isLegal = false;
                 }
-                if (this.getstu.StuID.name == 0){
-                    this.$message({
-                        message: '请输入学生姓名！',
-                        type: 'warning'
-                    });
-                    return;
+              });
+
+                this.getstu.name = this.getstu.name.replace(/[ ]/g,""); //去除姓名号中的空格
+                if (this.getstu.name == 0){
+                  this.$alert('姓名不能为空！', '提示');
+                  isLegal = false;
                 }
-                var StuID = this.getstu.StuID;
-                var StuClass = this.getstu.Class;
-                var Name = this.getstu.name;
-                var Sex = this.getstu.sex;
-                var Birthday = this.getstu.Birthday;
-                var ID = this.getstu.ID;
-                var Origin = this.getstu.Origin;
-                var PermanentAddress = this.getstu.PermanentAddress;
-                var HomeAddress = this.getstu.HomeAddress;
-                var GraduatedSchool_name = this.getstu.GraduatedSchool_name;
-                var GraduatedSchool_address = this.getstu.GraduatedSchool_address;
-                var LastSchool_name = this.getstu.LastSchool_name;
-                var LastSchool_address = this.getstu.LastSchool_address;
-                var DisabilityCertificate_issueDate = this.getstu.DisabilityCertificate_issueDate;
-                var DisabilityCertificate_number = this.getstu.DisabilityCertificate_number;
-                var DisabilityCertificate_validity = this.getstu.DisabilityCertificate_validity;
+
+                if(!isLegal)
+                  return;
+
                 var Disability_type = {残疾类型:this.getstu.Disability_type};
-                var Disability_level = this.getstu.Disability_level;
                 var EducationalSetting = {教育安置方式:this.getstu.EducationalSetting};
                 var SpecialIllnessOrOthers = {伴随障碍或疾病:this.getstu.SpecialIllnessOrOthers};
                 var MainCaregiver = {主要照顾人:this.getstu.MainCaregiver};
                 var ParentsPS = {家长现状:this.getstu.ParentsPS};
-                var ParentsPS_proofMaterials = this.getstu.ParentsPS_proofMaterials;
-                var RelativesPS = this.getstu.RelativesPS;
-                var StuResident = this.getstu.StuResident;
-                var SojournRela = this.getstu.SojournRela;
-                var EmergencyContact1_name = this.getstu.EmergencyContact1_name;
-                var EmergencyContact1_rela = this.getstu.EmergencyContact1_rela;
-                var EmergencyContact1_birth = this.getstu.EmergencyContact1_birth;
-                var EmergencyContact1_degree = this.getstu.EmergencyContact1_degree;
-                var EmergencyContact1_job = this.getstu.EmergencyContact1_job;
-                var EmergencyContact1_health = this.getstu.EmergencyContact1_health;
-                var EmergencyContact1_tel = this.getstu.EmergencyContact1_tel;
-                var EmergencyContact2_name = this.getstu.EmergencyContact2_name;
-                var EmergencyContact2_rela = this.getstu.EmergencyContact2_rela;
-                var EmergencyContact2_birth = this.getstu.EmergencyContact2_birth;
-                var EmergencyContact2_degree = this.getstu.EmergencyContact2_degree;
-                var EmergencyContact2_job = this.getstu.EmergencyContact2_job;
-                var EmergencyContact2_health = this.getstu.EmergencyContact2_health;
-                var EmergencyContact2_tel = this.getstu.EmergencyContact2_tel;
-                var EmergencyContact3_name = this.getstu.EmergencyContact3_name;
-                var EmergencyContact3_rela = this.getstu.EmergencyContact3_rela;
-                var EmergencyContact3_birth = this.getstu.EmergencyContact3_birth;
-                var EmergencyContact3_degree = this.getstu.EmergencyContact3_degree;
-                var EmergencyContact3_job = this.getstu.EmergencyContact3_job;
-                var EmergencyContact3_health = this.getstu.EmergencyContact3_health;
-                var EmergencyContact3_tel = this.getstu.EmergencyContact3_tel;
-                var FamilyFinancialSituation = this.getstu.FamilyFinancialSituation;
-                var ParentsMarriageSituation = this.getstu.ParentsMarriageSituation;
-                var UsualLanguage = this.getstu.UsualLanguage;
-                var ResidentialEnvironment = this.getstu.ResidentialEnvironment;
-                var FamilyEnvironment = this.getstu.FamilyEnvironment;
-                var FamilyAttitude2Stu = this.getstu.FamilyAttitude2Stu;
-                var SleepPattern = this.getstu.SleepPattern;
-                var LivingHabit = this.getstu.LivingHabit;
-                var IQ = this.getstu.IQ;
                 var FamilyMember = {家庭成员:this.getstu.FamilyMember};
-                var FamilyMember_obro = this.getstu.FamilyMember_obro;
-                var FamilyMember_ybro = this.getstu.FamilyMember_ybro;
-                var FamilyMember_osis = this.getstu.FamilyMember_osis;
-                var FamilyMember_ysis = this.getstu.FamilyMember_ysis;
-                var FamilyMember_livetogether = this.getstu.FamilyMember_livetogether;
-                var WorkChance1_name =this.getstu.WorkChance1_name;
-                var WorkChance1_address = this.getstu.WorkChance1_address;
-                var WorkChance1_tel = this.getstu.WorkChance1_tel;
-                var WorkChance1_jobDescription = this.getstu.WorkChance1_jobDescription;
-                var WorkChance1_transport = this.getstu.WorkChance1_transport;
-                var WorkChance2_name =this.getstu.WorkChance2_name;
-                var WorkChance2_address = this.getstu.WorkChance2_address;
-                var WorkChance2_tel = this.getstu.WorkChance2_tel;
-                var WorkChance2_jobDescription = this.getstu.WorkChance2_jobDescription;
-                var WorkChance2_transport = this.getstu.WorkChance2_transport;
-                var WorkChance3_name =this.getstu.WorkChance3_name;
-                var WorkChance3_address = this.getstu.WorkChance3_address;
-                var WorkChance3_tel = this.getstu.WorkChance3_tel;
-                var WorkChance3_jobDescription = this.getstu.WorkChance3_jobDescription;
-                var WorkChance3_transport = this.getstu.WorkChance3_transport;
-                var WorkChance4_name =this.getstu.WorkChance4_name;
-                var WorkChance4_address = this.getstu.WorkChance4_address;
-                var WorkChance4_tel = this.getstu.WorkChance4_tel;
-                var WorkChance4_jobDescription = this.getstu.WorkChance4_jobDescription;
-                var WorkChance4_transport = this.getstu.WorkChance4_transport;
-                var WorkChance5_name =this.getstu.WorkChance5_name;
-                var WorkChance5_address = this.getstu.WorkChance5_address;
-                var WorkChance5_tel = this.getstu.WorkChance5_tel;
-                var WorkChance5_jobDescription = this.getstu.WorkChance5_jobDescription;
-                var WorkChance5_transport = this.getstu.WorkChance5_transport;
                 var RelProject = {相关专业需求:this.getstu.RelProject};
                 this.$http.post('/api/stu/addStu',{
-                    sStuID:StuID,
-                    sClass:StuClass,
-                    sName:Name,
-                    sSex:Sex,
-                    sBirthday:Birthday,
-                    sID:ID,
-                    sOrigin:Origin,
-                    sPermanentAddress:PermanentAddress,
-                    sHomeAddress:HomeAddress,
-                    sGraduatedSchool_name:GraduatedSchool_name,
-                    sGraduatedSchool_address:GraduatedSchool_address,
-                    sLastSchool_name:LastSchool_name,
-                    sLastSchool_address:LastSchool_address,
-                    sDisabilityCertificate_issueDate:DisabilityCertificate_issueDate,
-                    sDisabilityCertificate_number:DisabilityCertificate_number,
-                    sDisabilityCertificate_validity:DisabilityCertificate_validity,
+                    sStuID:this.getstu.StuID,
+                    sClass:this.getstu.Class,
+                    sName:this.getstu.name,
+                    sSex:this.getstu.sex,
+                    sBirthday:this.getstu.Birthday,
+                    sID:this.getstu.ID,
+                    sOrigin:this.getstu.Origin,
+                    sPermanentAddress:this.getstu.PermanentAddress,
+                    sHomeAddress:this.getstu.HomeAddress,
+                    sGraduatedSchool_name:this.getstu.GraduatedSchool_name,
+                    sGraduatedSchool_address:this.getstu.GraduatedSchool_address,
+                    sLastSchool_name:this.getstu.LastSchool_name,
+                    sLastSchool_address:this.getstu.LastSchool_address,
+                    sDisabilityCertificate_issueDate:this.getstu.DisabilityCertificate_issueDate,
+                    sDisabilityCertificate_number:this.getstu.DisabilityCertificate_number,
+                    sDisabilityCertificate_validity:this.getstu.DisabilityCertificate_validity,
                     sDisability_type:Disability_type,
-                    sDisability_level:Disability_level,
+                    sDisability_level:this.getstu.Disability_level,
                     sEducationalSetting:EducationalSetting,
                     sSpecialIllnessOrOthers:SpecialIllnessOrOthers,
                     sMainCaregiver:MainCaregiver,
                     sParentsPS:ParentsPS,
-                    sParentsPS_proofMaterials:ParentsPS_proofMaterials,
-                    sRelativesPS:RelativesPS,
-                    sStuResident:StuResident,
-                    sSojournRela:SojournRela,
-                    sEmergencyContact1_name:EmergencyContact1_name,
-                    sEmergencyContact1_rela:EmergencyContact1_rela,
-                    sEmergencyContact1_birth:EmergencyContact1_birth,
-                    sEmergencyContact1_degree:EmergencyContact1_degree,
-                    sEmergencyContact1_job:EmergencyContact1_job,
-                    sEmergencyContact1_health:EmergencyContact1_health,
-                    sEmergencyContact1_tel:EmergencyContact1_tel,
-                    sEmergencyContact2_name:EmergencyContact2_name,
-                    sEmergencyContact2_rela:EmergencyContact2_rela,
-                    sEmergencyContact2_birth:EmergencyContact2_birth,
-                    sEmergencyContact2_degree:EmergencyContact2_degree,
-                    sEmergencyContact2_job:EmergencyContact2_job,
-                    sEmergencyContact2_health:EmergencyContact2_health,
-                    sEmergencyContact2_tel:EmergencyContact2_tel,
-                    sEmergencyContact3_name:EmergencyContact3_name,
-                    sEmergencyContact3_rela:EmergencyContact3_rela,
-                    sEmergencyContact3_birth:EmergencyContact3_birth,
-                    sEmergencyContact3_degree:EmergencyContact3_degree,
-                    sEmergencyContact3_job:EmergencyContact3_job,
-                    sEmergencyContact3_health:EmergencyContact3_health,
-                    sEmergencyContact3_tel:EmergencyContact3_tel,
-                    sFamilyFinancialSituation:FamilyFinancialSituation,
-                    sParentsMarriageSituation:ParentsMarriageSituation,
-                    sUsualLanguage:UsualLanguage,
-                    sResidentialEnvironment:ResidentialEnvironment,
-                    sFamilyEnvironment:FamilyEnvironment,
-                    sFamilyAttitude2Stu:FamilyAttitude2Stu,
-                    sSleepPattern:SleepPattern,
-                    sLivingHabit:LivingHabit,
-                    sIQ:IQ,
+                    sParentsPS_proofMaterials:this.getstu.ParentsPS_proofMaterials,
+                    sRelativesPS:this.getstu.RelativesPS,
+                    sStuResident:this.getstu.StuResident,
+                    sSojournRela:this.getstu.SojournRela,
+                    sEmergencyContact1_name:this.getstu.EmergencyContact1_name,
+                    sEmergencyContact1_rela:this.getstu.EmergencyContact1_rela,
+                    sEmergencyContact1_birth:this.getstu.EmergencyContact1_birth,
+                    sEmergencyContact1_degree:this.getstu.EmergencyContact1_degree,
+                    sEmergencyContact1_job:this.getstu.EmergencyContact1_job,
+                    sEmergencyContact1_health:this.getstu.EmergencyContact1_health,
+                    sEmergencyContact1_tel:this.getstu.EmergencyContact1_tel,
+                    sEmergencyContact2_name:this.getstu.EmergencyContact2_name,
+                    sEmergencyContact2_rela:this.getstu.EmergencyContact2_rela,
+                    sEmergencyContact2_birth:this.getstu.EmergencyContact2_birth,
+                    sEmergencyContact2_degree:this.getstu.EmergencyContact2_degree,
+                    sEmergencyContact2_job:this.getstu.EmergencyContact2_job,
+                    sEmergencyContact2_health:this.getstu.EmergencyContact2_health,
+                    sEmergencyContact2_tel:this.getstu.EmergencyContact2_tel,
+                    sEmergencyContact3_name:this.getstu.EmergencyContact3_name,
+                    sEmergencyContact3_rela:this.getstu.EmergencyContact3_rela,
+                    sEmergencyContact3_birth:this.getstu.EmergencyContact3_birth,
+                    sEmergencyContact3_degree:this.getstu.EmergencyContact3_degree,
+                    sEmergencyContact3_job:this.getstu.EmergencyContact3_job,
+                    sEmergencyContact3_health:this.getstu.EmergencyContact3_health,
+                    sEmergencyContact3_tel:this.getstu.EmergencyContact3_tel,
+                    sFamilyFinancialSituation:this.getstu.FamilyFinancialSituation,
+                    sParentsMarriageSituation:this.getstu.ParentsMarriageSituation,
+                    sUsualLanguage:this.getstu.UsualLanguage,
+                    sResidentialEnvironment:this.getstu.ResidentialEnvironment,
+                    sFamilyEnvironment:this.getstu.FamilyEnvironment,
+                    sFamilyAttitude2Stu:this.getstu.FamilyAttitude2Stu,
+                    sSleepPattern:this.getstu.SleepPattern,
+                    sLivingHabit:this.getstu.LivingHabit,
+                    sIQ:this.getstu.IQ,
                     sFamilyMember:FamilyMember,
-                    sFamilyMember_obro:FamilyMember_obro,
-                    sFamilyMember_ybro:FamilyMember_ybro,
-                    sFamilyMember_osis:FamilyMember_osis,
-                    sFamilyMember_ysis:FamilyMember_ysis,
-                    sFamilyMember_livetogether:FamilyMember_livetogether,
-                    sWorkChance1_name:WorkChance1_name,
-                    sWorkChance1_address:WorkChance1_address,
-                    sWorkChance1_tel:WorkChance1_tel,
-                    sWorkChance1_jobDescription:WorkChance1_jobDescription,
-                    sWorkChance1_transport:WorkChance1_transport,
-                    sWorkChance2_name:WorkChance2_name,
-                    sWorkChance2_address:WorkChance2_address,
-                    sWorkChance2_tel:WorkChance2_tel,
-                    sWorkChance2_jobDescription:WorkChance2_jobDescription,
-                    sWorkChance2_transport:WorkChance2_transport,
-                    sWorkChance3_name:WorkChance3_name,
-                    sWorkChance3_address:WorkChance3_address,
-                    sWorkChance3_tel:WorkChance3_tel,
-                    sWorkChance3_jobDescription:WorkChance3_jobDescription,
-                    sWorkChance3_transport:WorkChance3_transport,
-                    sWorkChance4_name:WorkChance4_name,
-                    sWorkChance4_address:WorkChance4_address,
-                    sWorkChance4_tel:WorkChance4_tel,
-                    sWorkChance4_jobDescription:WorkChance4_jobDescription,
-                    sWorkChance4_transport:WorkChance4_transport,
-                    sWorkChance5_name:WorkChance5_name,
-                    sWorkChance5_address:WorkChance5_address,
-                    sWorkChance5_tel:WorkChance5_tel,
-                    sWorkChance5_jobDescription:WorkChance5_jobDescription,
-                    sWorkChance5_transport:WorkChance5_transport,
+                    sFamilyMember_obro:this.getstu.FamilyMember_obro,
+                    sFamilyMember_ybro:this.getstu.FamilyMember_ybro,
+                    sFamilyMember_osis:this.getstu.FamilyMember_osis,
+                    sFamilyMember_ysis:this.getstu.FamilyMember_ysis,
+                    sFamilyMember_livetogether:this.getstu.FamilyMember_livetogether,
+                    sWorkChance1_name:this.getstu.WorkChance1_name,
+                    sWorkChance1_address:this.getstu.WorkChance1_address,
+                    sWorkChance1_tel:this.getstu.WorkChance1_tel,
+                    sWorkChance1_jobDescription:this.getstu.WorkChance1_jobDescription,
+                    sWorkChance1_transport:this.getstu.WorkChance1_transport,
+                    sWorkChance2_name:this.getstu.WorkChance2_name,
+                    sWorkChance2_address:this.getstu.WorkChance2_address,
+                    sWorkChance2_tel:this.getstu.WorkChance2_tel,
+                    sWorkChance2_jobDescription:this.getstu.WorkChance2_jobDescription,
+                    sWorkChance2_transport:this.getstu.WorkChance2_transport,
+                    sWorkChance3_name:this.getstu.WorkChance3_name,
+                    sWorkChance3_address:this.getstu.WorkChance3_address,
+                    sWorkChance3_tel:this.getstu.WorkChance3_tel,
+                    sWorkChance3_jobDescription:this.getstu.WorkChance3_jobDescription,
+                    sWorkChance3_transport:this.getstu.WorkChance3_transport,
+                    sWorkChance4_name:this.getstu.WorkChance4_name,
+                    sWorkChance4_address:this.getstu.WorkChance4_address,
+                    sWorkChance4_tel:this.getstu.WorkChance4_tel,
+                    sWorkChance4_jobDescription:this.getstu.WorkChance4_jobDescription,
+                    sWorkChance4_transport:this.getstu.WorkChance4_transport,
+                    sWorkChance5_name:this.getstu.WorkChance5_name,
+                    sWorkChance5_address:this.getstu.WorkChance5_address,
+                    sWorkChance5_tel:this.getstu.WorkChance5_tel,
+                    sWorkChance5_jobDescription:this.getstu.WorkChance5_jobDescription,
+                    sWorkChance5_transport:this.getstu.WorkChance5_transport,
                     sRelProject:RelProject
                 },{}).then((response)=>{
                     console.log(response);
@@ -659,6 +590,26 @@
                         break;
                 }
             },
+
+          async checkID(){
+              this.getstu.StuID = this.getstu.StuID.replace(/[ ]/g,""); //去除学籍号中的空格
+              if (this.getstu.StuID.length == 0)
+              {
+                this.$alert('学籍号不能为空！', '提示');
+                return;
+              }
+              await this.$http.post('/api/stu/isStuExist',{
+                StuID:this.getstu.StuID
+              }).then((response) => {
+                if(parseInt(response.body[0].NUM) > 0)
+                {
+                  this.$alert("学籍号："+this.getstu.StuID+" 已存在！",'提示');
+                  return;
+                }
+                else
+                  this.$message.success("学籍号："+this.getstu.StuID+" 可用。");
+              });
+          },
         }
     }
 

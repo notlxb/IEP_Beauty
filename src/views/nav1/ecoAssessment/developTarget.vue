@@ -6,17 +6,43 @@
       <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage },}">学生信息</el-breadcrumb-item>
       <el-breadcrumb-item>家长自评</el-breadcrumb-item>
       <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[0] == 'true' " :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[1] == 'true' " :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[2] == 'true' " :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[3] == 'true' " :to="{path:'/checkNEdit/capacitystatus_1'}">能力现状-1</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[4] == 'true' " :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider content-position="center"></el-divider>
     <div style="margin-top: 1%">
-      <a href="http://47.110.134.247/group1/babytable.html" target="_blank"><el-button type="danger">生活能力量表填写</el-button></a>
-      <a href="http://47.110.134.247/group1/gantongliangbiao.html" target="_blank"><el-button type="danger">感统量表填写</el-button></a>
+<!--      <a href="http://47.110.134.247/group1/babytable.html" target="_blank"><el-button type="danger">生活能力量表填写</el-button></a>-->
+<!--      <a href="http://47.110.134.247/group1/gantongliangbiao.html" target="_blank"><el-button type="danger">感统量表填写</el-button></a>-->
+      <el-popover
+          placement="bottom-end"
+          title="扫码填写生活能力量表"
+          width="190"
+          trigger="click"
+          >
+        <el-image
+            style="width: 190px; height: 190px"
+            src="http://47.110.134.247/QRCode/babytable.png"
+            fit="fit"></el-image>
+        <el-button slot="reference" type="danger">生活能力量表填写</el-button>
+      </el-popover>
+
+      <el-popover
+          placement="bottom-end"
+          title="扫码填写感统量表"
+          width="190"
+          trigger="click"
+      >
+        <el-image
+            style="width: 190px; height: 190px"
+            src="http://47.110.134.247/QRCode/gantong.png"
+            fit="fit"></el-image>
+        <el-button slot="reference" type="danger">感统量表填写</el-button>
+      </el-popover>
+
     </div>
     <el-form :model="formData2" ref="formData2" label-width="200px" class="form-dynamic">
       <el-form-item v-for="(domain, index) in formData2.domains2"

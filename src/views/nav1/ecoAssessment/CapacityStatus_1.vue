@@ -5,11 +5,11 @@
             <el-breadcrumb-item :to="{path:'/checkNEdit', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage },}">学生信息</el-breadcrumb-item>
             <el-breadcrumb-item :to="{path:'/checkNEdit/devTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">家长自评</el-breadcrumb-item>
             <el-breadcrumb-item :to="{path:'/checkNEdit/funcTarget', query:{isEdit:this.$route.query.isEdit,currentPage:this.$route.query.currentPage},}">专项评估</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[0] == 'true' " :to="{path:'/checkNEdit/materprehis'}">母亲孕史</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[1] == 'true' " :to="{path:'/checkNEdit/stuInterest'}">兴趣爱好</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[2] == 'true' " :to="{path:'/checkNEdit/healthstatus'}">健康状况</el-breadcrumb-item>
             <el-breadcrumb-item>能力现状-1</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.$store.state.stuinfo[0].FuBiao.split('(^o~)')[4] == 'true' " :to="{path:'/checkNEdit/capacitystatus_2'}">能力现状-2</el-breadcrumb-item>
             <el-breadcrumb-item></el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider content-position="center"></el-divider>
@@ -68,8 +68,8 @@
                     <label><input type="checkbox" v-model="getstu.LanguageComprehension"  name="item4"  value="理解两步骤以上指令"/></label>理解两步骤以上指令<br>
                     <label><input type="checkbox" v-model="getstu.LanguageComprehension"  name="item4"  value="理解形容词"/></label>理解形容词<br>
                     <label><input type="checkbox" v-model="getstu.LanguageComprehension"  name="item4"  value="理解疑问句"/></label>理解疑问句<br>
-                    <label><input type="checkbox" v-model="getstu.LanguageComprehension"  name="item4"  value="理解疑问句"/></label>理解否定句<br>
-                    <label><input type="checkbox" v-model="getstu.LanguageComprehension"  name="item4"  value="理解疑问句"/></label>理解复杂句<br>
+                    <label><input type="checkbox" v-model="getstu.LanguageComprehension"  name="item4"  value="理解否定句"/></label>理解否定句<br>
+                    <label><input type="checkbox" v-model="getstu.LanguageComprehension"  name="item4"  value="理解复杂句"/></label>理解复杂句<br>
                     <el-form-item label="其他/补充说明">
                         <el-input v-model="getstu.LanguageComprehensionOther"></el-input>
                     </el-form-item>
@@ -153,28 +153,28 @@
                 </el-form-item>
             </template><br>
             <template style="width:200px; height:200px;float:left;">
-                <el-form-item label="语文">
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>数学能力与同龄学生相符<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>形状<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>颜色<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>大小<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>方向<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>长度<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>重量<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>容量<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>面积<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>体积<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>角度<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>速度<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>钱币<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>时间<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>会唱数<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>会数数<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>认识数字<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>会加法<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>会减法<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>会乘法<br>
-                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value=""/></label>会除法<br>
+                <el-form-item label="数学">
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="数学能力与同龄学生相符"/></label>数学能力与同龄学生相符<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="形状"/></label>形状<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="颜色"/></label>颜色<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="大小"/></label>大小<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="方向"/></label>方向<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="长度"/></label>长度<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="重量"/></label>重量<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="容量"/></label>容量<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="面积"/></label>面积<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="体积"/></label>体积<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="角度"/></label>角度<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="速度"/></label>速度<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="钱币"/></label>钱币<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="时间"/></label>时间<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="会唱数"/></label>会唱数<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="会数数"/></label>会数数<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="认识数字"/></label>认识数字<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="会加法"/></label>会加法<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="会减法"/></label>会减法<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="会乘法"/></label>会乘法<br>
+                    <label><input type="checkbox" v-model="getstu.Math"  name="item13"  value="会除法"/></label>会除法<br>
                     <el-form-item label="其他/补充说明">
                         <el-input v-model="getstu.MathOther"></el-input>
                     </el-form-item>
@@ -182,7 +182,9 @@
             </template><br>
         </el-form>
 
-
+        <el-form align="center">
+            <el-button type="danger" :disabled="false" @click="submitForm()">保存</el-button>
+        </el-form>
     </section>
 </template>
 
@@ -213,6 +215,88 @@
                    MathOther:'',
                }
             }
+        },
+        async mounted(){
+            await this.getAS1();
+        },
+        methods: {
+            async getAS1(){
+                var AS1;
+                await this.$http.post('/api/stu/queAS1', {
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    AS1 = response.body[0];
+                });
+                
+                if(AS1.Cognition != null)
+                    this.getstu.Cognition = AS1.Cognition.split('(^o~)');
+                if(AS1.CognitionOther != null)
+                    this.getstu.CognitionOther = AS1.CognitionOther;
+                if(AS1.OralCavity != null)
+                    this.getstu.OralCavity = AS1.OralCavity;
+                if(AS1.SwallowFunction != null)
+                    this.getstu.SwallowFunction = AS1.SwallowFunction;
+                if(AS1.SwallowFunctionOther != null)
+                    this.getstu.SwallowFunctionOther = AS1.SwallowFunctionOther;
+                if(AS1.LanguageComprehension != null)
+                    this.getstu.LanguageComprehension = AS1.LanguageComprehension.split('(^o~)');
+                if(AS1.LanguageComprehensionOther != null)
+                    this.getstu.LanguageComprehensionOther = AS1.LanguageComprehensionOther;
+                if(AS1.LanguageExpression != null)
+                    this.getstu.LanguageExpression = AS1.LanguageExpression;
+                if(AS1.LanguageExpression1 != null)
+                    this.getstu.LanguageExpression1 = AS1.LanguageExpression1.split('(^o~)');
+                if(AS1.LanguageExpression2 != null)
+                    this.getstu.LanguageExpression2 = AS1.LanguageExpression2;
+                if(AS1.LanguageExpression3 != null)
+                    this.getstu.LanguageExpression3 = AS1.LanguageExpression3;
+                if(AS1.LanguageExpression4 != null)
+                    this.getstu.LanguageExpression4 = AS1.LanguageExpression4.split('(^o~)');
+                if(AS1.LanguageExpression5 != null)
+                    this.getstu.LanguageExpression5 = AS1.LanguageExpression5.split('(^o~)');
+                if(AS1.LanguageExpression6 != null)
+                    this.getstu.LanguageExpression6 = AS1.LanguageExpression6.split('(^o~)');
+                if(AS1.LanguageExpressionOther != null)
+                    this.getstu.LanguageExpressionOther = AS1.LanguageExpressionOther;
+                if(AS1.Chinese != null)
+                    this.getstu.Chinese = AS1.Chinese.split('(^o~)');
+                if(AS1.ChineseOther != null)
+                    this.getstu.ChineseOther = AS1.ChineseOther;
+                if(AS1.Math != null)
+                    this.getstu.Math = AS1.Math.split('(^o~)');
+                if(AS1.MathOther != null)
+                    this.getstu.MathOther = AS1.MathOther;
+            },
+
+            async submitForm(){
+                await this.$http.post('/api/stu/upAS1', {
+                    Cognition:this.getstu.Cognition.join('(^o~)'),
+                    CognitionOther:this.getstu.CognitionOther,
+                    OralCavity:this.getstu.OralCavity,
+                    SwallowFunction:this.getstu.SwallowFunction,
+                    SwallowFunctionOther:this.getstu.SwallowFunctionOther,
+                    LanguageComprehension:this.getstu.LanguageComprehension.join('(^o~)'),
+                    LanguageComprehensionOther:this.getstu.LanguageComprehensionOther,
+                    LanguageExpression:this.getstu.LanguageExpression,
+                    LanguageExpression1:this.getstu.LanguageExpression1.join('(^o~)'),
+                    LanguageExpression2:this.getstu.LanguageExpression2,
+                    LanguageExpression3:this.getstu.LanguageExpression3,
+                    LanguageExpression4:this.getstu.LanguageExpression4.join('(^o~)'),
+                    LanguageExpression5:this.getstu.LanguageExpression5.join('(^o~)'),
+                    LanguageExpression6:this.getstu.LanguageExpression6.join('(^o~)'),
+                    LanguageExpressionOther:this.getstu.LanguageExpressionOther,
+                    Chinese:this.getstu.Chinese.join('(^o~)'),
+                    ChineseOther:this.getstu.ChineseOther,
+                    Math:this.getstu.Math.join('(^o~)'),
+                    MathOther:this.getstu.MathOther,
+                    stuID:this.$store.state.stuinfo[0].student_id
+                }).then((response) => {
+                    if(response.status == 200)
+                        this.$message.success("保存成功！");
+                    else
+                        this.$message.warning("保存失败...");
+                });
+            },
         }
     }
 </script>
